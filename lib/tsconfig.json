@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "esnext",
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "lib/types",
+    "types": ["@types/node", "jest"],
+    "lib": ["esnext", "DOM", "DOM.iterable", "scripthost"],
+    // "baseUrl": ".",
+    // "paths": {
+    //   "~/*": ["components/*"],
+    //   "@/*": ["components/*"],
+    //   "~utils/*": ["utils/*"],
+    // },
+  },
+  "include": [
+    "build/*",
+    "types/*.d.ts",
+    "components/**/*",
+    "directive/**/*",
+    "filters/**/*",
+    "utils/**/*"
+  ],
+  "exclude": ["node_modules", "lib"]
+}

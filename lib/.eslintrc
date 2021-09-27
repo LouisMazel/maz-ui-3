@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "plugins": ["vue", "prettier", "unicorn"],
+
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+
+    "@vue/prettier",
+    "@vue/prettier/@typescript-eslint",
+
+    // "plugin:unicorn/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+
+  "rules": {
+    "vue/component-name-in-template-casing": ["error", "PascalCase"],
+    "unicorn/prefer-module": "off"
+  }
+  // "overrides": [{
+  //   "files":[".ts", ".vue", ".js", ".css"]
+  // }]
+}

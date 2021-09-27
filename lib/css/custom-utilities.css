@@ -1,0 +1,13 @@
+@layer utilities {
+  .maz-flex-center {
+    @apply maz-items-center maz-justify-items-center;
+  }
+
+  .maz-flex-fixed {
+    flex: 0 0 auto;
+  }
+
+  .maz-bg-overlay {
+    background-color: rgba(86, 87, 117, 0.7);
+  }
+}
