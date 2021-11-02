@@ -1,7 +1,71 @@
-export const debounce = <F extends (...params: any[]) => void>(fn: F, delay: number): F => {
-  let timeoutID: NodeJS.Timeout
-  return function (this: any, ...args: any[]) {
-    clearTimeout(timeoutID)
-    timeoutID = setTimeout(() => fn.apply(this, args), delay)
-  } as F
+type ArgumentTypes<F extends (...args: any[]) => void> = F extends (...args: infer A) => any ? A : never
+
+type MethodTypes = {
+  cancel: () => void
+  flush: () => void
+}
+
+export function debounce<T extends (...args: any[]) => void>(
+  fn: T,
+  wait = 0,
+  callFirst = false
+): ((...args: ArgumentTypes<T>) => void) & MethodTypes {
+  let timeout: ReturnType<typeof setTimeout> | undefined = undefined
+  let debouncedFn: VoidFunction | undefined = undefined
+
+  const clear = function () {
+    if (timeout) {
+      clearTimeout(timeout)
+
+      debouncedFn = undefined
+      timeout = undefined
+    }
+  }
+
+  const flush = function () {
+    const call = debouncedFn
+    clear()
+
+    if (call) {
+      call()
+    }
+  }
+
+  const debounceWrapper = function () {
+    /* eslint-disable prefer-rest-params  */
+    /* eslint-disable @typescript-eslint/no-this-alias  */
+    if (!wait) {
+      return fn.apply(this, [arguments])
+    }
+
+    const context = this
+    const args = arguments
+    const callNow = callFirst && !timeout
+    clear()
+    /* eslint-enable camelcase */
+
+    debouncedFn = function () {
+      fn.apply(context, [args])
+    }
+
+    timeout = setTimeout(function () {
+      timeout = undefined
+
+      if (!callNow) {
+        const call = debouncedFn
+        debouncedFn = undefined
+
+        if (typeof call !== 'undefined') return call()
+      }
+    }, wait)
+
+    if (callNow) {
+      return debouncedFn()
+    }
+  }
+
+  debounceWrapper.cancel = clear
+  debounceWrapper.flush = flush
+
+  return debounceWrapper
 }

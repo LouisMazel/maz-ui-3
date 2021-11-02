@@ -1,0 +1,264 @@
+<template>
+  <div
+    v-if="images.length || hasEmptyLayer"
+    class="maz-gallery maz-base-component maz-flex"
+    :style="[sizeStyle]"
+    :class="{ 'maz-rounded-xl': radius }"
+  >
+    <section class="maz-gallery__wrapper maz-flex maz-flex-1">
+      <figure
+        v-for="(image, i) in imagesShown"
+        :key="i"
+        class="maz-gallery__item maz-flex maz-items-center maz-justify-center !maz-my-0"
+        :class="[`maz-gallery__item--${i + 1}`]"
+      >
+        <img
+          v-zoom-img="{
+            src: image.slug,
+            alt: image.alt,
+            disabled: !zoom || shouldHaveRemainingLayer(i),
+            blur: blur,
+            scale: scale,
+          }"
+          v-lazy-img:bg-image="{ src: image.slug, disabled: !lazy }"
+          class="maz-gallery__item__image maz-flex-1"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          :alt="image.alt"
+        />
+        <div
+          v-if="shouldHaveRemainingLayer(i)"
+          v-zoom-img="{
+            src: image.slug,
+            alt: image.alt,
+            disabled: !zoom,
+            blur: blur,
+            scale: scale,
+          }"
+          class="maz-gallery__remaining-layer maz-flex maz-items-center maz-justify-center maz-bg-overlay"
+        >
+          <span>+{{ numberImagesRemaining }}</span>
+        </div>
+      </figure>
+      <div
+        v-if="hasEmptyLayer && !images.length"
+        class="maz-bg-gray-100 maz-flex maz-items-center maz-justify-center maz-w-full"
+        :class="{ 'maz-rounded-xl': radius }"
+        :style="[sizeStyle]"
+      >
+        <i class="material-icons maz-text-muted">no_photography</i>
+      </div>
+    </section>
+    <div
+      v-for="(image, i) in imagesHidden"
+      :key="i"
+      v-zoom-img="{ src: image.slug, disabled: !zoom }"
+      class="maz-gallery__hidden"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+  import { defineComponent, computed, PropType, onBeforeMount } from 'vue'
+  import { directive as zoomImg } from '~directives/zoom-img.directive'
+  import { directive as lazyImg } from '~directives/v-lazy-img'
+  import { Images } from '.'
+
+  export default defineComponent({
+    directives: {
+      'zoom-img': zoomImg,
+      'lazy-img': lazyImg,
+    },
+    props: {
+      // Array of string or object: `['https://via.placeholder.com/500', 'https://via.placeholder.com/600']` or `[{ slug: 'https://via.placeholder.com/500', alt: 'image descripton' }, { slug: 'https://via.placeholder.com/600', alt: 'image descripton' }]`
+      images: { type: Array as PropType<Images>, default: Array },
+      // Images count shown (max: 5)
+      imagesShownCount: { type: Number, default: 5 },
+      // Remove transparent layer with the remain count (ex: +2)
+      noRemaining: { type: Boolean, default: false },
+      // Height of gallery
+      height: { type: [Number, String], default: 150 },
+      // Remove default height
+      noHeight: { type: Boolean, default: false },
+      // Width of gallery
+      width: { type: [Number, String], default: '100%' },
+      // Remove default width
+      noWidth: { type: Boolean, default: false },
+      // Add the default border radius to gallery
+      radius: { type: Boolean, default: true },
+      // Add feature to show the carousel images on click
+      zoom: { type: Boolean, default: true },
+      // Layer with photography icon when no images is provided
+      hasEmptyLayer: { type: Boolean, default: true },
+      // Lazy load image - if false, images are directly loaded
+      lazy: { type: Boolean, default: true },
+      // Blur animation effect on image hover
+      blur: { type: Boolean, default: true },
+      // Scale animation effect on image hover
+      scale: { type: Boolean, default: true },
+    },
+    setup(props) {
+      onBeforeMount(() => {
+        if (props.imagesShownCount > 5) console.warn('[MazUI](maz-gallery) The maximum of "images-shown-count" is 5')
+      })
+
+      const sizeStyle = computed(() => {
+        const { height, width, noWidth, noHeight } = props
+        return {
+          ...(!noWidth
+            ? {
+                flex: `0 0 ${typeof width === 'number' ? `${width}px` : width}`,
+                width: typeof width === 'number' ? `${width}px` : width,
+              }
+            : {}),
+          ...(!noHeight
+            ? {
+                height: typeof height === 'number' ? `${height}px` : `${height}`,
+                minHeight: typeof height === 'number' ? `${height}px` : `${height}`,
+              }
+            : {}),
+        }
+      })
+
+      const imagesCount = computed(() => {
+        const { imagesShownCount } = props
+        return imagesShownCount <= 5 ? imagesShownCount : 5
+      })
+
+      const numberImagesRemaining = computed(() => {
+        const { images } = props
+        return images.length - (images.length < imagesCount.value ? images.length : imagesCount.value)
+      })
+      const imagesNormalized = computed(() => {
+        const { images } = props
+        return images.map((i) => (typeof i === 'object' ? i : { slug: i, alt: undefined }))
+      })
+      const imagesShown = computed(() => {
+        return imagesNormalized.value.slice(0, imagesCount.value)
+      })
+      const imagesHidden = computed(() => {
+        return imagesNormalized.value.slice(imagesCount.value, props.images.length)
+      })
+
+      const shouldHaveRemainingLayer = (i: number) => {
+        return numberImagesRemaining.value && i + 1 === imagesShown.value.length && !props.noRemaining
+      }
+
+      return {
+        sizeStyle,
+        imagesCount,
+        shouldHaveRemainingLayer,
+        imagesShown,
+        numberImagesRemaining,
+        imagesHidden,
+      }
+    },
+  })
+</script>
+
+<style lang="postcss" scoped>
+  .maz-gallery {
+    @apply maz-relative maz-overflow-hidden;
+
+    &__hidden {
+      @apply maz-hidden;
+    }
+
+    &__item {
+      @apply maz-absolute maz-top-0 maz-h-1/2 maz-p-0 maz-w-full maz-border-l-2 maz-border-transparent maz-overflow-hidden;
+
+      &--1 {
+        left: 0;
+        height: 100%;
+
+        &:not(:last-child) {
+          width: 50%;
+        }
+      }
+
+      &--2 {
+        left: 50%;
+        width: 50%;
+        height: 50%;
+
+        &:last-child {
+          height: 100%;
+        }
+
+        &:nth-last-child(4) {
+          width: 25%;
+        }
+      }
+
+      &--3 {
+        top: 50%;
+        left: 50%;
+        width: 25%;
+
+        &:last-child {
+          width: 50%;
+        }
+
+        &:nth-last-child(3) {
+          top: 0;
+          left: 75%;
+        }
+      }
+
+      &--4 {
+        @apply maz-border-t-2 maz-border-transparent;
+
+        top: 50%;
+        left: 50%;
+        width: 25%;
+
+        &:last-child {
+          left: 75%;
+          width: 25%;
+        }
+      }
+
+      &--5 {
+        @apply maz-border-t-2 maz-border-transparent;
+
+        top: 50%;
+        left: 75%;
+        width: 25%;
+      }
+
+      &:first-child {
+        border-left: 0;
+      }
+
+      &--3:last-child,
+      &--3:nth-last-child(2),
+      &--4:last-child,
+      &--5 {
+        @apply maz-border-t-2 maz-border-transparent;
+      }
+
+      &__image {
+        /* display: block; */
+        height: 100%;
+        max-width: 100%;
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: rgb(0 0 0 / 5%);
+      }
+    }
+
+    &__remaining-layer {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+      a span {
+        color: white;
+        font-size: 2rem;
+      }
+    }
+  }
+</style>

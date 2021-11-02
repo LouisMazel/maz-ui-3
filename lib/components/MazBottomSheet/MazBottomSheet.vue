@@ -1,17 +1,17 @@
 <template>
-  <transition name="maz-bottom-sheet" class="maz-base-component maz-bottom-sheet">
+  <transition name="m-bottom-sheet" class="maz-base-component m-bottom-sheet">
     <div
       v-if="modelValue"
-      class="maz-bottom-sheet__mask"
+      class="m-bottom-sheet__mask"
       :class="{
         'is-open': modelValue,
         'no-overlay': noOverlay,
         'maz-is-dark': dark,
       }"
     >
-      <div v-click-outside="vcoConfig" class="maz-bottom-sheet__wrapper">
+      <div v-click-outside="vcoConfig" class="m-bottom-sheet__wrapper">
         <div
-          class="maz-bottom-sheet__container maz-bottom-sheet-animation maz-bg-color maz-position-relative maz-elevation"
+          class="m-bottom-sheet__container m-bottom-sheet-animation maz-bg-color maz-relative maz-elevation"
           :class="{
             'maz-py-6': !noPadding,
           }"
@@ -27,7 +27,7 @@
           <MazBtn
             v-if="!noClose"
             size="mini"
-            class="maz-bottom-sheet__close"
+            class="m-bottom-sheet__close"
             fab
             no-shadow
             color="transparent"

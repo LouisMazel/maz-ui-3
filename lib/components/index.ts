@@ -13,7 +13,6 @@ import MazTransitionExpand from './MazTransitionExpand'
 import MazInput from './MazInput'
 import MazDropdown from './MazDropdown'
 import MazSpinner from './MazSpinner'
-import MazInput2 from './MazInput2'
 
 export {
   MazAvatar,
@@ -31,5 +30,4 @@ export {
   MazInput,
   MazSpinner,
   MazTransitionExpand,
-  MazInput2,
 }

@@ -14,12 +14,13 @@
     "declarationDir": "lib/types",
     "types": ["@types/node", "jest"],
     "lib": ["esnext", "DOM", "DOM.iterable", "scripthost"],
-    // "baseUrl": ".",
-    // "paths": {
-    //   "~/*": ["components/*"],
-    //   "@/*": ["components/*"],
-    //   "~utils/*": ["utils/*"],
-    // },
+    "baseUrl": ".",
+    "paths": {
+      "~directives/*": ["directives/*"],
+      "~/*": ["components/*"],
+      "@/*": ["components/*"],
+      "~utils/*": ["utils/*"],
+    },
   },
   "include": [
     "build/*",
