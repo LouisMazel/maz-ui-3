@@ -10,7 +10,7 @@ const handleOutsideClick = (event: TouchEvent | MouseEvent, element: HTMLElement
     for (const referenceName of exclude) {
       if (!clickedOnExcludedElement) {
         const excludedElement = vnode.context.$refs[referenceName]
-        clickedOnExcludedElement = excludedElement.contains(e.target)
+        clickedOnExcludedElement = excludedElement.contains(event.target)
       }
     }
   }

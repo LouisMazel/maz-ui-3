@@ -26,8 +26,8 @@
     label: string
     value: string | number | boolean
     icon: string
-    rightIconName: string
-    leftIconName: string
+    rightIcon: string
+    leftIcon: string
   }
 
   export default defineComponent({

@@ -30,8 +30,10 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  // TODO: use setup
+  import { defineComponent } from 'vue'
+  export default defineComponent({
     name: 'MazDropdown',
     inheritAttrs: false,
     props: {
@@ -70,5 +72,5 @@
         this.isOpen = false
       },
     },
-  }
+  })
 </script>

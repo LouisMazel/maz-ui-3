@@ -7,7 +7,6 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "strict",
-  "jsxBracketSameLine": false,
   "jsxSingleQuote": true,
   "printWidth": 130,
   "proseWrap": "never",
