@@ -1,10 +1,10 @@
 <template>
   <transition name="maz-bottom-sheet" class="maz-base-component maz-bottom-sheet">
     <div
-      v-if="value"
+      v-if="modelValue"
       class="maz-bottom-sheet__mask"
       :class="{
-        'is-open': value,
+        'is-open': modelValue,
         'no-overlay': noOverlay,
         'maz-is-dark': dark,
       }"
