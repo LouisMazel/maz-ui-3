@@ -1,4 +1,4 @@
-import { App, Directive, DirectiveBinding, Plugin } from 'vue'
+import { Directive, DirectiveBinding, Plugin } from 'vue'
 
 const clickEventType = document.ontouchstart !== null ? 'click' : 'touchstart'
 
@@ -16,12 +16,7 @@ const onMounted = (el: any, binding: DirectiveBinding) => {
   }, 0)
 
   el[UNIQUE_ID] = (event: Event) => {
-    if (
-      (!el || !el.contains(event.target)) &&
-      callback &&
-      nextTick &&
-      typeof callback === 'function'
-    ) {
+    if ((!el || !el.contains(event.target)) && callback && nextTick && typeof callback === 'function') {
       return callback.call(vm, event)
     }
   }
@@ -34,7 +29,7 @@ const onUnmounted = (el: any) => {
   delete el[UNIQUE_ID]
 }
 
-const onUpdated = (el: any, binding: any, vnode: any) => {
+const onUpdated = (el: any, binding: any) => {
   if (binding.value === binding.oldValue) {
     return
   }

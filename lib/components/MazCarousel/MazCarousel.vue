@@ -72,7 +72,7 @@
 
 <script lang="ts" setup>
   import { ref, useSlots } from 'vue'
-  import MazBtn from './MazBtn.vue'
+  // import MazBtn from './../MazBtn/MazBtn.vue'
 
   const props = defineProps({
     scrollBtn: { type: Boolean, default: true },

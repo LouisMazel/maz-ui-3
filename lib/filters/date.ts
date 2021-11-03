@@ -15,7 +15,7 @@ export const date = (date: string | number, locale: string, options?: Intl.DateT
 
   try {
     return new Intl.DateTimeFormat(locale, options_).format(new Date(date))
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(`[FilterDate] ${error}`)
   }
 }

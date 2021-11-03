@@ -1,5 +1,5 @@
 <template>
-  <transition name="m-bottom-sheet" class="maz-base-component m-bottom-sheet">
+  <Transition name="m-bottom-sheet" class="maz-base-component m-bottom-sheet">
     <div
       v-if="modelValue"
       class="m-bottom-sheet__mask"
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <script lang="ts">

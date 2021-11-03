@@ -1,4 +1,4 @@
-import MazAvatar from './MazAvatar'
+// import MazAvatar from './MazAvatar'^
 import MazBottomSheet from './MazBottomSheet'
 import MazBtn from './MazBtn'
 import MazBtnGroup from './MazBtnGroup'
@@ -15,7 +15,7 @@ import MazDropdown from './MazDropdown'
 import MazSpinner from './MazSpinner'
 
 export {
-  MazAvatar,
+  // MazAvatar,
   MazBottomSheet,
   MazBtn,
   MazBtnGroup,

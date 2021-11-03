@@ -10,7 +10,7 @@
       <slot />
       <i class="maz-dropdown__btn__icon material-icons maz-ml-2" :class="{ rotate: dropdownOpen }"> keyboard_arrow_down </i>
     </MazBtn>
-    <transition tag="div" name="maz-fade" class="maz-bg-color">
+    <Transition tag="div" name="maz-fade" class="maz-bg-color">
       <div
         v-show="dropdownOpen"
         class="
@@ -26,7 +26,7 @@
       >
         <slot name="dropdown" />
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 

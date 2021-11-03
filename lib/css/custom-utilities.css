@@ -8,6 +8,6 @@
   }
 
   .maz-bg-overlay {
-    background-color: rgba(86, 87, 117, 0.7);
+    background-color: rgb(86 87 117 / 70%);
   }
 }

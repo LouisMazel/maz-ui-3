@@ -12,7 +12,7 @@
             <slot name="title">{{ title }}</slot>
           </h2>
           <MazBtn color="white" no-bordered class="m-dialog-layout-closebtn" @click="close">
-            <MazIcon name="X" class="maz-cursor-pointer maz-w-5 maz-h-5" />
+            <!-- <MazIcon name="X" class="maz-cursor-pointer maz-w-5 maz-h-5" /> -->
           </MazBtn>
         </div>
         <div class="m-dialog-layout-content">
@@ -28,12 +28,12 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import MazBtn from './MazBtn.vue'
-  import MazBackDrop from './MazBackDrop.vue'
-  import MazIcon from './MazIcon.vue'
+  import MazBtn from './../MazBtn/MazBtn.vue'
+  import MazBackDrop from './../MazBackDrop/MazBackDrop.vue'
+  // import MazIcon from './../MazIcon/MazIcon.vue'
 
   export default defineComponent({
-    components: { MazBtn, MazBackDrop, MazIcon },
+    components: { MazBtn, MazBackDrop },
     inheritAttrs: false,
     props: {
       title: { type: String, default: undefined },

@@ -30,6 +30,7 @@
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
+  import { MazBtn } from './../../lib'
 
   export default defineComponent({
     name: 'App',

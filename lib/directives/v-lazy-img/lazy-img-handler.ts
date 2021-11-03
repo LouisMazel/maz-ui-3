@@ -1,8 +1,7 @@
 import { ClassOptions, LazyImgBinding, GlobalOptions } from './types'
 export * from './types'
 
-const EMPTY_PHOTO =
-  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+const EMPTY_PHOTO = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
 export const DEFAULT_OPTIONS: ClassOptions = {
   baseClass: 'maz-lazy-img',
@@ -96,15 +95,11 @@ export class LazyImg {
     this.setDefaultPhoto(el)
   }
 
-  private getImageUrl(
-    el: HTMLElement,
-    binding: LazyImgBinding,
-  ): string | null | undefined {
+  private getImageUrl(el: HTMLElement, binding: LazyImgBinding): string | null | undefined {
     const dataSrc = this.getImgElement(el).getAttribute('data-src')
     if (dataSrc) return dataSrc
 
-    const bindingSrc =
-      typeof binding.value === 'object' ? binding.value.src : binding.value
+    const bindingSrc = typeof binding.value === 'object' ? binding.value.src : binding.value
 
     if (!bindingSrc) console.warn(`[VLazyImg] src url is not defined`)
 
@@ -117,16 +112,11 @@ export class LazyImg {
     if (sourceElements.length > 0) {
       for await (const source of sourceElements) {
         const srcSet = source.getAttribute('data-srcset')
-        if (!srcSet)
-          console.warn(
-            '[VLazyImg] the "[data-srcset]" attribute is not provided on "<source />"',
-          )
+        if (!srcSet) console.warn('[VLazyImg] the "[data-srcset]" attribute is not provided on "<source />"')
         else source.srcset = srcSet
       }
     } else {
-      console.warn(
-        '[VLazyImg] No "<source />" elements provided into the "<picture />" element',
-      )
+      console.warn('[VLazyImg] No "<source />" elements provided into the "<picture />" element')
       this.imageHasError(el)
     }
   }
@@ -146,9 +136,7 @@ export class LazyImg {
 
   private async setDefaultPhoto(el: HTMLElement) {
     if (this.options.noUseErrorPhoto) return
-    const errorPhoto = this.options.errorPhoto
-      ? this.options.errorPhoto
-      : await this.loadErrorPhoto()
+    const errorPhoto = this.options.errorPhoto ? this.options.errorPhoto : await this.loadErrorPhoto()
     const sourceElements = el.querySelectorAll('source')
     if (sourceElements.length > 0) {
       for await (const source of sourceElements) {
@@ -164,17 +152,10 @@ export class LazyImg {
     imgElement.addEventListener('load', () => this.onImgLoadedCallback(el), {
       once: true,
     })
-    imgElement.addEventListener(
-      'error',
-      (err) => this.onImgErrorCallback(el, err),
-      { once: true },
-    )
+    imgElement.addEventListener('error', (err) => this.onImgErrorCallback(el, err), { once: true })
   }
 
-  private async loadImage(
-    el: HTMLElement,
-    binding: LazyImgBinding,
-  ): Promise<void> {
+  private async loadImage(el: HTMLElement, binding: LazyImgBinding): Promise<void> {
     this.imageIsLoading(el)
 
     if (this.isPictureElement(el)) {
@@ -206,7 +187,7 @@ export class LazyImg {
     el: HTMLElement,
     binding: LazyImgBinding,
     entries: IntersectionObserverEntry[],
-    observer: IntersectionObserver,
+    observer: IntersectionObserver
   ) {
     this.observers.push(observer)
     for (const entry of entries) {
@@ -224,30 +205,17 @@ export class LazyImg {
   }
 
   private createObserver(el: HTMLElement, binding: LazyImgBinding) {
-    const observerCallback = (
-      entries: IntersectionObserverEntry[],
-      intersectionObserver: IntersectionObserver,
-    ) => {
-      this.handleIntersectionObserver(
-        el,
-        binding,
-        entries,
-        intersectionObserver,
-      )
+    const observerCallback = (entries: IntersectionObserverEntry[], intersectionObserver: IntersectionObserver) => {
+      this.handleIntersectionObserver(el, binding, entries, intersectionObserver)
     }
-    const observerOptions: ClassOptions['observerOptions'] =
-      this.options.observerOptions
+    const observerOptions: ClassOptions['observerOptions'] = this.options.observerOptions
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
 
     observer.observe(el)
   }
 
-  private async imageHandler(
-    el: HTMLElement,
-    binding: LazyImgBinding,
-    type: 'bind' | 'update',
-  ): Promise<void> {
+  private async imageHandler(el: HTMLElement, binding: LazyImgBinding, type: 'bind' | 'update'): Promise<void> {
     if (type === 'update') {
       // Clean all previous observers
       for await (const observer of this.observers) observer.unobserve(el)
@@ -260,11 +228,7 @@ export class LazyImg {
     }
   }
 
-  private async bindUpdateHandler(
-    el: HTMLElement,
-    binding: LazyImgBinding,
-    type: 'bind' | 'update',
-  ): Promise<void> {
+  private async bindUpdateHandler(el: HTMLElement, binding: LazyImgBinding, type: 'bind' | 'update'): Promise<void> {
     if (this.options.noPhoto) return this.imageHasNoPhoto(el)
 
     await this.imageHandler(el, binding, type)
@@ -272,9 +236,7 @@ export class LazyImg {
 
   public async add(el: HTMLElement, binding: LazyImgBinding): Promise<void> {
     if (this.hasBgImgMode(binding) && this.isPictureElement(el)) {
-      throw new Error(
-        `[VLazyImg] You can't use the "bg-image" mode with "<picture />" element`,
-      )
+      throw new Error(`[VLazyImg] You can't use the "bg-image" mode with "<picture />" element`)
     }
 
     setTimeout(() => this.setBaseClass(el), 0)

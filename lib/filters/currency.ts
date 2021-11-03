@@ -37,7 +37,7 @@ export const currency = (number: number | string, locale: string, options: Filte
 
   try {
     return getFormattedCurrency(number, locale, options_)
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(`[FilterCurrency] ${error}`)
   }
 }

@@ -5,7 +5,7 @@ export const number = (number: number | string, locale: string, options: Intl.Nu
 
   try {
     return new Intl.NumberFormat(locale, options).format(Number(number))
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(`[FilterNumber] ${error}`)
   }
 }
