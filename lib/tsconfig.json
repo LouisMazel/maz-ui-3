@@ -12,15 +12,16 @@
     "sourceMap": true,
     "declaration": true,
     "declarationDir": "lib/types",
-    "types": ["@types/node", "jest"],
     "lib": ["esnext", "DOM", "DOM.iterable", "scripthost"],
     "baseUrl": ".",
+    "strictPropertyInitialization": false,
     "paths": {
       "~directives/*": ["directives/*"],
       "~/*": ["components/*"],
       "@/*": ["components/*"],
       "~utils/*": ["utils/*"],
     },
+    "types": ["@types/node", "jest", "google.maps"],
   },
   "include": [
     "build/*",
