@@ -1,0 +1,28 @@
+html,
+body,
+#app {
+  @apply maz-min-h-screen maz-flex maz-flex-col maz-text-gray-900;
+}
+
+body {
+  @apply maz-flex maz-flex-col;
+
+  main {
+    & a:not(.--no-styling) {
+      @apply maz-text-secondary maz-font-medium maz-underline
+        hover:maz-text-secondary-400;
+    }
+  }
+
+  & h1,
+  & h2 {
+    @apply maz-tracking-tighter;
+  }
+
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    @apply maz-tracking-tight;
+  }
+}

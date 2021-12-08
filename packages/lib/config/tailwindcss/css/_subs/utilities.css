@@ -1,0 +1,5 @@
+/* @layer utilities {
+  .maz-flex-center {
+    @apply maz-items-center maz-justify-center;
+  }
+} */

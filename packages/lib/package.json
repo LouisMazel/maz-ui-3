@@ -1,0 +1,109 @@
+{
+  "name": "@mazel/ui",
+  "version": "3.0.0",
+  "description": "A stand-alone components library for Vue.Js & Nuxt.Js",
+  "author": "Louis Mazel <me@loicmazuel.com>",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "scripts": {
+    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup.config.js",
+    "build:css": "npm run clean && cross-env NODE_ENV=production SEP_CSS=true rollup -c build/rollup.config.js",
+    "test": "jest",
+    "lint": "npm run lint:js && npm run lint:style",
+    "lint:js": "eslint --fix --ext .ts,.js,.vue .",
+    "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
+    "pre-publish": "npm run build",
+    "clean": "rimraf lib",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue,json}": "eslint --fix",
+    "*.{vue,css,scss,postcss,pcss}": "stylelint --custom-syntax postcss-html --fix",
+    "*": "prettier -w -u"
+  },
+  "dependencies": {
+    "vue": "^3.2.24",
+    "vue-inline-svg": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.16.4",
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-url": "^6.0.0",
+    "@types/google.maps": "^3.47.1",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "@vue/compiler-sfc": "^3.2.24",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-unicorn": "^39.0.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "fs": "0.0.2",
+    "lint-staged": "^12.1.2",
+    "path": "^0.12.7",
+    "postcss": "^8.4.4",
+    "postcss-html": "^1.3.0",
+    "postcss-import": "^14.0.2",
+    "postcss-nested": "^5.0.5",
+    "postcss-url": "^10.1.3",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.60.2",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "rollup-plugin-vue": "^6.0.0",
+    "stylelint": "^14.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-vue": "^1.1.0",
+    "stylelint-config-standard": "^24.0.0",
+    "tailwind-css-variables": "^3.0.1",
+    "tailwindcss": "^2.1.2",
+    "ts-jest": "^27.1.1",
+    "typescript": "^4.5.2",
+    "v-click-outside": "^3.1.2",
+    "vue-jest": "^5.0.0-0",
+    "vue-loader": "^16.8.3",
+    "vue-zoom-img": "^1.0.1",
+    "vuedraggable": "^2.24.3"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/LouisMazel/maz-ui/issues"
+  },
+  "homepage": "https://louismazel.github.io/maz-ui",
+  "keywords": [
+    "vue",
+    "components",
+    "vue-component",
+    "framework",
+    "library",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouisMazel/maz-ui.git"
+  },
+  "license": "MIT"
+}

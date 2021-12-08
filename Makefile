@@ -1,32 +1,41 @@
 serve:
-	make --directory=testing serve
+	make --directory=packages/testing serve
 
-lint-doc:
-	make --directory=testing lint
+lint-testing:
+	make --directory=packages/testing lint
 
 lint-lib:
-	make --directory=testing lint
+	make --directory=packages/testing lint
 
-build-doc:
-	make --directory=testing build
+build-testing:
+	make --directory=packages/testing build
 
 build-lib:
-	make --directory=lib build
+	make --directory=packages/lib build
 
 reinstall:
-	make reinstall-lib reinstall-doc
+	make reinstall-lib reinstall-testing
 
 reinstall-lib:
-	make --directory=lib reinstall
+	make --directory=packages/lib reinstall
 
-reinstall-doc:
-	make --directory=testing reinstall
+reinstall-testing:
+	make --directory=packages/testing reinstall
 
 install:
-	make install-lib install-doc
+	make install-lib install-testing
 
 install-lib:
-	make --directory=lib install
+	make --directory=packages/lib install
 
-install-doc:
-	make --directory=testing install
+install-testing:
+	make --directory=packages/testing install
+
+lint-staged: ## lint-staged
+	npm run pre-commit
+
+lint-staged-lib: ## install lint api packages
+	make --directory=packages/lib lint-staged
+
+lint-staged-testing: ## install lint app packages
+	make --directory=packages/testing lint-staged

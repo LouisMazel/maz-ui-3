@@ -1,0 +1,55 @@
+/* stylelint-disable no-descending-specificity */
+.m-backdrop.m-drawer {
+  @apply maz-justify-end maz-items-stretch;
+
+  &.-right {
+    & .m-backdrop-content {
+      @apply maz-h-auto maz-min-h-screen;
+
+      transition: transform 0.45s;
+      width: 100%;
+
+      @screen tab-m {
+        width: 30rem;
+      }
+    }
+
+    &.-always-full-w .m-backdrop-content {
+      @apply maz-min-w-full;
+    }
+
+    &.backdrop-anim-enter-from > .m-backdrop-content,
+    &.backdrop-anim-leave-to > .m-backdrop-content {
+      transform: translateX(100%);
+    }
+
+    & .m-backdrop-content > .m-drawer-content-wrap {
+      @apply maz-h-full maz-w-full maz-flex maz-flex-col maz-pointer-events-auto;
+
+      box-shadow: 0 0.1875rem 0.375rem rgb(0 0 0 / 16%);
+    }
+  }
+
+  &.-top {
+    & .m-backdrop-content {
+      transition: transform 0.45s;
+      width: 100%;
+      height: 100vh;
+
+      @screen lap-s {
+        height: 33.5rem;
+      }
+    }
+
+    &.backdrop-anim-enter-from > .m-backdrop-content,
+    &.backdrop-anim-leave-to > .m-backdrop-content {
+      transform: translateY(-100%);
+    }
+  }
+
+  & .m-backdrop-content > .m-drawer-content-wrap {
+    @apply maz-h-full lap-s:maz-h-auto maz-w-full maz-flex maz-flex-col maz-pointer-events-auto;
+
+    box-shadow: 0 0.1875rem 0.375rem rgb(0 0 0 / 16%);
+  }
+}
