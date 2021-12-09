@@ -24,13 +24,10 @@ module.exports = {
   ],
 
   scopes: [
-    { name: "ci" },
-    { name: "app" },
-    { name: "api" },
     { name: "root" },
-    { name: "nginx" },
-    { name: "docker" },
-    { name: "www" },
+    { name: "ci" },
+    { name: "lib" },
+    { name: "testing" },
     { name: "release" },
   ],
 

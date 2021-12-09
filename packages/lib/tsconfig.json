@@ -25,7 +25,7 @@
   },
   "include": [
     "build/*",
-    "types/*.d.ts",
+    "types/*.ts",
     "components/**/*",
     "directive/**/*",
     "filters/**/*",
