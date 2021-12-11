@@ -10,11 +10,12 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationDir": "lib/types",
+    // "declaration": true,
+    // "declarationDir": "dist/types",
     "lib": ["esnext", "DOM", "DOM.iterable", "scripthost"],
     "baseUrl": ".",
     "strictPropertyInitialization": false,
+    "noImplicitThis": false,
     "paths": {
       "~directives/*": ["directives/*"],
       "~/*": ["components/*"],
@@ -31,5 +32,5 @@
     "filters/**/*",
     "utils/**/*"
   ],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules", "dist"]
 }

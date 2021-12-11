@@ -13,9 +13,13 @@ import postcssUrl from 'postcss-url'
 import url from '@rollup/plugin-url'
 import nested from 'postcss-nested'
 import autoprefixer from 'autoprefixer'
-import typescript from 'rollup-plugin-typescript2'
+import typescript from '@rollup/plugin-typescript'
 import css from 'rollup-plugin-css-only'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+
+const BASE_FDIR = './'
+const COMPONENTS_DIR = 'components/'
+const OUTPUT_DIR = './dist'
 
 const postcssConfigList = [
   postcssImport({
@@ -62,7 +66,10 @@ let postVueConfig = [
 ]
 
 if (process.env.SEP_CSS) {
-  postVueConfig = [css({ output: './lib/bundle.css' }), ...postVueConfig]
+  postVueConfig = [
+    css({ output: `${OUTPUT_DIR}/bundle.css` }),
+    ...postVueConfig,
+  ]
 }
 
 const baseConfig = {
@@ -120,19 +127,16 @@ const globals = {
   vue: 'Vue',
 }
 
-const baseFolder = './'
-const componentsFolder = 'components/'
-
 const components = fs
-  .readdirSync(baseFolder + componentsFolder)
+  .readdirSync(BASE_FDIR + COMPONENTS_DIR)
   .filter((f) =>
-    fs.statSync(path.join(baseFolder + componentsFolder, f)).isDirectory(),
+    fs.statSync(path.join(BASE_FDIR + COMPONENTS_DIR, f)).isDirectory(),
   )
 
 const entriespath = {
   index: './index.ts',
   ...components.reduce((object, name) => {
-    object[name] = `${baseFolder + componentsFolder + name}/index.ts`
+    object[name] = `${BASE_FDIR + COMPONENTS_DIR + name}/index.ts`
     return object
   }, {}),
 }
@@ -150,17 +154,17 @@ if (!argv.format || argv.format === 'es') {
     external,
     output: {
       format: 'esm',
-      dir: 'lib/components',
+      dir: `${OUTPUT_DIR}/components`,
       extend: true,
       sourcemap: true,
       exports: 'named',
     },
     plugins: [
-      peerDepsExternal(),
       typescript({
         tsconfig: './tsconfig.json',
-        useTsconfigDeclarationDir: false,
+        // useTsconfigDeclarationDir: false,
       }),
+      peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -178,17 +182,17 @@ if (!argv.format || argv.format === 'es') {
     external,
     output: {
       format: 'esm',
-      file: 'lib/index.js',
+      file: `${OUTPUT_DIR}/index.js`,
       extend: true,
       sourcemap: true,
       exports: 'named',
     },
     plugins: [
-      peerDepsExternal(),
       typescript({
         tsconfig: './tsconfig.json',
-        useTsconfigDeclarationDir: false,
+        // useTsconfigDeclarationDir: false,
       }),
+      peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -213,18 +217,18 @@ if (!argv.format || argv.format === 'cjs') {
     output: {
       compact: true,
       format: 'cjs',
-      dir: 'lib/cjs',
+      dir: `${OUTPUT_DIR}/cjs`,
       exports: 'named',
       globals,
       extend: true,
       sourcemap: true,
     },
     plugins: [
-      peerDepsExternal(),
       typescript({
         tsconfig: './tsconfig.json',
-        useTsconfigDeclarationDir: false,
+        // useTsconfigDeclarationDir: false,
       }),
+      peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
@@ -245,17 +249,17 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       format: 'cjs',
-      file: 'lib/index.cjs.js',
+      file: `${OUTPUT_DIR}/index.cjs.js`,
       extend: true,
       sourcemap: true,
       exports: 'named',
     },
     plugins: [
-      peerDepsExternal(),
       typescript({
         tsconfig: './tsconfig.json',
-        useTsconfigDeclarationDir: false,
+        // useTsconfigDeclarationDir: false,
       }),
+      peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),

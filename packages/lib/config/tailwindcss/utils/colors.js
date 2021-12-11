@@ -22,8 +22,6 @@ const makeColors = () => {
     }, {})
   }
 
-  console.log('colors', colors)
-
   return colors
 }
 

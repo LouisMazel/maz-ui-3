@@ -3,11 +3,11 @@
   "version": "3.0.0",
   "description": "A stand-alone components library for Vue.Js & Nuxt.Js",
   "author": "Louis Mazel <me@loicmazuel.com>",
-  "main": "lib/index.cjs.js",
-  "module": "lib/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
   "types": "types/index.d.ts",
   "files": [
-    "lib",
+    "dist",
     "types"
   ],
   "scripts": {
@@ -18,7 +18,7 @@
     "lint:js": "eslint --fix --ext .ts,.js,.vue .",
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
     "pre-publish": "npm run build",
-    "clean": "rimraf lib",
+    "clean": "rimraf dist",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
@@ -38,6 +38,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-typescript": "^8.3.0",
     "@rollup/plugin-url": "^6.0.0",
     "@types/google.maps": "^3.47.1",
     "@types/jest": "^27.0.3",

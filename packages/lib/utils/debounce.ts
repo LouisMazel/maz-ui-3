@@ -35,18 +35,15 @@ export function debounce<T extends (...args: any[]) => void>(
     }
   }
 
-  const debounceWrapper = function () {
-    /* eslint-disable prefer-rest-params  */
-    /* eslint-disable @typescript-eslint/no-this-alias  */
+  const debounceWrapper = function (...args: any) {
     if (!wait) {
-      return fn.apply(this, [arguments])
+      return fn.apply(this, [args])
     }
 
+    /* eslint-disable @typescript-eslint/no-this-alias  */
     const context = this
-    const args = arguments
     const callNow = callFirst && !timeout
     clear()
-    /* eslint-enable camelcase */
 
     debouncedFn = function () {
       fn.apply(context, [args])

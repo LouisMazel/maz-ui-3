@@ -1,7 +1,6 @@
 // import MazAvatar from './MazAvatar'^
-import MazNavBar from './MazNavBar'
-import MazBottomSheet from './MazBottomSheet'
 import MazBtn from './MazBtn'
+import MazSpinner from './MazSpinner'
 // import MazBtnGroup from './MazBtnGroup'
 // import MazCard from './MazCard'
 // import MazGallery from './MazGallery'
@@ -17,9 +16,8 @@ import MazBtn from './MazBtn'
 
 export {
   // MazAvatar,
-  MazNavBar,
-  MazBottomSheet,
   MazBtn,
+  MazSpinner,
   // MazBtnGroup,
   // MazCard,
   // MazCarousel,
