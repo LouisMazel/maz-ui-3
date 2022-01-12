@@ -7,13 +7,16 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import babel from '@rollup/plugin-babel'
+
 import PostCSS from 'rollup-plugin-postcss'
 import postcssImport from 'postcss-import'
 import postcssUrl from 'postcss-url'
-import url from '@rollup/plugin-url'
 import nested from 'postcss-nested'
 import autoprefixer from 'autoprefixer'
-import typescript from '@rollup/plugin-typescript'
+
+import url from '@rollup/plugin-url'
+import ttypescript from 'ttypescript'
+import typescript from 'rollup-plugin-typescript2'
 import css from 'rollup-plugin-css-only'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
@@ -161,6 +164,7 @@ if (!argv.format || argv.format === 'es') {
     },
     plugins: [
       typescript({
+        typescript: ttypescript,
         tsconfig: './tsconfig.json',
         // useTsconfigDeclarationDir: false,
       }),
@@ -189,6 +193,7 @@ if (!argv.format || argv.format === 'es') {
     },
     plugins: [
       typescript({
+        typescript: ttypescript,
         tsconfig: './tsconfig.json',
         // useTsconfigDeclarationDir: false,
       }),
@@ -225,6 +230,7 @@ if (!argv.format || argv.format === 'cjs') {
     },
     plugins: [
       typescript({
+        typescript: ttypescript,
         tsconfig: './tsconfig.json',
         // useTsconfigDeclarationDir: false,
       }),
@@ -256,6 +262,7 @@ if (!argv.format || argv.format === 'cjs') {
     },
     plugins: [
       typescript({
+        typescript: ttypescript,
         tsconfig: './tsconfig.json',
         // useTsconfigDeclarationDir: false,
       }),

@@ -3,16 +3,16 @@
   "version": "3.0.0",
   "description": "A stand-alone components library for Vue.Js & Nuxt.Js",
   "author": "Louis Mazel <me@loicmazuel.com>",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "types": "types/index.d.ts",
+  "main": "dist/maz-ui.ssr.js",
+  "browser": "dist/maz-ui.esm.js",
+  "module": "dist/maz-ui.esm.js",
+  "unpkg": "dist/maz-ui.min.js",
+  "types": "dist/types/package/entry.esm.d.ts",
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "scripts": {
-    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup.config.js",
-    "build:css": "npm run clean && cross-env NODE_ENV=production SEP_CSS=true rollup -c build/rollup.config.js",
+    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup-new.config.js",
     "test": "jest",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint --fix --ext .ts,.js,.vue .",
@@ -27,12 +27,15 @@
     "*": "prettier -w -u"
   },
   "dependencies": {
-    "vue": "^3.2.24",
     "vue-inline-svg": "^2.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
@@ -70,6 +73,7 @@
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-vue": "^6.0.0",
     "stylelint": "^14.1.0",
@@ -79,12 +83,14 @@
     "tailwind-css-variables": "^3.0.1",
     "tailwindcss": "^2.1.2",
     "ts-jest": "^27.1.1",
+    "ttypescript": "^1.5.13",
     "typescript": "^4.5.2",
     "v-click-outside": "^3.1.2",
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^16.8.3",
     "vue-zoom-img": "^1.0.1",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^2.24.3",
+    "vue": "^3.2.24"
   },
   "engines": {
     "node": ">= 6.0.0",

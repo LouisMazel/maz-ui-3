@@ -7,11 +7,11 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "skipLibCheck": true,
+    "declaration": true,
+    "declarationDir": "dist/types",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    // "declaration": true,
-    // "declarationDir": "dist/types",
     "lib": ["esnext", "DOM", "DOM.iterable", "scripthost"],
     "baseUrl": ".",
     "strictPropertyInitialization": false,
@@ -24,13 +24,6 @@
     },
     "types": ["@types/node", "jest", "google.maps"]
   },
-  "include": [
-    "build/*",
-    "types/*.ts",
-    "components/**/*",
-    "directive/**/*",
-    "filters/**/*",
-    "utils/**/*"
-  ],
+  "include": ["build/*", "types/*.ts", "package/**/*"],
   "exclude": ["node_modules", "dist"]
 }

@@ -43,7 +43,7 @@
 
 <script lang="ts">
   import { defineComponent, computed } from 'vue'
-  import { MazSpinner } from './../MazSpinner'
+  import MazSpinner from '../MazSpinner/MazSpinner.vue'
 
   export default defineComponent({
     components: { MazSpinner },
@@ -152,7 +152,7 @@
   })
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
   .m-btn {
     @apply maz-text-center;
 
