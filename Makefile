@@ -1,6 +1,9 @@
 serve:
 	make --directory=packages/testing serve
 
+storybook:
+	make --directory=packages/storybook storybook
+
 lint-testing:
 	make --directory=packages/testing lint
 

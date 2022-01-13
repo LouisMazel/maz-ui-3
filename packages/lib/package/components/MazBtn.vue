@@ -115,7 +115,7 @@
     () => (props.loading || props.disabled) && component.value === 'button',
   )
   const cursorClass = computed(() =>
-    isDisabled.value ? 'maz-cursor-default' : 'maz-cursor-pointer',
+    isDisabled.value ? '--cursor-default' : '--cursor-pointer',
   )
   const variantClass = computed(() => `--is-${props.variant}`)
   const loaderBgColorClass = computed(() => `--${props.color}`)
@@ -145,6 +145,14 @@
       @apply maz-ml-[0.5em];
 
       margin-right: -0.25em;
+    }
+
+    &.--cursor-pointer {
+      @apply maz-cursor-pointer;
+    }
+
+    &.--cursor-default {
+      @apply maz-cursor-default;
     }
 
     &.--is-link {
