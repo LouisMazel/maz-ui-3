@@ -137,7 +137,7 @@ if (!argv.format || argv.format === 'es') {
     input: COMPONENT_INPUT,
     external,
     output: {
-      dir: 'dist/maz-ui.esm.js',
+      dir: 'dist',
       format: 'esm',
       sourcemap: true,
       exports: 'named',
