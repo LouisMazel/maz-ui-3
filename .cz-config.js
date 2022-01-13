@@ -28,6 +28,7 @@ module.exports = {
     { name: "ci" },
     { name: "lib" },
     { name: "testing" },
+    { name: "chore" },
     { name: "release" },
   ],
 
