@@ -6,7 +6,6 @@
   "main": "dist/maz-ui.ssr.js",
   "browser": "dist/maz-ui.esm.js",
   "module": "dist/maz-ui.esm.js",
-  "unpkg": "dist/maz-ui.min.js",
   "types": "dist/types/package/entry.esm.d.ts",
   "files": [
     "dist"

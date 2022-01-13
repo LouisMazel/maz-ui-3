@@ -34,9 +34,10 @@
         :no-loader="noLoader"
         @click="clickable ? $emit('click', $event) : null"
       />
-      <slot v-else-if="caption" name="round-text">
-        <span class="m-avatar__initial"> {{ caption.charAt(0) }} </span>
+      <slot v-if="caption" name="round-text">
+        <span class="m-avatar__initial"> {{ caption?.charAt(0) }} </span>
       </slot>
+
       <button
         v-if="clickable"
         type="button"
@@ -59,8 +60,8 @@
 
 <script lang="ts" setup>
   import { PropType, computed } from 'vue'
-  import MazLazyImg from './../MazLazyImg/MazLazyImg.vue'
-  import MazIcon from './../MazIcon/MazIcon.vue'
+  import MazLazyImg from './MazLazyImg.vue'
+  import MazIcon from './MazIcon.vue'
 
   const props = defineProps({
     // url or path of the image
@@ -74,6 +75,7 @@
     },
     // url or path to link another page
     href: { type: String, default: undefined },
+    // route config
     to: { type: Object, default: undefined },
     // alt text of image
     alt: { type: String, default: 'avatar image' },
@@ -94,15 +96,15 @@
     noLoader: { type: Boolean, default: false },
   })
 
-  defineEmits(['click'])
-
   const componentType = computed(() =>
     props.to ? 'RouterLink' : props.href ? 'a' : 'div',
   )
   const isLink = computed(() => !!props.to || !!props.href)
+
+  defineEmits(['click'])
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
   .m-avatar {
     @apply maz-flex maz-flex-col maz-flex-center !maz-no-underline;
 

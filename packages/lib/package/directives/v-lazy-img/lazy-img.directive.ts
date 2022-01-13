@@ -3,7 +3,7 @@ import { LazyImg, LazyImgBinding } from './lazy-img-handler'
 
 let instance: LazyImg
 
-const lazyImgDirective: Directive = {
+const vLazyImg: Directive = {
   created(el: HTMLElement, binding: LazyImgBinding) {
     const options = typeof binding.value === 'object' ? binding.value : {}
     instance = new LazyImg(options)
@@ -17,4 +17,4 @@ const lazyImgDirective: Directive = {
   },
 }
 
-export { lazyImgDirective }
+export { vLazyImg }

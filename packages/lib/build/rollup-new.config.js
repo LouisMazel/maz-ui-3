@@ -137,8 +137,9 @@ if (!argv.format || argv.format === 'es') {
     input: COMPONENT_INPUT,
     external,
     output: {
-      file: 'dist/maz-ui.esm.js',
+      dir: 'dist/maz-ui.esm.js',
       format: 'esm',
+      sourcemap: true,
       exports: 'named',
     },
     plugins: [
@@ -166,6 +167,7 @@ if (!argv.format || argv.format === 'es') {
           ],
         ],
       }),
+      terser({ output: { ecma: 5 } }),
     ],
   }
   buildFormats.push(esConfig)
@@ -177,10 +179,11 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      file: 'dist/maz-ui.ssr.js',
+      dir: 'dist/ssr',
       format: 'cjs',
       name: 'MazUi',
       exports: 'auto',
+      sourcemap: true,
       globals,
     },
     plugins: [
@@ -190,38 +193,10 @@ if (!argv.format || argv.format === 'cjs') {
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
+      terser({ output: { ecma: 5 } }),
     ],
   }
   buildFormats.push(umdConfig)
-}
-
-if (!argv.format || argv.format === 'iife') {
-  const unpkgConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: 'dist/maz-ui.min.js',
-      format: 'iife',
-      name: 'MazUi',
-      exports: 'auto',
-      globals,
-    },
-    plugins: [
-      peerDepsExternal(),
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-      terser({
-        output: {
-          ecma: 5,
-        },
-      }),
-    ],
-  }
-  buildFormats.push(unpkgConfig)
 }
 
 // Export config

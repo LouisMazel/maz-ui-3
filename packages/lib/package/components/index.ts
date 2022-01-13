@@ -1,2 +1,6 @@
-export { default as MazUiSample } from './MazBtn/MazBtn.vue'
-export { default as MazSpinner } from './MazSpinner/MazSpinner.vue'
+export { default as MazArrowIcon } from './MazArrowIcon.vue'
+export { default as MazAvatar } from './MazAvatar.vue'
+export { default as MazBtn } from './MazBtn.vue'
+export { default as MazIcon } from './MazIcon.vue'
+export { default as MazLazyImg } from './MazLazyImg.vue'
+export { default as MazSpinner } from './MazSpinner.vue'

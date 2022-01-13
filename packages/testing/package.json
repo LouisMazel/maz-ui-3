@@ -6,8 +6,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "lint": "npm run lint:js && npm run lint:style",
-    "lint:js": "eslint --ext .js,.ts,vue --ignore-path .gitignore .",
-    "lint:style": "stylelint src/**/*.{css,scss,vue}",
+    "lint:js": "eslint --ext .js,.ts,vue --ignore-path .gitignore . --fix",
+    "lint:style": "stylelint src/**/*.{css,scss,vue} --fix",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {

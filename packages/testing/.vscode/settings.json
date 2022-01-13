@@ -20,6 +20,8 @@
     "comments": false,
     "strings": true
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.enable": true,
   "css.validate": true, // Disable css built-in lint
   "stylelint.enable": true, // Enable sytlelint
   "scss.validate": false // Disable scss lint (optional if using scss)

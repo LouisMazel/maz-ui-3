@@ -5,11 +5,11 @@ const EMPTY_PHOTO =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
 export const DEFAULT_OPTIONS: ClassOptions = {
-  baseClass: 'maz-lazy-img',
-  loadedClass: 'maz-lazy-loaded',
-  loadingClass: 'maz-lazy-loading',
-  errorClass: 'maz-lazy-error',
-  noPhotoClass: 'maz-lazy-no-photo',
+  baseClass: 'm-lazy-img',
+  loadedClass: 'm-lazy-loaded',
+  loadingClass: 'm-lazy-loading',
+  errorClass: 'm-lazy-error',
+  noPhotoClass: 'm-lazy-no-photo',
   noPhoto: false,
   observerOnce: true,
   loadOnce: false,
@@ -87,7 +87,7 @@ export class LazyImg {
   }
 
   private imageHasError(el: HTMLElement, event?: ErrorEvent): void {
-    console.warn(`[VLazyImg] Error while loading image`, event)
+    console.warn(`[MazLazyImg] Error while loading image`, event)
     this.removeClass(el, this.options.loadingClass)
     this.addClass(el, this.options.errorClass)
 
@@ -106,7 +106,7 @@ export class LazyImg {
     const bindingSrc =
       typeof binding.value === 'object' ? binding.value.src : binding.value
 
-    if (!bindingSrc) console.warn(`[VLazyImg] src url is not defined`)
+    if (!bindingSrc) console.warn(`[MazLazyImg] src url is not defined`)
 
     return bindingSrc
   }
@@ -119,13 +119,13 @@ export class LazyImg {
         const srcSet = source.getAttribute('data-srcset')
         if (!srcSet)
           console.warn(
-            '[VLazyImg] the "[data-srcset]" attribute is not provided on "<source />"',
+            '[MazLazyImg] the "[data-srcset]" attribute is not provided on "<source />"',
           )
         else source.srcset = srcSet
       }
     } else {
       console.warn(
-        '[VLazyImg] No "<source />" elements provided into the "<picture />" element',
+        '[MazLazyImg] No "<source />" elements provided into the "<picture />" element',
       )
       this.imageHasError(el)
     }
@@ -273,7 +273,7 @@ export class LazyImg {
   public async add(el: HTMLElement, binding: LazyImgBinding): Promise<void> {
     if (this.hasBgImgMode(binding) && this.isPictureElement(el)) {
       throw new Error(
-        `[VLazyImg] You can't use the "bg-image" mode with "<picture />" element`,
+        `[MazLazyImg] You can't use the "bg-image" mode with "<picture />" element`,
       )
     }
 

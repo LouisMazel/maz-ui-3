@@ -41,115 +41,94 @@
   </Component>
 </template>
 
-<script lang="ts">
-  import { defineComponent, computed } from 'vue'
-  import MazSpinner from '../MazSpinner/MazSpinner.vue'
+<script lang="ts" setup>
+  import { computed, useAttrs, useSlots } from 'vue'
+  import MazSpinner from './MazSpinner.vue'
 
-  export default defineComponent({
-    components: { MazSpinner },
-    inheritAttrs: false,
-    props: {
-      variant: {
-        type: String,
-        default: 'button',
-        validator: (value: string) => {
-          return ['button', 'link'].includes(value)
-        },
-      },
-      size: {
-        type: String,
-        default: 'md',
-        validator: (value: string) => {
-          return ['xs', 'sm', 'md', 'lg', 'xl'].includes(value)
-        },
-      },
-      color: {
-        type: String,
-        default: 'primary',
-        validator: (value: string) => {
-          return [
-            'primary',
-            'warning',
-            'secondary',
-            'danger',
-            'light',
-            'white',
-            'transparent',
-            'base',
-          ].includes(value)
-        },
-      },
-      type: {
-        type: String,
-        default: 'button',
-        validator: (value: string) => {
-          return ['button', 'submit'].includes(value)
-        },
-      },
-      outline: { type: Boolean, default: false },
-      pastel: { type: Boolean, default: false },
-      block: { type: Boolean, default: false },
-      noBordered: { type: Boolean, default: false },
-      noUnderline: { type: Boolean, default: false },
-      noLeading: { type: Boolean, default: false },
-      loading: { type: Boolean, default: false },
-      disabled: { type: Boolean, default: false },
-      active: { type: Boolean, default: false },
-      fab: { type: Boolean, default: false },
-    },
-    setup(props, { attrs, slots }) {
-      const component = computed(() => {
-        const { href, to } = attrs
-        if (href) return 'a'
-        else if (to) return 'router-link'
-        return 'button'
-      })
-      const btnColorClass = computed(() =>
-        props.pastel
-          ? `--${props.color}-pastel`
-          : props.outline
-          ? `--${props.color}-outline`
-          : `--${props.color}`,
-      )
-      const isDisabled = computed(
-        () => (props.loading || props.disabled) && component.value === 'button',
-      )
-      const cursorClass = computed(() =>
-        isDisabled.value ? 'maz-cursor-default' : 'maz-cursor-pointer',
-      )
-      const variantClass = computed(() => `-is-${props.variant}`)
-      const loaderBgColorClass = computed(() => `-${props.color}`)
-      const loaderColor = computed(() =>
-        ['white', 'light', 'transparent'].includes(props.color)
-          ? 'black'
-          : 'white',
-      )
-      const hasLoader = computed(
-        () => props.loading && props.variant === 'button',
-      )
-      const hasLeftIcon = computed(() => !!slots['left-icon'])
-      const hasRightIcon = computed(() => !!slots['right-icon'])
-      const hasIcon = computed(() => hasLeftIcon.value || hasRightIcon.value)
-      const btnType = computed(() =>
-        component.value === 'button' ? props.type : undefined,
-      )
+  const { href, to } = useAttrs()
+  const slots = useSlots()
 
-      return {
-        btnType,
-        component,
-        variantClass,
-        btnColorClass,
-        isDisabled,
-        cursorClass,
-        loaderBgColorClass,
-        loaderColor,
-        hasLoader,
-        hasLeftIcon,
-        hasRightIcon,
-        hasIcon,
-      }
+  const props = defineProps({
+    variant: {
+      type: String,
+      default: 'button',
+      validator: (value: string) => {
+        return ['button', 'link'].includes(value)
+      },
     },
+    size: {
+      type: String,
+      default: 'md',
+      validator: (value: string) => {
+        return ['xs', 'sm', 'md', 'lg', 'xl'].includes(value)
+      },
+    },
+    color: {
+      type: String,
+      default: 'primary',
+      validator: (value: string) => {
+        return [
+          'primary',
+          'warning',
+          'secondary',
+          'danger',
+          'light',
+          'white',
+          'transparent',
+          'base',
+        ].includes(value)
+      },
+    },
+    type: {
+      type: String,
+      default: 'button',
+      validator: (value: string) => {
+        return ['button', 'submit'].includes(value)
+      },
+    },
+    outline: { type: Boolean, default: false },
+    pastel: { type: Boolean, default: false },
+    block: { type: Boolean, default: false },
+    noBordered: { type: Boolean, default: false },
+    noUnderline: { type: Boolean, default: false },
+    noLeading: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+    active: { type: Boolean, default: false },
+    fab: { type: Boolean, default: false },
   })
+
+  const component = computed(() => {
+    if (href) return 'a'
+    else if (to) return 'router-link'
+    return 'button'
+  })
+
+  const btnColorClass = computed(() =>
+    props.pastel
+      ? `--${props.color}-pastel`
+      : props.outline
+      ? `--${props.color}-outline`
+      : `--${props.color}`,
+  )
+  const isDisabled = computed(
+    () => (props.loading || props.disabled) && component.value === 'button',
+  )
+  const cursorClass = computed(() =>
+    isDisabled.value ? 'maz-cursor-default' : 'maz-cursor-pointer',
+  )
+  const variantClass = computed(() => `--is-${props.variant}`)
+  const loaderBgColorClass = computed(() => `--${props.color}`)
+  const loaderColor = computed(() =>
+    ['white', 'light', 'transparent'].includes(props.color) ? 'black' : 'white',
+  )
+  const hasLoader = computed(() => props.loading && props.variant === 'button')
+  const hasLeftIcon = computed(() => !!slots['left-icon'])
+  const hasRightIcon = computed(() => !!slots['right-icon'])
+  const hasIcon = computed(() => hasLeftIcon.value || hasRightIcon.value)
+  const btnType = computed(() =>
+    component.value === 'button' ? props.type : undefined,
+  )
 </script>
 
 <style lang="postcss">
@@ -204,6 +183,8 @@
     }
 
     &.--is-button {
+      display: none;
+
       @apply maz-relative maz-overflow-hidden maz-border maz-border-transparent maz-inline-flex maz-bg-transparent maz-justify-center maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
       maz-rounded-lg maz-px-[1em] maz-py-[0.6em];
 

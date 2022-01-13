@@ -15,6 +15,7 @@
     "lib": ["esnext", "DOM", "DOM.iterable", "scripthost"],
     "baseUrl": ".",
     "strictPropertyInitialization": false,
+    "noImplicitAny": false,
     "noImplicitThis": false,
     "paths": {
       "~directives/*": ["directives/*"],
