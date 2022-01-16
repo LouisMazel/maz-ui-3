@@ -1,6 +1,5 @@
 import { defineClientAppEnhance } from '@vuepress/client'
-import * as components from './../../../lib/dist/index'
-import './../../../lib/dist/main.css'
+import * as components from './../../../lib/dist'
 
 export default defineClientAppEnhance(({ app, siteData }) => {
   Object.entries(components).forEach(([componentName, component]) => {

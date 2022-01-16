@@ -1,28 +1,44 @@
-import fs from 'fs'
-import path from 'path'
-import minimist from 'minimist'
+// rollup.config.js
+import { readFileSync } from 'fs'
+import { resolve } from 'path'
+
 import vue from 'rollup-plugin-vue'
 import alias from '@rollup/plugin-alias'
-import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
+import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import babel from '@rollup/plugin-babel'
+import url from '@rollup/plugin-url'
 
 import PostCSS from 'rollup-plugin-postcss'
+import nested from 'postcss-nested'
 import postcssImport from 'postcss-import'
 import postcssUrl from 'postcss-url'
-import nested from 'postcss-nested'
 import autoprefixer from 'autoprefixer'
 
-import url from '@rollup/plugin-url'
+import { terser } from 'rollup-plugin-terser'
 import ttypescript from 'ttypescript'
 import typescript from 'rollup-plugin-typescript2'
-import css from 'rollup-plugin-css-only'
+import minimist from 'minimist'
+import commonjs from '@rollup/plugin-commonjs'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
-const BASE_FDIR = './'
-const COMPONENTS_DIR = 'components/'
-const OUTPUT_DIR = './dist'
+const INPUT_ENTRY = './package/index.ts'
+const COMPONENT_INPUT = './package/components/index.ts'
+
+// Get browserslist config and remove ie from es build targets
+const esbrowserslist = readFileSync('./.browserslistrc')
+  .toString()
+  .split('\n')
+  .filter((entry) => entry && entry.substring(0, 2) !== 'ie')
+
+// Extract babel preset-env config, to combine with esbrowserslist
+const babelPresetEnvConfig = require('../babel.config').presets.filter(
+  (entry) => entry[0] === '@babel/preset-env',
+)[0][1]
+
+const argv = minimist(process.argv.slice(2))
+
+const projectRoot = resolve(__dirname, '..')
 
 const postcssConfigList = [
   postcssImport({
@@ -30,15 +46,15 @@ const postcssConfigList = [
       // resolve alias @css, @import '@css/style.css'
       // because @css/ has 5 chars
       if (id.startsWith('@css')) {
-        return path.resolve('./src/assets/styles/css', id.slice(5))
+        return resolve('./src/assets/styles/css', id.slice(5))
       }
       // resolve node_modules, @import '~normalize.css/normalize.css'
       // similar to how css-loader's handling of node_modules
       if (id.startsWith('~')) {
-        return path.resolve('./node_modules', id.slice(1))
+        return resolve('./node_modules', id.slice(1))
       }
       // resolve relative path, @import './components/style.css'
-      return path.resolve(basedir, id)
+      return resolve(basedir, id)
     },
   }),
   nested,
@@ -48,67 +64,50 @@ const postcssConfigList = [
   }),
 ]
 
-const argv = minimist(process.argv.slice(2))
-
-let postVueConfig = [
-  // Process only `<style module>` blocks.
-  PostCSS({
-    modules: {
-      generateScopedName: '[local]___[hash:base64:5]',
-    },
-    include: /&module=.*\.css$/,
-  }),
-  // Process all `<style>` blocks except `<style module>`.
-  PostCSS({
-    include: /(?<!&module=.*)\.css$/,
-    plugins: [...postcssConfigList],
-  }),
-  url({
-    include: ['**/*.svg', '**/*.png', '**/*.gif', '**/*.jpg', '**/*.jpeg'],
-  }),
-]
-
-if (process.env.SEP_CSS) {
-  postVueConfig = [
-    css({ output: `${OUTPUT_DIR}/bundle.css` }),
-    ...postVueConfig,
-  ]
-}
-
 const baseConfig = {
+  input: INPUT_ENTRY,
   plugins: {
     preVue: [
       alias({
         entries: [
           {
-            find: '~',
-            replacement: path.resolve(__dirname, './../components'),
-          },
-          {
-            find: '~',
-            replacement: path.resolve(__dirname, './../utils'),
+            find: '@',
+            replacement: `${resolve(projectRoot, 'src')}`,
           },
         ],
-        customResolver: resolve({
-          extensions: ['.js', '.jsx', '.vue'],
-        }),
       }),
     ],
     replace: {
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production'),
-      __VUE_OPTIONS_API__: JSON.stringify(true),
-      __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
     },
     vue: {
       target: 'browser',
-      preprocessStyles: process.env.SEP_CSS ? false : true,
+      preprocessStyles: true,
       postcssPlugins: [...postcssConfigList],
     },
-    postVue: [...postVueConfig],
+    postVue: [
+      nodeResolve({
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      }),
+      // Process only `<style module>` blocks.
+      PostCSS({
+        modules: {
+          generateScopedName: '[local]___[hash:base64:5]',
+        },
+        include: /&module=.*\.css$/,
+        plugins: postcssConfigList,
+      }),
+      // Process all `<style>` blocks except `<style module>`.
+      PostCSS({ include: /(?<!&module=.*)\.css$/ }),
+      commonjs(),
+      url({
+        include: ['**/*.svg', '**/*.png', '**/*.gif', '**/*.jpg', '**/*.jpeg'],
+      }),
+    ],
     babel: {
       exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.vue'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
       babelHelpers: 'bundled',
     },
   },
@@ -130,156 +129,75 @@ const globals = {
   vue: 'Vue',
 }
 
-const components = fs
-  .readdirSync(BASE_FDIR + COMPONENTS_DIR)
-  .filter((f) =>
-    fs.statSync(path.join(BASE_FDIR + COMPONENTS_DIR, f)).isDirectory(),
-  )
-
-const entriespath = {
-  index: './index.ts',
-  ...components.reduce((object, name) => {
-    object[name] = `${BASE_FDIR + COMPONENTS_DIR + name}/index.ts`
-    return object
-  }, {}),
-}
-
-// const capitalize = (s) => {
-//   if (typeof s !== 'string') return ''
-//   return s.charAt(0).toUpperCase() + s.slice(1)
-// }
-
-let buildFormats = []
-
+// Customize configs for individual targets
+const buildFormats = []
 if (!argv.format || argv.format === 'es') {
   const esConfig = {
-    input: entriespath,
+    ...baseConfig,
+    input: COMPONENT_INPUT,
     external,
     output: {
+      dir: 'dist',
       format: 'esm',
-      dir: `${OUTPUT_DIR}/components`,
-      extend: true,
       sourcemap: true,
       exports: 'named',
     },
     plugins: [
-      typescript({
-        typescript: ttypescript,
-        tsconfig: './tsconfig.json',
-        // useTsconfigDeclarationDir: false,
-      }),
       peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
-      babel({
-        ...baseConfig.plugins.babel,
-        presets: [['@babel/preset-env', { modules: false }]],
-      }),
-      commonjs(),
-    ],
-  }
-
-  const esMainConfig = {
-    input: './index.ts',
-    external,
-    output: {
-      format: 'esm',
-      file: `${OUTPUT_DIR}/index.js`,
-      extend: true,
-      sourcemap: true,
-      exports: 'named',
-    },
-    plugins: [
+      // Only use typescript for declarations - babel will
+      // do actual js transformations
       typescript({
         typescript: ttypescript,
-        tsconfig: './tsconfig.json',
-        // useTsconfigDeclarationDir: false,
+        useTsconfigDeclarationDir: true,
+        emitDeclarationOnly: true,
       }),
-      peerDepsExternal(),
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
       babel({
         ...baseConfig.plugins.babel,
-        presets: [['@babel/preset-env', { modules: false }]],
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              ...babelPresetEnvConfig,
+              targets: esbrowserslist,
+            },
+          ],
+        ],
       }),
-      commonjs(),
+      terser({ output: { ecma: 5 } }),
     ],
   }
-  // const ind = [...components.map((f) => mapComponent(f)).reduce((r, a) => r.concat(a), [])]
-  buildFormats.push(esConfig, esMainConfig)
-  buildFormats = [...buildFormats]
+  buildFormats.push(esConfig)
 }
 
 if (!argv.format || argv.format === 'cjs') {
-  const cjsConfig = {
+  const umdConfig = {
     ...baseConfig,
-    input: entriespath,
     external,
     output: {
       compact: true,
+      dir: 'dist/cjs',
       format: 'cjs',
-      dir: `${OUTPUT_DIR}/cjs`,
-      exports: 'named',
+      name: 'MazUi',
+      exports: 'auto',
+      sourcemap: true,
       globals,
-      extend: true,
-      sourcemap: true,
     },
     plugins: [
-      typescript({
-        typescript: ttypescript,
-        tsconfig: './tsconfig.json',
-        // useTsconfigDeclarationDir: false,
-      }),
-      peerDepsExternal(),
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue({
-        ...baseConfig.plugins.vue,
-        template: {
-          ...baseConfig.plugins.vue.template,
-          optimizeSSR: true,
-        },
-      }),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-      commonjs(),
-    ],
-  }
-
-  const cjsMainConfig = {
-    input: './index.ts',
-    external,
-    output: {
-      format: 'cjs',
-      file: `${OUTPUT_DIR}/index.cjs.js`,
-      extend: true,
-      sourcemap: true,
-      exports: 'named',
-    },
-    plugins: [
-      typescript({
-        typescript: ttypescript,
-        tsconfig: './tsconfig.json',
-        // useTsconfigDeclarationDir: false,
-      }),
       peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
-      babel({
-        ...baseConfig.plugins.babel,
-        presets: [['@babel/preset-env', { modules: false }]],
-      }),
-      commonjs(),
+      babel(baseConfig.plugins.babel),
+      terser({ output: { ecma: 5 } }),
     ],
   }
-  buildFormats.push(cjsConfig, cjsMainConfig)
-  buildFormats = [...buildFormats]
+  buildFormats.push(umdConfig)
 }
+
 // Export config
 export default buildFormats

@@ -3,10 +3,10 @@
   "version": "3.0.0",
   "description": "A stand-alone components library for Vue.Js & Nuxt.Js",
   "author": "Louis Mazel <me@loicmazuel.com>",
-  "main": "dist/maz-ui.ssr.js",
+  "main": "dist/cjs/index.js",
   "browser": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/types/package/entry.esm.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -17,9 +17,9 @@
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
     "clean": "rimraf dist",
     "pre-publish": "npm run build",
-    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup-new.config.js && npm run build:css",
+    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css",
     "build:css": "NODE_ENV=production npx tailwindcss -o dist/main.css",
-    "build:ssr": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "pre-commit": "lint-staged"
   },

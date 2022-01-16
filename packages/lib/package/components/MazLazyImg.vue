@@ -33,7 +33,7 @@
 <script lang="ts" setup>
   import { Prop, computed } from 'vue'
   import { GlobalOptions } from '../directives/v-lazy-img'
-  import { vLazyImg } from '../directives/v-lazy-img/lazy-img.directive'
+  import { vLazyImg } from './../directives/v-lazy-img/lazy-img.directive'
 
   import MazSpinner from './MazSpinner.vue'
 

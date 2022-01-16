@@ -15,8 +15,12 @@ export const navbar: NavbarConfig = [
     text: 'Components',
     children: [
       {
-        text: 'MazBtn',
+        text: 'maz-btn',
         link: '/components/maz-btn.md'
+      },
+      {
+        text: 'maz-avatar',
+        link: '/components/maz-avatar.md'
       }
     ]
   },

@@ -71,21 +71,6 @@
   --homepage-width: 960px;
 }
 
-// plugin-back-to-top
-.back-to-top {
-  --back-to-top-color: var(--c-brand);
-  --back-to-top-color-hover: var(--c-brand-light);
-}
-
-// plugin-external-link-icon
-.external-link-icon {
-  --external-link-icon-color: var(--c-text-quote);
-}
-// plugin-nprogress
-#nprogress {
-  --nprogress-color: var(--c-brand);
-}
-
 html.dark {
   // background colors
   --c-brand: dodgerblue;
