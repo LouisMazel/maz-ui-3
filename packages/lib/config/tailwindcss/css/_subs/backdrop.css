@@ -16,7 +16,7 @@ html.-backdrop-present {
 
 .m-backdrop.modal-anim-enter-from,
 .m-backdrop.modal-anim-leave-to {
-  opacity: 0%;
+  opacity: 0;
 
   & .m-backdrop-content {
     transform: translateY(-25px);
@@ -30,7 +30,7 @@ html.-backdrop-present {
 
 .m-backdrop.backdrop-anim-enter-from,
 .m-backdrop.backdrop-anim-leave-to {
-  opacity: 0%;
+  opacity: 0;
 }
 
 .m-backdrop {

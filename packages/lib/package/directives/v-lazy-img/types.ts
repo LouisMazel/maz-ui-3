@@ -16,10 +16,10 @@ export interface ClassOptions {
     rootMargin?: string
   }
   errorPhoto?: string
-  onLoading?: (el: Element) => any
-  onLoaded?: (el: Element) => any
-  onError?: (el: Element) => any
-  onIntersecting?: (el: Element) => any
+  onLoading?: (el: Element) => unknown
+  onLoaded?: (el: Element) => unknown
+  onError?: (el: Element) => unknown
+  onIntersecting?: (el: Element) => unknown
 }
 
 export interface GlobalOptions {
@@ -39,10 +39,10 @@ export interface GlobalOptions {
     rootMargin?: string
   }
   errorPhoto?: string
-  onLoading?: (el: Element) => any
-  onLoaded?: (el: Element) => any
-  onError?: (el: Element) => any
-  onIntersecting?: (el: Element) => any
+  onLoading?: (el: Element) => unknown
+  onLoaded?: (el: Element) => unknown
+  onError?: (el: Element) => unknown
+  onIntersecting?: (el: Element) => unknown
 }
 
 interface BindingOptions extends GlobalOptions {

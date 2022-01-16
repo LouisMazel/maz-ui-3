@@ -4,6 +4,7 @@ const clickEventType = document.ontouchstart !== null ? 'click' : 'touchstart'
 
 const UNIQUE_ID = '__vue_click_away__'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const onMounted = (el: any, binding: DirectiveBinding) => {
   onUnmounted(el)
 
@@ -29,12 +30,12 @@ const onMounted = (el: any, binding: DirectiveBinding) => {
   document.addEventListener(clickEventType, el[UNIQUE_ID], false)
 }
 
-const onUnmounted = (el: any) => {
+const onUnmounted = (el: HTMLElement) => {
   document.removeEventListener(clickEventType, el[UNIQUE_ID], false)
   delete el[UNIQUE_ID]
 }
 
-const onUpdated = (el: any, binding: any) => {
+const onUpdated = (el: HTMLElement, binding: DirectiveBinding) => {
   if (binding.value === binding.oldValue) {
     return
   }

@@ -21,6 +21,7 @@ export const date = (
 
   try {
     return new Intl.DateTimeFormat(locale, options_).format(new Date(date))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(`[FilterDate] ${error}`)
   }

@@ -4,6 +4,7 @@ const handleOutsideClick = (
   event: TouchEvent | MouseEvent,
   element: HTMLElement,
   binding: DirectiveBinding,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   vnode: any,
 ) => {
   event.stopPropagation()

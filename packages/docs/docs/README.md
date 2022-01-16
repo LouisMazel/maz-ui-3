@@ -1,0 +1,44 @@
+---
+home: true
+title: Introduction
+heroImage: /img/maz-ui-illu.png
+description: Build your amazing interfaces with Maz UI and its stand-alone components - Stand-alone components library for Vue.JS & Nuxt.JS
+actions:
+  - text: Get Started
+    link: /guide/getting-started.html
+    type: primary
+  - text: Components
+    link: /components/
+    type: secondary
+features:
+  - title: Standalone
+    details: All components are standalone, so if you want use only one component from this library you don't need to install the whole library
+  - title: Typescript
+    details: This library is writing in typescript, so all types and declarations are directly available
+  - title: Dark and Light Theme
+    details: All components supports the Dark and Light themes.
+footer: Made by LouisMazel with ❤️
+---
+
+<!-- markdownlint-disable -->
+
+<NpmBadge package="maz-ui" />
+
+<CodeGroup>
+
+  <CodeGroupItem title="NPM" active>
+
+```bash
+# install in your project
+npm install maz-ui
+```
+  </CodeGroupItem>
+
+  <CodeGroupItem title="YARN">
+
+```bash
+# install in your project
+yarn add maz-ui
+```
+  </CodeGroupItem>
+</CodeGroup>

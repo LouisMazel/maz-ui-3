@@ -71,7 +71,7 @@ export class ScriptLoader {
       this.resolveScript(window.google)
     }
 
-    return new Promise((resolve: any, reject) => {
+    return new Promise((resolve, reject) => {
       this.resolveScript = resolve
       const script = document.createElement('script')
       script.src = this.getUrl()

@@ -14,6 +14,7 @@ export const number = (
 
   try {
     return new Intl.NumberFormat(locale, options).format(Number(number))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(`[FilterNumber] ${error}`)
   }

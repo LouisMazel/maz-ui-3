@@ -14,7 +14,7 @@
 <script lang="ts" setup>
   import { nextTick } from 'vue'
 
-  const enter = (element: any) => {
+  const enter = (element: HTMLElement) => {
     const width = getComputedStyle(element).width
 
     element.style.width = width
@@ -45,10 +45,10 @@
       element.style.height = height
     })
   }
-  const afterEnter = (element: any) => {
+  const afterEnter = (element: HTMLElement) => {
     element.style.height = 'auto'
   }
-  const leave = (element: any) => {
+  const leave = (element: HTMLElement) => {
     const height = getComputedStyle(element).height
     element.style.height = height
 
