@@ -25,6 +25,7 @@ module.exports = {
 
   scopes: [
     { name: "root" },
+    { name: "docs" },
     { name: "ci" },
     { name: "lib" },
     { name: "testing" },
