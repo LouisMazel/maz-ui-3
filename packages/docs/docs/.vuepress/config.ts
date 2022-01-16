@@ -79,17 +79,23 @@ export default defineUserConfig<DefaultThemeOptions>({
   theme: '@vuepress/theme-default',
   themeConfig: {
     logo: '/img/logo.svg',
-    repo: 'LouisMazel/maz-ui-3/packages/docs',
-    // navbar: {},
-    sidebar: sidebar,
-    editLinkText: 'Edit this page on GitHub',
-    editLink: true
+    repo: 'LouisMazel/maz-ui-3',
+    docsDir: 'packages/docs/docs',
+    navbar,
+    sidebar,
   },
   plugins: [
     [
       '@vuepress/plugin-register-components',
       {
         componentsDir: path.resolve(__dirname, './components'),
+      },
+    ],
+    [
+      '@vuepress/plugin-google-analytics',
+      {
+        // we have multiple deployments, which would use different id
+        id: 'UA-171163623-1',
       },
     ],
   ]

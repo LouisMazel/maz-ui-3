@@ -4,7 +4,7 @@ title: Introduction
 heroImage: /img/maz-ui-illu.png
 description: Build your amazing interfaces with Maz UI and its stand-alone components - Stand-alone components library for Vue.JS & Nuxt.JS
 actions:
-  - text: Get Started
+  - text: Getting Started
     link: /guide/getting-started.html
     type: primary
   - text: Components
