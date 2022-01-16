@@ -8,6 +8,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   lang: 'en-US',
   title: 'Maz-UI',
   description: 'Documentation of Maz-UI',
+  clientAppEnhanceFiles: path.resolve(__dirname, 'clientAppEnhance.ts'),
 
   head: [
     [
@@ -81,6 +82,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     logo: '/img/logo.svg',
     repo: 'LouisMazel/maz-ui-3',
     docsDir: 'packages/docs/docs',
+    docsBranch: 'master',
     navbar,
     sidebar,
   },

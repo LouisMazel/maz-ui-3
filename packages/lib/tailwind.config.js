@@ -6,5 +6,5 @@ module.exports = {
   presets: [
     require(path.join(__dirname, './config/tailwindcss/tailwind.config')),
   ],
-  purge: ['./components/**/*'],
+  purge: ['./package/**/*'],
 }

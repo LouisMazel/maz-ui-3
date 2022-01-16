@@ -1,4 +1,4 @@
-.PHONY: lint build install
+.PHONY: lint build install reinstall lint-staged
 
 lint:
 	npm run lint

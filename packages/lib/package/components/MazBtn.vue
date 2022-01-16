@@ -3,7 +3,7 @@
     v-bind="$attrs"
     :is="component"
     :disabled="isDisabled"
-    class="m-btn"
+    class="m-btn maz-bg-primary"
     :class="[
       `--${size}`,
       btnColorClass,
@@ -133,7 +133,7 @@
 
 <style lang="postcss">
   .m-btn {
-    @apply maz-text-center;
+    @apply maz-text-center maz-text-base;
 
     &__icon-left {
       @apply maz-mr-[0.5em];
@@ -191,8 +191,6 @@
     }
 
     &.--is-button {
-      display: none;
-
       @apply maz-relative maz-overflow-hidden maz-border maz-border-transparent maz-inline-flex maz-bg-transparent maz-justify-center maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
       maz-rounded-lg maz-px-[1em] maz-py-[0.6em];
 

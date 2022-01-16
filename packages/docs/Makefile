@@ -1,8 +1,8 @@
-storybook:
-	npm run storybook
-
 build:
-	npm run build-storybook
+	npm run docs:build
+
+serve:
+	npm run docs:dev
 
 install:
 	npm i
