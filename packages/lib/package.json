@@ -28,14 +28,11 @@
     "*.{vue,css,scss,postcss,pcss}": "stylelint --custom-syntax postcss-html --fix",
     "*": "prettier -w -u"
   },
-  "peerDependencies": {
-    "vue-inline-svg": "^2.1.0",
-    "vue": "^3.0.0"
+  "dependencies": {
+    "vue-inline-svg": "^2.1.0"
   },
-  "peerDependenciesMeta": {
-    "vue-inline-svg": {
-      "optional": true
-    }
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -103,9 +100,9 @@
     "npm": ">= 3.0.0"
   },
   "bugs": {
-    "url": "https://github.com/LouisMazel/maz-ui/issues"
+    "url": "https://github.com/LouisMazel/maz-ui-3/issues"
   },
-  "homepage": "https://louismazel.github.io/maz-ui",
+  "homepage": "https://louismazel.github.io/maz-ui-3",
   "keywords": [
     "vue",
     "components",
@@ -116,7 +113,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LouisMazel/maz-ui.git"
+    "url": "git+https://github.com/LouisMazel/maz-ui-3.git"
   },
   "license": "MIT"
 }
