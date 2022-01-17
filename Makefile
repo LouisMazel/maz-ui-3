@@ -10,6 +10,18 @@ build-docs:
 build-lib:
 	make --directory=packages/lib build
 
+install:
+	make install-root install-lib install-docs
+
+install-root:
+	npm i
+
+install-lib:
+	make --directory=packages/lib install
+
+install-docs:
+	make --directory=packages/docs install
+
 reinstall:
 	make reinstall-lib reinstall-docs
 
@@ -18,15 +30,6 @@ reinstall-lib:
 
 reinstall-docs:
 	make --directory=packages/docs reinstall
-
-install:
-	npm i && make install-lib install-docs
-
-install-lib:
-	make --directory=packages/lib install
-
-install-docs:
-	make --directory=packages/docs install
 
 lint-staged: ## lint-staged
 	npm run pre-commit
