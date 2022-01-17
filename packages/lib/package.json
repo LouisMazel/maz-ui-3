@@ -39,8 +39,6 @@
     }
   },
   "devDependencies": {
-    "core-js": "^3.20.3",
-    "regenerator-runtime": "^0.13.9",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-typescript": "^7.16.7",
