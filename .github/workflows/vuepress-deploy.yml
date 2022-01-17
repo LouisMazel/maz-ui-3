@@ -19,6 +19,6 @@ jobs:
         uses: jenkey2011/vuepress-deploy@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TARGET_REPO: LouisMazel/repo
+          TARGET_REPO: LouisMazel/maz-ui-3
           TARGET_BRANCH: master
           BUILD_DIR: packages/docs/docs/.vuepress/dist
