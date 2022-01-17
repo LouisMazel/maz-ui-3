@@ -20,7 +20,7 @@ reinstall-docs:
 	make --directory=packages/docs reinstall
 
 install:
-	make install-lib install-docs
+	npm i && make install-lib install-docs
 
 install-lib:
 	make --directory=packages/lib install
