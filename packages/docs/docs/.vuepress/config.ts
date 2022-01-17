@@ -1,7 +1,12 @@
-import { defineUserConfig } from 'vuepress'
+import { defineUserConfig, SiteData } from 'vuepress'
 import type { DefaultThemeOptions } from 'vuepress'
 import { path } from '@vuepress/utils'
 import { navbar, sidebar } from './configs'
+
+const getBaseUrl = (path: string) => {
+  const base = process.env.NODE_ENV === 'production' ? '/maz-ui-3' : ''
+  return `${base}${path}`
+}
 
 export default defineUserConfig<DefaultThemeOptions>({
   // site config
@@ -9,6 +14,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   title: 'Maz-UI',
   description: 'Documentation of Maz-UI',
   clientAppEnhanceFiles: path.resolve(__dirname, 'clientAppEnhance.ts'),
+  base: getBaseUrl('/') as SiteData['base'],
 
   head: [
     [
@@ -17,7 +23,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        href: `/img/icons/favicon-16x16.png`,
+        href: getBaseUrl('/img/icons/favicon-16x16.png'),
       },
     ],
     [
@@ -26,10 +32,10 @@ export default defineUserConfig<DefaultThemeOptions>({
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: `/img/icons/favicon-32x32.png`,
+        href: getBaseUrl('/img/icons/favicon-32x32.png'),
       },
     ],
-    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
+    ['link', { rel: 'manifest', href: getBaseUrl('/manifest.webmanifest') }],
     ['meta', { name: 'application-name', content: 'Maz UI' }],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Maz UI' }],
     [
@@ -54,7 +60,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
     [
       'link',
-      { rel: 'apple-touch-icon', href: `/img/icons/apple-touch-icon.png` },
+      { rel: 'apple-touch-icon', href: getBaseUrl('/img/icons/apple-touch-icon.png') },
     ],
     [
       'link',
@@ -68,7 +74,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       'link',
       {
         rel: 'mask-icon',
-        href: '/img/icons/safari-pinned-tab.svg',
+        href: getBaseUrl('/img/icons/safari-pinned-tab.svg'),
         color: '#3eaf7c',
       },
     ],
@@ -79,7 +85,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   // theme and its config
   theme: '@vuepress/theme-default',
   themeConfig: {
-    logo: '/img/logo.svg',
+    logo: getBaseUrl('/img/logo.svg'),
     repo: 'LouisMazel/maz-ui-3',
     docsDir: 'packages/docs/docs',
     docsBranch: 'master',
