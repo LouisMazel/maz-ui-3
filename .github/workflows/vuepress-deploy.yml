@@ -8,6 +8,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: install docs dependencies
+        run: make install-docs
+      - name: build docs
+        run: make build
 
       - name: vuepress-deploy
         uses: jenkey2011/vuepress-deploy@master
@@ -15,5 +19,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TARGET_REPO: LouisMazel/repo
           TARGET_BRANCH: master
-          BUILD_SCRIPT: make install-docs && make build-docs
           BUILD_DIR: packages/docs/docs/.vuepress/dist
