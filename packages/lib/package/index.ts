@@ -1,4 +1,6 @@
 // iife/cjs usage extends esm default export - so import it all
+import 'core-js/stable' // only stable feature also is possible with only `core-js`
+import 'regenerator-runtime/runtime' // To ensure that regeneratorRuntime is defined globally
 import plugin, * as components from './index.esm'
 
 // Attach named exports directly to plugin. IIFE/CJS will

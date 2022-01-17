@@ -15,13 +15,13 @@ This section will help you to install the library. You have to way to do this. T
   <CodeGroupItem title="NPM" active>
 
 ```bash
-npm i maz-ui
+npm i maz-ui@next
 ```
   </CodeGroupItem>
   <CodeGroupItem title="YARN">
 
 ```bash
-yarn add maz-ui
+yarn add maz-ui@next
 ```
   </CodeGroupItem>
 

@@ -131,6 +131,7 @@ const globals = {
 
 // Customize configs for individual targets
 const buildFormats = []
+
 if (!argv.format || argv.format === 'es') {
   const esConfig = {
     ...baseConfig,
@@ -167,7 +168,7 @@ if (!argv.format || argv.format === 'es') {
           ],
         ],
       }),
-      // terser({ output: { ecma: 5 } }),
+      terser({ output: { ecma: 5 } }),
     ],
   }
   buildFormats.push(esConfig)
@@ -193,7 +194,7 @@ if (!argv.format || argv.format === 'cjs') {
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
-      // terser({ output: { ecma: 5 } }),
+      terser({ output: { ecma: 5 } }),
     ],
   }
   buildFormats.push(umdConfig)

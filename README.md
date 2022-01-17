@@ -19,7 +19,7 @@
 [Get Started](https://louismazel.github.io/maz-ui/documentation/get-started)
 
 ```shell
-npm install maz-ui
+npm install maz-ui@next
 
 # Or yarn add maz-ui
 ```
@@ -29,7 +29,7 @@ npm install maz-ui
 To optimize your bundle size, it's recommanded to use the [on demand install](https://louismazel.github.io/maz-ui/documentation/get-started)
 
 ```javascript
-import Vue from 'vue'
+import { createApp } from 'vue'
 import {
   ...
   MazBtn
@@ -39,22 +39,25 @@ import {
   ...
 } from 'maz-ui'
 
+const app = createApp(App)
+
 ...
-Vue.use(MazBtn)
-Vue.use(MazInput)
-Vue.use(MazPicker)
-Vue.use(MazPhoneNumberInput)
+app.component('MazBtn', MazBtn)
+app.component('MazInput', MazInput)
+app.component('MazPicker', MazPicker)
+app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 ...
 ```
 
 ### Quick Start - Fully install (not recommanded)
 
 ```javascript
-import Vue from "vue";
-import "maz-ui/lib/css/index.css";
+import { createApp } from "vue";
 import MazUi from "maz-ui";
 
-Vue.use(MazUi);
+const app = createApp(App);
+
+app.use(MazUi);
 ```
 
 ### Storybook

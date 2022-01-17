@@ -1,3 +1,6 @@
+import 'core-js/stable' // only stable feature also is possible with only `core-js`
+import 'regenerator-runtime/runtime' // To ensure that regeneratorRuntime is defined globally
+
 import { App, Plugin } from 'vue'
 
 // Import vue components
