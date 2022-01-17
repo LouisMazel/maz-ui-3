@@ -1,8 +1,8 @@
-# maz-ui
+# maz-ui-3
 
-[![license](https://img.shields.io/github/license/LouisMazel/maz-ui.svg?style=flat-square)](https://github.com/LouisMazel/maz-ui/blob/master/LICENSE)
-[![vue 2](https://img.shields.io/badge/vue-2-42b983.svg?style=flat-square)](https://vuejs.org)
-[![npm](https://img.shields.io/npm/v/maz-ui.svg?style=flat-square)](https://www.npmjs.com/package/maz-ui)
+[![license](https://img.shields.io/github/license/LouisMazel/maz-ui-3.svg?style=flat-square)](https://github.com/LouisMazel/maz-ui/blob/master/LICENSE)
+[![vue 3](https://img.shields.io/badge/vue-3-42b983.svg?style=flat-square)](https://vuejs.org)
+[![npm](https://img.shields.io/npm/v/maz-ui/next.svg?style=flat-square)](https://www.npmjs.com/package/maz-ui)
 [![npm](https://img.shields.io/npm/dt/maz-ui.svg?style=flat-square)](https://www.npmjs.com/package/maz-ui)
 [![Codacy grade](https://img.shields.io/codacy/grade/3d15a7c11bfe47c69a2aed93cc67cc29.svg?style=flat-square)](https://www.codacy.com/app/LouisMazel/maz-ui)
 
@@ -12,11 +12,11 @@
 
 ## Documentation & Components
 
-[Documentation & Components](https://louismazel.github.io/maz-ui/)
+[Documentation & Components](https://louismazel.github.io/maz-ui-3/)
 
 ## Install
 
-[Get Started](https://louismazel.github.io/maz-ui/documentation/get-started)
+[Getting Started](https://louismazel.github.io/maz-ui-3/guide/getting-started)
 
 ```shell
 npm install maz-ui@next
@@ -26,7 +26,7 @@ npm install maz-ui@next
 
 ### On demande install
 
-To optimize your bundle size, it's recommanded to use the [on demand install](https://louismazel.github.io/maz-ui/documentation/get-started)
+To optimize your bundle size, it's recommanded to use the [on demand install](https://louismazel.github.io/maz-ui-3/guide/getting-started)
 
 ```javascript
 import { createApp } from 'vue'
@@ -58,20 +58,6 @@ import MazUi from "maz-ui";
 const app = createApp(App);
 
 app.use(MazUi);
-```
-
-### Storybook
-
-To run a live-reload Storybook server on your local machine:
-
-```bash
-npm run storybook
-```
-
-To export your Storybook as static files:
-
-```bash
-npm run storybook:export
 ```
 
 ## Contribute
