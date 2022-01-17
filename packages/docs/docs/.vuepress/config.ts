@@ -8,8 +8,6 @@ const getBaseUrl = (path: string) => {
   return `${base}${path}`
 }
 
-console.log('getBaseUrl(/)', getBaseUrl('/'))
-
 export default defineUserConfig<DefaultThemeOptions>({
   // site config
   lang: 'en-US',
