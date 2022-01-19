@@ -32,7 +32,6 @@ module.exports = {
     { name: "docs" },
     { name: "ci" },
     { name: "lib" },
-    { name: "testing" },
     { name: "chore" },
     { name: "release" },
   ],

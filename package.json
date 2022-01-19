@@ -2,7 +2,8 @@
   "name": "root",
   "version": "0.0.1",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "docs": "docs"
   },
   "scripts": {
     "prepare": "husky install",
@@ -12,7 +13,7 @@
     "release": "npx lerna version"
   },
   "lint-staged": {
-    "!(node_modules/**/*|packages/**/*|.prettierignore|.gitignore).*": [
+    "!(node_modules/**/*|packages/**/*|.prettierignore|.gitignore|.editorconfig).*": [
       "prettier . --write"
     ]
   },

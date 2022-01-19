@@ -1,5 +1,10 @@
-/* Color palette generate with https://noeldelgado.github.io/shadowlord/#002b6f and 17,5% parameter */
+# Theme
 
+Edit
+
+> Tip: Use color palette generator: [noeldelgado.github.io](https://noeldelgado.github.io/shadowlord/#1e90ff) (and set the percent parameter to 17,5%)
+
+```css
 :root {
   /* PRIMARY */
   --maz-color-primary-50: #e3f1ff;
@@ -88,12 +93,14 @@
   /* USAGE */
   --maz-color-normal-text: #2c3e50;
   --maz-color-bg: white;
-  --maz-color-bg-light: #f2f2f2;
+  --maz-color-bg-light: #F2F2F2;
 }
 
 html.dark {
   /* USAGE */
   --maz-color-normal-text: #adbac7;
-  --maz-color-bg: #21222e;
+  --maz-color-bg: #21222E;
   --maz-color-bg-light: #303144;
 }
+
+```
