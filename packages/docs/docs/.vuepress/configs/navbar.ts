@@ -16,13 +16,10 @@ export const navbar: NavbarConfig = [
       {
         text: 'Theme',
         link: '/guide/theme.md'
-<<<<<<< HEAD
       },
       {
         text: 'Dark Mode',
         link: '/guide/dark-mode.md'
-=======
->>>>>>> 2ae1dc4 (docs(docs): adding documentation about theming)
       }
     ]
   },
