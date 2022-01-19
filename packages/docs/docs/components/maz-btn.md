@@ -11,7 +11,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
   Button
 </MazBtn>
 
- `html
+```vue
 <template>
   <MazBtn>Button</MazBtn>
 </template>
