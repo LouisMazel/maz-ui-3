@@ -12,7 +12,7 @@
     "release": "npx lerna version"
   },
   "lint-staged": {
-    "!(node_modules/**/*|packages/**/*|.prettierignore|.gitignore).*": [
+    "!(node_modules/**/*|packages/**/*|.prettierignore|.gitignore|.editorconfig).*": [
       "prettier . --write"
     ]
   },
