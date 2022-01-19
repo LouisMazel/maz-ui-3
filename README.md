@@ -21,7 +21,7 @@
 ```shell
 npm install maz-ui@next
 
-# Or yarn add maz-ui
+# Or yarn add maz-ui@next
 ```
 
 ### Import necessary CSS files
