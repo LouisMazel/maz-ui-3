@@ -1,6 +1,7 @@
 # Dark Mode
 
 ## How it's works ?
+<<<<<<< HEAD
 
 To enable the dark you have just to add `dark` class to the `<html />` of your page
 
@@ -44,3 +45,5 @@ localStorage.theme = 'dark'
 // Whenever the user explicitly chooses to respect the OS preference
 localStorage.removeItem('theme')
 ```
+=======
+>>>>>>> 2ae1dc4 (docs(docs): adding documentation about theming)

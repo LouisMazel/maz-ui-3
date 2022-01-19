@@ -11,8 +11,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
   Button
 </MazBtn>
 
-
-```html
+ `html
 <template>
   <MazBtn>Button</MazBtn>
 </template>
