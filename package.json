@@ -2,7 +2,8 @@
   "name": "root",
   "version": "0.0.1",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "docs": "docs"
   },
   "scripts": {
     "prepare": "husky install",
