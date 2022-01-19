@@ -24,18 +24,31 @@ npm install maz-ui@next
 # Or yarn add maz-ui
 ```
 
-### On demande install
+### Import necessary CSS files
 
-To optimize your bundle size, it's recommanded to use the [on demand install](https://louismazel.github.io/maz-ui-3/guide/getting-started)
+In the `main.js` or `main.ts`, import these files.
 
-```javascript
+```ts
+import "maz-ui/main.css";
+import "maz-ui/colors-vars.css";
+```
+
+### Recommanded
+
+To optimize your bundle size, it's recommanded to use the [partial import](https://louismazel.github.io/maz-ui-3/guide/getting-started)
+
+#### Global component installation (recommanded)
+
+> Example with some components
+
+```typescript
 import { createApp } from 'vue'
 import {
   ...
-  MazBtn
-  MazInput
-  MazPicker
-  MazPhoneNumberInput
+  MazBtn,
+  MazInput,
+  MazPicker,
+  MazPhoneNumberInput,
   ...
 } from 'maz-ui'
 
@@ -49,11 +62,29 @@ app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 ...
 ```
 
-### Quick Start - Fully install (not recommanded)
+#### Component import
 
-```javascript
+> Import the module chosen directly in your component
+
+```html
+<template>
+  <MazBtn>Button</MazBtn>
+</template>
+
+<script lang="ts" setup>
+  import { MazBtn } from "maz-ui";
+</script>
+```
+
+### Not recommanded
+
+#### Fully library installation
+
+```typescript
 import { createApp } from "vue";
 import MazUi from "maz-ui";
+import "maz-ui/main.css";
+import "maz-ui/colors-vars.css";
 
 const app = createApp(App);
 
