@@ -17,10 +17,11 @@
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
     "clean": "rimraf dist",
     "pre-publish": "npm run build",
-    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css",
+    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css && npm run copy:css-vars",
     "build:css": "NODE_ENV=production npx tailwindcss -o dist/main.css",
     "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "copy:css-vars": "cp ./config/tailwindcss/css/_subs/colors-vars.css ./dist",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
