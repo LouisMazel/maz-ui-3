@@ -15,6 +15,6 @@
     "vuepress": "^2.0.0-beta.33"
   },
   "dependencies": {
-    "@mazel/ui": "file:../lib"
+    "maz-ui": "file:../lib"
   }
 }

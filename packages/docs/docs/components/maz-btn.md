@@ -6,5 +6,17 @@ description: MazBtn is a stand-alone component replaces the standard html button
 # MazBtn
 
 <MazBtn>
-Button
+  Button
 </MazBtn>
+
+```html
+<template>
+  <MazBtn>
+    Button
+  </MazBtn>
+</template>
+
+<script lang="ts" setup>
+  import { MazBtn } from 'maz-ui'
+<script>
+```

@@ -69,13 +69,13 @@
       validator: (value: string) => {
         return [
           'primary',
-          'warning',
           'secondary',
+          'warning',
           'danger',
-          'light',
+          'info',
+          'success',
           'white',
           'transparent',
-          'base',
         ].includes(value)
       },
     },
@@ -169,10 +169,6 @@
         }
       }
 
-      &.--base {
-        @apply maz-text-gray-700;
-      }
-
       &.--secondary {
         @apply maz-text-secondary;
       }
@@ -184,14 +180,10 @@
       &.--white {
         @apply maz-text-white;
       }
-
-      &.--light {
-        @apply maz-text-gray-500;
-      }
     }
 
     &.--is-button {
-      @apply maz-relative maz-overflow-hidden maz-border maz-border-transparent maz-inline-flex maz-bg-transparent maz-justify-center maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
+      @apply maz-relative maz-overflow-hidden maz-border-none maz-border maz-border-transparent maz-inline-flex maz-bg-transparent maz-justify-center maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
       maz-rounded-lg maz-px-[1em] maz-py-[0.6em];
 
       &.--icon {
@@ -226,7 +218,7 @@
       }
 
       &.--primary {
-        @apply maz-text-primary-contrast maz-bg-primary;
+        @apply maz-text-primary-contrast maz-bg-primary maz-border-primary;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {

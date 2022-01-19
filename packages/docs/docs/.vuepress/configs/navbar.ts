@@ -8,6 +8,14 @@ export const navbar: NavbarConfig = [
       {
         text: 'Getting Started',
         link: '/guide/getting-started.md'
+      },
+      {
+        text: 'Basic Colors',
+        link: '/guide/colors.md'
+      },
+      {
+        text: 'Theme',
+        link: '/guide/theme.md'
       }
     ]
   },
