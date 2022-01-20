@@ -14,6 +14,7 @@
         '--no-underline': noUnderline,
         '--no-leading': noLeading,
         '--fab': fab,
+        '--loading': loading,
         '--disabled': isDisabled,
         '--icon': hasIcon,
       },
@@ -103,7 +104,7 @@
   const btnColorClass = computed(() =>
     props.pastel
       ? `--${props.color}-pastel`
-      : props.outline
+      : props.outline || props.loading
       ? `--${props.color}-outline`
       : `--${props.color}`,
   )
@@ -127,7 +128,7 @@
   )
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   .m-btn {
     @apply maz-text-center maz-text-base maz-border-solid maz-border maz-border-transparent;
 
@@ -160,7 +161,7 @@
 
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        &:not(.-no-underline) {
+        &:not(.--no-underline) {
           @apply maz-underline;
         }
       }
@@ -181,7 +182,7 @@
     &.--is-button {
       @apply maz-relative maz-overflow-hidden maz-inline-flex maz-bg-transparent maz-justify-center
       maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
-      maz-rounded-lg maz-px-[1em] maz-py-[0.6em];
+      maz-rounded-lg maz-px-[1em] maz-py-[0.6em] maz-border-transparent;
 
       &.--icon {
         @apply maz-py-[0.5em];
@@ -210,7 +211,7 @@
       }
 
       &.--primary {
-        @apply maz-text-primary-contrast maz-bg-primary maz-border-primary;
+        @apply maz-text-primary-contrast maz-bg-primary;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -266,10 +267,6 @@
       &.--white {
         @apply maz-bg-white maz-text-white-contrast;
 
-        /* &:not(.--no-bordered) {
-          @apply maz-border maz-border-gray-200;
-        } */
-
         &:not(:disabled):hover,
         &:not(:disabled):focus {
           @apply maz-bg-gray-300;
@@ -278,10 +275,6 @@
 
       &.--black {
         @apply maz-bg-black maz-text-black-contrast;
-
-        /* &:not(.--no-bordered) {
-          @apply maz-border maz-border-black;
-        } */
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -450,8 +443,28 @@
           @apply maz-bg-secondary;
         }
 
+        &.--info {
+          @apply maz-bg-info;
+        }
+
+        &.--warning {
+          @apply maz-bg-warning;
+        }
+
+        &.--success {
+          @apply maz-bg-success;
+        }
+
+        &.--danger {
+          @apply maz-bg-danger;
+        }
+
         &.--white {
           @apply maz-bg-white;
+        }
+
+        &.--black {
+          @apply maz-bg-black;
         }
       }
     }

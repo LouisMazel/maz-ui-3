@@ -123,6 +123,18 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </template>
 ```
 
+### Fab
+
+> Full rounded button
+
+<MazBtn fab>fab</MazBtn>
+
+```vue
+<template>
+  <MazBtn fab>fab</MazBtn>
+</template>
+```
+
 ### Block
 
 > Will add `width: 100%;`
@@ -135,15 +147,33 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </template>
 ```
 
+### Disabled
+
+<br />
+
+<MazBtn disabled>disabled</MazBtn>
+
+```vue
+<template>
+  <MazBtn disabled>disabled</MazBtn>
+</template>
+```
+
 ### Link
 
 > With the attribute `variant="link"`, the button looks like a link but it's a button, so you can use the event `@click`
+<br />
+> Additional prop available `no-underline` & `no-leading`
 
 <MazBtn variant="link" @click="$emit('click')">Is Link</MazBtn>
+<MazBtn variant="link" @click="$emit('click')" no-underline>Is Link</MazBtn>
+<MazBtn variant="link" @click="$emit('click')" no-leading>Is Link</MazBtn>
 
 ```vue
 <template>
   <MazBtn variant="link" @click="$emit('click')">Is Link</MazBtn>
+  <MazBtn variant="link" @click="$emit('click')" no-underline>Is Link</MazBtn>
+  <MazBtn variant="link" @click="$emit('click')" no-leading>Is Link</MazBtn>
 </template>
 ```
 
