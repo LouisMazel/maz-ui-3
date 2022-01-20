@@ -1,7 +1,6 @@
 ---
 title: Basic colors
 description: List of basic colors of maz-ui
->>>>>>> f05b08c (docs(docs): adding documentation about theming)
 ---
 
 # Basic Colors
