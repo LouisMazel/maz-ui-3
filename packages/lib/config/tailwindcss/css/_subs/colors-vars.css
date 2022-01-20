@@ -85,6 +85,14 @@
   --maz-color-danger-contrast: white;
   --maz-color-danger-alpha: rgb(255 109 106 / 60%);
 
+  /* WHITE */
+  --maz-color-white: white;
+  --maz-color-white-contrast: black;
+
+  /* BLACK */
+  --maz-color-black: black;
+  --maz-color-black-contrast: white;
+
   /* USAGE */
   --maz-color-normal-text: #2c3e50;
   --maz-color-bg: white;

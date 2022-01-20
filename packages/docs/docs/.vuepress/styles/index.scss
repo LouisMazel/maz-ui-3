@@ -105,3 +105,39 @@ html.dark {
   // code blocks vars
   --code-hl-bg-color: #363b46;
 }
+
+tr:nth-child(2n) {
+  background-color:rgba(0, 0, 0, 0.1);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-start {
+  justify-content: start;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.gap-05 {
+  gap: 0.5rem;
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
