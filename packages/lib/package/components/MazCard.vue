@@ -110,10 +110,17 @@
     ref,
     watch,
   } from 'vue'
-  import MazGallery, { Images } from './../MazGallery'
-  import MazBtn from './../MazBtn/MazBtn.vue'
-  import MazTransitionExpand from './../MazTransitionExpand/MazTransitionExpand.vue'
-  import MazIcon from './../MazIcon/MazIcon.vue'
+  import MazGallery from './MazGallery.vue'
+  import MazBtn from './MazBtn.vue'
+  import MazTransitionExpand from './MazTransitionExpand.vue'
+  import MazIcon from './MazIcon.vue'
+
+  export type Image =
+    | {
+        slug: string
+        alt?: string
+      }
+    | string
 
   export default defineComponent({
     components: {
@@ -124,7 +131,7 @@
     },
     props: {
       // Images displayed
-      images: { type: Array as PropType<Images>, default: undefined },
+      images: { type: Array as PropType<Image[]>, default: undefined },
       // Card variant: Must be `column | row | row-reverse | column-reverse`
       orientation: {
         type: String,

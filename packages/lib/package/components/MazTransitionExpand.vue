@@ -3,9 +3,9 @@
     class="m-transition-expand"
     name="maz-expand"
     tag="div"
-    @enter="enter"
-    @after-enter="afterEnter"
-    @leave="leave"
+    @enter="(el) => enter(el as HTMLElement)"
+    @after-enter="(el) => afterEnter(el as HTMLElement)"
+    @leave="(el) => leave(el as HTMLElement)"
   >
     <slot />
   </Transition>

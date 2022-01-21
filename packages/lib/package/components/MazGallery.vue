@@ -1,16 +1,16 @@
 <template>
   <div
     v-if="images.length || hasEmptyLayer"
-    class="maz-gallery maz-base-component maz-flex"
+    class="m-gallery maz-flex"
     :style="[sizeStyle]"
     :class="{ 'maz-rounded-xl': radius }"
   >
-    <section class="maz-gallery__wrapper maz-flex maz-flex-1">
+    <section class="m-gallery__wrapper maz-flex maz-flex-1">
       <figure
         v-for="(image, i) in imagesShown"
         :key="i"
-        class="maz-gallery__item maz-flex maz-items-center maz-justify-center !maz-my-0"
-        :class="[`maz-gallery__item--${i + 1}`]"
+        class="m-gallery__item maz-flex maz-items-center maz-justify-center !maz-my-0"
+        :class="[`m-gallery__item--${i + 1}`]"
       >
         <img
           v-zoom-img="{
@@ -21,7 +21,7 @@
             scale: scale,
           }"
           v-lazy-img:bg-image="{ src: image.slug, disabled: !lazy }"
-          class="maz-gallery__item__image maz-flex-1"
+          class="m-gallery__item__image maz-flex-1"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           :alt="image.alt"
         />
@@ -34,7 +34,7 @@
             blur: blur,
             scale: scale,
           }"
-          class="maz-gallery__remaining-layer maz-flex maz-items-center maz-justify-center maz-bg-overlay"
+          class="m-gallery__remaining-layer maz-flex maz-items-center maz-justify-center maz-bg-overlay"
         >
           <span>+{{ numberImagesRemaining }}</span>
         </div>
@@ -52,16 +52,22 @@
       v-for="(image, i) in imagesHidden"
       :key="i"
       v-zoom-img="{ src: image.slug, disabled: !zoom }"
-      class="maz-gallery__hidden"
+      class="m-gallery__hidden"
     />
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, computed, PropType, onBeforeMount } from 'vue'
-  import { directive as zoomImg } from '~directives/zoom-img.directive'
-  import { directive as lazyImg } from '~directives/v-lazy-img'
-  import { Images } from '.'
+  import { directive as zoomImg } from './../directives/zoom-img.directive'
+  import { directive as lazyImg } from './../directives/v-lazy-img'
+
+  export type Image =
+    | {
+        slug: string
+        alt?: string
+      }
+    | string
 
   export default defineComponent({
     directives: {
@@ -70,7 +76,7 @@
     },
     props: {
       // Array of string or object: `['https://via.placeholder.com/500', 'https://via.placeholder.com/600']` or `[{ slug: 'https://via.placeholder.com/500', alt: 'image descripton' }, { slug: 'https://via.placeholder.com/600', alt: 'image descripton' }]`
-      images: { type: Array as PropType<Images>, default: Array },
+      images: { type: Array as PropType<Image[]>, default: Array },
       // Images count shown (max: 5)
       imagesShownCount: { type: Number, default: 5 },
       // Remove transparent layer with the remain count (ex: +2)
@@ -100,7 +106,7 @@
       onBeforeMount(() => {
         if (props.imagesShownCount > 5)
           console.warn(
-            '[MazUI](maz-gallery) The maximum of "images-shown-count" is 5',
+            '[MazUI](m-gallery) The maximum of "images-shown-count" is 5',
           )
       })
 
@@ -175,7 +181,7 @@
 </script>
 
 <style lang="postcss" scoped>
-  .maz-gallery {
+  .m-gallery {
     @apply maz-relative maz-overflow-hidden;
 
     &__hidden {
