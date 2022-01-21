@@ -1,6 +1,10 @@
 module.exports = {
   'base-colors': {
     transparent: 'transparent',
+    black: 'var(--maz-color-black)',
+    'black-contrast': 'var(--maz-color-black-contrast)',
+    white: 'var(--maz-color-white)',
+    'white-contrast': 'var(--maz-color-white-contrast)',
     current: 'currentColor',
     'normal-text': 'var(--maz-color-normal-text)',
   },

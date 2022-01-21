@@ -30,3 +30,11 @@ description: List of basic colors of maz-ui
 ## Danger
 
 <ColorContainer color="danger" hex="#ff6d6a" />
+
+## White
+
+<ColorContainer color="white" hex="#fff" />
+
+## Black
+
+<ColorContainer color="black" hex="#000" />

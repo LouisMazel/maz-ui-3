@@ -1,6 +1,6 @@
 <template>
   <div
-    class="color-container"
+    class="color-container rounded"
     :class="[`--${color}`]"
     :style="`background-color: var(--maz-color-${color}); color: var(--maz-color-${color}-contrast);`"
   >
@@ -21,7 +21,6 @@ const props = defineProps({
 .color-container {
   margin-top: 1rem;
   padding: 2rem 1rem;
-  border-radius: 0.5rem;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
