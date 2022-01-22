@@ -9,7 +9,7 @@ Basically, this component will load your SVG from your project.
 
 Place your SVG files in public a folder (default `/icons`, use `path` attribute to change it)
 
-<MazBtn download href="/icons/icons.zip" right-icon="Download">
+<MazBtn download href="/maz-ui-3/icons/icons.zip" right-icon="Download">
   Download Maz-UI icons set
 </MazBtn>
 
@@ -41,7 +41,7 @@ yarn add vue-inline-svg@next
 <br />
 
 <div class="flex items-start flex-wrap gap-05">
-  <MazIcon v-for="icon in icons" :key="icon" :name="icon" />
+  <MazIcon v-for="icon in icons" :key="icon" :name="icon" :path="path" />
 </div>
 
 <script setup lang="ts">
@@ -51,6 +51,8 @@ yarn add vue-inline-svg@next
     'InformationCircle','Menu','Pencil','Plus','PlusCircle',
     'Template','Terminal','Trash','User','UserAdd','UserGroup','X'
   ]
+
+  const path = process.env.NODE_ENV === 'production' ? '/maz-ui-3/icons' : '/icons'
 </script>
 
 ```vue
