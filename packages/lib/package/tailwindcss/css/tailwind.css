@@ -1,8 +1,6 @@
 @import './_subs/colors-vars.css';
 @import './_subs/padded-container-vars.css';
 @import './_subs/animation.css';
-@import './_subs/drawers.css';
-@import './_subs/utilities.css';
 
 @tailwind base;
 @tailwind components;

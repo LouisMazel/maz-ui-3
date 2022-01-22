@@ -50,7 +50,7 @@ description: MazCard is a stand-alone component to display some texts, images an
 
 ```vue
 <template>
-  <MazCard :images="images">
+  <MazCard>
     <template #title>
       <h4>
         Steven Seagal
