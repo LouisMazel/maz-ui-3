@@ -7,7 +7,7 @@ description: MazBtn is a stand-alone component to load your svg icons
 
 Basically, this component will load your SVG from your project.
 
-Place your SVG files in public a folder (default `/icons`, use `path` attribute to change it)
+Place your SVG files in public a folder (default `/icons`, use `path` prop to change it)
 
 <MazBtn download href="/maz-ui-3/icons/icons.zip" right-icon="Download">
   Download Maz-UI icons set
