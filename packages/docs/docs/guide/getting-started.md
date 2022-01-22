@@ -27,13 +27,12 @@ yarn add maz-ui@next
 
 </CodeGroup>
 
-### Import necessary CSS files
+### Import necessary CSS file
 
 In the `main.js` or `main.ts`, import these files.
 
 ```ts
 import 'maz-ui/main.css'
-import 'maz-ui/colors-vars.css'
 ```
 
 ### Recommanded
@@ -87,7 +86,6 @@ app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 import { createApp } from 'vue'
 import MazUi from 'maz-ui'
 import 'maz-ui/main.css'
-import 'maz-ui/colors-vars.css'
 
 const app = createApp(App)
 

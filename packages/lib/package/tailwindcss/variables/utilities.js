@@ -16,7 +16,7 @@ module.exports = {
     'box-shadow': '0 5px 20px 0 rgba(0, 0, 0, .1)',
   },
   '.text-muted': {
-    color: 'rgba(0, 0, 0, .54)',
+    color: 'var(--maz-color-muted)',
   },
   '.flex-center': {
     'align-items': 'center',

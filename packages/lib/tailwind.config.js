@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
   presets: [
-    require(path.join(__dirname, './config/tailwindcss/tailwind.config')),
+    require(path.join(__dirname, './package/tailwindcss/tailwind.config')),
   ],
   purge: ['./package/**/*'],
 }

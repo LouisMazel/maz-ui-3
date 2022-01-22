@@ -7,6 +7,9 @@ module.exports = {
     'white-contrast': 'var(--maz-color-white-contrast)',
     current: 'currentColor',
     'normal-text': 'var(--maz-color-normal-text)',
+    color: 'var(--maz-color-bg)',
+    'color-light': 'var(--maz-color-bg-light)',
+    'color-lighter': 'var(--maz-color-bg-lighter)',
   },
   variations: [
     'DEFAULT',

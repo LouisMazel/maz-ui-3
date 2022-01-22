@@ -174,3 +174,16 @@
     transform: translate(100%, 0);
   }
 }
+
+.maz-bottom-sheet-enter-active .maz-bottom-sheet-animation,
+.maz-bottom-sheet-leave .maz-bottom-sheet-animation {
+  opacity: 1;
+  transition: all 300ms;
+  transform: translateY(0);
+}
+
+.maz-bottom-sheet-enter .maz-bottom-sheet-animation,
+.maz-bottom-sheet-leave-to .maz-bottom-sheet-animatio {
+  opacity: 1;
+  transform: translateY(100%);
+}

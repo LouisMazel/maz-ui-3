@@ -114,13 +114,7 @@
   import MazBtn from './MazBtn.vue'
   import MazTransitionExpand from './MazTransitionExpand.vue'
   import MazIcon from './MazIcon.vue'
-
-  export type Image =
-    | {
-        slug: string
-        alt?: string
-      }
-    | string
+  import { MazGalleryImage } from './types'
 
   export default defineComponent({
     components: {
@@ -131,7 +125,10 @@
     },
     props: {
       // Images displayed
-      images: { type: Array as PropType<Image[]>, default: undefined },
+      images: {
+        type: Array as PropType<MazGalleryImage[]>,
+        default: undefined,
+      },
       // Card variant: Must be `column | row | row-reverse | column-reverse`
       orientation: {
         type: String,
@@ -217,7 +214,7 @@
 
 <style lang="postcss" scoped>
   .m-card {
-    @apply maz-bg-white maz-relative maz-max-h-full maz-inline-flex maz-flex-col;
+    @apply maz-bg-color maz-relative maz-max-h-full maz-inline-flex maz-flex-col;
 
     &__header {
       @apply maz-py-3 maz-px-4 maz-flex maz-justify-between maz-items-center maz-transition-colors maz-delay-200;
@@ -286,7 +283,7 @@
     &__title > * {
       font-size: 1.2em;
 
-      @apply maz-text-gray-900;
+      @apply maz-text-normal-text;
     }
 
     &__subtitle,
@@ -306,6 +303,12 @@
       & > *:not(:last-child) {
         @apply maz-mr-2;
       }
+    }
+  }
+
+  html.dark {
+    & .m-card {
+      @apply maz-bg-color-light;
     }
   }
 </style>

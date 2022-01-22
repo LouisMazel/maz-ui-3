@@ -9,13 +9,18 @@ const Z_INDEXES = require('./variables/z-indexes')
 const { colors } = require('./utils/colors')
 
 module.exports = {
-  mode: 'jit',
-  darkMode: 'media',
+  mode: 'build',
+  darkMode: 'class',
   prefix: 'maz-',
   theme: {
     extend: {
+      fontSize: {
+        xxs: '.625rem',
+      },
       backgroundColor: ['even', 'odd'],
-      fontFamily: false,
+      fontFamily: {
+        base: 'var(--maz-font-family)',
+      },
       zIndex: Z_INDEXES,
       screens: BREAKPOINTS,
       colors: {

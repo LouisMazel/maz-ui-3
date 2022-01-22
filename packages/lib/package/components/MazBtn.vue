@@ -22,13 +22,17 @@
     :type="btnType"
   >
     <div v-if="hasLeftIcon" class="m-btn__icon-left">
-      <slot name="left-icon"></slot>
+      <slot name="left-icon">
+        <MazIcon v-if="leftIcon" :name="leftIcon" />
+      </slot>
     </div>
     <span>
       <slot></slot>
     </span>
     <div v-if="hasRightIcon" class="m-btn__icon-right">
-      <slot name="right-icon"></slot>
+      <slot name="right-icon">
+        <MazIcon v-if="rightIcon" :name="rightIcon" />
+      </slot>
     </div>
     <div
       v-if="hasLoader"
@@ -41,8 +45,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, useAttrs, useSlots } from 'vue'
+  import { computed, PropType, useAttrs, useSlots } from 'vue'
   import MazSpinner from './MazSpinner.vue'
+  import MazIcon from './MazIcon.vue'
+
+  import { Color, Size } from './types'
 
   const { href, to } = useAttrs()
   const slots = useSlots()
@@ -56,14 +63,14 @@
       },
     },
     size: {
-      type: String,
+      type: String as PropType<Size>,
       default: 'md',
       validator: (value: string) => {
-        return ['xs', 'sm', 'md', 'lg', 'xl'].includes(value)
+        return ['mini', 'xs', 'sm', 'md', 'lg', 'xl'].includes(value)
       },
     },
     color: {
-      type: String,
+      type: String as PropType<Color>,
       default: 'primary',
       validator: (value: string) => {
         return [
@@ -75,6 +82,7 @@
           'success',
           'white',
           'black',
+          'transparent',
         ].includes(value)
       },
     },
@@ -93,6 +101,8 @@
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     fab: { type: Boolean, default: false },
+    leftIcon: { type: String, default: undefined },
+    rightIcon: { type: String, default: undefined },
   })
 
   const component = computed(() => {
@@ -120,8 +130,8 @@
     ['white'].includes(props.color) ? 'black' : 'white',
   )
   const hasLoader = computed(() => props.loading && props.variant === 'button')
-  const hasLeftIcon = computed(() => !!slots['left-icon'])
-  const hasRightIcon = computed(() => !!slots['right-icon'])
+  const hasLeftIcon = computed(() => !!slots['left-icon'] || props.leftIcon)
+  const hasRightIcon = computed(() => !!slots['right-icon'] || props.rightIcon)
   const hasIcon = computed(() => hasLeftIcon.value || hasRightIcon.value)
   const btnType = computed(() =>
     component.value === 'button' ? props.type : undefined,
@@ -132,16 +142,16 @@
   .m-btn {
     @apply maz-text-center maz-text-base maz-border-solid maz-border maz-border-transparent;
 
-    &__icon-left {
-      @apply maz-mr-[0.5em];
+    & span {
+      @apply maz-leading-none;
+    }
 
-      margin-left: -0.25em;
+    &__icon-left {
+      @apply maz-mr-2 maz--ml-1 maz-leading-none;
     }
 
     &__icon-right {
-      @apply maz-ml-[0.5em];
-
-      margin-right: -0.25em;
+      @apply maz-ml-2 maz--mr-1 maz-leading-none;
     }
 
     &.--cursor-pointer {
@@ -153,7 +163,7 @@
     }
 
     &.--is-link {
-      @apply maz-bg-transparent maz-inline-flex maz-items-center maz-outline-none maz-transition maz-ease-in-out maz-duration-300;
+      @apply maz-bg-transparent maz-text-normal-text maz-inline-flex maz-items-center maz-outline-none maz-transition maz-ease-in-out maz-duration-300;
 
       &:not(.--no-leading) {
         @apply maz-leading-9;
@@ -170,22 +180,80 @@
         @apply maz-text-secondary;
       }
 
+      &.--info {
+        @apply maz-text-info;
+      }
+
       &.--warning {
         @apply maz-text-warning-600;
       }
 
+      &.--danger {
+        @apply maz-text-danger-600;
+      }
+
+      &.--success {
+        @apply maz-text-success-600;
+      }
+
       &.--white {
         @apply maz-text-white;
+      }
+
+      &.--black {
+        @apply maz-text-black;
       }
     }
 
     &.--is-button {
       @apply maz-relative maz-overflow-hidden maz-inline-flex maz-bg-transparent maz-justify-center
       maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
-      maz-rounded-lg maz-px-[1em] maz-py-[0.6em] maz-border-transparent;
+      maz-rounded-lg maz-border-transparent maz-font-base;
+
+      &.--xl {
+        @apply maz-px-8 maz-text-xl;
+
+        padding-top: 1.325rem;
+        padding-bottom: 1.325rem;
+      }
+
+      &.--lg {
+        @apply maz-px-6 maz-text-lg;
+
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      &.--md {
+        @apply maz-px-4 maz-text-base;
+
+        padding-top: 0.88rem;
+        padding-bottom: 0.88rem;
+      }
+
+      &.--sm {
+        @apply maz-px-3 maz-text-sm;
+
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+      }
+
+      &.--xs {
+        @apply maz-px-2 maz-text-sm;
+
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+      }
+
+      &.--mini {
+        @apply maz-px-1 maz-text-xs;
+
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+      }
 
       &.--icon {
-        @apply maz-py-[0.5em];
+        @apply maz-py-2;
       }
 
       transition: background 300ms ease-in-out 0ms, color 300ms ease-in-out 0ms;
@@ -202,7 +270,7 @@
       /* Fab */
 
       &.--fab {
-        @apply maz-rounded-full maz-flex maz-items-center maz-justify-center maz-h-[3em] maz-w-[3em]
+        @apply maz-rounded-full maz-flex maz-items-center maz-justify-center maz-h-12 maz-w-12
         maz-px-0 maz-py-0 maz-drop-shadow-md;
       }
 
@@ -269,7 +337,7 @@
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-bg-gray-300;
+          @apply maz-bg-color-light;
         }
       }
 
@@ -279,6 +347,15 @@
         &:not(:disabled):hover,
         &:not(:disabled):focus {
           @apply maz-bg-gray-800;
+        }
+      }
+
+      &.--transparent {
+        @apply maz-bg-transparent maz-text-normal-text;
+
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+          @apply maz-bg-color-light;
         }
       }
 

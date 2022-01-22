@@ -69,7 +69,7 @@
   )
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   /* stylelint-disable no-descending-specificity */
   .m-lazy-img-component {
     @apply maz-relative maz-bg-gray-100 maz-flex maz-flex-center;
@@ -83,7 +83,7 @@
     }
 
     &.--height-full img {
-      @apply !maz-w-min !maz-max-w-min !maz-max-h-full;
+      @apply maz-w-min maz-max-w-min maz-max-h-full !important;
     }
 
     &:not(.m-lazy-loaded):not(.m-lazy-no-photo) {

@@ -5,4 +5,8 @@ description: MazAvatar is a stand-alone component replaces the standard html but
 
 # MazAvatar
 
-<MazAvatar src="https://pbs.twimg.com/profile_images/598181608198381570/-cFG43y2_400x400.jpg" />
+<!-- <MazAvatar src="https://pbs.twimg.com/profile_images/598181608198381570/-cFG43y2_400x400.jpg" /> -->
+
+## Props
+
+<ComponentPropDoc component="MazAvatar" />

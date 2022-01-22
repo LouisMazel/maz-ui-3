@@ -1,7 +1,6 @@
 <template>
   <MazBackDrop
     v-bind="$attrs"
-    modal-class="maz--fullscreen"
     transition="modal-anim"
     @update:model-value="$emit('update:model-value', $event)"
   >
@@ -18,18 +17,18 @@
             <slot name="title">{{ title }}</slot>
           </h2>
           <MazBtn
-            color="white"
-            no-bordered
+            color="transparent"
+            size="mini"
             class="m-dialog-layout-closebtn"
             @click="close"
           >
-            <!-- <MazIcon name="X" class="maz-cursor-pointer maz-w-5 maz-h-5" /> -->
+            <MazIcon name="X" class="maz-cursor-pointer" />
           </MazBtn>
         </div>
         <div class="m-dialog-layout-content">
           <slot />
         </div>
-        <div class="m-dialog-layout-footer">
+        <div v-if="$slots['footer']" class="m-dialog-layout-footer">
           <slot name="footer"></slot>
         </div>
       </div>
@@ -39,12 +38,12 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import MazBtn from './../MazBtn/MazBtn.vue'
-  import MazBackDrop from './../MazBackDrop/MazBackDrop.vue'
-  // import MazIcon from './../MazIcon/MazIcon.vue'
+  import MazBtn from './MazBtn.vue'
+  import MazBackDrop from './MazBackDrop.vue'
+  import MazIcon from './MazIcon.vue'
 
   export default defineComponent({
-    components: { MazBtn, MazBackDrop },
+    components: { MazBtn, MazBackDrop, MazIcon },
     inheritAttrs: false,
     props: {
       title: { type: String, default: undefined },
@@ -55,7 +54,7 @@
 
 <style lang="postcss" scoped>
   .m-dialog-layout {
-    @apply maz-bg-white maz-rounded-lg;
+    @apply maz-bg-color maz-rounded-lg;
 
     width: 500px;
     max-width: 95vw;
@@ -81,7 +80,7 @@
     }
 
     &-closebtn {
-      @apply !maz-p-2;
+      @apply maz-p-2 !important;
     }
   }
 </style>

@@ -61,13 +61,7 @@
   import { defineComponent, computed, PropType, onBeforeMount } from 'vue'
   import { directive as zoomImg } from './../directives/zoom-img.directive'
   import { directive as lazyImg } from './../directives/v-lazy-img'
-
-  export type Image =
-    | {
-        slug: string
-        alt?: string
-      }
-    | string
+  import { MazGalleryImage } from './types'
 
   export default defineComponent({
     directives: {
@@ -76,7 +70,7 @@
     },
     props: {
       // Array of string or object: `['https://via.placeholder.com/500', 'https://via.placeholder.com/600']` or `[{ slug: 'https://via.placeholder.com/500', alt: 'image descripton' }, { slug: 'https://via.placeholder.com/600', alt: 'image descripton' }]`
-      images: { type: Array as PropType<Image[]>, default: Array },
+      images: { type: Array as PropType<MazGalleryImage[]>, default: Array },
       // Images count shown (max: 5)
       imagesShownCount: { type: Number, default: 5 },
       // Remove transparent layer with the remain count (ex: +2)

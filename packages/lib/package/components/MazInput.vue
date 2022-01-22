@@ -3,19 +3,21 @@
     class="m-input"
     :class="[
       {
-        '-is-focused': isFocused,
-        '-should-up': shouldUp,
-        '-has-label': hasLabel,
-        '-is-disabled': disabled,
-        '-is-readonly': readonly,
-        '-has-z-2': error || warning || success,
+        '--is-focused': isFocused,
+        '--should-up': shouldUp,
+        '--has-label': hasLabel,
+        '--is-disabled': disabled,
+        '--is-readonly': readonly,
+        '--has-z-2': error || warning || success,
+        '--has-state': error || warning || success,
       },
       $attrs.class,
+      `--${color}`,
+      `--${size}`,
     ]"
-    :style="{ fontSize: size }"
   >
     <div
-      class="m-input-wrapper"
+      class="m-input-wrapper maz-border"
       :class="[inputClasses, borderStyle, { 'maz-rounded-lg': !noRadius }]"
     >
       <div v-if="hasLeftPart()" class="m-input-wrapper-left">
@@ -37,7 +39,7 @@
           :required="required"
           class="m-input-input"
           v-on="{
-            input: (event: Event) => emitValue((event.target as HTMLInputElement).value),
+            input: (event) => emitValue(event.target.value),
             blur,
             focus,
           }"
@@ -50,9 +52,9 @@
           class="m-input-label"
           :class="[
             {
-              '!maz-text-danger-600': error,
-              '!maz-text-success-600': success,
-              '!maz-text-warning-600': warning,
+              'maz-text-danger-600': error,
+              'maz-text-success-600': success,
+              'maz-text-warning-600': warning,
             },
           ]"
         >
@@ -68,20 +70,15 @@
           v-if="isPasswordType"
           color="transparent"
           tabindex="-1"
-          :size="size"
-          class="!maz-p-[0.5em]"
+          size="mini"
           @click.stop="hasPasswordVisible = !hasPasswordVisible"
         >
           <MazIcon
             v-if="hasPasswordVisible"
             name="EyeOff"
-            class="maz-text-gray-400 maz-h-[1.5em] maz-w-[1.5em]"
+            class="maz-text-gray-400"
           />
-          <MazIcon
-            v-else
-            name="Eye"
-            class="maz-text-gray-400 maz-h-[1.5em] maz-w-[1.5em]"
-          />
+          <MazIcon v-else name="Eye" class="maz-text-gray-400" />
         </MazBtn>
 
         <slot v-if="$slots['valid-button'] || validButton" name="valid-button">
@@ -90,14 +87,11 @@
             :disabled="disabled"
             tabindex="-1"
             :loading="validButtonLoading"
-            class="m-input-valid-button !maz-p-[0.5em]"
-            :size="size"
+            class="m-input-valid-button"
+            size="mini"
             type="submit"
           >
-            <MazIcon
-              class="maz-text-gray-400 maz-h-[1.5em] maz-w-[1.5em]"
-              name="Check"
-            />
+            <MazIcon class="maz-text-gray-400" name="Check" />
           </MazBtn>
         </slot>
       </div>
@@ -111,9 +105,10 @@
    */
 
   import { computed, defineComponent, onMounted, ref, PropType } from 'vue'
-  import { debounce } from '~utils/debounce'
-  import MazBtn from '@/components/lib/ui/MazBtn.vue'
-  import MazIcon from '../ui/MazIcon.vue'
+  import { debounce } from './../utils/debounce'
+  import MazBtn from './MazBtn.vue'
+  import MazIcon from './MazIcon.vue'
+  import { Color, Size } from './types'
 
   export default defineComponent({
     components: { MazBtn, MazIcon },
@@ -126,6 +121,22 @@
         default: undefined,
       },
       placeholder: { type: String, default: undefined },
+      color: {
+        type: String as PropType<Color>,
+        default: 'primary',
+        validator: (value: string) => {
+          return [
+            'primary',
+            'secondary',
+            'warning',
+            'danger',
+            'info',
+            'success',
+            'white',
+            'black',
+          ].includes(value)
+        },
+      },
       label: { type: String, default: undefined },
       name: { type: String, default: 'input' },
       type: {
@@ -158,7 +169,13 @@
       inputClasses: { type: String, default: undefined },
       noBorder: { type: Boolean, default: false },
       noRadius: { type: Boolean, default: false },
-      size: { type: String, default: undefined },
+      size: {
+        type: String as PropType<Size>,
+        default: 'md',
+        validator: (value: string) => {
+          return ['mini', 'xs', 'sm', 'md', 'lg', 'xl'].includes(value)
+        },
+      },
       debounce: { type: Boolean, default: false },
       debounceDelay: { type: Number, default: 500 },
       validButton: { type: Boolean, default: false },
@@ -184,13 +201,21 @@
       )
 
       const borderStyle = computed(() => {
-        if (props.noBorder) return null
-        if (props.error) return 'maz-border maz-border-danger'
-        if (props.success) return 'maz-border maz-border-success'
-        if (props.warning) return 'maz-border maz-border-warning'
-        return isFocused.value
-          ? 'maz-border maz-border-primary'
-          : 'maz-border maz-border-gray-200'
+        if (props.noBorder) return undefined
+        if (props.error) return 'maz-border-danger'
+        if (props.success) return 'maz-border-success'
+        if (props.warning) return 'maz-border-warning'
+        if (isFocused.value) {
+          if (props.color === 'black') return 'maz-border-black'
+          if (props.color === 'danger') return 'maz-border-danger'
+          if (props.color === 'info') return 'maz-border-info'
+          if (props.color === 'primary') return 'maz-border-primary'
+          if (props.color === 'secondary') return 'maz-border-secondary'
+          if (props.color === 'success') return 'maz-border-success'
+          if (props.color === 'warning') return 'maz-border-warning'
+          if (props.color === 'white') return 'maz-border-white'
+        }
+        return 'maz-border-gray-200'
       })
 
       const computedPlaceholder = computed(() => {
@@ -234,7 +259,7 @@
       }
 
       const debounceEmitValue = debounce((value: string | number) => {
-        emit('update:modelValue', value)
+        emit('update:modelValue', value[0])
       }, props.debounceDelay)
 
       const emitValue = (value: string | number) => {
@@ -264,11 +289,66 @@
 </script>
 
 <style lang="postcss" scoped>
+  /* stylelint-disable no-descending-specificity */
   .m-input {
     @apply maz-flex maz-flex-col;
 
+    &.--xl {
+      @apply maz-h-16;
+
+      & .m-input-input,
+      & .m-input-label {
+        @apply maz-text-xl;
+      }
+    }
+
+    &.--lg {
+      @apply maz-h-14;
+
+      & .m-input-input,
+      & .m-input-label {
+        @apply maz-text-lg;
+      }
+    }
+
+    &.--md {
+      @apply maz-h-12;
+
+      & .m-input-input,
+      & .m-input-label {
+        @apply maz-text-base;
+      }
+    }
+
+    &.--sm {
+      @apply maz-h-10;
+
+      & .m-input-input,
+      & .m-input-label {
+        @apply maz-text-sm;
+      }
+    }
+
+    &.--xs {
+      @apply maz-h-8;
+
+      & .m-input-input,
+      & .m-input-label {
+        @apply maz-text-xs;
+      }
+    }
+
+    &.--mini {
+      @apply maz-h-6;
+
+      & .m-input-input,
+      & .m-input-label {
+        @apply maz-text-xs;
+      }
+    }
+
     &-wrapper {
-      @apply maz-relative maz-flex-1 maz-flex maz-overflow-hidden maz-bg-white maz-z-1;
+      @apply maz-relative maz-flex-1 maz-flex maz-overflow-hidden maz-bg-color maz-z-1 maz-border-solid maz-transition-colors maz-duration-300;
 
       &-input {
         @apply maz-flex maz-items-center maz-relative maz-flex-1;
@@ -276,67 +356,85 @@
 
       &-right,
       &-left {
-        @apply maz-flex maz-relative maz-space-x-[0.25em] maz-z-1;
+        @apply maz-flex maz-relative maz-space-x-1 maz-z-1 maz-flex-center maz-py-1;
       }
 
       &-right {
-        @apply maz-px-[0.25em];
+        @apply maz-px-1;
       }
 
       &-left {
-        @apply maz-left-[0.25em];
+        @apply maz-left-1;
       }
     }
 
     &-input {
-      @apply maz-w-full maz-block maz-outline-none maz-shadow-none maz-appearance-none maz-m-0 maz-box-border;
+      @apply maz-w-full maz-block maz-outline-none maz-shadow-none maz-appearance-none maz-m-0 maz-bg-transparent maz-border-none;
 
-      @apply maz-text-[1em] maz-h-[3em] maz-py-0 maz-px-[1em];
+      @apply maz-h-full maz-py-0 maz-px-4 maz-text-normal-text;
     }
 
     &-label {
-      @apply maz-absolute maz-block maz-pointer-events-none maz-origin-top-left maz-text-gray-500 maz-truncate maz-w-max;
+      @apply maz-absolute maz-block maz-pointer-events-none maz-origin-top-left maz-truncate maz-w-max;
 
-      @apply maz-text-[1em] maz-left-[1em] maz-leading-[1.5em];
+      @apply maz-left-4 maz-leading-6;
 
       transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     }
 
-    &.-has-z-2 {
+    &:not(.--has-state) {
+      @apply maz-text-gray-500;
+    }
+
+    &.--has-z-2 {
       & .m-input-wrapper {
         @apply maz-z-2;
       }
     }
 
-    &.-should-up {
+    &.--should-up {
       & .m-input-label {
-        transform: scale(0.8) translateY(-0.75rem);
+        transform: scale(0.8) translateY(-0.65rem);
       }
     }
 
-    &.-is-disabled {
+    &.--is-disabled {
       & .m-input-wrapper {
-        @apply maz-text-gray-500 maz-bg-gray-50;
+        @apply maz-text-muted maz-bg-color;
       }
 
       & .m-input-input {
-        @apply maz-cursor-not-allowed maz-bg-gray-50;
+        @apply maz-cursor-not-allowed maz-text-muted;
       }
 
       & .m-input-label {
-        @apply maz-text-gray-300;
+        @apply maz-text-muted;
       }
     }
 
-    &.-is-focused {
+    &.--is-focused {
       & .m-input-wrapper {
         @apply maz-z-3;
       }
     }
 
-    &.-has-label {
+    &.--has-label {
       .m-input-input {
-        @apply maz-px-[1em] maz-pt-[1em];
+        @apply maz-px-4 maz-pt-4;
+      }
+    }
+  }
+
+  html.dark {
+    & .m-input:not(.--is-disabled) {
+      & .m-input-wrapper {
+        @apply maz-bg-color-light;
+      }
+    }
+
+    & .m-input:not(.--is-focused):not(.--has-state) {
+      & .m-input-wrapper {
+        @apply maz-border-color-lighter;
       }
     }
   }

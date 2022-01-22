@@ -57,9 +57,7 @@
   --code-ln-wrapper-width: 3.5rem;
 
   // font vars
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  --font-family-code: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --font-family: var(--maz-font-family);
 
   // layout vars
   --navbar-height: 3.6rem;
@@ -106,8 +104,16 @@ html.dark {
   --code-hl-bg-color: #363b46;
 }
 
+a.m-btn.--is-button {
+  text-decoration: none !important;
+}
+
 tr:nth-child(2n) {
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color: var(--maz-color-bg-light);
+}
+
+code {
+  background-color: var(--maz-color-bg-lighter);
 }
 
 .flex {
@@ -132,6 +138,10 @@ tr:nth-child(2n) {
 
 .items-start {
   align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .gap-05 {

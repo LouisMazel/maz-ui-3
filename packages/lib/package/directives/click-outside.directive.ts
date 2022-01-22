@@ -48,16 +48,16 @@ const directive: Directive = {
   unmounted: onUnmounted,
 }
 
-const plugin: Plugin = {
-  install: (app) => {
-    app.directive('click-away', directive)
-  },
-}
-
 const mixin = {
   directives: { ClickAway: directive },
 }
 
 export { directive, mixin }
+
+const plugin: Plugin = {
+  install: (app) => {
+    app.directive('click-outside', directive)
+  },
+}
 
 export default plugin
