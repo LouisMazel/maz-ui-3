@@ -17,6 +17,7 @@ export const components = {
         '/components/maz-card.md',
         '/components/maz-lazy-img.md',
         '/components/maz-icon.md',
+        '/components/maz-transition-expand.md',
       ]
     }
   ]
