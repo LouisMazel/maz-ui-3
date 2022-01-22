@@ -146,9 +146,8 @@
     transition: opacity ease-in-out 250ms;
 
     & .m-backdrop-content {
-      position: absolute;
       transition: transform ease-in-out 250ms;
-      transform: translateY(100%);
+      transform: translateY(0);
     }
   }
 
@@ -157,9 +156,7 @@
     opacity: 0;
 
     & .m-backdrop-content {
-      position: absolute;
-      transition: transform ease-in-out 250ms;
-      transform: translateY(0);
+      transform: translateY(100%);
     }
   }
 
@@ -198,7 +195,7 @@
     backdrop-filter: blur(3px);
     z-index: 1050;
 
-    & > .m-backdrop-overlay {
+    &-overlay {
       touch-action: none;
 
       @apply maz-absolute maz-inset-0 maz-bg-black maz-opacity-40;
@@ -208,11 +205,13 @@
       }
     }
 
-    & > .m-backdrop-content {
+    &-content {
       @apply maz-z-1 maz-relative focus:maz-outline-none;
+    }
 
-      &.--bottom-sheet {
-        @apply maz-fixed maz-bottom-0 maz-left-0 maz-right-0;
+    &.--bottom-sheet {
+      & .m-backdrop-content {
+        @apply maz-absolute maz-bottom-0 maz-left-0 maz-right-0;
       }
     }
 

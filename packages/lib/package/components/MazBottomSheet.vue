@@ -2,7 +2,7 @@
   <MazBackDrop
     v-bind="$attrs"
     transition="bottom-sheet-anim"
-    modal-class="--bottom-sheet"
+    backdrop-class="--bottom-sheet"
     @update:model-value="(value: boolean) => { persistent ? undefined : closeDialog(value) }"
   >
     <template #default="{ close }">
