@@ -7,9 +7,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 > Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
 
-## Options
-
-### Basic usage
+## Basic usage
 
 <br />
 
@@ -25,6 +23,8 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </script>
 ```
 
+## Options
+
 ### Loading
 
 <br />
@@ -37,19 +37,30 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </template>
 ```
 
+### Sizes
+
+> Use the attribute `size` with a value `{{ sizes }}`
+
+<div class="flex items-start gap-05 items-center">
+  <MazBtn v-for="size in sizes" :size="size">{{ size }}</MazBtn>
+</div>
+
+```vue
+<template>
+  <MazBtn v-for="size in sizes" :size="size">{{ size }}</MazBtn>
+</template>
+
+<script setup lang="ts">
+  const sizes = ['mini', 'xs', 'sm', 'md', 'lg', 'xl']
+</script>
+```
+
 ### Colors
 
 > Use the attribute `color` with a value in this [list](/guide/colors.md), the component will use this color
 
 <div class="flex items-start gap-05">
-  <MazBtn>primary</MazBtn>
-  <MazBtn color="secondary">secondary</MazBtn>
-  <MazBtn color="info">info</MazBtn>
-  <MazBtn color="success">success</MazBtn>
-  <MazBtn color="warning">warning</MazBtn>
-  <MazBtn color="danger">danger</MazBtn>
-  <MazBtn color="white">white</MazBtn>
-  <MazBtn color="black">black</MazBtn>
+  <MazBtn v-for="{ name } in colorsArray" :color="name">{{ name }}</MazBtn>
 </div>
 
 ```vue
@@ -70,14 +81,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 <br />
 
 <div class="flex items-start gap-05">
-  <MazBtn outline>primary</MazBtn>
-  <MazBtn color="secondary" outline>secondary</MazBtn>
-  <MazBtn color="info" outline>info</MazBtn>
-  <MazBtn color="success" outline>success</MazBtn>
-  <MazBtn color="warning" outline>warning</MazBtn>
-  <MazBtn color="danger" outline>danger</MazBtn>
-  <MazBtn color="white" outline>white</MazBtn>
-  <MazBtn color="black" outline>black</MazBtn>
+  <MazBtn v-for="{ name } in colorsArray" :color="name" outline>{{ name }}</MazBtn>
 </div>
 
 ```vue
@@ -100,14 +104,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 <br />
 
 <div class="flex items-start gap-05 rounded maz-bg-white maz-p-3">
-  <MazBtn pastel>primary</MazBtn>
-  <MazBtn color="secondary" pastel>secondary</MazBtn>
-  <MazBtn color="info" pastel>info</MazBtn>
-  <MazBtn color="success" pastel>success</MazBtn>
-  <MazBtn color="warning" pastel>warning</MazBtn>
-  <MazBtn color="danger" pastel>danger</MazBtn>
-  <MazBtn color="white" pastel>white</MazBtn>
-  <MazBtn color="black" pastel>black</MazBtn>
+  <MazBtn v-for="{ name } in colorsArray" :color="name" pastel>{{ name }}</MazBtn>
 </div>
 
 ```vue
@@ -137,7 +134,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 ### Block
 
-> Will add `width: 100%;`
+> Will take `width: 100%;`
 
 <MazBtn block>block</MazBtn>
 
@@ -156,6 +153,76 @@ description: MazBtn is a stand-alone component replaces the standard html button
 ```vue
 <template>
   <MazBtn disabled>disabled</MazBtn>
+</template>
+```
+
+### Icons
+
+> When you use `right-icon` or `left-icon`, the component use [MazIcon](/components/maz-icon.md)
+
+<div class="flex items-start gap-05 rounded">
+  <MazBtn left-icon="Trash">
+    left-icon
+  </MazBtn>
+  <MazBtn right-icon="Trash">
+    right-icon
+  </MazBtn>
+  <MazBtn left-icon="Trash" right-icon="Trash">
+    left-right-icon
+  </MazBtn>
+</div>
+
+```vue
+<template>
+  <MazBtn left-icon="Check">
+    left-icon
+  </MazBtn>
+  <MazBtn right-icon="Home">
+    right-icon
+  </MazBtn>
+  <MazBtn left-icon="Terminal" right-icon="Trash">
+    left-right-icon
+  </MazBtn>
+</template>
+```
+
+> Use you own icons
+
+<div class="flex items-start gap-05 rounded">
+  <MazBtn>
+    <template #left-icon>
+      <MazIcon name="Check" />
+    </template>
+    left-icon
+  </MazBtn>
+  <MazBtn>
+    <template #right-icon>
+      <MazIcon name="Home" />
+    </template>
+    right-icon
+  </MazBtn>
+  <MazBtn>
+    <template #left-icon>
+      <MazIcon name="Terminal" />
+    </template>
+    right-icon
+    <template #right-icon>
+      <MazIcon name="InformationCircle" />
+    </template>
+  </MazBtn>
+</div>
+
+```vue
+<template>
+  <MazBtn left-icon="Trash">
+    left-icon
+  </MazBtn>
+  <MazBtn right-icon="Trash">
+    right-icon
+  </MazBtn>
+  <MazBtn left-icon="Trash" right-icon="Trash">
+    left-right-icon
+  </MazBtn>
 </template>
 ```
 
@@ -208,3 +275,22 @@ description: MazBtn is a stand-alone component replaces the standard html button
 ## Props
 
 <ComponentPropDoc component="MazBtn" />
+
+<script setup lang="ts">
+  import { computed } from 'vue'
+
+  const colors = {
+    primary: { name: 'primary', hex: '#1e90ff' },
+    secondary: { name: 'secondary', hex: '#1cd1a1' },
+    info: { name: 'info', hex: '#17a2b8' },
+    success: { name: 'success', hex: '#9acd32' },
+    warning: { name: 'warning', hex: '#fcb731' },
+    danger: { name: 'danger', hex: '#ff6d6a' },
+    white: { name: 'white', hex: '#fff' },
+    black: { name: 'black', hex: '#000' },
+  }
+
+  const sizes = ['mini', 'xs', 'sm', 'md', 'lg', 'xl']
+
+  const colorsArray = computed(() => Object.values(colors))
+</script>

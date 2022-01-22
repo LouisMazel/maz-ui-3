@@ -4,7 +4,13 @@ lint:
 	npm run lint
 
 build:
-	npm run build
+	make clean-build && npm run build
+
+clean-build:
+	npm run clean
+
+build-watch:
+	npm run build:watch
 
 install:
 	npm i

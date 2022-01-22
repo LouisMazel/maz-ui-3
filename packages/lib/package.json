@@ -16,12 +16,12 @@
     "lint:js": "eslint --fix --ext .ts,.js,.vue .",
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
     "clean": "rimraf dist",
-    "pre-publish": "npm run build",
-    "build": "npm run clean && cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css && npm run copy:css-vars && npm run copy:package-file",
-    "build:css": "NODE_ENV=production npx tailwindcss -o dist/main.css",
+    "build": "cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css && npm run copy:package-file",
+    "build:watch": "onchange 'package/**/*' -- npm run build",
+    "build:css": "NODE_ENV=production npx tailwindcss -i ./package/tailwindcss/css/tailwind.css -o dist/main.css --config ./tailwind.config.js --postcss",
     "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "copy:css-vars": "cp ./config/tailwindcss/css/_subs/colors-vars.css ./dist",
+    "copy:css-files": "cp ./package/tailwindcss/css/_subs/colors-vars.css ./dist",
     "copy:package-file": "cp ./package.json ./dist",
     "pre-commit": "lint-staged"
   },
@@ -31,7 +31,7 @@
     "*": "prettier -w -u"
   },
   "dependencies": {
-    "vue-inline-svg": "^2.1.0"
+    "vue-inline-svg": "^3.1.0"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -66,6 +66,7 @@
     "eslint-plugin-vue": "^8.3.0",
     "fs": "0.0.2",
     "lint-staged": "^12.1.7",
+    "onchange": "^7.1.0",
     "path": "^0.12.7",
     "postcss": "^8.4.5",
     "postcss-html": "^1.3.0",
@@ -90,7 +91,6 @@
     "ts-jest": "^27.1.2",
     "ttypescript": "^1.5.13",
     "typescript": "^4.5.4",
-    "v-click-outside": "^3.1.2",
     "vue": "^3.2.26",
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^17.0.0",

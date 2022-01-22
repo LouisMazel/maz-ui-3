@@ -10,6 +10,9 @@ build-docs:
 build-lib:
 	make --directory=packages/lib build
 
+build-watch-lib:
+	make --directory=packages/lib build-watch
+
 install:
 	make install-root install-lib install-docs
 

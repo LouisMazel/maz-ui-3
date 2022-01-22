@@ -104,21 +104,22 @@
   defineEmits(['click'])
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   .m-avatar {
-    @apply maz-flex maz-flex-col maz-flex-center !maz-no-underline;
+    @apply maz-flex maz-flex-col maz-flex-center;
+    @apply maz-no-underline !important;
 
     &__caption {
-      @apply maz-text-center maz-font-medium maz-mt-[0.5em] maz-truncate maz-w-full maz-capitalize maz-text-[1em] maz-text-black;
+      @apply maz-text-center maz-font-medium maz-mt-2 maz-truncate maz-w-full maz-capitalize maz-text-base maz-text-black;
     }
 
     &__initial {
-      @apply maz-text-[1.5em] maz-capitalize maz-text-white;
+      @apply maz-text-2xl maz-capitalize maz-text-white;
     }
 
     &__wrapper {
       @apply maz-flex maz-justify-center maz-flex-none maz-rounded-full maz-overflow-hidden maz-relative maz-bg-gray-50
-      maz-w-[3em] maz-h-[3em];
+      maz-w-12 maz-h-12;
 
       &.--clickable {
         & .m-avatar__button {
@@ -129,7 +130,7 @@
           transition-property: transform, filter;
 
           &__icon {
-            @apply maz-text-white maz-h-[1.5em] maz-w-[1.5em];
+            @apply maz-text-white maz-h-6 maz-w-6;
           }
         }
 

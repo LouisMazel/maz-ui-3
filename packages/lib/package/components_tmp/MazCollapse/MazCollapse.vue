@@ -39,7 +39,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import MazTransitionExpand from './../MazTransitionExpand/MazTransitionExpand.vue'
+  import MazTransitionExpand from '../../components/MazTransitionExpand.vue'
   import ArrowIcon from '../ArrowIcon/ArrowIcon.vue'
   import MazBtn from './../MazBtn/MazBtn.vue'
 

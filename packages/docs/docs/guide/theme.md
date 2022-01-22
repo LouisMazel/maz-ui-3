@@ -90,17 +90,32 @@ Edit
   --maz-color-danger-contrast: white;
   --maz-color-danger-alpha: rgb(255 109 106 / 60%);
 
+  /* WHITE */
+  --maz-color-white: white;
+  --maz-color-white-contrast: black;
+
+  /* BLACK */
+  --maz-color-black: black;
+  --maz-color-black-contrast: white;
+
+  /* FONT FAMILY */
+  --maz-font-family: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
+    ubuntu, cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
   /* USAGE */
   --maz-color-normal-text: #2c3e50;
   --maz-color-bg: white;
-  --maz-color-bg-light: #F2F2F2;
+  --maz-color-bg-light: #e5e5e5;
+  --maz-color-bg-lighter: #f2f2f2;
+  --maz-color-muted: rgb(0 0 0 / 54%);
 }
 
 html.dark {
   /* USAGE */
   --maz-color-normal-text: #adbac7;
-  --maz-color-bg: #21222E;
+  --maz-color-bg: #21222e;
   --maz-color-bg-light: #303144;
+  --maz-color-bg-lighter: #3B3C53;
+  --maz-color-muted: rgb(255 255 255 / 54%);
 }
-
 ```

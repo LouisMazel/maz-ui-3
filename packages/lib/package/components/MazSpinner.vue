@@ -39,9 +39,10 @@
   })
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   .m-spinner {
-    @apply maz-fill-current maz-text-white maz-animate-spin !maz-m-0;
+    @apply maz-fill-current maz-text-white maz-animate-spin;
+    @apply maz-m-0 !important;
 
     &--primary {
       @apply maz-text-primary;

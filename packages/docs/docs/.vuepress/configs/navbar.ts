@@ -1,45 +1,19 @@
 import type { NavbarConfig } from '@vuepress/theme-default'
 import { version } from './../../../../lib/package.json'
+import { components } from './components'
 
 export const navbar: NavbarConfig = [
   {
     text: 'Guide',
     children: [
-      {
-        text: 'Getting Started',
-        link: '/guide/getting-started.md'
-      },
-      {
-        text: 'Basic Colors',
-        link: '/guide/colors.md'
-      },
-      {
-        text: 'Theme',
-        link: '/guide/theme.md'
-      },
-      {
-        text: 'Dark Mode',
-        link: '/guide/dark-mode.md'
-      }
+      '/guide/getting-started.md',
+      '/guide/colors.md',
+      '/guide/theme.md',
+      '/guide/dark-mode.md'
     ]
   },
-  {
-    text: 'Components',
-    children: [
-      {
-        text: 'MazBtn',
-        link: '/components/maz-btn.md'
-      },
-      {
-        text: 'MazAvatar',
-        link: '/components/maz-avatar.md'
-      }
-    ]
-  },
-  {
-    text: `Made with Maz-UI`,
-    link: '/made-with-maz-ui'
-  },
+  components,
+  '/made-with-maz-ui',
   {
     text: `v${version}`,
     children: [

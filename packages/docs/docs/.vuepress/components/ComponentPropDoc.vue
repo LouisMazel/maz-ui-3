@@ -1,5 +1,5 @@
 <template>
-  <table v-if="options" class="component-prop-doc">
+  <table v-if="options" class="component-prop-doc" style="display: table;">
     <thead>
       <th>
         Prop
@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       <tr v-for="({ name, type, defaultValue, required, values }, i) in options" :key="i">
-        <td>
+        <td style="white-space: nowrap;">
           {{ name }}
         </td>
         <td>
@@ -63,6 +63,8 @@ const props = defineProps({
   component: { type: String, required: true }
 })
 
+const camelToSnakeCase = (str: string): string => str.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)
+
 const options = ref()
 
 const getValidatorValues = (validator) => {
@@ -77,16 +79,17 @@ const getValidatorValues = (validator) => {
 const getOptions = async () => {
   const component = (await import(`maz-ui`))[props.component]
 
+
   if (component?.props) {
     options.value = Object.entries(component.props).map((prop) => ({
-      name: prop[0],
-      type: prop[1].type?.name ?? '-',
-      defaultValue: prop[1].default ?? '-',
+      name: camelToSnakeCase(prop[0]),
+      type: Array.isArray(prop[1].type) ? prop[1].type.map((type) => type.name).join('|') : prop[1].type?.name ?? '-',
+      defaultValue: (typeof prop[1].default === 'boolean' ? prop[1].default : prop[1].default?.name ?? prop[1].default) ?? '-',
       required: prop[1].required ? 'true' : 'false',
       values: getValidatorValues(prop[1].validator),
     }))
   }
 }
 
-onBeforeMount(() => getOptions())
+onBeforeMount(async () => await getOptions())
 </script>
