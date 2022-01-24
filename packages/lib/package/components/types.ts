@@ -1,3 +1,5 @@
+export type ModelValueSimple = string | number | null | undefined | boolean
+
 export type MazGalleryImage =
   | {
       slug: string

@@ -41,7 +41,7 @@ yarn add vue-inline-svg@next
 <br />
 
 <div class="flex items-start flex-wrap gap-05">
-  <MazIcon v-for="icon in icons" :key="icon" :name="icon" :path="path" />
+  <MazIcon v-for="icon in icons" :key="icon" :name="icon" />
 </div>
 
 <script setup lang="ts">
@@ -51,8 +51,6 @@ yarn add vue-inline-svg@next
     'InformationCircle','Menu','Pencil','Plus','PlusCircle',
     'Template','Terminal','Trash','User','UserAdd','UserGroup','X'
   ]
-
-  const path = process.env.NODE_ENV === 'production' ? '/maz-ui-3/icons' : '/icons'
 </script>
 
 ```vue
@@ -78,20 +76,13 @@ yarn add vue-inline-svg@next
 
 ## Options
 
-### From external library
+### Set MazIcon path globally
 
-> ok
+```typescript
+import { createApp } from 'vue'
+const app = createApp(App)
 
-<div class="flex items-start flex-wrap gap-05">
-  <MazIcon path="https://unpkg.com/browse/@svg-icons/octicons@1.39.1" name="alert" />
-  <MazIcon path="https://unpkg.com/browse/@svg-icons/heroicons-outline@1.50.0" name="arrow-right" />
-</div>
-
-```vue
-<template>
-  <MazIcon path="https://unpkg.com/@svg-icons/octicons@1.39.1/" name="alert" />
-  <MazIcon path="https://unpkg.com/@svg-icons/heroicons-outline@1.50.0/" name="arrow-right" />
-</template>
+app.provide('mazIconPath', '/your/custom/path')
 ```
 
 ## Props
