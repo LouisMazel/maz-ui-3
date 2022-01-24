@@ -7,6 +7,7 @@ export const components = {
         '/components/maz-btn.md',
         '/components/maz-checkbox.md',
         '/components/maz-input.md',
+        '/components/maz-select.md',
       ]
     },
     {

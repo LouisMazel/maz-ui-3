@@ -9,7 +9,7 @@
 <script lang="ts" setup>
   import VueSvgInline from 'vue-inline-svg'
   import { computed } from 'vue'
-  import { injectStrict } from 'package/utils/injectStrict'
+  import { injectStrict } from './../utils/injectStrict'
 
   let mazIconPath = injectStrict<string>('mazIconPath')
 
