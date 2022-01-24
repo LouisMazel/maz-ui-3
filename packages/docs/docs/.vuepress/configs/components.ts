@@ -5,6 +5,7 @@ export const components = {
       text: 'Form',
       children: [
         '/components/maz-btn.md',
+        '/components/maz-checkbox.md',
         '/components/maz-input.md',
       ]
     },
@@ -17,6 +18,7 @@ export const components = {
         '/components/maz-card.md',
         '/components/maz-lazy-img.md',
         '/components/maz-icon.md',
+        '/components/maz-spinner.md',
         '/components/maz-transition-expand.md',
       ]
     }

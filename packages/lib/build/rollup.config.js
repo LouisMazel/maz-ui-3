@@ -11,6 +11,7 @@ import url from '@rollup/plugin-url'
 
 import PostCSS from 'rollup-plugin-postcss'
 import nested from 'postcss-nested'
+import simpleVars from 'postcss-simple-vars'
 import postcssImport from 'postcss-import'
 import postcssUrl from 'postcss-url'
 import autoprefixer from 'autoprefixer'
@@ -46,7 +47,7 @@ const postcssConfigList = [
       // resolve alias @css, @import '@css/style.css'
       // because @css/ has 5 chars
       if (id.startsWith('@css')) {
-        return resolve('./src/assets/styles/css', id.slice(5))
+        return resolve('./tailwindcss/css', id.slice(5))
       }
       // resolve node_modules, @import '~normalize.css/normalize.css'
       // similar to how css-loader's handling of node_modules
@@ -58,6 +59,7 @@ const postcssConfigList = [
     },
   }),
   nested,
+  simpleVars,
   postcssUrl({ url: 'inline' }),
   autoprefixer({
     overrideBrowserslist: '> 1%, IE 6, Explorer >= 10, Safari >= 7',

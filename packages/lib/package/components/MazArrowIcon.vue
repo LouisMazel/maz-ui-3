@@ -8,8 +8,8 @@
     :class="[{ 'is-white': dark }, orientation]"
   >
     <path
-      :fill="color"
-      :class="[color]"
+      :fill="hex"
+      :class="[hex]"
       class="arrow"
       d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
     />
@@ -20,7 +20,7 @@
 <script lang="ts" setup>
   defineProps({
     dark: { type: Boolean, default: false },
-    color: { type: String, default: undefined },
+    hex: { type: String, default: undefined },
     size: { type: Number, default: 24 },
     orientation: { type: String, default: 'bottom' },
   })

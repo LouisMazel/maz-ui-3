@@ -1,0 +1,24 @@
+---
+title: MazSpinner
+description: MazSpinner is a stand-alone component replaces the standard html input checkbox. Color option available
+---
+
+# MazSpinner
+
+<MazSpinner color="secondary" />
+
+```vue
+<template>
+  <MazSpinner color="secondary" />
+</template>
+
+<script>
+  import { MazSpinner } from 'vue'
+</script>
+```
+
+## Options
+
+## Props
+
+<ComponentPropDoc component="MazSpinner" />

@@ -9,7 +9,7 @@ module.exports = {
   rules: {
     'at-rule-no-unknown': [
       true,
-      { ignoreAtRules: ['screen', 'layer', 'tailwind'] },
+      { ignoreAtRules: ['screen', 'layer', 'tailwind', 'each'] },
     ],
     'selector-class-pattern': null,
   },

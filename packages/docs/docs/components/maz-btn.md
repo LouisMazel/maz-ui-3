@@ -41,7 +41,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 > Use the attribute `size` with a value `{{ sizes }}`
 
-<div class="flex items-start gap-05 items-center">
+<div class="flex items-start gap-05 items-center flex-wrap">
   <MazBtn v-for="size in sizes" :size="size">{{ size }}</MazBtn>
 </div>
 
@@ -59,7 +59,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 > Use the attribute `color` with a value in this [list](/guide/colors.md), the component will use this color
 
-<div class="flex items-start gap-05">
+<div class="flex items-start gap-05 flex-wrap">
   <MazBtn v-for="{ name } in colorsArray" :color="name">{{ name }}</MazBtn>
 </div>
 
@@ -80,7 +80,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 <br />
 
-<div class="flex items-start gap-05">
+<div class="flex items-start gap-05 flex-wrap">
   <MazBtn v-for="{ name } in colorsArray" :color="name" outline>{{ name }}</MazBtn>
 </div>
 
@@ -103,7 +103,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 <br />
 
-<div class="flex items-start gap-05 rounded maz-bg-white maz-p-3">
+<div class="flex items-start gap-05 rounded maz-bg-white maz-p-3 flex-wrap">
   <MazBtn v-for="{ name } in colorsArray" :color="name" pastel>{{ name }}</MazBtn>
 </div>
 
@@ -160,7 +160,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 > When you use `right-icon` or `left-icon`, the component use [MazIcon](/components/maz-icon.md)
 
-<div class="flex items-start gap-05 rounded">
+<div class="flex items-start gap-05 rounded flex-wrap">
   <MazBtn left-icon="Trash">
     left-icon
   </MazBtn>
@@ -188,7 +188,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 
 > Use you own icons
 
-<div class="flex items-start gap-05 rounded">
+<div class="flex items-start gap-05 rounded flex-wrap">
   <MazBtn>
     <template #left-icon>
       <MazIcon name="Check" />

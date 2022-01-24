@@ -19,10 +19,13 @@
 </template>
 
 <script lang="ts" setup>
+  import { PropType } from 'vue'
+  import { Color } from './types'
+
   defineProps({
     size: { type: String, default: '2em' },
     color: {
-      type: String,
+      type: String as PropType<Color>,
       default: 'primary',
       validator: (value: string) => {
         return [
@@ -33,6 +36,8 @@
           'danger',
           'primary',
           'black',
+          'secondary',
+          'transparent',
         ].includes(value)
       },
     },
@@ -48,8 +53,36 @@
       @apply maz-text-primary;
     }
 
+    &--secondary {
+      @apply maz-text-secondary;
+    }
+
+    &--info {
+      @apply maz-text-info;
+    }
+
+    &--warning {
+      @apply maz-text-warning;
+    }
+
+    &--danger {
+      @apply maz-text-danger;
+    }
+
+    &--success {
+      @apply maz-text-success;
+    }
+
     &--black {
       @apply maz-text-black;
+    }
+
+    &--white {
+      @apply maz-text-white;
+    }
+
+    &--transparent {
+      @apply maz-text-white;
     }
   }
 </style>
