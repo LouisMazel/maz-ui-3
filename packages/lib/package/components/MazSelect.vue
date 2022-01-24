@@ -25,12 +25,12 @@
       <template #right-icon>
         <button
           tabindex="-1"
-          class="maz-custom maz-flex maz-flex-center"
+          class="maz-custom maz-flex maz-bg-transparent maz-flex-center maz-h-full"
           @click="openList"
         >
           <MazIcon
             name="ChevronDown"
-            class="m-select-chevron maz-h-5 maz-w-5 maz-mr-2 maz-text-normal-text"
+            class="m-select-chevron maz-h-5 maz-w-5 maz-text-normal-text"
           />
         </button>
       </template>
@@ -267,7 +267,7 @@
 
     &.--is-open {
       & .m-select-chevron {
-        @apply maz-rotate-180;
+        transform: rotate(180deg);
       }
     }
 
@@ -277,7 +277,7 @@
       min-width: 3.5rem;
 
       &-item {
-        @apply maz-px-4 hover:maz-bg-color-light maz-w-full maz-flex maz-items-center maz-text-left;
+        @apply maz-px-4 maz-bg-transparent hover:maz-bg-color-light maz-w-full maz-flex maz-items-center maz-text-left;
 
         &.--is-keyboard-selected {
           @apply maz-font-medium maz-bg-color-light;
@@ -290,7 +290,7 @@
     }
 
     & button.maz-custom {
-      @apply maz-appearance-none maz-border-none maz-bg-transparent maz-cursor-pointer;
+      @apply maz-appearance-none maz-border-none maz-cursor-pointer;
     }
   }
 </style>
