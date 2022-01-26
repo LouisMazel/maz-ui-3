@@ -96,7 +96,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     [
       '@vuepress/medium-zoom',
       {
-        selector: '.zoomable-images img'
+        selector: 'img.zoom-custom-imgs'
       }
     ],
     [
