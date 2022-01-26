@@ -27,9 +27,9 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
+    "*": "prettier -w -u",
     "*.{js,ts,vue,json}": "eslint --fix",
-    "*.{vue,css,scss,postcss,pcss}": "stylelint --custom-syntax postcss-html --fix",
-    "*": "prettier -w -u"
+    "*.{vue,css,scss,postcss,pcss}": "stylelint --custom-syntax postcss-html --fix"
   },
   "dependencies": {
     "vue-inline-svg": "^3.1.0"
