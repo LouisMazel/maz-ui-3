@@ -36,17 +36,7 @@
   import { vLazyImg } from './../directives/v-lazy-img/lazy-img.directive'
 
   import MazSpinner from './MazSpinner.vue'
-
-  interface Source {
-    srcset?: string
-    media?: string
-  }
-
-  export interface DataImage {
-    sources?: Source[]
-  }
-
-  export type Image = DataImage | string
+  import { Image } from './types'
 
   const props = defineProps({
     image: { type: [String, Object], default: undefined } as Prop<Image>,
@@ -72,7 +62,7 @@
 <style lang="postcss" scoped>
   /* stylelint-disable no-descending-specificity */
   .m-lazy-img-component {
-    @apply maz-relative maz-flex maz-bg-gray-100 maz-flex-center;
+    @apply maz-relative maz-inline-flex maz-bg-color-light maz-flex-center;
 
     &-loader {
       @apply maz-absolute maz-inset-0 maz-hidden maz-flex-center;

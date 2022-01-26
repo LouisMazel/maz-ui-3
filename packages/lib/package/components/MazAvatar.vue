@@ -106,7 +106,7 @@
 
 <style lang="postcss" scoped>
   .m-avatar {
-    @apply maz-flex maz-flex-col maz-flex-center;
+    @apply maz-inline-flex maz-flex-col maz-flex-center;
     @apply maz-no-underline !important;
 
     &__caption {

@@ -5,26 +5,25 @@ description: MazCard is a stand-alone component to display some texts, images an
 
 # MazCard
 
-> Before you have to import the global css file in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 ## Basic usage
 
 <br />
 
-<!-- :images="images" -->
-<MazCard>
+<MazCard :images="images" zoom>
   <template #title>
-    <h4>
+    <h4 class="maz-m-0">
       Steven Seagal
     </h4>
   </template>
   <template #subtitle>
-    <h5>
+    <h5 class="maz-m-0">
       Actor
     </h5>
   </template>
   <template #content>
-    <p class="maz-text-muted">
+    <p class="maz-text-muted maz-m-0">
       You're awesome! You're awesome! You're awesome! You're awesome! You're awesome!
     </p>
   </template>
@@ -33,7 +32,10 @@ description: MazCard is a stand-alone component to display some texts, images an
       size="sm"
       fab
       color="danger"
-    />
+      class="maz-mr-2"
+    >
+      <strong>2</strong>
+    </MazBtn>
     <MazBtn
       size="sm"
       color="white"
@@ -50,7 +52,7 @@ description: MazCard is a stand-alone component to display some texts, images an
 
 ```vue
 <template>
-  <MazCard>
+  <MazCard :images="images" zoom>
     <template #title>
       <h4>
         Steven Seagal

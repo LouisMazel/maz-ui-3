@@ -371,7 +371,7 @@
     &-input {
       @apply maz-outline-none maz-m-0 maz-block maz-w-full maz-appearance-none maz-border-none maz-bg-transparent maz-shadow-none;
 
-      @apply maz-h-full maz-py-0 maz-px-4 maz-text-normal-text;
+      @apply maz-h-auto maz-py-0 maz-px-4 maz-text-normal-text;
     }
 
     &-label {

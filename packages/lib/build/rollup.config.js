@@ -110,7 +110,8 @@ const baseConfig = {
     babel: {
       exclude: 'node_modules/**',
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-      babelHelpers: 'bundled',
+      babelHelpers: 'runtime',
+      plugins: ['@babel/plugin-transform-runtime'],
     },
   },
 }
@@ -185,7 +186,7 @@ if (!argv.format || argv.format === 'cjs') {
       dir: 'dist/cjs',
       format: 'cjs',
       name: 'MazUi',
-      exports: 'auto',
+      exports: 'named',
       sourcemap: true,
       globals,
     },

@@ -94,6 +94,12 @@ export default defineUserConfig<DefaultThemeOptions>({
   },
   plugins: [
     [
+      '@vuepress/medium-zoom',
+      {
+        selector: '.zoomable-images img'
+      }
+    ],
+    [
       '@vuepress/plugin-register-components',
       {
         componentsDir: path.resolve(__dirname, './components'),
@@ -103,7 +109,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '@vuepress/plugin-google-analytics',
       {
         // we have multiple deployments, which would use different id
-        id: 'UA-171163623-1',
+        id: 'G-EM35TM23Z',
       },
     ],
   ]

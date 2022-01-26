@@ -31,14 +31,22 @@
     "*.{js,ts,vue,json}": "eslint --fix",
     "*.{vue,css,scss,postcss,pcss}": "stylelint --custom-syntax postcss-html --fix"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "libphonenumber-js": "^1.9.44",
+    "vue": "^3.0.0",
     "vue-inline-svg": "^3.1.0"
   },
-  "peerDependencies": {
-    "vue": "^3.0.0"
+  "peerDependenciesMeta": {
+    "libphonenumber-js": {
+      "optional": true
+    },
+    "vue-inline-svg": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.10",
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-alias": "^3.1.9",
@@ -66,6 +74,7 @@
     "eslint-plugin-unicorn": "^40.0.0",
     "eslint-plugin-vue": "^8.3.0",
     "fs": "0.0.2",
+    "libphonenumber-js": "^1.9.44",
     "lint-staged": "^12.1.7",
     "onchange": "^7.1.0",
     "path": "^0.12.7",
@@ -95,6 +104,7 @@
     "ttypescript": "^1.5.13",
     "typescript": "^4.5.4",
     "vue": "^3.2.26",
+    "vue-inline-svg": "^3.1.0",
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^17.0.0",
     "vue-zoom-img": "^1.0.1",

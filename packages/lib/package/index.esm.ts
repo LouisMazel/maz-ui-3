@@ -1,7 +1,7 @@
 import { App, Plugin } from 'vue'
 
 // Import vue components
-import * as components from './components/index'
+import * as components from './components'
 
 // install function executed by Vue.use()
 const install: Exclude<Plugin['install'], undefined> = function installMazUi(
@@ -17,4 +17,7 @@ export default install
 
 // To allow individual component use, export components
 // each can be registered via Vue.component()
-export * from './components/index'
+export { debounce } from './utils/debounce'
+export * from './components'
+export * from './directives'
+export * from './filters'

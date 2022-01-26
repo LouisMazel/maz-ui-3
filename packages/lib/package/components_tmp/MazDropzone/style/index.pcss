@@ -1,0 +1,340 @@
+@keyframes passing-through {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  30%,
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.1);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+}
+
+.maz-dropzone {
+  @apply maz-outline-none maz-m-0 maz-flex maz-min-h-[245px] maz-items-center maz-justify-center maz-overflow-auto maz-rounded-lg maz-border-2 maz-border-dashed
+  maz-bg-white maz-p-4 maz-text-center
+  maz-transition-all maz-duration-200 maz-ease-out;
+
+  &:not(.dz-clickable) {
+    @apply maz-bg-gray-300;
+  }
+
+  &.dz-clickable,
+  &.dz-clickable.dz-message,
+  &.dz-clickable.dz-message * {
+    @apply maz-cursor-pointer;
+  }
+
+  & .dz-message {
+    @apply maz-flex maz-flex-col maz-items-center maz-justify-center maz-text-center;
+  }
+
+  &.dz-clickable {
+    &:hover,
+    &:focus {
+      @apply maz-border-gray-200 maz-bg-gray-100;
+
+      & .maz-dropzone__main-icon {
+        @apply maz-text-primary maz-transition-all maz-duration-200 maz-ease-out;
+      }
+    }
+  }
+
+  &.dz-started .dz-message {
+    @apply maz-hidden;
+  }
+
+  &.dz-drag-hover {
+    @apply maz-border-solid;
+
+    & .dz-message {
+      @apply maz-opacity-50;
+    }
+  }
+
+  & .dz-message .dz-button {
+    @apply maz-cursor-pointer maz-border-none maz-bg-transparent maz-p-0;
+  }
+
+  & .dz-details {
+    @apply maz-absolute maz-top-0 maz-left-0 maz-z-20 maz-flex maz-h-full maz-w-full maz-min-w-full maz-max-w-full maz-flex-col maz-items-center
+    maz-justify-center maz-rounded-lg maz-py-8 maz-px-4 maz-text-center maz-leading-[150%] maz-text-white maz-opacity-0;
+
+    background-color: var(--maz-color-primary-alpha);
+    transition: opacity 0.2s linear;
+
+    & .dz-size {
+      & span {
+        @apply maz-text-base maz-text-white;
+      }
+    }
+
+    & .dz-filename {
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      span {
+        color: white;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
+  & .dz-image {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    @apply maz-rounded-lg maz-border-gray-100;
+
+    & img {
+      display: block;
+    }
+
+    & > div[data-dz-thumbnail-bg] {
+      width: inherit;
+      height: inherit;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  & .dz-preview {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    min-height: auto;
+    height: 100%;
+    background: transparent;
+    max-width: 200px;
+    overflow: hidden;
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+
+    &.dz-file-preview {
+      & .dz-image {
+        border-radius: 20px;
+        background: #999;
+        background: linear-gradient(to bottom, #eee, #ddd);
+      }
+
+      & .dz-details {
+        opacity: 1;
+      }
+    }
+
+    &.dz-image-preview {
+      background-color: transparent;
+
+      & .dz-details {
+        transition: opacity 0.2s linear;
+      }
+    }
+
+    & .dz-remove {
+      text-align: center;
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      z-index: 30;
+      color: white;
+      top: inherit;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      padding: 10px 5px;
+      border: 2px white solid;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: all 300ms ease-in-out;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      @apply maz-rounded-lg;
+
+      &:hover {
+        @apply maz-bg-white maz-text-primary;
+      }
+    }
+
+    &:hover {
+      z-index: 1000;
+
+      & .dz-details,
+      & .dz-remove {
+        opacity: 1;
+      }
+
+      & .dz-image img {
+        transform: scale(1.05, 1.05);
+        filter: blur(8px);
+      }
+    }
+
+    & .dz-error-message {
+      pointer-events: none;
+      z-index: 1000;
+      position: absolute;
+      display: block;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 8px;
+      top: 130px;
+      background: #be2626;
+      background: linear-gradient(to bottom, #be2626, #a92222);
+      padding: 0.5em 1.2em;
+      color: white;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    & .dz-success-mark,
+    & .dz-error-mark {
+      pointer-events: none;
+      opacity: 0;
+      z-index: 500;
+      position: absolute;
+      display: block;
+      margin-left: auto;
+      margin-top: auto;
+      width: 100%;
+      top: 30%;
+      left: 0;
+
+      @apply maz-flex maz-flex-col maz-items-center maz-justify-center;
+
+      & .material-icons {
+        background-color: var(--maz-color-success-alpha);
+        border-radius: 50%;
+        color: white;
+        font-size: 70px;
+      }
+    }
+
+    & .dz-error-mark {
+      & .material-icons {
+        background-color: var(--maz-color-danger-alpha);
+      }
+    }
+
+    &.dz-success .dz-success-mark {
+      animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    &.dz-error {
+      & .dz-error-message {
+        display: block;
+      }
+
+      & .dz-error-mark {
+        opacity: 1;
+        animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+
+      & .dz-details {
+        background-color: var(--maz-color-danger-alpha);
+      }
+
+      &:hover .dz-error-message {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      & .dz-remove:hover {
+        @apply maz-text-danger;
+      }
+    }
+
+    & .dz-progress {
+      opacity: 1;
+      z-index: 1000;
+      pointer-events: none;
+      position: absolute;
+      height: 1rem;
+      top: 50%;
+      margin-top: -0.5rem;
+      transform: scale(1);
+      overflow: visible;
+      width: 50%;
+      left: 25%;
+
+      @apply maz-rounded-full maz-bg-gray-100;
+
+      & .dz-upload {
+        position: absolute;
+        transition: width 300ms ease-in-out;
+
+        @apply maz-absolute maz-inset-0 maz-w-0 maz-rounded-full maz-bg-success;
+      }
+
+      & .progress-title {
+        display: inline-block;
+        position: relative;
+        top: -30px;
+      }
+    }
+
+    &.dz-processing .dz-progress {
+      opacity: 1;
+      transition: all 0.2s linear;
+    }
+
+    &.dz-complete .dz-progress {
+      opacity: 0;
+      transition: opacity 0.4s ease-in;
+    }
+
+    &:not(.dz-processing) .dz-progress {
+      animation: pulse 6s ease infinite;
+    }
+  }
+}

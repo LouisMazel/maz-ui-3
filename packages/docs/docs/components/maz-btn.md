@@ -120,9 +120,21 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </template>
 ```
 
+### Rounded
+
+> Rounded button
+
+<MazBtn rounded>rounded</MazBtn>
+
+```vue
+<template>
+  <MazBtn rounded>rounded</MazBtn>
+</template>
+```
+
 ### Fab
 
-> Full rounded button
+> Round button
 
 <MazBtn fab>fab</MazBtn>
 

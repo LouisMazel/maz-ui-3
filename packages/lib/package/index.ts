@@ -1,6 +1,6 @@
 // iife/cjs usage extends esm default export - so import it all
-import plugin, * as components from './index.esm'
-
+import plugin from './index.esm'
+import * as components from './components'
 // Attach named exports directly to plugin. IIFE/CJS will
 // only expose one global var, with component exports exposed as properties of
 // that global var (eg. plugin.component)
@@ -16,3 +16,8 @@ Object.entries(components).forEach(([componentName, component]) => {
 })
 
 export default plugin
+
+export { debounce } from './utils/debounce'
+export * from './components'
+export * from './directives'
+export * from './filters'
