@@ -46,7 +46,7 @@
 
 <style lang="postcss" scoped>
   .m-spinner {
-    @apply maz-fill-current maz-text-white maz-animate-spin;
+    @apply maz-animate-spin maz-fill-current maz-text-white;
     @apply maz-m-0 !important;
 
     &--primary {

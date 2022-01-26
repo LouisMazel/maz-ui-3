@@ -190,7 +190,7 @@
   }
 
   .m-backdrop {
-    @apply maz-fixed maz-inset-0 maz-flex maz-flex-center maz-opacity-100;
+    @apply maz-fixed maz-inset-0 maz-flex maz-opacity-100 maz-flex-center;
 
     backdrop-filter: blur(3px);
     z-index: 1050;
@@ -206,7 +206,7 @@
     }
 
     &-content {
-      @apply maz-z-1 maz-relative focus:maz-outline-none;
+      @apply focus:maz-outline-none maz-relative maz-z-1;
     }
 
     &.--bottom-sheet {

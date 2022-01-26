@@ -66,7 +66,7 @@
     }
 
     [type='checkbox']:focus + label::before {
-      @apply maz-border maz-border-solid maz-border-primary maz-rounded;
+      @apply maz-rounded maz-border maz-border-solid maz-border-primary;
 
       content: '';
       position: absolute;

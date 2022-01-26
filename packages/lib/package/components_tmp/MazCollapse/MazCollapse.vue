@@ -7,7 +7,7 @@
     }"
   >
     <MazBtn
-      class="maz-collapse__header-btn maz-flex maz-flex-center maz-border-radius-0"
+      class="maz-collapse__header-btn maz-border-radius-0 maz-flex maz-flex-center"
       color="transparent"
       size="md"
       no-shadow

@@ -9,7 +9,7 @@
       <figure
         v-for="(image, i) in imagesShown"
         :key="i"
-        class="m-gallery__item maz-flex maz-items-center maz-justify-center !maz-my-0"
+        class="m-gallery__item !maz-my-0 maz-flex maz-items-center maz-justify-center"
         :class="[`m-gallery__item--${i + 1}`]"
       >
         <img
@@ -41,7 +41,7 @@
       </figure>
       <div
         v-if="hasEmptyLayer && !images.length"
-        class="maz-bg-gray-100 maz-flex maz-items-center maz-justify-center maz-w-full"
+        class="maz-flex maz-w-full maz-items-center maz-justify-center maz-bg-gray-100"
         :class="{ 'maz-rounded-xl': radius }"
         :style="[sizeStyle]"
       >
@@ -183,7 +183,7 @@
     }
 
     &__item {
-      @apply maz-absolute maz-top-0 maz-h-1/2 maz-p-0 maz-w-full maz-border-l-2 maz-border-transparent maz-overflow-hidden;
+      @apply maz-absolute maz-top-0 maz-h-1/2 maz-w-full maz-overflow-hidden maz-border-l-2 maz-border-transparent maz-p-0;
 
       &--1 {
         left: 0;

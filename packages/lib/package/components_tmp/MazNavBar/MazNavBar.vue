@@ -107,23 +107,23 @@
 
 <style lang="postcss" scoped>
   .maz-nav-bar {
-    @apply maz-h-[70px] maz-bg-gray-800 maz-relative maz-flex maz-rounded-t-xl maz-px-6;
+    @apply maz-relative maz-flex maz-h-[70px] maz-rounded-t-xl maz-bg-gray-800 maz-px-6;
 
     &__list {
-      @apply maz-flex maz-flex-1 maz-text-gray-100 maz-text-center maz-justify-center maz-relative;
+      @apply maz-relative maz-flex maz-flex-1 maz-justify-center maz-text-center maz-text-gray-100;
 
       &__item {
-        @apply maz-flex-1 maz-h-full;
+        @apply maz-h-full maz-flex-1;
 
         &__link {
-          @apply maz-relative maz-h-full maz-w-full maz-flex maz-flex-center maz-flex-col;
+          @apply maz-relative maz-flex maz-h-full maz-w-full maz-flex-col maz-flex-center;
 
           & svg {
-            @apply maz-relative maz-h-9 maz-w-9 maz-transition-all maz-duration-500 maz-text-primary maz-z-1;
+            @apply maz-relative maz-z-1 maz-h-9 maz-w-9 maz-text-primary maz-transition-all maz-duration-500;
           }
 
           & span {
-            @apply maz-absolute maz-transition-all maz-duration-500 maz-text-sm maz-opacity-0;
+            @apply maz-absolute maz-text-sm maz-opacity-0 maz-transition-all maz-duration-500;
 
             transform: translateY(30px);
           }
@@ -145,8 +145,8 @@
       }
 
       &__indicator {
-        @apply maz-absolute maz--top-1/2 maz-w-[70px] maz-h-[70px]
-        maz-bg-primary maz-rounded-full maz-border-[6px] maz-border-white
+        @apply maz-absolute maz--top-1/2 maz-h-[70px] maz-w-[70px]
+        maz-rounded-full maz-border-[6px] maz-border-white maz-bg-primary
         maz-transition-all maz-duration-500;
 
         transform: translateX(-100%);

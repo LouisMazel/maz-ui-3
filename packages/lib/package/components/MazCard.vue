@@ -15,7 +15,7 @@
     <Component
       :is="collapsable ? 'button' : 'div'"
       v-if="$slots['header'] || collapsable"
-      class="m-card__header maz-border-b-2 maz-rounded-t-xl"
+      class="m-card__header maz-rounded-t-xl maz-border-b-2"
       :class="[
         isOpen ? 'maz-border-gray-100' : 'maz-border-transparent',
         { '--is-collapsable': collapsable },
@@ -34,7 +34,7 @@
         <MazIcon
           name="ChevronDown"
           :class="{ '--is-open': isOpen }"
-          class="maz-h-6 m-card__collapse-icon"
+          class="m-card__collapse-icon maz-h-6"
         />
       </MazBtn>
     </Component>
@@ -59,7 +59,7 @@
           class="m-card__gallery maz-flex-1"
         />
       </div>
-      <div class="maz-flex-1 maz-min-w-0">
+      <div class="maz-min-w-0 maz-flex-1">
         <Component :is="collapsable ? 'MazTransitionExpand' : 'div'">
           <div
             v-show="isOpen"
@@ -83,7 +83,7 @@
     </Component>
     <div
       v-if="$slots['footer']"
-      class="m-card__footer maz-p-3 maz-overflow-x-auto"
+      class="m-card__footer maz-overflow-x-auto maz-p-3"
       :class="[
         {
           'maz-border-t maz-border-gray-100':
@@ -94,7 +94,7 @@
     >
       <slot name="footer" />
     </div>
-    <div v-if="$slots['actions']" class="m-card__actions maz-p-2 maz-flex">
+    <div v-if="$slots['actions']" class="m-card__actions maz-flex maz-p-2">
       <!-- Slot above the gallery -->
       <slot name="actions" />
     </div>
@@ -214,10 +214,10 @@
 
 <style lang="postcss" scoped>
   .m-card {
-    @apply maz-bg-color maz-relative maz-max-h-full maz-inline-flex maz-flex-col;
+    @apply maz-relative maz-inline-flex maz-max-h-full maz-flex-col maz-bg-color;
 
     &__header {
-      @apply maz-py-3 maz-px-4 maz-flex maz-justify-between maz-items-center maz-transition-colors maz-delay-200;
+      @apply maz-flex maz-items-center maz-justify-between maz-py-3 maz-px-4 maz-transition-colors maz-delay-200;
 
       &.--is-collapsable {
         @apply hover:maz-bg-gray-100;
@@ -225,7 +225,7 @@
     }
 
     &__collapse-icon {
-      @apply maz-transition-transform maz-delay-200 maz-rotate-0;
+      @apply maz-rotate-0 maz-transition-transform maz-delay-200;
 
       &.--is-open {
         @apply maz-rotate-180;
@@ -267,7 +267,7 @@
       }
 
       & .m-card__wrapper {
-        @apply maz-no-underline maz-cursor-pointer;
+        @apply maz-cursor-pointer maz-no-underline;
 
         &:hover {
           @apply maz-no-underline;
@@ -276,7 +276,7 @@
     }
 
     &__content__wrapper {
-      @apply maz-max-w-full maz-relative;
+      @apply maz-relative maz-max-w-full;
     }
 
     &__title,

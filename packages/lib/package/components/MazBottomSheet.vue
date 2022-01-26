@@ -7,7 +7,7 @@
   >
     <template #default="{ close }">
       <div
-        class="m-bottom-sheet__container maz-bg-color maz-relative maz-elevation"
+        class="m-bottom-sheet__container maz-relative maz-bg-color maz-elevation"
         :class="{
           'maz-py-6': !noPadding,
         }"
@@ -15,7 +15,7 @@
         <!-- Slot content -->
         <slot>
           <!-- `<h1>Default content</h1>` -->
-          <div class="maz-flex maz-direction-column maz-flex-center">
+          <div class="maz-direction-column maz-flex maz-flex-center">
             <h1>Default content</h1>
           </div>
         </slot>

@@ -72,10 +72,10 @@
 <style lang="postcss" scoped>
   /* stylelint-disable no-descending-specificity */
   .m-lazy-img-component {
-    @apply maz-relative maz-bg-gray-100 maz-flex maz-flex-center;
+    @apply maz-relative maz-flex maz-bg-gray-100 maz-flex-center;
 
     &-loader {
-      @apply maz-hidden maz-absolute maz-inset-0 maz-flex-center;
+      @apply maz-absolute maz-inset-0 maz-hidden maz-flex-center;
     }
 
     &:not(.m-lazy-error):not(.m-lazy-no-photo) img {
@@ -83,7 +83,7 @@
     }
 
     &.--height-full img {
-      @apply maz-w-min maz-max-w-min maz-max-h-full !important;
+      @apply maz-max-h-full maz-w-min maz-max-w-min !important;
     }
 
     &:not(.m-lazy-loaded):not(.m-lazy-no-photo) {

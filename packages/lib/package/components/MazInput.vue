@@ -348,15 +348,15 @@
     }
 
     &-wrapper {
-      @apply maz-relative maz-flex-1 maz-flex maz-overflow-hidden maz-bg-color maz-z-1 maz-border-solid maz-transition-colors maz-duration-300;
+      @apply maz-relative maz-z-1 maz-flex maz-flex-1 maz-overflow-hidden maz-border-solid maz-bg-color maz-transition-colors maz-duration-300;
 
       &-input {
-        @apply maz-flex maz-items-center maz-relative maz-flex-1;
+        @apply maz-relative maz-flex maz-flex-1 maz-items-center;
       }
 
       &-right,
       &-left {
-        @apply maz-flex maz-relative maz-space-x-1 maz-z-1 maz-flex-center maz-py-1;
+        @apply maz-relative maz-z-1 maz-flex maz-space-x-1 maz-py-1 maz-flex-center;
       }
 
       &-right {
@@ -369,13 +369,13 @@
     }
 
     &-input {
-      @apply maz-w-full maz-block maz-outline-none maz-shadow-none maz-appearance-none maz-m-0 maz-bg-transparent maz-border-none;
+      @apply maz-outline-none maz-m-0 maz-block maz-w-full maz-appearance-none maz-border-none maz-bg-transparent maz-shadow-none;
 
       @apply maz-h-full maz-py-0 maz-px-4 maz-text-normal-text;
     }
 
     &-label {
-      @apply maz-absolute maz-block maz-pointer-events-none maz-origin-top-left maz-truncate maz-w-max;
+      @apply maz-pointer-events-none maz-absolute maz-block maz-w-max maz-origin-top-left maz-truncate;
 
       @apply maz-left-4 maz-leading-6;
 
@@ -400,7 +400,7 @@
 
     &.--is-disabled {
       & .m-input-wrapper {
-        @apply maz-text-muted maz-bg-color;
+        @apply maz-bg-color maz-text-muted;
       }
 
       & .m-input-input {

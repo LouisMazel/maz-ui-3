@@ -140,7 +140,7 @@
 
 <style lang="postcss" scoped>
   .m-btn {
-    @apply maz-text-center maz-text-base maz-border-solid maz-border maz-border-transparent;
+    @apply maz-border maz-border-solid maz-border-transparent maz-text-center maz-text-base;
 
     & span {
       @apply maz-leading-none;
@@ -163,7 +163,7 @@
     }
 
     &.--is-link {
-      @apply maz-bg-transparent maz-text-normal-text maz-inline-flex maz-items-center maz-outline-none maz-transition maz-ease-in-out maz-duration-300;
+      @apply maz-outline-none maz-inline-flex maz-items-center maz-bg-transparent maz-text-normal-text maz-transition maz-duration-300 maz-ease-in-out;
 
       &:not(.--no-leading) {
         @apply maz-leading-9;
@@ -206,9 +206,9 @@
     }
 
     &.--is-button {
-      @apply maz-relative maz-overflow-hidden maz-inline-flex maz-bg-transparent maz-justify-center
-      maz-items-center maz-transition maz-ease-in-out maz-duration-300 maz-font-medium maz-no-underline
-      maz-rounded-lg maz-border-transparent maz-font-base;
+      @apply maz-relative maz-inline-flex maz-items-center maz-justify-center maz-overflow-hidden
+      maz-rounded-lg maz-border-transparent maz-bg-transparent maz-font-base maz-font-medium maz-no-underline
+      maz-transition maz-duration-300 maz-ease-in-out;
 
       &.--xl {
         @apply maz-px-8 maz-text-xl;
@@ -270,7 +270,7 @@
       /* Fab */
 
       &.--fab {
-        @apply maz-rounded-full maz-flex maz-items-center maz-justify-center maz-h-12 maz-w-12
+        @apply maz-flex maz-h-12 maz-w-12 maz-items-center maz-justify-center maz-rounded-full
         maz-px-0 maz-py-0 maz-drop-shadow-md;
       }
 
@@ -279,7 +279,7 @@
       }
 
       &.--primary {
-        @apply maz-text-primary-contrast maz-bg-primary;
+        @apply maz-bg-primary maz-text-primary-contrast;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -288,7 +288,7 @@
       }
 
       &.--secondary {
-        @apply maz-text-white maz-bg-secondary;
+        @apply maz-bg-secondary maz-text-white;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -297,7 +297,7 @@
       }
 
       &.--info {
-        @apply maz-text-info-contrast maz-bg-info;
+        @apply maz-bg-info maz-text-info-contrast;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -306,7 +306,7 @@
       }
 
       &.--success {
-        @apply maz-text-success-contrast maz-bg-success;
+        @apply maz-bg-success maz-text-success-contrast;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -315,7 +315,7 @@
       }
 
       &.--warning {
-        @apply maz-text-warning-contrast maz-bg-warning;
+        @apply maz-bg-warning maz-text-warning-contrast;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -324,7 +324,7 @@
       }
 
       &.--danger {
-        @apply maz-text-white maz-bg-danger;
+        @apply maz-bg-danger maz-text-white;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -360,152 +360,152 @@
       }
 
       &.--primary-outline {
-        @apply maz-text-primary maz-border-primary;
+        @apply maz-border-primary maz-text-primary;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-primary-contrast maz-bg-primary;
+          @apply maz-bg-primary maz-text-primary-contrast;
         }
       }
 
       &.--secondary-outline {
-        @apply maz-text-secondary maz-border-secondary;
+        @apply maz-border-secondary maz-text-secondary;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white maz-bg-secondary;
+          @apply maz-bg-secondary maz-text-white;
         }
       }
 
       &.--info-outline {
-        @apply maz-text-info maz-border-info;
+        @apply maz-border-info maz-text-info;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white maz-bg-info;
+          @apply maz-bg-info maz-text-white;
         }
       }
 
       &.--success-outline {
-        @apply maz-text-success maz-border-success;
+        @apply maz-border-success maz-text-success;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white maz-bg-success;
+          @apply maz-bg-success maz-text-white;
         }
       }
 
       &.--danger-outline {
-        @apply maz-text-danger maz-border-danger;
+        @apply maz-border-danger maz-text-danger;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white maz-bg-danger;
+          @apply maz-bg-danger maz-text-white;
         }
       }
 
       &.--warning-outline {
-        @apply maz-text-warning maz-border-warning;
+        @apply maz-border-warning maz-text-warning;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white maz-bg-warning;
+          @apply maz-bg-warning maz-text-white;
         }
       }
 
       &.--white-outline {
-        @apply maz-text-white maz-border-white;
+        @apply maz-border-white maz-text-white;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white maz-bg-white;
+          @apply maz-bg-white maz-text-white;
         }
       }
 
       &.--black-outline {
-        @apply maz-text-black maz-border-black;
+        @apply maz-border-black maz-text-black;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-black maz-bg-black;
+          @apply maz-bg-black maz-text-black;
         }
       }
 
       &.--primary-pastel {
-        @apply maz-text-primary maz-bg-primary-50;
+        @apply maz-bg-primary-50 maz-text-primary;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-primary-contrast maz-bg-primary;
+          @apply maz-bg-primary maz-text-primary-contrast;
         }
       }
 
       &.--secondary-pastel {
-        @apply maz-text-secondary maz-bg-secondary-50;
+        @apply maz-bg-secondary-50 maz-text-secondary;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-secondary-contrast maz-bg-secondary;
+          @apply maz-bg-secondary maz-text-secondary-contrast;
         }
       }
 
       &.--info-pastel {
-        @apply maz-text-info maz-bg-info-50;
+        @apply maz-bg-info-50 maz-text-info;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-info-contrast maz-bg-info;
+          @apply maz-bg-info maz-text-info-contrast;
         }
       }
 
       &.--success-pastel {
-        @apply maz-text-success maz-bg-success-50;
+        @apply maz-bg-success-50 maz-text-success;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-success-contrast maz-bg-success;
+          @apply maz-bg-success maz-text-success-contrast;
         }
       }
 
       &.--danger-pastel {
-        @apply maz-text-danger maz-bg-danger-50;
+        @apply maz-bg-danger-50 maz-text-danger;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-danger-contrast maz-bg-danger;
+          @apply maz-bg-danger maz-text-danger-contrast;
         }
       }
 
       &.--warning-pastel {
-        @apply maz-text-warning maz-bg-warning-50;
+        @apply maz-bg-warning-50 maz-text-warning;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-warning-contrast maz-bg-warning;
+          @apply maz-bg-warning maz-text-warning-contrast;
         }
       }
 
       &.--white-pastel {
-        @apply maz-text-white maz-bg-gray-100;
+        @apply maz-bg-gray-100 maz-text-white;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-white-contrast maz-bg-white;
+          @apply maz-bg-white maz-text-white-contrast;
         }
       }
 
       &.--black-pastel {
-        @apply maz-text-black maz-bg-gray-200;
+        @apply maz-bg-gray-200 maz-text-black;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-text-black-contrast maz-bg-black;
+          @apply maz-bg-black maz-text-black-contrast;
         }
       }
 
       /* Disabled */
       &.--disabled {
-        @apply maz-text-gray-400 maz-bg-gray-100 maz-cursor-not-allowed;
+        @apply maz-cursor-not-allowed maz-bg-gray-100 maz-text-gray-400;
       }
 
       /* Loader */

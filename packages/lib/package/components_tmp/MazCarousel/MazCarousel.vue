@@ -86,7 +86,7 @@
     </div>
     <div
       ref="MazCarouselItems"
-      class="m-carousel__items maz-flex maz-items-center maz-flex-1 maz-py-4 maz-pl-3"
+      class="m-carousel__items maz-flex maz-flex-1 maz-items-center maz-py-4 maz-pl-3"
       @scroll="setScrollState"
     >
       <!-- Insert your items -->

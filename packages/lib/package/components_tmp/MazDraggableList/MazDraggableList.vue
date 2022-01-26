@@ -20,7 +20,7 @@
         <div
           v-for="(item, i) in value"
           :key="`${itemKey ? item[itemKey] : Object.values(item)[0]}`"
-          class="maz-draggable-list__item maz-flex maz-align-center maz-space-between"
+          class="maz-draggable-list__item maz-align-center maz-space-between maz-flex"
         >
           <!-- Default item displayed in list -->
           <slot :item="item" :index="i" tag="div">

@@ -25,7 +25,7 @@
     <Transition tag="div" name="maz-fade" class="maz-bg-color">
       <div
         v-show="dropdownOpen"
-        class="maz-dropdown__dropdown maz-flex maz-direction-column maz-border-radius maz-bg-color maz-border maz-border-solid maz-border-color"
+        class="maz-dropdown__dropdown maz-direction-column maz-border-radius maz-flex maz-border maz-border-solid maz-border-color maz-bg-color"
         :class="[
           {
             'maz-dropdown__dropdown--top': hasPositionTop,

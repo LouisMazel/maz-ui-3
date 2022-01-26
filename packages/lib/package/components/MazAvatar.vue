@@ -110,7 +110,7 @@
     @apply maz-no-underline !important;
 
     &__caption {
-      @apply maz-text-center maz-font-medium maz-mt-2 maz-truncate maz-w-full maz-capitalize maz-text-base maz-text-black;
+      @apply maz-mt-2 maz-w-full maz-truncate maz-text-center maz-text-base maz-font-medium maz-capitalize maz-text-black;
     }
 
     &__initial {
@@ -118,19 +118,19 @@
     }
 
     &__wrapper {
-      @apply maz-flex maz-justify-center maz-flex-none maz-rounded-full maz-overflow-hidden maz-relative maz-bg-gray-50
-      maz-w-12 maz-h-12;
+      @apply maz-relative maz-flex maz-h-12 maz-w-12 maz-flex-none maz-justify-center maz-overflow-hidden
+      maz-rounded-full maz-bg-gray-50;
 
       &.--clickable {
         & .m-avatar__button {
-          @apply maz-absolute maz-inset-0 maz-w-full maz-border-none maz-outline-none maz-rounded-full maz-bg-transparent maz-cursor-pointer
-           maz-opacity-0 maz-scale-0;
+          @apply maz-outline-none maz-absolute maz-inset-0 maz-w-full maz-scale-0 maz-cursor-pointer maz-rounded-full maz-border-none
+           maz-bg-transparent maz-opacity-0;
 
           transition: all 200ms ease-in-out;
           transition-property: transform, filter;
 
           &__icon {
-            @apply maz-text-white maz-h-6 maz-w-6;
+            @apply maz-h-6 maz-w-6 maz-text-white;
           }
         }
 
@@ -141,7 +141,7 @@
           }
 
           & .m-avatar__button {
-            @apply maz-opacity-100 maz-scale-105;
+            @apply maz-scale-105 maz-opacity-100;
 
             background-color: var(--maz-color-danger-alpha);
           }
@@ -161,7 +161,7 @@
       }
 
       &.--has-initial {
-        @apply maz-bg-primary maz-items-center;
+        @apply maz-items-center maz-bg-primary;
 
         &.--clickable {
           & .m-avatar__button {

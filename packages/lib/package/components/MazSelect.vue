@@ -25,7 +25,7 @@
       <template #right-icon>
         <button
           tabindex="-1"
-          class="maz-custom maz-flex maz-bg-transparent maz-flex-center maz-h-full"
+          class="maz-custom maz-flex maz-h-full maz-bg-transparent maz-flex-center"
           @click="openList"
         >
           <MazIcon
@@ -262,7 +262,7 @@
     }
 
     &-chevron {
-      @apply maz-transition-all maz-ease-out maz-duration-300;
+      @apply maz-transition-all maz-duration-300 maz-ease-out;
     }
 
     &.--is-open {
@@ -272,15 +272,15 @@
     }
 
     &-list {
-      @apply maz-absolute maz-bg-color maz-drop-shadow maz-rounded-lg maz-z-100 maz-overflow-auto maz-elevation;
+      @apply maz-absolute maz-z-100 maz-overflow-auto maz-rounded-lg maz-bg-color maz-drop-shadow maz-elevation;
 
       min-width: 3.5rem;
 
       &-item {
-        @apply maz-px-4 maz-bg-transparent hover:maz-bg-color-light maz-w-full maz-flex maz-items-center maz-text-left;
+        @apply maz-flex maz-w-full maz-items-center maz-bg-transparent maz-px-4 maz-text-left hover:maz-bg-color-light;
 
         &.--is-keyboard-selected {
-          @apply maz-font-medium maz-bg-color-light;
+          @apply maz-bg-color-light maz-font-medium;
         }
 
         &.--is-selected {
@@ -290,7 +290,7 @@
     }
 
     & button.maz-custom {
-      @apply maz-appearance-none maz-border-none maz-cursor-pointer;
+      @apply maz-cursor-pointer maz-appearance-none maz-border-none;
     }
   }
 </style>
