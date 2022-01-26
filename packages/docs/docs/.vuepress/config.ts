@@ -12,7 +12,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   // site config
   lang: 'en-US',
   title: 'Maz-UI',
-  description: 'Documentation of Maz-UI',
+  description: 'Library of standalone components for Vue & Nuxt',
   clientAppEnhanceFiles: path.resolve(__dirname, 'clientAppEnhance.ts'),
   base: getBaseUrl('/') as SiteData['base'],
 
