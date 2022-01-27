@@ -91,7 +91,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onBeforeMount, onMounted } from 'vue'
+import { computed, ref, onBeforeMount, onMounted, watch } from 'vue'
 
 const props = defineProps({
   component: { type: String, required: true },
@@ -138,11 +138,15 @@ const getOptions = async () => {
   }
 }
 
-onMounted(() => {
-  if (props.componentInstance) {
-    methods.value = Object.values(props.componentInstance).filter((value) => typeof value === 'function')
-  }
-})
+const setMethods = () => {
+  methods.value = Object.values(props.componentInstance).filter((value) => typeof value === 'function')
+}
+
+watch(
+  () => props.componentInstance,
+  () => setMethods(),
+  { immediate: true }
+)
 
 onBeforeMount(async () => {
   await getOptions()
