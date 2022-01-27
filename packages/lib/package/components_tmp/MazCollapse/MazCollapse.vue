@@ -62,7 +62,7 @@
       // Is the color of the arrow, must be a hex color
       arrowColor: { type: String, default: 'black' },
     },
-    emits: ['update:modelValue'],
+    emits: ['update:model-value'],
     data() {
       return {
         isOpen: this.modelValue,
@@ -76,7 +76,7 @@
         set(value: boolean) {
           // return a `true` or `false` if the collapse is open or not
           // @arg Boolean
-          this.$emit('update:modelValue', value)
+          this.$emit('update:model-value', value)
           this.isOpen = value
         },
       },

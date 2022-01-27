@@ -1,6 +1,9 @@
 serve:
 	make --directory=packages/docs serve
 
+serve-testing:
+	make --directory=packages/testing serve
+
 lint-lib:
 	make --directory=packages/lib lint
 

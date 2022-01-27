@@ -182,7 +182,7 @@
       validButtonLoading: { type: Boolean, default: false },
       autoFocus: { type: Boolean, default: false },
     },
-    emits: ['focus', 'blur', 'update:modelValue'],
+    emits: ['focus', 'blur', 'update:model-value'],
     setup(props, { emit, slots }) {
       const hasPasswordVisible = ref(false)
       const isFocused = ref(false)
@@ -259,13 +259,13 @@
       }
 
       const debounceEmitValue = debounce((value: string | number) => {
-        emit('update:modelValue', value[0])
+        emit('update:model-value', value[0])
       }, props.debounceDelay)
 
       const emitValue = (value: string | number) => {
         if (props.debounce) return debounceEmitValue(value)
 
-        emit('update:modelValue', value)
+        emit('update:model-value', value)
       }
 
       return {
@@ -371,7 +371,7 @@
     &-input {
       @apply maz-outline-none maz-m-0 maz-block maz-w-full maz-appearance-none maz-border-none maz-bg-transparent maz-shadow-none;
 
-      @apply maz-h-full maz-py-0 maz-px-4 maz-text-normal-text;
+      @apply maz-h-auto maz-py-0 maz-px-4 maz-text-normal-text;
     }
 
     &-label {

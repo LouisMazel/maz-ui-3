@@ -5,7 +5,7 @@ description: MazBottom is a stand-alone component like a simple dialog but at th
 
 # MazDialog
 
-> Before you have to import the global css file in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 ## Basic usage
 
@@ -53,6 +53,6 @@ description: MazBottom is a stand-alone component like a simple dialog but at th
 </script>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazDialog" />

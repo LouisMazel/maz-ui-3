@@ -109,7 +109,7 @@ description: MazTransitionExpand is a stand-alone component replaces the standar
 </script>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazTransitionExpand" />
 

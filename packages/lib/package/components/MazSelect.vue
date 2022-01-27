@@ -9,10 +9,7 @@
     <MazInput
       ref="mazInput"
       class="m-select-input"
-      v-bind="{
-        ...$attrs,
-        // 'onUpdate:modelValue': () => {},
-      }"
+      v-bind="$attrs"
       :color="color"
       :model-value="mazInputValue"
       readonly
@@ -37,10 +34,13 @@
     </MazInput>
     <Transition :name="listTransition">
       <div
-        v-if="hasListOpen"
+        v-if="hasListOpen || open"
         ref="optionsList"
         class="m-select-list"
-        :style="{ maxHeight: `${maxListHeight}px` }"
+        :style="{
+          maxHeight: `${maxListHeight}px`,
+          maxWidth: `${maxListWidth}px`,
+        }"
       >
         <button
           v-for="(option, i) in options"
@@ -48,15 +48,24 @@
           tabindex="-1"
           type="button"
           class="m-select-list-item maz-custom"
-          :class="{
-            '--is-keyboard-selected': tmpModelValueIndex === i,
-            '--is-selected': selectedOption?.value === option.value,
-          }"
+          :class="[
+            {
+              '--is-keyboard-selected': tmpModelValueIndex === i,
+              '--is-selected':
+                selectedOption?.[optionValueKey] === option[optionValueKey],
+            },
+            `--${color}`,
+          ]"
           :style="{ height: `${itemHeight}px` }"
           @click.prevent.stop="updateValue(option)"
         >
-          <slot :option="option">
-            {{ option.label }}
+          <slot
+            :option="option"
+            :is-selected="
+              selectedOption?.[optionValueKey] === option[optionValueKey]
+            "
+          >
+            {{ option[optionLabelKey] }}
           </slot>
         </button>
       </div>
@@ -65,15 +74,13 @@
 </template>
 
 <script lang="ts" setup>
+  // TODO: listPosition
   import { ref, PropType, computed, onBeforeMount, nextTick } from 'vue'
   import MazInput from './MazInput.vue'
   import MazIcon from './MazIcon.vue'
-  import { Color, ModelValueSimple, Size } from './types'
+  import { Color, ModelValueSimple, Position, Size } from './types'
 
-  export interface MazSelectOptions {
-    label: string
-    value: string | number | boolean | Record<string, any>
-  }
+  export type MazSelectOptions = Record<string, ModelValueSimple>
 
   const props = defineProps({
     modelValue: {
@@ -81,16 +88,25 @@
       default: undefined,
     },
     options: { type: Array as PropType<MazSelectOptions[]>, required: true },
-    position: {
-      type: String,
-      default: 'left bottom',
-      validator: (value: string) => {
-        return ['top', 'top right', 'bottom right', 'left bottom'].includes(
-          value,
-        )
+    optionValueKey: { type: String, default: 'value' },
+    optionLabelKey: { type: String, default: 'label' },
+    optionInputValueKey: { type: String, default: 'label' },
+    listPosition: {
+      type: String as PropType<Position>,
+      default: 'bottom left',
+      validator: (value: Position) => {
+        return [
+          'top',
+          'top right',
+          'top left',
+          'bottom',
+          'bottom right',
+          'bottom left',
+        ].includes(value)
       },
     },
     disabled: { type: Boolean, default: false },
+    open: { type: Boolean, default: false },
     color: {
       type: String as PropType<Color>,
       default: 'primary',
@@ -110,6 +126,7 @@
     },
     itemHeight: { type: Number, default: 40 },
     maxListHeight: { type: Number, default: 240 },
+    maxListWidth: { type: Number, default: undefined },
     size: {
       type: String as PropType<Size>,
       default: 'md',
@@ -126,7 +143,9 @@
   onBeforeMount(() => {
     if (selectedOption.value)
       tmpModelValueIndex.value = props.options.findIndex(
-        ({ value }) => value === selectedOption.value?.value,
+        (option) =>
+          option[props.optionValueKey] ===
+          selectedOption.value?.[props.optionLabelKey],
       )
   })
 
@@ -135,13 +154,17 @@
   const optionsList = ref<HTMLDivElement>()
 
   const selectedOption = computed(() =>
-    props.options.find(({ value }) => props.modelValue === value),
+    props.options.find(
+      (option) => props.modelValue === option[props.optionValueKey],
+    ),
   )
 
-  const mazInputValue = computed(() => selectedOption.value?.label)
+  const mazInputValue = computed(
+    () => selectedOption.value?.[props.optionInputValueKey],
+  )
 
   const listTransition = computed(() =>
-    props.position.includes('bottom') ? 'maz-slide' : 'maz-slideinvert',
+    props.listPosition.includes('bottom') ? 'maz-slide' : 'maz-slideinvert',
   )
 
   const closeList = async (event?: FocusEvent | KeyboardEvent) => {
@@ -175,7 +198,9 @@
     if (code === 'ArrowUp' || code === 'ArrowDown') {
       event.preventDefault()
       if (!hasListOpen.value) openList(event)
+
       const optionsLength = props.options.length
+
       if (typeof currentIndex !== 'number') {
         return (tmpModelValueIndex.value =
           code === 'ArrowDown' ? 0 : optionsLength - 1)
@@ -224,8 +249,13 @@
       searchQuery.value += key.toLowerCase()
 
       const resultIndex = props.options.findIndex((option) => {
-        return option.label.toLowerCase().includes(searchQuery.value)
+        if (typeof option[props.optionLabelKey] === 'string') {
+          const label = option[props.optionLabelKey] as string
+
+          return label.toLowerCase().startsWith(searchQuery.value)
+        }
       })
+
       tmpModelValueIndex.value = resultIndex
       scrollToSelected()
     }
@@ -240,12 +270,16 @@
     }
   }
 
-  const updateValue = ({ value }: MazSelectOptions, mustCloseList = true) => {
+  const updateValue = (
+    selectedOption: MazSelectOptions,
+    mustCloseList = true,
+  ) => {
     tmpModelValueIndex.value = props.options.findIndex(
-      (option) => value === option.value,
+      (option) =>
+        selectedOption[props.optionValueKey] === option[props.optionValueKey],
     )
     if (mustCloseList) closeList()
-    return emits('update:model-value', value)
+    return emits('update:model-value', selectedOption[props.optionValueKey])
   }
 </script>
 
@@ -272,7 +306,7 @@
     }
 
     &-list {
-      @apply maz-absolute maz-z-100 maz-overflow-auto maz-rounded-lg maz-bg-color maz-drop-shadow maz-elevation;
+      @apply maz-absolute maz-z-100 maz-overflow-auto maz-rounded-lg maz-bg-color maz-text-normal-text maz-drop-shadow maz-elevation;
 
       min-width: 3.5rem;
 
@@ -284,7 +318,43 @@
         }
 
         &.--is-selected {
-          @apply maz-bg-primary maz-font-semibold maz-text-white;
+          @apply maz-font-semibold;
+
+          &.--primary {
+            @apply maz-bg-primary maz-text-primary-contrast;
+          }
+
+          &.--secondary {
+            @apply maz-bg-secondary maz-text-secondary-contrast;
+          }
+
+          &.--info {
+            @apply maz-bg-info maz-text-info-contrast;
+          }
+
+          &.--success {
+            @apply maz-bg-success maz-text-success-contrast;
+          }
+
+          &.--warning {
+            @apply maz-bg-warning maz-text-warning-contrast;
+          }
+
+          &.--danger {
+            @apply maz-bg-danger maz-text-danger-contrast;
+          }
+
+          &.--black {
+            @apply maz-bg-black maz-text-black-contrast;
+          }
+
+          &.--white {
+            @apply maz-bg-white maz-text-white-contrast;
+          }
+
+          &.--transparent {
+            @apply maz-bg-color;
+          }
         }
       }
     }

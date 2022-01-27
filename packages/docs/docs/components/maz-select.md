@@ -5,11 +5,13 @@ description: MazSelect is a stand-alone component replaces the standard html inp
 
 # MazSelect
 
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+
 ## Basic usage
 
 > `options` should be an array of `{ value: any, label: string }`
 
-> This component use [MazInput](/components/maz-input.md), so he inherits all his props
+> This component use [MazInput](/components/maz-input.md), so it inherits all his props
 
 <div class="flex flex-col gap-05">
   <MazSelect
@@ -82,6 +84,6 @@ description: MazSelect is a stand-alone component replaces the standard html inp
 
 ## Options
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazSelect" />

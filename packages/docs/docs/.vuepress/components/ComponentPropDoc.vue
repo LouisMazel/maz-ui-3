@@ -52,20 +52,57 @@
   </table>
   <span v-else>
     <br />
-    No props available for this component
+    No props for this component
   </span>
+  <div class="flex items-start" style="gap: 2rem;">
+    <table v-if="events" class="component-prop-doc" style="display: table;">
+      <thead>
+        <th>
+          Events
+        </th>
+      </thead>
+      <tbody>
+        <tr v-for="(events, i) in events" :key="i">
+          <td style="white-space: nowrap;">
+            {{ events }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span v-else>
+      <br />
+      No events for this component
+    </span>
+    <table v-if="methods" class="component-prop-doc" style="display: table;">
+      <thead>
+        <th>
+          Methods
+        </th>
+      </thead>
+      <tbody>
+        <tr v-for="(method, i) in methods" :key="i">
+          <td style="white-space: nowrap;">
+            {{ method.name }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onBeforeMount } from 'vue'
+import { computed, ref, onBeforeMount, onMounted } from 'vue'
 
 const props = defineProps({
-  component: { type: String, required: true }
+  component: { type: String, required: true },
+  componentInstance: { type: Object, default: undefined }
 })
 
 const camelToSnakeCase = (str: string): string => str.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)
 
 const options = ref()
+const events = ref()
+const methods = ref()
 
 const getValidatorValues = (validator) => {
   const firstPart = String(validator)?.split('[')[1]
@@ -76,8 +113,18 @@ const getValidatorValues = (validator) => {
   return array ?? '-'
 }
 
+const getComponent = async () => (await import(`maz-ui`))[props.component]
+
+const getEvents = async () => {
+  const component = await getComponent()
+
+  if (component?.emits) {
+    events.value = component.emits
+  }
+}
+
 const getOptions = async () => {
-  const component = (await import(`maz-ui`))[props.component]
+  const component = await getComponent()
 
 
   if (component?.props) {
@@ -91,5 +138,14 @@ const getOptions = async () => {
   }
 }
 
-onBeforeMount(async () => await getOptions())
+onMounted(() => {
+  if (props.componentInstance) {
+    methods.value = Object.values(props.componentInstance).filter((value) => typeof value === 'function')
+  }
+})
+
+onBeforeMount(async () => {
+  await getOptions()
+  await getEvents()
+})
 </script>

@@ -65,7 +65,7 @@
       modalClass: { type: String, default: undefined },
     },
 
-    emits: ['open', 'close', 'update:modelValue'],
+    emits: ['open', 'close', 'update:model-value'],
 
     setup(props, { emit }) {
       const present = ref(props.modelValue)
@@ -92,7 +92,7 @@
       }
 
       const onBackdropAnimationLeave = () => {
-        emit('update:modelValue', false)
+        emit('update:model-value', false)
         emit('close')
       }
 

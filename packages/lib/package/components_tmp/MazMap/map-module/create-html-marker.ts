@@ -15,7 +15,7 @@ export const createHTMLMarker = (options: {
   templateHtml: string
   position: google.maps.LatLng | google.maps.LatLngLiteral
   offset?: OffsetPosition
-}) => {
+}): HTMLMarker => {
   class HTMLMarker extends google.maps.OverlayView {
     private readonly api: typeof google = options.api
     private readonly map: google.maps.Map = options.map

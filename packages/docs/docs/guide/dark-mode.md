@@ -26,21 +26,40 @@ To enable the dark you have just to add `dark` class to the `<html />` of your p
 </html>
 ```
 
-## Tip
+## Tips
 
-```typescript
-if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark')
-} else {
-  document.documentElement.classList.remove('dark')
-}
+```vue
+<template>
+  <MazBtn @click="toggleDarkMode">
+    Dark Mode Switch
+  </MazBtn>
+</template>
 
-// Whenever the user explicitly chooses light mode
-localStorage.theme = 'light'
+<script lang="ts" setup>
+  const { onMounted } from 'vue'
 
-// Whenever the user explicitly chooses dark mode
-localStorage.theme = 'dark'
+  onMounted(() => {
+    autoSetDarkMode()
+  })
 
-// Whenever the user explicitly chooses to respect the OS preference
-localStorage.removeItem('theme')
+  const autoSetDarkMode = () => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+      localStorage.theme = 'dark'
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.theme = 'light'
+    }
+  }
+
+  const toggleDarkMode = () => {
+    if (localStorage.theme === 'dark') {
+      document.documentElement.classList.remove('dark')
+      localStorage.theme = 'light'
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.theme = 'dark'
+    }
+  }
+</script>
 ```

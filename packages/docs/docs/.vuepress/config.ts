@@ -12,7 +12,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   // site config
   lang: 'en-US',
   title: 'Maz-UI',
-  description: 'Documentation of Maz-UI',
+  description: 'Library of standalone components for Vue & Nuxt',
   clientAppEnhanceFiles: path.resolve(__dirname, 'clientAppEnhance.ts'),
   base: getBaseUrl('/') as SiteData['base'],
 
@@ -94,6 +94,12 @@ export default defineUserConfig<DefaultThemeOptions>({
   },
   plugins: [
     [
+      '@vuepress/medium-zoom',
+      {
+        selector: 'img.zoom-custom-imgs'
+      }
+    ],
+    [
       '@vuepress/plugin-register-components',
       {
         componentsDir: path.resolve(__dirname, './components'),
@@ -103,7 +109,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '@vuepress/plugin-google-analytics',
       {
         // we have multiple deployments, which would use different id
-        id: 'UA-171163623-1',
+        id: 'G-EM35TM23Z',
       },
     ],
   ]

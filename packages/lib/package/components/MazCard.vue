@@ -86,7 +86,7 @@
       class="m-card__footer maz-overflow-x-auto maz-p-3"
       :class="[
         {
-          'maz-border-t maz-border-gray-100':
+          'maz-border-t-2 maz-border-color-lighter':
             isColumnVariant && haveSomeContent,
         },
         footerAlignClass,

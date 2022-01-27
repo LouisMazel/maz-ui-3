@@ -17,6 +17,7 @@
         '--loading': loading,
         '--disabled': isDisabled,
         '--icon': hasIcon,
+        '--rounded': rounded,
       },
     ]"
     :type="btnType"
@@ -72,14 +73,14 @@
     color: {
       type: String as PropType<Color>,
       default: 'primary',
-      validator: (value: string) => {
+      validator: (value: Color) => {
         return [
           'primary',
           'secondary',
-          'warning',
-          'danger',
           'info',
           'success',
+          'warning',
+          'danger',
           'white',
           'black',
           'transparent',
@@ -93,6 +94,7 @@
         return ['button', 'submit'].includes(value)
       },
     },
+    rounded: { type: Boolean, default: false },
     outline: { type: Boolean, default: false },
     pastel: { type: Boolean, default: false },
     block: { type: Boolean, default: false },
@@ -163,7 +165,7 @@
     }
 
     &.--is-link {
-      @apply maz-outline-none maz-inline-flex maz-items-center maz-bg-transparent maz-text-normal-text maz-transition maz-duration-300 maz-ease-in-out;
+      @apply maz-outline-none maz-inline-flex maz-items-center maz-bg-transparent maz-text-normal-text maz-transition maz-duration-200 maz-ease-in-out;
 
       &:not(.--no-leading) {
         @apply maz-leading-9;
@@ -209,6 +211,10 @@
       @apply maz-relative maz-inline-flex maz-items-center maz-justify-center maz-overflow-hidden
       maz-rounded-lg maz-border-transparent maz-bg-transparent maz-font-base maz-font-medium maz-no-underline
       maz-transition maz-duration-300 maz-ease-in-out;
+
+      &.--rounded {
+        @apply maz-rounded-full;
+      }
 
       &.--xl {
         @apply maz-px-8 maz-text-xl;
@@ -288,7 +294,7 @@
       }
 
       &.--secondary {
-        @apply maz-bg-secondary maz-text-white;
+        @apply maz-bg-secondary maz-text-secondary-contrast;
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
@@ -337,7 +343,7 @@
 
         &:not(:disabled):hover,
         &:not(:disabled):focus {
-          @apply maz-bg-color-light;
+          @apply maz-bg-gray-300;
         }
       }
 

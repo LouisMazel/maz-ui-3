@@ -6,7 +6,9 @@ export const components = {
       children: [
         '/components/maz-btn.md',
         '/components/maz-checkbox.md',
+        '/components/maz-dropzone.md',
         '/components/maz-input.md',
+        '/components/maz-phone-number-input.md',
         '/components/maz-select.md',
       ]
     },

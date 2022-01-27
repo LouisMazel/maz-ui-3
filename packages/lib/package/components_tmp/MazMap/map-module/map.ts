@@ -1,4 +1,4 @@
-import { createHTMLMarker, HTMLMarker } from './html-marker'
+import { createHTMLMarker, HTMLMarker } from './create-html-marker'
 import { ScriptLoader, ScriptOptions } from './script-loader'
 
 export type MapOptions = google.maps.MapOptions
@@ -142,4 +142,4 @@ export class Map {
 }
 
 export * from './script-loader'
-export * from './html-marker'
+export * from './create-html-marker'

@@ -5,8 +5,20 @@ description: MazAvatar is a stand-alone component replaces the standard html but
 
 # MazAvatar
 
-<!-- <MazAvatar src="https://pbs.twimg.com/profile_images/598181608198381570/-cFG43y2_400x400.jpg" /> -->
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
-## Props
+<MazAvatar src="https://pbs.twimg.com/profile_images/598181608198381570/-cFG43y2_400x400.jpg" />
+
+```vue
+<template>
+  <MazAvatar src="https://pbs.twimg.com/profile_images/598181608198381570/-cFG43y2_400x400.jpg" />
+</template>
+
+<script lang="ts" setup>
+  import { MazAvtar } from 'maz-ui'
+</script>
+```
+
+## Props & Events emitted
 
 <ComponentPropDoc component="MazAvatar" />

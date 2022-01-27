@@ -85,6 +85,6 @@ const app = createApp(App)
 app.provide('mazIconPath', '/your/custom/path')
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazIcon" />
