@@ -15,10 +15,10 @@
       <TransitionGroup
         type="transition"
         tag="div"
-        :name="!drag ? 'maz-flip-list' : null"
+        :name="!drag ? 'maz-flip-list' : undefined"
       >
         <div
-          v-for="(item, i) in value"
+          v-for="(item, i) in modelValue"
           :key="`${itemKey ? item[itemKey] : Object.values(item)[0]}`"
           class="maz-draggable-list__item maz-align-center maz-space-between maz-flex"
         >

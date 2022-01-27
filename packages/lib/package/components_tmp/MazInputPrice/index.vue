@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
+  import { computed, defineComponent, ref } from 'vue'
+  import { currency } from './../../filters'
 
   export default defineComponent({
     name: 'MazInputPrice',
@@ -21,7 +22,7 @@
       min: { type: Number, default: 0 },
       max: { type: Number, default: Infinity },
     },
-    setup(props, { emit, root: { $filters, $nextTick } }) {
+    setup(props, { emit }) {
       const isActive = ref(false)
       const valueString = computed(() =>
         typeof props.value === 'number' ? props.value.toString() : props.value,
@@ -31,7 +32,7 @@
       )
 
       const priceFormatted = computed(() =>
-        $filters.currency(valueNumber.value, props.locale, props.currency),
+        currency(valueNumber.value, props.locale, { currency: props.currency }),
       )
 
       const displayPrice = computed({

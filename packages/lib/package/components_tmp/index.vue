@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from '@nuxtjs/composition-api'
+  import { defineComponent, PropType } from 'vue'
 
   export default defineComponent({
     name: 'MazButtonRadio',
@@ -44,7 +44,10 @@
         validator: (prop: Number | String) =>
           ['number', 'string'].includes(typeof prop) || prop === null,
       },
-      options: { type: Array, required: true },
+      options: {
+        type: Array as PropType<{ value: any; label: string; icon: string }[]>,
+        required: true,
+      },
       column: { type: Boolean, default: false },
       fontSize: { type: String, default: null },
       color: { type: String, default: 'secondary' },

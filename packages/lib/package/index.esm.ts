@@ -19,5 +19,6 @@ export default install
 // each can be registered via Vue.component()
 export { debounce } from './utils/debounce'
 export * from './components'
+export * from './components/types'
 export * from './directives'
 export * from './filters'

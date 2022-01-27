@@ -32,11 +32,15 @@
     "*.{vue,css,scss,postcss,pcss}": "stylelint --custom-syntax postcss-html --fix"
   },
   "peerDependencies": {
+    "dropzone": "^5.9.3",
     "libphonenumber-js": "^1.9.44",
     "vue": "^3.0.0",
     "vue-inline-svg": "^3.1.0"
   },
   "peerDependenciesMeta": {
+    "dropzone": {
+      "optional": true
+    },
     "libphonenumber-js": {
       "optional": true
     },
@@ -56,6 +60,7 @@
     "@rollup/plugin-replace": "^3.0.1",
     "@rollup/plugin-typescript": "^8.3.0",
     "@rollup/plugin-url": "^6.0.0",
+    "@types/dropzone": "^5.7.4",
     "@types/google.maps": "^3.47.2",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.12",
@@ -69,6 +74,7 @@
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
+    "dropzone": "^6.0.0-beta.2",
     "eslint": "^8.6.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-unicorn": "^40.0.0",

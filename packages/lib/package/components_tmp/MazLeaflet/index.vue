@@ -9,12 +9,7 @@
 </template>
 
 <script lang="ts">
-  import {
-    computed,
-    defineComponent,
-    onMounted,
-    watch,
-  } from '@nuxtjs/composition-api'
+  import { computed, defineComponent, onMounted, watch } from 'vue'
 
   import MapController, {
     LatLngExpression,

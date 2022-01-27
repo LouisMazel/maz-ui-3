@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent } from '@nuxtjs/composition-api'
+  import { computed, defineComponent } from 'vue'
 
   export default defineComponent({
     name: 'MazInputNumber',

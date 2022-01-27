@@ -7,11 +7,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dropzone": "^5.9.3",
     "maz-ui": "file:../lib/dist",
     "typescript": "^4.5.5",
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@types/dropzone": "^5.7.4",
     "@types/node": "^17.0.12",
     "@vitejs/plugin-vue": "^2.0.0",
     "autoprefixer": "^10.4.2",
