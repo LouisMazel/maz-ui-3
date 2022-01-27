@@ -32,13 +32,17 @@ yarn add dropzone@5
 ## Basic usage
 
 <MazDropzone
-  ref="MazDropzoneInstance"
+  ref="mazDropzoneInstance"
   :options="dropzoneOptions"
   @error="error"
   @success="success"
   @sending="loading = true"
   @complete="loading = false"
 />
+<p v-if="errorMessage" style="color: red; text-align: center;">
+  {{ errorMessage }}
+</p>
+
 <div class="flex flex-center">
   <MazBtn left-icon="Upload" :loading="loading" @click="sendFiles">
     Send Files
@@ -50,13 +54,17 @@ yarn add dropzone@5
 ```vue
 <template>
   <MazDropzone
-    ref="MazDropzoneInstance"
+    ref="mazDropzoneInstance"
     :options="dropzoneOptions"
     @error="error"
     @success="success"
     @sending="loading = true"
     @complete="loading = false"
   />
+
+  <p v-if="errorMessage" style="color: red; text-align: center;">
+    {{ errorMessage }}
+  </p>
 
   <MazBtn left-icon="Upload" :loading="loading" @click="sendFiles">
     Send Files
@@ -65,14 +73,20 @@ yarn add dropzone@5
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { MazBtn, MazDropzone, MazDropzoneType, MazDropzoneOptions } from 'maz-ui'
+  import { MazBtn, MazDropzone, MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui'
 
   const loading = ref(false)
-  const MazDropzoneInstance = ref<MazDropzoneType>()
+  const mazDropzoneInstance = ref<MazDropzoneInstance>()
+  const errorMessage = ref<string>()
 
-  const error = (error) => console.log('dropzone-error', error)
-  const success = (success) => console.log('dropzone-success', success)
-  const sendFiles = () => MazDropzoneInstance.value.processQueue()
+  const error = ({ file, message }) => {
+    console.log('dropzone-error', { file, message })
+    errorMessage.value = message
+  }
+  const success = ({ file, response }) => {
+    console.log('dropzone-success', { file, response })
+  }
+  const sendFiles = () => mazDropzoneInstance.value?.processQueue()
 
   const dropzoneOptionsBase: MazDropzoneOptions = {
     url: 'https://httpbin.org/post',
@@ -106,18 +120,25 @@ yarn add dropzone@5
 
 ## Props, Events emitted & Methods
 
-<ComponentPropDoc component="MazDropzone" :component-instance="MazDropzoneInstance" />
+<ComponentPropDoc component="MazDropzone" :component-instance="mazDropzoneInstance" />
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue'
-  import { MazBtn, MazDropzone, MazDropzoneType, MazDropzoneOptions } from 'maz-ui'
+  import { MazBtn, MazDropzone, MazDropzoneOptions, MazDropzoneInstance } from 'maz-ui'
 
   const loading = ref(false)
-  const MazDropzoneInstance = ref<MazDropzoneType>()
+  const mazDropzoneInstance = ref<MazDropzoneInstance>()
 
-  const error = (error) => console.log('dropzone-error', error)
-  const success = (success) => console.log('dropzone-success', success)
-  const sendFiles = () => MazDropzoneInstance.value.processQueue()
+  const errorMessage = ref<string>()
+
+  const error = ({ file, message }) => {
+    console.log('dropzone-error', { file, message })
+    errorMessage.value = message
+  }
+  const success = ({ file, response }) => {
+    console.log('dropzone-success', { file, response })
+  }
+  const sendFiles = () => mazDropzoneInstance.value?.processQueue()
 
   const dropzoneOptionsBase: MazDropzoneOptions = {
     url: 'https://httpbin.org/post',

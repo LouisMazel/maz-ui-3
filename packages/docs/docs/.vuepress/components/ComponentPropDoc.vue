@@ -54,7 +54,7 @@
     <br />
     No props for this component
   </span>
-  <div class="flex items-start gap-05">
+  <div class="flex items-start" style="gap: 2rem;">
     <table v-if="events" class="component-prop-doc" style="display: table;">
       <thead>
         <th>
@@ -141,7 +141,6 @@ const getOptions = async () => {
 onMounted(() => {
   if (props.componentInstance) {
     methods.value = Object.values(props.componentInstance).filter((value) => typeof value === 'function')
-    console.log('componentInstance', methods.value)
   }
 })
 

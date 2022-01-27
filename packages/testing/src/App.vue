@@ -17,9 +17,9 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { onMounted } from 'vue'
-  import { MazBtn, MazDropzone, MazDropzoneType, MazDropzoneOptions } from 'maz-ui'
+  import { MazBtn, MazDropzone, MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui'
 
-  const MazDropzoneElem = ref<MazDropzoneType>()
+  const MazDropzoneElem = ref<MazDropzoneInstance>()
 
   onMounted(() => {
     autoSetDarkMode()

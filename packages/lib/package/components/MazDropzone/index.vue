@@ -50,7 +50,7 @@
   import { DropzoneOptions, DropzoneFile } from 'dropzone'
   import MazSpinner from './../MazSpinner.vue'
   import {
-    MazDropzoneType,
+    MazDropzoneInstance,
     MazDropzoneFile,
     MazDropzoneOptions,
     IMazDropzone,
@@ -296,7 +296,7 @@
         }
         return dropzone.options
       }
-      const manuallyAddFile: MazDropzoneType['manuallyAddFile'] = (
+      const manuallyAddFile: MazDropzoneInstance['manuallyAddFile'] = (
         file,
         fileUrl,
       ) => {
@@ -304,40 +304,40 @@
         dropzone.emit('thumbnail', file, fileUrl)
         dropzone.files.push(file)
       }
-      const removeAllFiles: MazDropzoneType['removeAllFiles'] = (
+      const removeAllFiles: MazDropzoneInstance['removeAllFiles'] = (
         shouldRemoveAllFiles,
       ) => dropzone.removeAllFiles(shouldRemoveAllFiles)
-      const processQueue: MazDropzoneType['processQueue'] = () =>
+      const processQueue: MazDropzoneInstance['processQueue'] = () =>
         dropzone.processQueue()
-      const destroy: MazDropzoneType['destroy'] = () => dropzone.destroy()
-      const disable: MazDropzoneType['disable'] = () => dropzone.disable()
-      const enable: MazDropzoneType['enable'] = () => dropzone.enable()
-      const accept: MazDropzoneType['accept'] = (file, done) =>
+      const destroy: MazDropzoneInstance['destroy'] = () => dropzone.destroy()
+      const disable: MazDropzoneInstance['disable'] = () => dropzone.disable()
+      const enable: MazDropzoneInstance['enable'] = () => dropzone.enable()
+      const accept: MazDropzoneInstance['accept'] = (file, done) =>
         dropzone.accept(file, done)
-      const addFile: MazDropzoneType['addFile'] = (file) =>
+      const addFile: MazDropzoneInstance['addFile'] = (file) =>
         dropzone.addFile(file)
-      const resizeImage: MazDropzoneType['resizeImage'] = (
+      const resizeImage: MazDropzoneInstance['resizeImage'] = (
         file,
         width,
         height,
         resizeMethod,
         callback,
       ) => dropzone.resizeImage(file, width, height, resizeMethod, callback)
-      const cancelUpload: MazDropzoneType['cancelUpload'] = (file) =>
+      const cancelUpload: MazDropzoneInstance['cancelUpload'] = (file) =>
         dropzone.cancelUpload(file)
-      const getAcceptedFiles: MazDropzoneType['getAcceptedFiles'] = () =>
+      const getAcceptedFiles: MazDropzoneInstance['getAcceptedFiles'] = () =>
         dropzone.getAcceptedFiles() as MazDropzoneFile[]
-      const getRejectedFiles: MazDropzoneType['getRejectedFiles'] = () =>
+      const getRejectedFiles: MazDropzoneInstance['getRejectedFiles'] = () =>
         dropzone.getRejectedFiles() as MazDropzoneFile[]
-      const getFilesWithStatus: MazDropzoneType['getFilesWithStatus'] = () =>
-        dropzone.getFilesWithStatus(status)
-      const getQueuedFiles: MazDropzoneType['getQueuedFiles'] = () =>
+      const getFilesWithStatus: MazDropzoneInstance['getFilesWithStatus'] =
+        () => dropzone.getFilesWithStatus(status)
+      const getQueuedFiles: MazDropzoneInstance['getQueuedFiles'] = () =>
         dropzone.getQueuedFiles()
-      const getUploadingFiles: MazDropzoneType['getUploadingFiles'] = () =>
+      const getUploadingFiles: MazDropzoneInstance['getUploadingFiles'] = () =>
         dropzone.getUploadingFiles()
-      const getAddedFiles: MazDropzoneType['getAddedFiles'] = () =>
+      const getAddedFiles: MazDropzoneInstance['getAddedFiles'] = () =>
         dropzone.getAddedFiles()
-      const getActiveFiles: MazDropzoneType['getActiveFiles'] = () =>
+      const getActiveFiles: MazDropzoneInstance['getActiveFiles'] = () =>
         dropzone.getActiveFiles()
 
       onBeforeUnmount(() => {

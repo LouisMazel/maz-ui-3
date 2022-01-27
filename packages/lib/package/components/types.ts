@@ -67,7 +67,7 @@ export interface IMazDropzone extends Dropzone {
   options: MazDropzoneOptions
 }
 
-export interface MazDropzoneType extends ComponentPublicInstance {
+export interface MazDropzoneInstance extends ComponentPublicInstance {
   manuallyAddFile: (file: DropzoneFile, fileUrl: string) => void
   setOption: (option: string, value: any) => IMazDropzone['options']
   processQueue: IMazDropzone['processQueue']
