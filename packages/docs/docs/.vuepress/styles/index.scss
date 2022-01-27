@@ -136,12 +136,21 @@ code {
   justify-content: start;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .items-start {
   align-items: flex-start;
 }
 
 .items-center {
   align-items: center;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
 }
 
 .gap-05 {

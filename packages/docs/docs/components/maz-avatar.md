@@ -19,6 +19,6 @@ description: MazAvatar is a stand-alone component replaces the standard html but
 </script>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazAvatar" />

@@ -201,7 +201,7 @@ input value: {{ inputValue ?? 'null' }}
 </template>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazInput" />
 

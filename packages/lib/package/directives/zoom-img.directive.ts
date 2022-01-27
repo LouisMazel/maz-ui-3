@@ -1,4 +1,4 @@
-import { Directive, Plugin } from 'vue'
+import { App, Directive, Plugin } from 'vue'
 
 const style = `
 .maz-zoom-img {
@@ -447,7 +447,7 @@ const directive: Directive = {
 export { directive }
 
 const plugin: Plugin = {
-  install: (app) => {
+  install(app: App) {
     app.directive('zoom-img', directive)
   },
 }

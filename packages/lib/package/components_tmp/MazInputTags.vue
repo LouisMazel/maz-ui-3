@@ -77,7 +77,7 @@
   const isFocus = ref(false)
   const inputValue = ref<string>()
 
-  const emits = defineEmits(['update:modelValue'])
+  const emits = defineEmits(['update:model-value'])
 
   const addTags = (event: KeyboardEvent) => {
     if (inputValue.value) {
@@ -88,7 +88,7 @@
         .map((value) => (value.trim() === ',' ? undefined : value.trim()))
         .filter(Boolean)
       emits(
-        'update:modelValue',
+        'update:model-value',
         props.modelValue ? [...props.modelValue, ...values] : [...values],
       )
       inputValue.value = undefined
@@ -99,14 +99,14 @@
     if (!inputValue.value || inputValue.value === '') {
       const tagsArray = JSON.parse(JSON.stringify(props.modelValue))
       tagsArray.pop()
-      emits('update:modelValue', tagsArray)
+      emits('update:model-value', tagsArray)
     }
   }
 
   const removeTag = (index: number) => {
     const tagsArray = JSON.parse(JSON.stringify(props.modelValue))
     tagsArray.splice(index, 1)
-    emits('update:modelValue', tagsArray)
+    emits('update:model-value', tagsArray)
   }
 </script>
 

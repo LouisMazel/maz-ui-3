@@ -102,7 +102,7 @@
       noCursorAnim: { type: Boolean, default: false },
     },
 
-    emits: ['update:modelValue'],
+    emits: ['update:model-value'],
     setup(props, { emit }) {
       const MazSlider = ref<HTMLDivElement>()
 
@@ -219,7 +219,7 @@
       }
       const emitValue = (values: number[]) => {
         let valueToEmit = hasMultipleValues.value ? values.slice() : values[0]
-        emit('update:modelValue', valueToEmit)
+        emit('update:model-value', valueToEmit)
       }
       const getLabel = (i: number) => {
         const { labels } = props

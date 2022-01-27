@@ -30,12 +30,12 @@ To enable the dark you have just to add `dark` class to the `<html />` of your p
 
 ```vue
 <template>
-  <MazBtn @click="toggleDarkMode">Dark Mode Switch</MazBtn>
+  <MazBtn @click="toggleDarkMode">
+    Dark Mode Switch
+  </MazBtn>
 </template>
 
 <script lang="ts" setup>
-  import { MazAvtar } from 'maz-ui'
-
   const { onMounted } from 'vue'
 
   onMounted(() => {

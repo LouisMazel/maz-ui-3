@@ -53,8 +53,6 @@ description: MazCheckbox is a stand-alone component replaces the standard html i
 </script>
 ```
 
-## Options
-
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazCheckbox" />

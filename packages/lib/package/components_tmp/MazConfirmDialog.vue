@@ -1,7 +1,7 @@
 <template>
   <MazDialog
     :model-value="modelValue"
-    @update:model-value="$emit('update:modelValue', $event)"
+    @update:model-value="$emit('update:model-value', $event)"
   >
     <template #title>
       <slot name="title" />
@@ -27,10 +27,10 @@
     modelValue: { type: Boolean, default: false },
   })
 
-  const emits = defineEmits(['update:modelValue', 'confirm'])
+  const emits = defineEmits(['update:model-value', 'confirm'])
 
   const confirm = () => {
     emits('confirm')
-    emits('update:modelValue', false)
+    emits('update:model-value', false)
   }
 </script>

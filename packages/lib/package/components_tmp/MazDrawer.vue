@@ -6,7 +6,7 @@
     :backdrop-class="['m-drawer', `-${variant}`, backdropClass]"
     @close="$emit('close', $event)"
     @open="$emit('open', $event)"
-    @update:model-value="$emit('update:modelValue', $event)"
+    @update:model-value="$emit('update:model-value', $event)"
   >
     <template #default="{ close }">
       <div :class="['m-drawer-content-wrap', `-${variant}`]">
@@ -58,7 +58,7 @@
       backdropClass: { type: String, default: undefined },
     },
 
-    emits: ['open', 'close', 'update:modelValue'],
+    emits: ['open', 'close', 'update:model-value'],
 
     setup() {
       const { closeDrawerOnRouteChange } = useDrawer()

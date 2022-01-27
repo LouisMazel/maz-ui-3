@@ -91,6 +91,6 @@ description: MazCard is a stand-alone component to display some texts, images an
 </script>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazCard" />

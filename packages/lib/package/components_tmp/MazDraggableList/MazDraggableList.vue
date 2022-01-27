@@ -54,7 +54,7 @@
       // set dark theme
       dark: { type: Boolean, default: false },
     },
-    emits: ['update:modelValue'],
+    emits: ['update:model-value'],
     setup(props, { emit }) {
       const items = computed({
         get() {
@@ -63,7 +63,7 @@
         set(value) {
           // update the v-model
           // @arg list updated
-          emit('update:modelValue', value)
+          emit('update:model-value', value)
         },
       })
 

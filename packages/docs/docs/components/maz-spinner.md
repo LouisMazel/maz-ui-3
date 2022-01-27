@@ -17,6 +17,6 @@ description: MazSpinner is a stand-alone component replaces the standard html in
 </script>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazSpinner" />

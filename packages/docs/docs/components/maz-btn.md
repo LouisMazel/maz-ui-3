@@ -284,7 +284,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </template>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazBtn" />
 

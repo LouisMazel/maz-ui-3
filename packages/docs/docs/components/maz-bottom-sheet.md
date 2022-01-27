@@ -59,6 +59,6 @@ description: MazBottomSheet is a stand-alone component like a simple dialog but 
 </template>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazBottomSheet" />

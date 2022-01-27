@@ -16,15 +16,13 @@
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { MazDropzone, MazBtn, MazDropzoneType } from 'maz-ui'
-  import { MazDropzoneOptions } from 'maz-ui'
   import { onMounted } from 'vue'
+  import { MazBtn, MazDropzone, MazDropzoneType, MazDropzoneOptions } from 'maz-ui'
 
   const MazDropzoneElem = ref<MazDropzoneType>()
 
   onMounted(() => {
     autoSetDarkMode()
-    console.log('MazDropzoneElem', MazDropzoneElem.value?.getAcceptedFiles)
   })
 
   const autoSetDarkMode = () => {
@@ -55,6 +53,7 @@
     maxFiles: 5,
     maxThumbnailFilesize: 3,
     autoProcessQueue: true,
+    autoRemoveOnError: true,
   }
 
   const translations: MazDropzoneOptions = {

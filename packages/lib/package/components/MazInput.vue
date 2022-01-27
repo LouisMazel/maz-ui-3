@@ -182,7 +182,7 @@
       validButtonLoading: { type: Boolean, default: false },
       autoFocus: { type: Boolean, default: false },
     },
-    emits: ['focus', 'blur', 'update:modelValue'],
+    emits: ['focus', 'blur', 'update:model-value'],
     setup(props, { emit, slots }) {
       const hasPasswordVisible = ref(false)
       const isFocused = ref(false)
@@ -259,13 +259,13 @@
       }
 
       const debounceEmitValue = debounce((value: string | number) => {
-        emit('update:modelValue', value[0])
+        emit('update:model-value', value[0])
       }, props.debounceDelay)
 
       const emitValue = (value: string | number) => {
         if (props.debounce) return debounceEmitValue(value)
 
-        emit('update:modelValue', value)
+        emit('update:model-value', value)
       }
 
       return {

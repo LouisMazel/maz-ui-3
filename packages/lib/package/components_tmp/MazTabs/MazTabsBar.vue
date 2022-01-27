@@ -57,7 +57,7 @@
     useAnchor: { type: Boolean, default: false },
   })
 
-  const emits = defineEmits(['update:modelValue'])
+  const emits = defineEmits(['update:model-value'])
 
   const isMounted = ref(false)
 
@@ -105,7 +105,7 @@
 
   const setValue = (i: number) => {
     currentTab.value = i
-    emits('update:modelValue', i + 1)
+    emits('update:model-value', i + 1)
   }
 
   const labelNormalize = (label: string) => {

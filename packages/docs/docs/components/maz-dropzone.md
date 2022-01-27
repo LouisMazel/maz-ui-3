@@ -31,45 +31,119 @@ yarn add dropzone@5
 
 ## Basic usage
 
-
 <MazDropzone
-  ref="MazDropzone"
+  ref="MazDropzoneInstance"
   :options="dropzoneOptions"
   @error="error"
-  @removedfile="fileRemoved"
   @success="success"
+  @sending="loading = true"
+  @complete="loading = false"
 />
+<div class="flex flex-center">
+  <MazBtn left-icon="Upload" :loading="loading" @click="sendFiles">
+    Send Files
+  </MazBtn>
+</div>
+
+> Set `:options="{ autoProcessQueue: true }"` to upload automatically the files (no button needed)
+
+```vue
+<template>
+  <MazDropzone
+    ref="MazDropzoneInstance"
+    :options="dropzoneOptions"
+    @error="error"
+    @success="success"
+    @sending="loading = true"
+    @complete="loading = false"
+  />
+
+  <MazBtn left-icon="Upload" :loading="loading" @click="sendFiles">
+    Send Files
+  </MazBtn>
+</template>
 
 <script lang="ts" setup>
-  import { MazDropzoneOptions } from 'maz-ui'
+  import { ref } from 'vue'
+  import { MazBtn, MazDropzone, MazDropzoneType, MazDropzoneOptions } from 'maz-ui'
+
+  const loading = ref(false)
+  const MazDropzoneInstance = ref<MazDropzoneType>()
+
+  const error = (error) => console.log('dropzone-error', error)
+  const success = (success) => console.log('dropzone-success', success)
+  const sendFiles = () => MazDropzoneInstance.value.processQueue()
 
   const dropzoneOptionsBase: MazDropzoneOptions = {
     url: 'https://httpbin.org/post',
     headers: { 'My-Awesome-Header': 'header value' },
     acceptedFiles: 'image/jpeg,image/jpg,image/png',
-    maxFilesize: 10,
+    maxFilesize: 5,
     maxFiles: 5,
-    maxThumbnailFilesize: 1,
+    maxThumbnailFilesize: 3,
     autoProcessQueue: false,
+    autoRemoveOnError: true,
   }
 
-  const translations = {
-    dictDefaultMessage: 'product.picture_upload.choose_or_drop',
-    dictFilesDescriptions: 'product.picture_upload.files_descriptions', // { maxFilesize: dropzoneOptionsBase.maxFilesize, maxFiles: dropzoneOptionsBase.maxFiles },
-    dictFallbackMessage: 'product.picture_upload.browser_is_not_supported',
-    dictFileTooBig: 'product.picture_upload.invalid_file_type', // { maxFilesize: dropzoneOptionsBase.maxFilesize },
-    dictInvalidFileType: 'product.picture_upload.invalid_file_type', // { maxFilesize: dropzoneOptionsBase.maxFilesize }),
-    dictRemoveFile: 'product.picture_upload.dict_remove_file',
-    dictCancelUpload: 'product.picture_upload.dict_cancel_upload',
-    dictMaxFilesExceeded: 'product.picture_upload.dict_max_files_exceeded', // { maxFiles: dropzoneOptionsBase.maxFiles },
-    dictUploadCanceled: 'Upload canceled' // TODO translations
+  const translations: MazDropzoneOptions = {
+    dictDefaultMessage: 'Choose or drop a file',
+    dictFilesDescriptions: `(PNG or JPG under ${dropzoneOptionsBase.maxFilesize} MB)`,
+    dictFallbackMessage: 'Your browser is not supported',
+    dictFileTooBig: `File(s) too big (max: ${dropzoneOptionsBase.maxFilesize} MB)`,
+    dictInvalidFileType: `File(s) too big (max: ${dropzoneOptionsBase.maxFilesize} MB)`,
+    dictRemoveFile: 'Remove',
+    dictCancelUpload: 'Cancel upload',
+    dictMaxFilesExceeded: `You can not upload any more files. (max: ${dropzoneOptionsBase.maxFiles})`,
+    dictUploadCanceled: 'Upload canceled',
   }
 
   const dropzoneOptions: MazDropzoneOptions = {
     ...dropzoneOptionsBase,
     ...translations
   }
+</script>
+```
+
+## Props, Events emitted & Methods
+
+<ComponentPropDoc component="MazDropzone" :component-instance="MazDropzoneInstance" />
+
+<script lang="ts" setup>
+  import { ref, onMounted } from 'vue'
+  import { MazBtn, MazDropzone, MazDropzoneType, MazDropzoneOptions } from 'maz-ui'
+
+  const loading = ref(false)
+  const MazDropzoneInstance = ref<MazDropzoneType>()
 
   const error = (error) => console.log('dropzone-error', error)
   const success = (success) => console.log('dropzone-success', success)
+  const sendFiles = () => MazDropzoneInstance.value.processQueue()
+
+  const dropzoneOptionsBase: MazDropzoneOptions = {
+    url: 'https://httpbin.org/post',
+    headers: { 'My-Awesome-Header': 'header value' },
+    acceptedFiles: 'image/jpeg,image/jpg,image/png',
+    maxFilesize: 5,
+    maxFiles: 5,
+    maxThumbnailFilesize: 3,
+    autoProcessQueue: false,
+    autoRemoveOnError: true,
+  }
+
+  const translations: MazDropzoneOptions = {
+    dictDefaultMessage: 'Choose or drop a file',
+    dictFilesDescriptions: `(PNG or JPG under ${dropzoneOptionsBase.maxFilesize} MB)`,
+    dictFallbackMessage: 'Your browser is not supported',
+    dictFileTooBig: `File(s) too big (max: ${dropzoneOptionsBase.maxFilesize} MB)`,
+    dictInvalidFileType: `File(s) too big (max: ${dropzoneOptionsBase.maxFilesize} MB)`,
+    dictRemoveFile: 'Remove',
+    dictCancelUpload: 'Cancel upload',
+    dictMaxFilesExceeded: `You can not upload any more files. (max: ${dropzoneOptionsBase.maxFiles})`,
+    dictUploadCanceled: 'Upload canceled',
+  }
+
+  const dropzoneOptions: MazDropzoneOptions = {
+    ...dropzoneOptionsBase,
+    ...translations
+  }
 </script>

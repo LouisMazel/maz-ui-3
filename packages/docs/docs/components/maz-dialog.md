@@ -53,6 +53,6 @@ description: MazBottom is a stand-alone component like a simple dialog but at th
 </script>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazDialog" />

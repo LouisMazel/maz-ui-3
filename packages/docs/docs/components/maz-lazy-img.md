@@ -11,6 +11,6 @@ description: MazLazyImg is a stand-alone component replaces the standard html bu
 
 ## Options
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazLazyImg" />

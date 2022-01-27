@@ -112,6 +112,6 @@ yarn add libphonenumber-js
 </template>
 ```
 
-## Props
+## Props & Events emitted
 
 <ComponentPropDoc component="MazPhoneNumberInput" />
