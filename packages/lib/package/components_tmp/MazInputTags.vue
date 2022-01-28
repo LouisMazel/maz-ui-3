@@ -25,7 +25,7 @@
             {{ tag }}
           </template>
           <template #right-icon>
-            <MazIcon name="X" class="m-input-tags__tag__icon" />
+            <MazIcon name="x" class="m-input-tags__tag__icon" />
           </template>
         </MazBtn>
       </div>

@@ -39,6 +39,7 @@ yarn add dropzone@5
   @sending="loading = true"
   @complete="loading = false"
 />
+
 <p v-if="errorMessage" style="color: red; text-align: center;">
   {{ errorMessage }}
 </p>

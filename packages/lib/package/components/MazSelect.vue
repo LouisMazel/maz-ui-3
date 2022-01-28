@@ -26,7 +26,7 @@
           @click="openList"
         >
           <MazIcon
-            name="ChevronDown"
+            name="chevron-down"
             class="m-select-chevron maz-h-5 maz-w-5 maz-text-normal-text"
           />
         </button>

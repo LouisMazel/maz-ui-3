@@ -46,7 +46,7 @@
         @click="$emit('click', $event)"
       >
         <slot name="icon">
-          <MazIcon name="Pencil" class="m-avatar__button__icon" />
+          <MazIcon name="pencil" class="m-avatar__button__icon" />
         </slot>
       </button>
     </div>

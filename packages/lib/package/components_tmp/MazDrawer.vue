@@ -19,7 +19,7 @@
           </h4>
           <div v-if="!noCloseIcon" class="maz-flex maz-justify-end">
             <MazBtn size="sm" color="transparent" @click="close">
-              <MazIcon name="X" class="maz-h-5 maz-w-5" />
+              <MazIcon name="x" class="maz-h-5 maz-w-5" />
             </MazBtn>
           </div>
         </header>

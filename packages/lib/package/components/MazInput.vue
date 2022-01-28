@@ -21,7 +21,9 @@
       :class="[inputClasses, borderStyle, { 'maz-rounded-lg': !noRadius }]"
     >
       <div v-if="hasLeftPart()" class="m-input-wrapper-left">
-        <slot v-if="$slots['left-icon']" name="left-icon"></slot>
+        <slot v-if="$slots['left-icon'] || leftIcon" name="left-icon">
+          <MazIcon :name="leftIcon" class="maz-text-gray-400" />
+        </slot>
       </div>
 
       <div class="m-input-wrapper-input">
@@ -64,7 +66,9 @@
       </div>
 
       <div v-if="hasRightPart()" class="m-input-wrapper-right">
-        <slot v-if="$slots['right-icon']" name="right-icon"></slot>
+        <slot v-if="$slots['right-icon'] || rightIcon" name="right-icon">
+          <MazIcon :name="rightIcon" class="maz-text-gray-400" />
+        </slot>
 
         <MazBtn
           v-if="isPasswordType"
@@ -75,10 +79,10 @@
         >
           <MazIcon
             v-if="hasPasswordVisible"
-            name="EyeOff"
+            name="eye-off"
             class="maz-text-gray-400"
           />
-          <MazIcon v-else name="Eye" class="maz-text-gray-400" />
+          <MazIcon v-else name="eye" class="maz-text-gray-400" />
         </MazBtn>
 
         <slot v-if="$slots['valid-button'] || validButton" name="valid-button">
@@ -91,7 +95,7 @@
             size="mini"
             type="submit"
           >
-            <MazIcon class="maz-text-gray-400" name="Check" />
+            <MazIcon class="maz-text-normal-text" name="check" />
           </MazBtn>
         </slot>
       </div>
@@ -100,10 +104,6 @@
 </template>
 
 <script lang="ts">
-  /**
-   * # Composent input wrapper
-   */
-
   import { computed, defineComponent, onMounted, ref, PropType } from 'vue'
   import { debounce } from './../utils/debounce'
   import MazBtn from './MazBtn.vue'
@@ -181,6 +181,8 @@
       validButton: { type: Boolean, default: false },
       validButtonLoading: { type: Boolean, default: false },
       autoFocus: { type: Boolean, default: false },
+      leftIcon: { type: String, default: undefined },
+      rightIcon: { type: String, default: undefined },
     },
     emits: ['focus', 'blur', 'update:model-value'],
     setup(props, { emit, slots }) {
@@ -240,13 +242,19 @@
 
       const hasLabel = computed(() => !!props.label || !!props.hint)
 
-      const hasRightPart = (): boolean =>
-        !!slots['right-icon'] ||
-        isPasswordType.value ||
-        !!slots['valid-button'] ||
-        props.validButton
+      const hasRightPart = (): boolean => {
+        return (
+          !!slots['right-icon'] ||
+          isPasswordType.value ||
+          !!slots['valid-button'] ||
+          props.validButton ||
+          !!props.rightIcon
+        )
+      }
 
-      const hasLeftPart = (): boolean => !!slots['left-icon']
+      const hasLeftPart = (): boolean => {
+        return !!slots['left-icon'] || !!props.leftIcon
+      }
 
       const focus = (event: Event) => {
         emit('focus', event)

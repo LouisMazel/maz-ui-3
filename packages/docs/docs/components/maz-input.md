@@ -88,6 +88,40 @@ description: MazInput is a stand-alone component replaces the standard html inpu
 </template>
 ```
 
+### Icons
+
+> When you use `right-icon` or `left-icon`, the component use [MazIcon](/maz-ui-3/components/maz-icon.html)
+
+<MazInput v-model="inputValue"  id="icons" label="label icons" left-icon="cash" right-icon="user" />
+
+> Use your own icons
+
+<MazInput v-model="inputValue"  id="icons" label="label icons">
+  <template #left-icon>
+    <MazIcon name="check" />
+  </template>
+  <template #right-icon>
+    <MazIcon name="user-group" />
+  </template>
+</MazInput>
+
+```vue
+<template>
+  <MazInput v-model="inputValue"  id="icons" label="label icons" left-icon="cash" right-icon="user" />
+
+  <!-- or -->
+
+  <MazInput v-model="inputValue"  id="icons" label="label icons">
+  <template #left-icon>
+    <MazIcon name="check" />
+  </template>
+  <template #right-icon>
+    <MazIcon name="user-group" />
+  </template>
+</MazInput>
+</template>
+```
+
 ### No radius
 
 > Will remove the border radius

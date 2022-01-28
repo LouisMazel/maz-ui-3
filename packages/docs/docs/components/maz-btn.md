@@ -173,67 +173,79 @@ description: MazBtn is a stand-alone component replaces the standard html button
 > When you use `right-icon` or `left-icon`, the component use [MazIcon](/maz-ui-3/components/maz-icon.html)
 
 <div class="flex items-start gap-05 rounded flex-wrap">
-  <MazBtn left-icon="Trash">
+  <MazBtn left-icon="check">
     left-icon
   </MazBtn>
-  <MazBtn right-icon="Trash">
+  <MazBtn right-icon="home">
     right-icon
   </MazBtn>
-  <MazBtn left-icon="Trash" right-icon="Trash">
+  <MazBtn left-icon="terminal" right-icon="trash">
     left-right-icon
   </MazBtn>
 </div>
 
 ```vue
 <template>
-  <MazBtn left-icon="Check">
+  <MazBtn left-icon="check">
     left-icon
   </MazBtn>
-  <MazBtn right-icon="Home">
+  <MazBtn right-icon="home">
     right-icon
   </MazBtn>
-  <MazBtn left-icon="Terminal" right-icon="Trash">
+  <MazBtn left-icon="terminal" right-icon="trash">
     left-right-icon
   </MazBtn>
 </template>
 ```
 
-> Use you own icons
+> Use your own icons
 
 <div class="flex items-start gap-05 rounded flex-wrap">
   <MazBtn>
     <template #left-icon>
-      <MazIcon name="Check" />
+      <MazIcon name="check" />
     </template>
     left-icon
   </MazBtn>
   <MazBtn>
     <template #right-icon>
-      <MazIcon name="Home" />
+      <MazIcon name="home" />
     </template>
     right-icon
   </MazBtn>
   <MazBtn>
     <template #left-icon>
-      <MazIcon name="Terminal" />
+      <MazIcon name="terminal" />
     </template>
     right-icon
     <template #right-icon>
-      <MazIcon name="InformationCircle" />
+      <MazIcon name="information-circle" />
     </template>
   </MazBtn>
 </div>
 
 ```vue
 <template>
-  <MazBtn left-icon="Trash">
+  <MazBtn>
+    <template #left-icon>
+      <MazIcon name="check" />
+    </template>
     left-icon
   </MazBtn>
-  <MazBtn right-icon="Trash">
+  <MazBtn>
+    <template #right-icon>
+      <MazIcon name="home" />
+    </template>
     right-icon
   </MazBtn>
-  <MazBtn left-icon="Trash" right-icon="Trash">
-    left-right-icon
+  <MazBtn>
+    <template #left-icon>
+      <MazIcon name="terminal" />
+    </template>
+    right-icon
+    <template #right-icon>
+      <MazIcon name="information-circle" />
+    </template>
   </MazBtn>
 </template>
 ```

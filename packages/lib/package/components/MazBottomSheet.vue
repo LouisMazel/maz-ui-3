@@ -27,7 +27,7 @@
           color="transparent"
           @click="close"
         >
-          <MazIcon name="X" />
+          <MazIcon name="x" />
         </MazBtn>
       </div>
     </template>

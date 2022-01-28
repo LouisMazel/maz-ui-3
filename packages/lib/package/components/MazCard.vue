@@ -32,7 +32,7 @@
         @click.stop="isOpen = !isOpen"
       >
         <MazIcon
-          name="ChevronDown"
+          name="chevron-down"
           :class="{ '--is-open': isOpen }"
           class="m-card__collapse-icon maz-h-6"
         />

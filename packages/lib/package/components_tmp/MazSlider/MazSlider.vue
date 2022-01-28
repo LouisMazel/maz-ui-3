@@ -173,7 +173,6 @@
         computedValue.value.forEach((_: any, i: number) => setBtnDividers(i))
       }
       const cursorKeyDown = (event: KeyboardEvent, i: number) => {
-        // ArrowLeft
         if (event.code === 'ArrowLeft') {
           if (
             tmpValues.value &&

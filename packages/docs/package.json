@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "documentation of maz-ui",
   "main": "index.js",
+  "browser": {
+    "fs": false
+  },
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
@@ -20,6 +23,6 @@
     "dropzone": "^5.9.3",
     "libphonenumber-js": "^1.9.46",
     "maz-ui": "file:../lib/dist",
-    "vue-inline-svg": "^2.1.0"
+    "vite-fs": "^0.0.2"
   }
 }

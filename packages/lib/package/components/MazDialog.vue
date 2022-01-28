@@ -22,7 +22,7 @@
             class="m-dialog-layout-closebtn"
             @click="close"
           >
-            <MazIcon name="X" class="maz-cursor-pointer" />
+            <MazIcon name="x" class="maz-cursor-pointer" />
           </MazBtn>
         </div>
         <div class="m-dialog-layout-content">

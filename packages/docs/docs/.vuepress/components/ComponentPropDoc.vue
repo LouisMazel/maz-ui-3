@@ -128,18 +128,24 @@ const getOptions = async () => {
 
 
   if (component?.props) {
-    options.value = Object.entries(component.props).map((prop) => ({
-      name: camelToSnakeCase(prop[0]),
-      type: Array.isArray(prop[1].type) ? prop[1].type.map((type) => type.name).join('|') : prop[1].type?.name ?? '-',
-      defaultValue: (typeof prop[1].default === 'boolean' ? prop[1].default : prop[1].default?.name ?? prop[1].default) ?? '-',
-      required: prop[1].required ? 'true' : 'false',
-      values: getValidatorValues(prop[1].validator),
-    }))
+    options.value = Object.entries(component.props).map((prop) => {
+      return {
+        name: camelToSnakeCase(prop[0]),
+        type: Array.isArray(prop[1].type) ? prop[1].type.map((type) => type.name).join('|') : prop[1].type?.name ?? '-',
+        defaultValue: (typeof prop[1].default === 'boolean'
+          ? prop[1].default
+          : typeof prop[1].default === 'function'
+          ? prop[1].default
+          : prop[1].default?.name ?? prop[1].default) ?? '-',
+        required: prop[1].required ? 'true' : 'false',
+        values: getValidatorValues(prop[1].validator),
+      }
+    })
   }
 }
 
 const setMethods = () => {
-  methods.value = Object.values(props.componentInstance).filter((value) => typeof value === 'function')
+  methods.value = props.componentInstance ? Object.values(props.componentInstance).filter((value) => typeof value === 'function') : undefined
 }
 
 watch(

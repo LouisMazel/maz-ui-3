@@ -112,5 +112,5 @@ export default defineUserConfig<DefaultThemeOptions>({
         id: 'G-EM35TM23Z',
       },
     ],
-  ]
+  ],
 })
