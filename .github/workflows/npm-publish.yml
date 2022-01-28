@@ -8,9 +8,6 @@ jobs:
   npm-publish:
     name: npm-publish
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./packages/lib
     steps:
       - name: Checkout repository
         uses: actions/checkout@master
