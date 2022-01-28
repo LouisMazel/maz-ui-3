@@ -45,3 +45,15 @@ lint-staged-lib: ## install lint api packages
 
 lint-staged-docs: ## install lint app packages
 	make --directory=packages/docs lint-staged
+
+bump-version-tag:
+	make --directory=packages/lib bump-version-tag tag="$(tag)"
+
+bump-version:
+	make --directory=packages/lib bump-version
+
+bump-version-minor:
+	make --directory=packages/lib bump-version-minor
+
+bump-version-major:
+	make --directory=packages/lib bump-version-major
