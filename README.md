@@ -19,9 +19,9 @@
 [Getting Started](https://louismazel.github.io/maz-ui-3/guide/getting-started)
 
 ```shell
-npm install maz-ui@next
+npm install maz-ui@beta
 
-# Or yarn add maz-ui@next
+# Or yarn add maz-ui@beta
 ```
 
 ### Import necessary CSS file

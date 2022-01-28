@@ -1,7 +1,5 @@
 .PHONY: lint build install reinstall lint-staged
 
-VERSION=`node -pe "require('./package.json').version"`
-
 lint:
 	npm run lint
 
@@ -25,6 +23,10 @@ reinstall:
 lint-staged: ## lint-staged
 	npm run pre-commit
 
+define GetFromPkg
+	$(shell node -p "require('./package.json').$(1)")
+endef
+
 define bump-version
 	VERSION=`node -pe "require('./package.json').version"` && \
 	NEXT_VERSION=`node -pe "require('semver').inc(\"$$VERSION\", '$(1)')"` && \
@@ -37,18 +39,41 @@ define bump-version-tag
 	npm version $$NEXT_VERSION
 endef
 
-define bump-version
+define push-version
 	@$(call bump-version,$(1))
+	make install
+	make clean-build
+	make build
+	git add --all
+	git commit -m "chore: pre-build"
+	# npm publish
+	# git push origin HEAD
 endef
 
-bump-version-tag:
-	@$(call bump-version-tag,$(tag))
+define push-version-tag
+	@$(call bump-version-tag,$(1))
+	make install
+	make clean-build
+	make build
+	npm publish --tag $(1)
+	git add --all
+	git commit -m "chore(lib): bump-version $(1)"
+	git push origin HEAD
+endef
 
-bump-version:
-	@$(call bump-version,patch)
+commit:
+	git add --all
+	git commit -m "chore(lib): bump-version to $(call GetFromPkg,version)"
+	git push origin HEAD
 
-bump-version-minor:
-	@$(call bump-version,minor)
+publish-version-tag:
+	@$(call push-version-tag,$(tag))
 
-bump-version-major:
-	@$(call bump-version,major)
+publish-version:
+	@$(call push-version,patch)
+
+publish-version-minor:
+	@$(call push-version,minor)
+
+publish-version-major:
+	@$(call push-version,major)
