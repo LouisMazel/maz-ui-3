@@ -8,7 +8,7 @@
   "module": "index.js",
   "types": "types/index.d.ts",
   "files": [
-    "dist/**/*"
+    "dist"
   ],
   "scripts": {
     "test": "jest",
