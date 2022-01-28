@@ -29,7 +29,7 @@ npm install maz-ui@beta
 In the `main.js` or `main.ts`, import these files.
 
 ```ts
-import "maz-ui/main.css";
+import "maz-ui/dist/main.css";
 ```
 
 ### Recommanded
@@ -82,7 +82,7 @@ app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 ```typescript
 import { createApp } from "vue";
 import MazUi from "maz-ui";
-import "maz-ui/main.css";
+import "maz-ui/dist/main.css";
 
 const app = createApp(App);
 

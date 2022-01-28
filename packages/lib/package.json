@@ -3,12 +3,12 @@
   "version": "3.0.0-beta.6",
   "description": "A stand-alone components library for Vue.Js 3 & Nuxt.Js 3",
   "author": "Louis Mazel <me@loicmazuel.com>",
-  "main": "cjs/index.js",
-  "browser": "index.js",
-  "module": "index.js",
+  "main": "dist/cjs/index.js",
+  "browser": "dist/index.js",
+  "module": "dist/index.js",
   "types": "types/index.d.ts",
   "files": [
-    "dist"
+    "dist/"
   ],
   "scripts": {
     "test": "jest",
