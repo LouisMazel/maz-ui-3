@@ -19,6 +19,7 @@ export const components = {
         '/components/maz-avatar.md',
         '/components/maz-bottom-sheet.md',
         '/components/maz-dialog.md',
+        '/components/maz-gallery.md',
         '/components/maz-card.md',
         '/components/maz-lazy-img.md',
         '/components/maz-icon.md',

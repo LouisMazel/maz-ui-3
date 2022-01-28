@@ -3,20 +3,20 @@
     v-if="images.length || hasEmptyLayer"
     class="m-gallery maz-flex"
     :style="[sizeStyle]"
-    :class="{ 'maz-rounded-xl': radius }"
+    :class="{ 'maz-rounded-xl': !noRadius }"
   >
     <section class="m-gallery__wrapper maz-flex maz-flex-1">
       <figure
         v-for="(image, i) in imagesShown"
         :key="i"
-        class="m-gallery__item !maz-my-0 maz-flex maz-items-center maz-justify-center"
+        class="m-gallery__item !maz-my-0 maz-flex maz-flex-center"
         :class="[`m-gallery__item--${i + 1}`]"
       >
         <img
           v-zoom-img="{
             src: image.slug,
             alt: image.alt,
-            disabled: !zoom || shouldHaveRemainingLayer(i),
+            disabled: noZoom || shouldHaveRemainingLayer(i),
             blur: blur,
             scale: scale,
           }"
@@ -30,28 +30,31 @@
           v-zoom-img="{
             src: image.slug,
             alt: image.alt,
-            disabled: !zoom,
+            disabled: noZoom,
             blur: blur,
             scale: scale,
           }"
-          class="m-gallery__remaining-layer maz-flex maz-items-center maz-justify-center maz-bg-overlay"
+          class="m-gallery__remaining-layer maz-flex maz-bg-overlay maz-flex-center"
         >
-          <span>+{{ numberImagesRemaining }}</span>
+          <span class="maz-text-2xl maz-text-white"
+            >+{{ numberImagesRemaining }}</span
+          >
         </div>
       </figure>
       <div
         v-if="hasEmptyLayer && !images.length"
-        class="maz-flex maz-w-full maz-items-center maz-justify-center maz-bg-gray-100"
-        :class="{ 'maz-rounded-xl': radius }"
+        class="maz-flex maz-w-full maz-bg-gray-100 maz-flex-center"
+        :class="{ 'maz-rounded-xl': !noRadius }"
         :style="[sizeStyle]"
       >
+        // TODO: icon
         <i class="material-icons maz-text-muted">no_photography</i>
       </div>
     </section>
     <div
       v-for="(image, i) in imagesHidden"
       :key="i"
-      v-zoom-img="{ src: image.slug, disabled: !zoom }"
+      v-zoom-img="{ src: image.slug, disabled: noZoom }"
       class="m-gallery__hidden"
     />
   </div>
@@ -84,9 +87,9 @@
       // Remove default width
       noWidth: { type: Boolean, default: false },
       // Add the default border radius to gallery
-      radius: { type: Boolean, default: true },
+      noRadius: { type: Boolean, default: false },
       // Add feature to show the carousel images on click
-      zoom: { type: Boolean, default: true },
+      noZoom: { type: Boolean, default: false },
       // Layer with photography icon when no images is provided
       hasEmptyLayer: { type: Boolean, default: true },
       // Lazy load image - if false, images are directly loaded
