@@ -20,7 +20,7 @@ sidebar: false
     <MazBtn v-if="github" color="black" :href="github" target="_blank" right-icon="Github" style="margin-right: 0.5rem;">
       Github
     </MazBtn>
-    <MazBtn :href="link" target="_blank" right-icon="ArrowRight">
+    <MazBtn :href="link" target="_blank" right-icon="arrow-right">
       Show
     </MazBtn>
   </template>
