@@ -1,6 +1,6 @@
 {
   "name": "maz-ui",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.1",
   "description": "A stand-alone components library for Vue.Js 3 & Nuxt.Js 3",
   "author": "Louis Mazel <me@loicmazuel.com>",
   "main": "cjs/index.js",
@@ -96,6 +96,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-vue": "^6.0.0",
+    "semver": "^7.3.5",
     "stylelint": "^14.2.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended-vue": "^1.1.0",
