@@ -8,7 +8,7 @@
   "module": "index.js",
   "types": "types/index.d.ts",
   "directories": {
-    "lib": "/"
+    "/": "./dist"
   },
   "scripts": {
     "test": "jest",
