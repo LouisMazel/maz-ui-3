@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@master
-      - name: Bump version
+      - name: Bump version beta
         run: make bump-version-tag tag=beta
       - name: Install lib dependencies
         run: make install-lib
