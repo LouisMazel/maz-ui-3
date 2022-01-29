@@ -1,6 +1,6 @@
 {
   "name": "maz-ui",
-  "version": "3.0.0-beta.9",
+  "version": "3.0.0-beta.10",
   "description": "A stand-alone components library for Vue.Js 3 & Nuxt.Js 3",
   "author": "Louis Mazel <me@loicmazuel.com>",
   "main": "lib/cjs/index.js",
@@ -8,7 +8,9 @@
   "module": "lib/index.js",
   "types": "types/index.d.ts",
   "files": [
-    "dist/lib/**/*"
+    "lib",
+    "css",
+    "types"
   ],
   "scripts": {
     "test": "jest",
@@ -16,14 +18,12 @@
     "lint:js": "eslint --fix --ext .ts,.js,.vue .",
     "format": "prettier . --write",
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
-    "clean": "rimraf dist",
-    "build": "cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css && npm run copy:package-file",
+    "clean": "rimraf lib css types",
+    "build": "cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css",
     "build:watch": "onchange 'package/**/*' -- npm run build",
-    "build:css": "NODE_ENV=production npx tailwindcss -i ./package/tailwindcss/css/tailwind.css -o dist/main.css --config ./tailwind.config.js --postcss",
+    "build:css": "NODE_ENV=production npx tailwindcss -i ./package/tailwindcss/css/tailwind.css -o css/main.css --config ./tailwind.config.js --postcss",
     "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "copy:css-files": "cp ./package/tailwindcss/css/_subs/colors-vars.css ./dist",
-    "copy:package-file": "cp ./package.json ./dist",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {

@@ -141,7 +141,7 @@ if (!argv.format || argv.format === 'es') {
     input: COMPONENT_INPUT,
     external,
     output: {
-      dir: 'dist/lib',
+      dir: 'lib',
       format: 'esm',
       sourcemap: true,
       exports: 'named',
@@ -183,7 +183,7 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      dir: 'dist/lib/cjs',
+      dir: 'lib/cjs',
       format: 'cjs',
       name: 'MazUi',
       exports: 'named',
