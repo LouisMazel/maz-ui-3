@@ -110,10 +110,10 @@
     sanitizePhoneNumber,
     loadPhoneNumberExamplesFile,
     truthyFilter,
-  } from './utils'
-  import locales from './constantes/locales'
+  } from './MazPhoneNumberInput/utils'
+  import locales from './MazPhoneNumberInput/constantes/locales'
 
-  import { Result, Translations } from './types'
+  import { Result, Translations } from './MazPhoneNumberInput/types'
 
   import {
     ComponentPublicInstance,
@@ -126,9 +126,9 @@
     watch,
   } from 'vue'
 
-  import MazInput from './../MazInput.vue'
-  import MazSelect from './../MazSelect.vue'
-  import { Color, Position, Size } from '../types'
+  import MazInput from './MazInput.vue'
+  import MazSelect from './MazSelect.vue'
+  import { Color, Position, Size } from './types'
 
   const emits = defineEmits(['update', 'update:model-value', 'country-code'])
 
@@ -508,7 +508,7 @@
 </script>
 
 <style lang="postcss" scoped>
-  @import './css/flags.css';
+  @import './MazPhoneNumberINput/css/flags.css';
 
   .m-phone-number-input {
     &__country-flag {

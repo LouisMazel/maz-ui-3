@@ -6,11 +6,10 @@
   "main": "lib/cjs/index.js",
   "browser": "lib/index.js",
   "module": "lib/index.js",
-  "types": "types/index.d.ts",
+  "types": "lib/maz-ui.d.ts",
   "files": [
     "lib",
-    "css",
-    "types"
+    "css"
   ],
   "scripts": {
     "test": "jest",
@@ -19,8 +18,10 @@
     "format": "prettier . --write",
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
     "clean": "rimraf lib css types",
-    "build": "cross-env NODE_ENV=production rollup -c build/rollup.config.js && npm run build:css",
+    "build": "npm run build:js && npm run build:types && npm run build:css",
     "build:watch": "onchange 'package/**/*' -- npm run build",
+    "build:js": "cross-env NODE_ENV=production rollup -c build/rollup.types.config.js",
+    "build:types": "npx tsc --declaration && cross-env NODE_ENV=production rollup -c build/rollup.config.js && rimraf types",
     "build:css": "NODE_ENV=production npx tailwindcss -i ./package/tailwindcss/css/tailwind.css -o css/main.css --config ./tailwind.config.js --postcss",
     "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",

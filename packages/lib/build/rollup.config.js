@@ -23,8 +23,13 @@ import minimist from 'minimist'
 import commonjs from '@rollup/plugin-commonjs'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
-const INPUT_ENTRY = './package/index.ts'
-const COMPONENT_INPUT = './package/components/index.ts'
+const INPUT_ESM_ENTRY = resolve(__dirname, './../package/index.esm.ts')
+const INPUT_CJS_ENTRY = resolve(__dirname, './../package/index.cjs.ts')
+// const INPUT_COMPONENT_DIR = resolve(__dirname, './../package/components')
+
+// const componentsList = readdirSync(INPUT_COMPONENT_DIR)
+//   .filter((name) => name.endsWith('.vue'))
+//   .map((name) => `${INPUT_COMPONENT_DIR}/${name}`)
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = readFileSync('./.browserslistrc')
@@ -67,7 +72,6 @@ const postcssConfigList = [
 ]
 
 const baseConfig = {
-  input: INPUT_ENTRY,
   plugins: {
     preVue: [
       alias({
@@ -116,42 +120,26 @@ const baseConfig = {
   },
 }
 
-// ESM/UMD/IIFE shared settings: externals
-// Refer to https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
-const external = [
-  // list external dependencies, exactly the way it is written in the import statement.
-  // eg. 'jquery'
-  'vue',
-]
-
-// UMD/IIFE shared settings: output.globals
-// Refer to https://rollupjs.org/guide/en#output-globals for details
-const globals = {
-  // Provide global variable names to replace your external imports
-  // eg. jquery: '$'
-  vue: 'Vue',
-}
-
 // Customize configs for individual targets
+/** @type {import('rollup').RollupOptions[]} */
 const buildFormats = []
 
-if (!argv.format || argv.format === 'es') {
+if (!argv.format || argv.format === 'esm') {
+  /** @type {import('rollup').RollupOptions} */
   const esConfig = {
     ...baseConfig,
-    input: COMPONENT_INPUT,
-    external,
+    input: INPUT_ESM_ENTRY,
     output: {
-      dir: 'lib',
+      dir: 'lib/esm',
       format: 'esm',
-      sourcemap: true,
       exports: 'named',
+      sourcemap: true,
+      compact: true,
     },
     plugins: [
       peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
       // Only use typescript for declarations - babel will
       // do actual js transformations
       typescript({
@@ -159,6 +147,8 @@ if (!argv.format || argv.format === 'es') {
         useTsconfigDeclarationDir: true,
         emitDeclarationOnly: true,
       }),
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
       babel({
         ...baseConfig.plugins.babel,
         presets: [
@@ -178,30 +168,66 @@ if (!argv.format || argv.format === 'es') {
 }
 
 if (!argv.format || argv.format === 'cjs') {
-  const umdConfig = {
+  /** @type {import('rollup').RollupOptions} */
+  const cjsConfig = {
     ...baseConfig,
-    external,
+    input: INPUT_CJS_ENTRY,
     output: {
       compact: true,
       dir: 'lib/cjs',
-      format: 'cjs',
-      name: 'MazUi',
       exports: 'named',
+      format: 'cjs',
       sourcemap: true,
-      globals,
     },
     plugins: [
       peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
+      typescript({
+        typescript: ttypescript,
+        useTsconfigDeclarationDir: true,
+        emitDeclarationOnly: true,
+      }),
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
       terser({ output: { ecma: 5 } }),
     ],
   }
-  buildFormats.push(umdConfig)
+  buildFormats.push(cjsConfig)
 }
+
+// if (!argv.format || argv.format === 'components') {
+//   const componentsConfig = componentsList.map((component) => {
+//     /** @type {import('rollup').RollupOptions} */
+//     return {
+//       ...baseConfig,
+//       input: component,
+//       output: {
+//         dir: 'lib/components',
+//         exports: 'named',
+//         format: 'esm',
+//         sourcemap: true,
+//       },
+//       plugins: [
+//         peerDepsExternal(),
+//         replace(baseConfig.plugins.replace),
+//         ...baseConfig.plugins.preVue,
+//         typescript({
+//           typescript: ttypescript,
+//           useTsconfigDeclarationDir: false,
+//           emitDeclarationOnly: true,
+//         }),
+//         vue(baseConfig.plugins.vue),
+//         ...baseConfig.plugins.postVue,
+//         babel(baseConfig.plugins.babel),
+//         terser({ output: { ecma: 5 } }),
+//       ],
+//     }
+//   })
+//   /** @type {import('rollup').RollupOptions} */
+//   buildFormats.push(...componentsConfig)
+// }
 
 // Export config
 export default buildFormats

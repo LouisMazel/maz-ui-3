@@ -3,6 +3,7 @@
     <MazBtn @click="toggleDarkMode" style="margin-bottom: 16px;">
       Dark Switch
     </MazBtn>
+    <MazArrowIcon />
     <MazDropzone
       ref="MazDropzoneElem"
       :options="dropzoneOptions"
@@ -17,7 +18,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { onMounted } from 'vue'
-  import { MazBtn, MazDropzone, MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui'
+  import { MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui'
 
   const MazDropzoneElem = ref<MazDropzoneInstance>()
 
@@ -73,8 +74,8 @@
     ...translations
   }
 
-  const error = (error) => console.log('dropzone-error', error)
-  const success = (success) => console.log('dropzone-success', success)
+  const error = (error: any) => console.log('dropzone-error', error)
+  const success = (success: any) => console.log('dropzone-success', success)
 </script>
 
 

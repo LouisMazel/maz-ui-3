@@ -48,13 +48,13 @@
     ref,
   } from 'vue'
   import { DropzoneOptions, DropzoneFile } from 'dropzone'
-  import MazSpinner from './../MazSpinner.vue'
+  import MazSpinner from './MazSpinner.vue'
   import {
     MazDropzoneInstance,
     MazDropzoneFile,
     MazDropzoneOptions,
     IMazDropzone,
-  } from '../types'
+  } from './types'
   import DropzoneJs from 'dropzone'
 
   const previewTemplate = `<div class="dz-preview dz-file-preview maz-flex-1">
