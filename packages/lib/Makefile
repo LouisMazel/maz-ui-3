@@ -45,7 +45,7 @@ define push-version
 	make build
 	@$(call bump-version,$(1))
 	# npm publish
-	git add ./packages/lib/**/*
+	git add .
 	git commit -m "chore: pre-build"
 	# git push origin HEAD
 endef
@@ -56,7 +56,7 @@ define push-version-tag
 	make build
 	@$(call bump-version-tag,$(1))
 	npm publish --tag $(1)
-	git add ./packages/lib/**/*
+	git add .
 	git commit -m "chore(lib): bump-version $(1)"
 	git push origin HEAD
 endef
