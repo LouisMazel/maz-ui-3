@@ -1,6 +1,6 @@
 import { defineClientAppEnhance } from '@vuepress/client'
-import * as components from 'maz-ui'
-import 'maz-ui/main.css'
+import { components } from 'maz-ui'
+import 'maz-ui/css/main.css'
 
 const mazIconPath = process.env.NODE_ENV === 'production'
     ? '/maz-ui-3/icons'

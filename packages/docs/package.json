@@ -22,7 +22,7 @@
   "dependencies": {
     "dropzone": "^5.9.3",
     "libphonenumber-js": "^1.9.46",
-    "maz-ui": "file:../lib/dist",
+    "maz-ui": "file:../lib",
     "vite-fs": "^0.0.2"
   }
 }
