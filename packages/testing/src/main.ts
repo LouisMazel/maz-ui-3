@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import 'maz-ui/dist/main.css'
+import 'maz-ui/main.css'
 
 const app = createApp(App)
 
