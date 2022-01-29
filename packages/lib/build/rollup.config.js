@@ -183,11 +183,6 @@ if (!argv.format || argv.format === 'cjs') {
       peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
-      typescript({
-        typescript: ttypescript,
-        useTsconfigDeclarationDir: true,
-        emitDeclarationOnly: true,
-      }),
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
@@ -213,11 +208,6 @@ if (!argv.format || argv.format === 'cjs') {
 //         peerDepsExternal(),
 //         replace(baseConfig.plugins.replace),
 //         ...baseConfig.plugins.preVue,
-//         typescript({
-//           typescript: ttypescript,
-//           useTsconfigDeclarationDir: false,
-//           emitDeclarationOnly: true,
-//         }),
 //         vue(baseConfig.plugins.vue),
 //         ...baseConfig.plugins.postVue,
 //         babel(baseConfig.plugins.babel),

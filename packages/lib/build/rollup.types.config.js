@@ -6,7 +6,7 @@ const INPUT_TYPES = resolve(__dirname, './../types/index.esm.d.ts')
 const config = [
   {
     input: INPUT_TYPES,
-    output: [{ file: 'dist/maz-ui.d.ts', format: 'es' }],
+    output: [{ file: 'lib/maz-ui.d.ts', format: 'es' }],
     plugins: [dts()],
   },
 ]

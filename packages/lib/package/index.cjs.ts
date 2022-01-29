@@ -17,7 +17,7 @@ Object.entries(components).forEach(([componentName, component]) => {
 
 export default plugin
 
-export { debounce } from './utils/debounce'
+export * from './utils'
 export * from './components'
 export * from './components/types'
 export * from './directives'

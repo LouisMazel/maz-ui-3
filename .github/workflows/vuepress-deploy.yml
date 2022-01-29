@@ -2,8 +2,8 @@ name: Build and Deploy
 on:
   push:
     branches: [master]
-    paths:
-      - "packages/docs/**"
+    # paths:
+    #   - "packages/docs/**"
 
 jobs:
   build-and-deploy:
