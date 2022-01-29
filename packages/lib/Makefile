@@ -40,23 +40,23 @@ define bump-version-tag
 endef
 
 define push-version
-	@$(call bump-version,$(1))
 	make install
 	make clean-build
 	make build
-	git add --all
-	git commit -m "chore: pre-build"
+	@$(call bump-version,$(1))
 	# npm publish
+	git add ./packages/lib/**/*
+	git commit -m "chore: pre-build"
 	# git push origin HEAD
 endef
 
 define push-version-tag
-	@$(call bump-version-tag,$(1))
 	make install
 	make clean-build
 	make build
+	@$(call bump-version-tag,$(1))
 	npm publish --tag $(1)
-	git add --all
+	git add ./packages/lib/**/*
 	git commit -m "chore(lib): bump-version $(1)"
 	git push origin HEAD
 endef
