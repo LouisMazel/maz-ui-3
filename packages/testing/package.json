@@ -9,7 +9,7 @@
   "dependencies": {
     "dropzone": "^5.9.3",
     "libphonenumber-js": "^1.9.46",
-    "maz-ui": "^3.0.0-beta.10",
+    "maz-ui": "file:../lib",
     "typescript": "^4.5.5",
     "vue": "^3.2.25"
   },
