@@ -55,6 +55,7 @@
     MazDropzoneOptions,
     IMazDropzone,
   } from '../types'
+  import DropzoneJs from 'dropzone'
 
   const previewTemplate = `<div class="dz-preview dz-file-preview maz-flex-1">
   <div class="dz-image">
@@ -170,9 +171,7 @@
           }, 3000)
       }
 
-      onMounted(async () => {
-        const DropzoneJs = (await import('dropzone')).default
-
+      onMounted(() => {
         const defaultOptions: MazDropzoneOptions = {
           parallelUploads: props.options.maxFiles,
           previewTemplate,
