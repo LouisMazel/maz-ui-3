@@ -22,3 +22,4 @@ export * from './components'
 export * from './components/types'
 export * from './directives'
 export * from './filters'
+export { components }
