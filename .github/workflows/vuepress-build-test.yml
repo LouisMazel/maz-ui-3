@@ -2,6 +2,9 @@ name: Build Tests
 on:
   pull_request:
     branches: [master]
+    paths:
+      - "packages/docs/**"
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
