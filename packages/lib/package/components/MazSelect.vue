@@ -311,7 +311,7 @@
       min-width: 3.5rem;
 
       &-item {
-        @apply maz-flex maz-w-full maz-items-center maz-bg-transparent maz-px-4 maz-text-left hover:maz-bg-color-light;
+        @apply maz-flex maz-w-full maz-items-center maz-bg-transparent maz-px-4 maz-text-left maz-text-normal-text hover:maz-bg-color-light;
 
         &.--is-keyboard-selected {
           @apply maz-bg-color-light maz-font-medium;

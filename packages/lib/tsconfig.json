@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "types_tmp",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -25,6 +25,6 @@
     },
     "types": ["@types/node", "jest", "google.maps"]
   },
-  "include": ["build/*", "package/**/*"],
+  "include": ["build/**/*", "package/**/*"],
   "exclude": ["node_modules", "lib", "css"]
 }

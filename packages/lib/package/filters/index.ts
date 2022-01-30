@@ -1,25 +1,23 @@
-import { App } from 'vue'
+import { Plugin } from 'vue'
 
 import { capitalize } from './capitalize'
 import { currency } from './currency'
 import { date } from './date'
 import { number } from './number'
-import { telephone } from './telephone'
 
 const filters = {
   capitalize,
   currency,
   date,
   number,
-  telephone,
 }
 
 export type Filters = typeof filters
 
-const installFilters = {
-  install(app: App) {
+const installFilters: Plugin = {
+  install(app) {
     app.provide('filters', filters)
   },
 }
 
-export { capitalize, currency, date, number, telephone, installFilters }
+export { capitalize, currency, date, number, installFilters }
