@@ -1,4 +1,4 @@
-interface FilterCurrencyOptions extends Intl.NumberFormatOptions {
+export interface FilterCurrencyOptions extends Intl.NumberFormatOptions {
   round?: boolean
 }
 

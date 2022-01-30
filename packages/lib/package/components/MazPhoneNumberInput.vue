@@ -508,7 +508,7 @@
 </script>
 
 <style lang="postcss" scoped>
-  @import './MazPhoneNumberINput/css/flags.css';
+  @import './MazPhoneNumberInput/css/flags.css';
 
   .m-phone-number-input {
     &__country-flag {

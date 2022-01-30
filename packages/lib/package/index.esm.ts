@@ -11,11 +11,8 @@ const plugin: Plugin = {
   },
 }
 
-// Create module definition for Vue.use()
 export default plugin
 
-// To allow individual component use, export components
-// each can be registered via Vue.component()
 export * from './utils'
 export * from './components'
 export * from './components/types'
