@@ -6,7 +6,7 @@ on:
       - "packages/lib/**"
 
 jobs:
-  build-and-deploy:
+  build-lib-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
