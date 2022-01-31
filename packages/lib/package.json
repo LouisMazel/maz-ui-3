@@ -22,7 +22,7 @@
     "build": "npm run build:js && npm run build:css && npm run clean",
     "build:watch": "onchange 'package/**/*' -- npm run build",
     "build:js": "npm run build:lib && npm run build:types && npm run build:copy-comp-types",
-    "build:lib": "cross-env NODE_ENV=production node --max-old-space-size=8192 node_modules/rollup/bin/rollup -c build/rollup.config.js",
+    "build:lib": "cross-env NODE_ENV=production node --max-old-space-size=8192 node_modules/rollup/dist/bin/rollup -c build/rollup.config.js",
     "build:types": "cross-env NODE_ENV=production rollup -c build/rollup.types.config.js",
     "build:copy-comp-types": "node build/copy-components-types.js",
     "build:entries": "cross-env NODE_ENV=production node build/build-entries.js",
