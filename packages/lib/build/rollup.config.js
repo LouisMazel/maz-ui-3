@@ -130,7 +130,7 @@ if (!argv.format || argv.format === 'esm') {
       format: 'esm',
       exports: 'named',
       sourcemap: true,
-      compact: true,
+      // compact: true,
     },
     plugins: [
       peerDepsExternal(),
@@ -181,7 +181,7 @@ if (!argv.format || argv.format === 'esm') {
 //       vue(baseConfig.plugins.vue),
 //       ...baseConfig.plugins.postVue,
 //       babel(baseConfig.plugins.babel),
-// terser({ output: { ecma: 5 } }),
+//       terser({ output: { ecma: 5 } }),
 //     ],
 //   }
 //   buildFormats.push(cjsConfig)
@@ -196,7 +196,7 @@ if (!argv.format || argv.format === 'components') {
         ...baseConfig,
         input: component.path,
         output: {
-          compact: true,
+          // compact: true,
           dir: 'components',
           exports: 'named',
           format: 'esm',
@@ -240,7 +240,7 @@ if (!argv.format || argv.format === 'components') {
   //         vue(baseConfig.plugins.vue),
   //         ...baseConfig.plugins.postVue,
   //         babel(baseConfig.plugins.babel),
-  // terser({ output: { ecma: 5 } }),
+  //         terser({ output: { ecma: 5 } }),
   //       ],
   //     }
   //   })

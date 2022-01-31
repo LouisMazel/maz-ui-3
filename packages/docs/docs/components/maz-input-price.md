@@ -4,7 +4,7 @@ description: MazInputPrice is a stand-alone component replaces the standard html
 
 # MazInputPrice
 
-> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 ## Basic usage
 
@@ -46,7 +46,7 @@ description: MazInputPrice is a stand-alone component replaces the standard html
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { MazInputPrice } from 'maz-ui'
+  import MazInputPrice from 'maz-ui/components/MazInputPrice'
 
   const priceValue = ref(2)
   const formattedPrice = ref()

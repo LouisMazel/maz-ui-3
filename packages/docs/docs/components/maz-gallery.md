@@ -4,7 +4,7 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
 
 # MazGallery
 
-> Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 ## Basic usage
 
@@ -22,7 +22,7 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
 </template>
 
 <script lang="ts" setup>
-  import { MazGallery } from 'maz-ui'
+  import MazGallery from 'maz-ui/components/MazGallery'
 
   const images = [
     'https://www.stevensegallery.com/640/500',

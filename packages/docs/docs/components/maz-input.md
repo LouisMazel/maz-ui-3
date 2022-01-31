@@ -5,7 +5,7 @@ description: MazInput is a stand-alone component replaces the standard html inpu
 
 # MazInput
 
-> Before you have to import the global css file in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css file in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 ## Basic usage
 
@@ -20,7 +20,7 @@ description: MazInput is a stand-alone component replaces the standard html inpu
 
 <script setup>
   import { ref } from 'vue'
-  import { MazInput } from 'maz-ui'
+  import MazInput from 'maz-ui/components/MazInput'
 
   const inputValue = ref('value')
 </script>
@@ -96,7 +96,7 @@ description: MazInput is a stand-alone component replaces the standard html inpu
 
 > Use your own icons
 
-<MazInput v-model="inputValue"  id="icons" label="label icons">
+<MazInput v-model="inputValue"  id="icons-own" label="label icons">
   <template #left-icon>
     <MazIcon name="check" />
   </template>

@@ -19,7 +19,7 @@ description: MazBtn is a stand-alone component replaces the standard html button
 </template>
 
 <script lang="ts" setup>
-  import { MazBtn } from 'maz-ui'
+  import MazBtn from 'maz-ui/components/MazBtn'
 </script>
 ```
 

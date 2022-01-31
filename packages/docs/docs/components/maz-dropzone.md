@@ -4,7 +4,7 @@ description: MazDropzone is a stand-alone component to help user upload differen
 
 # MazDropzone
 
-> Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 To use this component, you have to install the dependency `dropzone`
 
@@ -54,14 +54,16 @@ yarn add dropzone@5
 
 ```vue
 <template>
-  <MazDropzone
-    ref="mazDropzoneInstance"
-    :options="dropzoneOptions"
-    @error="error"
-    @success="success"
-    @sending="loading = true"
-    @complete="loading = false"
-  />
+  <ClientOnly>
+    <MazDropzone
+      ref="mazDropzoneInstance"
+      :options="dropzoneOptions"
+      @error="error"
+      @success="success"
+      @sending="loading = true"
+      @complete="loading = false"
+    />
+  </ClientOnly>
 
   <p v-if="errorMessage" style="color: red; text-align: center;">
     {{ errorMessage }}
@@ -74,7 +76,8 @@ yarn add dropzone@5
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { MazBtn, MazDropzone, MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui'
+  import MazDropzone, { MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui/components/MazDropzone'
+  import MazBtn from 'maz-ui/components/MazBtn'
 
   const loading = ref(false)
   const mazDropzoneInstance = ref<MazDropzoneInstance>()
@@ -125,7 +128,6 @@ yarn add dropzone@5
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue'
-  import { MazBtn, MazDropzone, MazDropzoneOptions, MazDropzoneInstance } from 'maz-ui'
 
   const loading = ref(false)
   const mazDropzoneInstance = ref<MazDropzoneInstance>()
