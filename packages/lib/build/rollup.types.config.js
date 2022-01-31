@@ -1,18 +1,14 @@
 import { resolve } from 'path'
 import dts from 'rollup-plugin-dts'
-import multi from '@rollup/plugin-multi-entry'
 
-const INPUT_TYPES = resolve(__dirname, './../types_tmp/index.d.ts')
-const INPUT_COMPONENTS_TYPES = resolve(
-  __dirname,
-  './../types_tmp/components/index.d.ts',
-)
+const INPUT_TYPES = resolve(__dirname, './../types/index.d.ts')
+const OUTPUT_PATH = resolve(__dirname, './../maz-ui.d.ts')
 
 const config = [
   {
-    input: [INPUT_TYPES, INPUT_COMPONENTS_TYPES],
-    output: [{ file: 'lib/maz-ui.d.ts', format: 'es' }],
-    plugins: [multi(), dts()],
+    input: INPUT_TYPES,
+    output: [{ file: OUTPUT_PATH, format: 'es' }],
+    plugins: [dts()],
   },
 ]
 

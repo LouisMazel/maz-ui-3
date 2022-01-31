@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "declaration": true,
-    "declarationDir": "types_tmp",
+    "declarationDir": "types",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,

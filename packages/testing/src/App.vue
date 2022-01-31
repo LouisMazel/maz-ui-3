@@ -11,15 +11,16 @@
       @success="success"
       auto-remove
     />
+    <!-- <MazPhoneNumberInput /> -->
   </div>
 </template>
 
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { onMounted } from 'vue'
-  import { MazDropzoneInstance, MazDropzoneOptions, components } from 'maz-ui'
+  import MazDropzone, { MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui/components/MazDropzone'
 
-  console.log('components', components)
+  import MazBtn from 'maz-ui/components/MazBtn'
 
   const MazDropzoneElem = ref<MazDropzoneInstance>()
 
