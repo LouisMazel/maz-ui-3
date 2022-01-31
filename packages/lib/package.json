@@ -18,7 +18,7 @@
     "lint:js": "eslint --fix --ext .ts,.js,.vue .",
     "format": "prettier . --write",
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
-    "clean": "rimraf components modules css types && rm maz-ui.d.ts",
+    "clean": "rimraf components modules css types maz-ui.d.ts",
     "build": "npm run build:js && npm run build:css && npm run clean",
     "build:watch": "onchange 'package/**/*' -- npm run build",
     "build:js": "npm run build:lib && npm run build:types && npm run build:copy-comp-types",
