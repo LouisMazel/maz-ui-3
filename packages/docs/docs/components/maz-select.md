@@ -5,7 +5,7 @@ description: MazSelect is a stand-alone component replaces the standard html inp
 
 # MazSelect
 
-> Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 ## Basic usage
 
@@ -59,7 +59,7 @@ description: MazSelect is a stand-alone component replaces the standard html inp
 </template>
 
 <script setup lang="ts">
-  import { MazSelect } from 'maz-ui'
+  import MazSelect from 'maz-ui/components/MazInput'
   import { ref } from 'vue'
 
   const selectValue = ref()

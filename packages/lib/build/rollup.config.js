@@ -23,13 +23,9 @@ import minimist from 'minimist'
 import commonjs from '@rollup/plugin-commonjs'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
-const INPUT_ESM_ENTRY = resolve(__dirname, './../package/index.esm.ts')
-const INPUT_CJS_ENTRY = resolve(__dirname, './../package/index.cjs.ts')
-// const INPUT_COMPONENT_DIR = resolve(__dirname, './../package/components')
+const { componentsList } = require('./get-component-list')
 
-// const componentsList = readdirSync(INPUT_COMPONENT_DIR)
-//   .filter((name) => name.endsWith('.vue'))
-//   .map((name) => `${INPUT_COMPONENT_DIR}/${name}`)
+const INPUT_ENTRY = resolve(__dirname, './../package/index.ts')
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = readFileSync('./.browserslistrc')
@@ -128,26 +124,25 @@ if (!argv.format || argv.format === 'esm') {
   /** @type {import('rollup').RollupOptions} */
   const esConfig = {
     ...baseConfig,
-    input: INPUT_ESM_ENTRY,
+    input: INPUT_ENTRY,
     output: {
-      dir: 'lib/esm',
+      dir: 'modules',
       format: 'esm',
       exports: 'named',
       sourcemap: true,
-      compact: true,
+      // compact: true,
     },
     plugins: [
       peerDepsExternal(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
-      // Only use typescript for declarations - babel will
-      // do actual js transformations
+      vue(baseConfig.plugins.vue),
+      // Only use typescript for declarations - babel will do actual js transformations
       typescript({
         typescript: ttypescript,
         useTsconfigDeclarationDir: true,
         emitDeclarationOnly: true,
       }),
-      vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel({
         ...baseConfig.plugins.babel,
@@ -167,57 +162,91 @@ if (!argv.format || argv.format === 'esm') {
   buildFormats.push(esConfig)
 }
 
-if (!argv.format || argv.format === 'cjs') {
-  /** @type {import('rollup').RollupOptions} */
-  const cjsConfig = {
-    ...baseConfig,
-    input: INPUT_CJS_ENTRY,
-    output: {
-      compact: true,
-      dir: 'lib/cjs',
-      exports: 'named',
-      format: 'cjs',
-      sourcemap: true,
-    },
-    plugins: [
-      peerDepsExternal(),
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-      terser({ output: { ecma: 5 } }),
-    ],
-  }
-  buildFormats.push(cjsConfig)
-}
-
-// if (!argv.format || argv.format === 'components') {
-//   const componentsConfig = componentsList.map((component) => {
-//     /** @type {import('rollup').RollupOptions} */
-//     return {
-//       ...baseConfig,
-//       input: component,
-//       output: {
-//         dir: 'lib/components',
-//         exports: 'named',
-//         format: 'esm',
-//         sourcemap: true,
-//       },
-//       plugins: [
-//         peerDepsExternal(),
-//         replace(baseConfig.plugins.replace),
-//         ...baseConfig.plugins.preVue,
-//         vue(baseConfig.plugins.vue),
-//         ...baseConfig.plugins.postVue,
-//         babel(baseConfig.plugins.babel),
-//         terser({ output: { ecma: 5 } }),
-//       ],
-//     }
-//   })
+// if (!argv.format || argv.format === 'cjs') {
 //   /** @type {import('rollup').RollupOptions} */
-//   buildFormats.push(...componentsConfig)
+//   const cjsConfig = {
+//     ...baseConfig,
+//     input: INPUT_ENTRY,
+//     output: {
+// compact: true,
+//       dir: 'lib/cjs/modules',
+//       exports: 'named',
+//       format: 'cjs',
+// sourcemap: true,
+//     },
+//     plugins: [
+//       peerDepsExternal(),
+//       replace(baseConfig.plugins.replace),
+//       ...baseConfig.plugins.preVue,
+//       vue(baseConfig.plugins.vue),
+//       ...baseConfig.plugins.postVue,
+//       babel(baseConfig.plugins.babel),
+//       terser({ output: { ecma: 5 } }),
+//     ],
+//   }
+//   buildFormats.push(cjsConfig)
 // }
+
+if (!argv.format || argv.format === 'components') {
+  if (!argv.format || argv.format === 'esm') {
+    /** @type {import('rollup').RollupOptions[]} */
+    const componentsEsmConfig = []
+    for (const component of componentsList) {
+      componentsEsmConfig.push({
+        ...baseConfig,
+        input: component.path,
+        output: {
+          // compact: true,
+          dir: 'components',
+          exports: 'named',
+          format: 'esm',
+          sourcemap: true,
+        },
+        plugins: [
+          peerDepsExternal(),
+          replace(baseConfig.plugins.replace),
+          ...baseConfig.plugins.preVue,
+          vue(baseConfig.plugins.vue),
+          typescript({
+            typescript: ttypescript,
+            useTsconfigDeclarationDir: true,
+            emitDeclarationOnly: true,
+          }),
+          ...baseConfig.plugins.postVue,
+          babel(baseConfig.plugins.babel),
+          terser({ output: { ecma: 5 } }),
+        ],
+      })
+    }
+    buildFormats.push(...componentsEsmConfig)
+  }
+  // if (!argv.format || argv.format === 'cjs') {
+  //   const componentsCjsConfig = componentsList.map((component) => {
+  //     /** @type {import('rollup').RollupOptions} */
+  //     return {
+  //       ...baseConfig,
+  //       input: component.path,
+  //       output: {
+  // compact: true,
+  //         dir: 'lib/cjs/components',
+  //         exports: 'named',
+  //         format: 'cjs',
+  // sourcemap: true,
+  //       },
+  //       plugins: [
+  //         peerDepsExternal(),
+  //         replace(baseConfig.plugins.replace),
+  //         ...baseConfig.plugins.preVue,
+  //         vue(baseConfig.plugins.vue),
+  //         ...baseConfig.plugins.postVue,
+  //         babel(baseConfig.plugins.babel),
+  //         terser({ output: { ecma: 5 } }),
+  //       ],
+  //     }
+  //   })
+  //   buildFormats.push(...componentsCjsConfig)
+  // }
+}
 
 // Export config
 export default buildFormats

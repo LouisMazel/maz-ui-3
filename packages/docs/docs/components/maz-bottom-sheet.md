@@ -52,7 +52,7 @@ description: MazBottomSheet is a stand-alone component like a simple dialog but 
 
   <script setup>
     import { ref } from 'vue'
-    import { MazBottomSheet } from 'maz-ui'
+    import MazBottomSheet from 'maz-ui/components/MazBottomSheet'
 
     const isOpen = ref(false)
   </script>

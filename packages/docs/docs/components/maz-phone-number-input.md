@@ -5,7 +5,7 @@ description: MazPhoneNumberInput is a standalone input component to help the use
 
 # MazPhoneNumberInput
 
-> Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 To use this component, you have to install the dependency `libphonenumber-js`
 
@@ -73,6 +73,7 @@ yarn add libphonenumber-js
 </template>
 
 <script setup lang="ts">
+  import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
   import { ref } from 'vue'
   const phoneNumber = ref()
   const results = ref()

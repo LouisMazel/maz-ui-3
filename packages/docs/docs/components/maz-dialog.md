@@ -47,7 +47,7 @@ description: MazBottom is a stand-alone component like a simple dialog but at th
 
 <script setup>
   import { ref } from 'vue'
-  import { MazDialog } from 'maz-ui'
+  import MazDialog from 'maz-ui/components/MazDialog'
 
   const isOpen = ref(false)
 </script>

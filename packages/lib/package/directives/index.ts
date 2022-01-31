@@ -1,3 +1,5 @@
+import { Plugin } from 'vue'
+
 import {
   directive as vClickOutside,
   default as vClickOutsideInstall,
@@ -11,7 +13,6 @@ import {
   default as vZoomImgInstall,
 } from './zoom-img.directive'
 import { directive as vLazyImg, default as vLazyImgInstall } from './v-lazy-img'
-import { App } from 'vue'
 
 const directives = [
   {
@@ -19,7 +20,7 @@ const directives = [
     directive: vClickOutside,
   },
   {
-    name: 'click-outside',
+    name: 'closable',
     directive: vClosable,
   },
   {
@@ -32,10 +33,8 @@ const directives = [
   },
 ]
 
-export type Directives = typeof directives
-
-const installDirectives = {
-  install(app: App) {
+const installDirectives: Plugin = {
+  install(app) {
     directives.forEach(({ name, directive }) => {
       app.directive(name, directive)
     })

@@ -15,7 +15,7 @@ description: MazAvatar is a stand-alone component replaces the standard html but
 </template>
 
 <script lang="ts" setup>
-  import { MazAvtar } from 'maz-ui'
+  import MazAvatar from 'maz-ui/components/MazAvatar'
 </script>
 ```
 

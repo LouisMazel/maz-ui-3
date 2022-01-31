@@ -29,7 +29,7 @@ npm install maz-ui@beta
 In the `main.js` or `main.ts`, import these files.
 
 ```ts
-import "maz-ui/main.css";
+import "maz-ui/css/main.css";
 ```
 
 ### Recommanded
@@ -42,21 +42,17 @@ To optimize your bundle size, it's recommanded to use the [partial import](https
 
 ```typescript
 import { createApp } from 'vue'
-import {
-  ...
-  MazBtn,
-  MazInput,
-  MazPicker,
-  MazPhoneNumberInput,
-  ...
-} from 'maz-ui'
+...
+import MazBtn from 'maz-ui/components/MazBtn'
+import MazInput from 'maz-ui/components/MazInput'
+import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
+...
 
 const app = createApp(App)
 
 ...
 app.component('MazBtn', MazBtn)
 app.component('MazInput', MazInput)
-app.component('MazPicker', MazPicker)
 app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 ...
 ```
@@ -71,7 +67,7 @@ app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 </template>
 
 <script lang="ts" setup>
-  import { MazBtn } from "maz-ui";
+  import MazBtn from "maz-ui/components/MazBtn";
 </script>
 ```
 
@@ -81,12 +77,14 @@ app.component('MazPhoneNumberInput', MazPhoneNumberInput)
 
 ```typescript
 import { createApp } from "vue";
-import MazUi from "maz-ui";
+import { components } from "maz-ui";
 import "maz-ui/css/main.css";
 
 const app = createApp(App);
 
-app.use(MazUi);
+Object.entries(components).forEach(([componentName, component]) => {
+  app.component(componentName, component);
+});
 ```
 
 ## LICENSE

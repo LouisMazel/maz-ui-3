@@ -118,7 +118,7 @@
             removeClassFromDocument()
           }
         },
-        { immediate: true },
+        // { immediate: true },
       )
 
       return {

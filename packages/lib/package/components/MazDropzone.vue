@@ -40,6 +40,7 @@
 
 <script lang="ts">
   import {
+    ComponentPublicInstance,
     computed,
     defineComponent,
     onBeforeUnmount,
@@ -47,14 +48,43 @@
     PropType,
     ref,
   } from 'vue'
-  import { DropzoneOptions, DropzoneFile } from 'dropzone'
+  import Dropzone, { DropzoneOptions, DropzoneFile } from 'dropzone'
   import MazSpinner from './MazSpinner.vue'
-  import {
-    MazDropzoneInstance,
-    MazDropzoneFile,
-    MazDropzoneOptions,
-    IMazDropzone,
-  } from './types'
+
+  export interface MazDropzoneOptions extends DropzoneOptions {
+    dictFilesDescriptions?: string
+    autoRemoveOnError?: boolean
+  }
+
+  export interface MazDropzoneFile extends DropzoneFile {
+    manuallyAdded?: boolean
+  }
+
+  export interface IMazDropzone extends Dropzone {
+    options: MazDropzoneOptions
+  }
+
+  export interface MazDropzoneInstance extends ComponentPublicInstance {
+    manuallyAddFile: (file: DropzoneFile, fileUrl: string) => void
+    setOption: (option: string, value: any) => IMazDropzone['options']
+    processQueue: IMazDropzone['processQueue']
+    removeFile: IMazDropzone['removeFile']
+    removeAllFiles: IMazDropzone['removeAllFiles']
+    destroy: IMazDropzone['destroy']
+    disable: IMazDropzone['disable']
+    enable: IMazDropzone['enable']
+    accept: IMazDropzone['accept']
+    addFile: IMazDropzone['addFile']
+    resizeImage: IMazDropzone['resizeImage']
+    cancelUpload: IMazDropzone['cancelUpload']
+    getAcceptedFiles: () => MazDropzoneFile[]
+    getRejectedFiles: () => MazDropzoneFile[]
+    getFilesWithStatus: IMazDropzone['getFilesWithStatus']
+    getQueuedFiles: IMazDropzone['getQueuedFiles']
+    getUploadingFiles: IMazDropzone['getUploadingFiles']
+    getAddedFiles: IMazDropzone['getAddedFiles']
+    getActiveFiles: IMazDropzone['getActiveFiles']
+  }
 
   const previewTemplate = `<div class="dz-preview dz-file-preview maz-flex-1">
   <div class="dz-image">

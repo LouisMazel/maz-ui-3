@@ -6,7 +6,7 @@ on:
       - "packages/docs/**"
 
 jobs:
-  build-and-deploy:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -6,7 +6,7 @@ description: MazTransitionExpand is a stand-alone component replaces the standar
 # MazTransitionExpand
 
 
-> Before you have to import the global css files in your project, follow instructions in [Getting Started](/guide/getting-started.md)
+> Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
 
 
 ## Basic usage
@@ -102,7 +102,7 @@ description: MazTransitionExpand is a stand-alone component replaces the standar
 </template>
 
 <script lang="ts" setup>
-  import { MazTransitionExpand } from 'maz-ui'
+  import MazTransitionExpand from 'maz-ui/components/MazTransitionExpand'
 
   import { ref } from 'vue'
   const isShown = ref(false)

@@ -280,7 +280,7 @@ Place your SVG files in public a folder (default `/icons`, use `path` prop to ch
 </template>
 
 <script setup lang="ts">
-  import { MazIcon } from 'maz-ui'
+  import MazIcon from 'maz-ui/components/MazIcon'
 
   const icons = [
     'ArrowLeft','ArrowRight','Chart','Check','ChevronDown',

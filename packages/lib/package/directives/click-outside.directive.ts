@@ -1,8 +1,9 @@
 import { Directive, DirectiveBinding, Plugin } from 'vue'
 
-const clickEventType = document.ontouchstart !== null ? 'click' : 'touchstart'
-
 const UNIQUE_ID = '__vue_click_away__'
+
+const getClickEventType = () =>
+  document.ontouchstart !== null ? 'click' : 'touchstart'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const onMounted = (el: any, binding: DirectiveBinding) => {
@@ -27,10 +28,13 @@ const onMounted = (el: any, binding: DirectiveBinding) => {
     }
   }
 
+  const clickEventType = getClickEventType()
+
   document.addEventListener(clickEventType, el[UNIQUE_ID], false)
 }
 
 const onUnmounted = (el: HTMLElement) => {
+  const clickEventType = getClickEventType()
   document.removeEventListener(clickEventType, el[UNIQUE_ID], false)
   delete el[UNIQUE_ID]
 }

@@ -85,7 +85,7 @@ description: MazCard is a stand-alone component to display some texts, images an
 </template>
 
 <script lang="ts" setup>
-  import { MazCard } from 'maz-ui'
+  import MazCard from 'maz-ui/components/MazCard'
   import { ref } from 'vue'
   const images = ref(['https://www.stevensegallery.com/600/800'])
 </script>

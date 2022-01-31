@@ -25,6 +25,6 @@
     },
     "types": ["@types/node", "jest", "google.maps"]
   },
-  "include": ["build/*", "package/**/*"],
+  "include": ["build/**/*", "package/**/*"],
   "exclude": ["node_modules", "lib", "css"]
 }

@@ -42,8 +42,10 @@
   const emits = defineEmits(['loaded', 'unloaded', 'error'])
 
   const iconPath = computed(() => props.path ?? mazIconPath)
-  const fullSrc = computed(
-    () => props.src ?? `${iconPath.value}/${props.name}.svg`,
+  const fullSrc = computed(() =>
+    props.src ?? iconPath.value
+      ? `${iconPath.value}/${props.name}.svg`
+      : `/${props.name}.svg`,
   )
 
   onMounted(() => {
