@@ -1,4 +1,4 @@
-name: Build Tests
+name: Build Lib Tests
 on:
   pull_request:
     branches: [master]
