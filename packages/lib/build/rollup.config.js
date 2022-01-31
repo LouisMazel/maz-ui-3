@@ -189,7 +189,7 @@ if (!argv.format || argv.format === 'esm') {
 
 if (!argv.format || argv.format === 'components') {
   if (!argv.format || argv.format === 'esm') {
-    const componentsEsmConfig = componentsList.map((component) => {
+    const componentsEsmConfig = componentsList.forEach((component) => {
       /** @type {import('rollup').RollupOptions} */
       return {
         ...baseConfig,
