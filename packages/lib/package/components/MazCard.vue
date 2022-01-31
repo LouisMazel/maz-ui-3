@@ -115,6 +115,7 @@
   import MazTransitionExpand from './MazTransitionExpand.vue'
   import MazIcon from './MazIcon.vue'
   import { MazGalleryImage } from './types'
+  export { MazGalleryImage }
 
   export default defineComponent({
     components: {

@@ -62,14 +62,15 @@
 
 <script lang="ts">
   import { defineComponent, computed, PropType, onBeforeMount } from 'vue'
-  import { directive as zoomImg } from './../directives/zoom-img.directive'
-  import { directive as lazyImg } from './../directives/v-lazy-img'
+  import { vZoomImg } from './../directives/zoom-img.directive'
+  import { vLazyImg } from './../directives/v-lazy-img'
   import { MazGalleryImage } from './types'
+  export { MazGalleryImage }
 
   export default defineComponent({
     directives: {
-      'zoom-img': zoomImg,
-      'lazy-img': lazyImg,
+      'zoom-img': vZoomImg,
+      'lazy-img': vLazyImg,
     },
     props: {
       // Array of string or object: `['https://via.placeholder.com/500', 'https://via.placeholder.com/600']` or `[{ slug: 'https://via.placeholder.com/500', alt: 'image descripton' }, { slug: 'https://via.placeholder.com/600', alt: 'image descripton' }]`

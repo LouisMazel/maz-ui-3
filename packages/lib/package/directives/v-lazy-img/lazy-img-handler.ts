@@ -1,4 +1,4 @@
-import { ClassOptions, LazyImgBinding, GlobalOptions } from './types'
+import { ClassOptions, LazyImgBinding, vLazyImgOptions } from './types'
 export * from './types'
 
 const EMPTY_PHOTO =
@@ -27,7 +27,7 @@ export class LazyImg {
   private onImgErrorCallback: (el: HTMLElement, err: ErrorEvent) => void
   private hasImgLoaded = false
 
-  constructor(opts: GlobalOptions = {}) {
+  constructor(opts: vLazyImgOptions = {}) {
     this.options = this.buildOptions(opts)
     this.onImgLoadedCallback = this.imageIsLoaded.bind(this)
     this.onImgErrorCallback = this.imageHasError.bind(this)
@@ -37,7 +37,7 @@ export class LazyImg {
     return (await import('./assets/no_photo.svg')).default
   }
 
-  private buildOptions(opts: GlobalOptions): ClassOptions {
+  private buildOptions(opts: vLazyImgOptions): ClassOptions {
     return {
       ...this.defaultOptions,
       ...opts,

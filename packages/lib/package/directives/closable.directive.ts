@@ -52,12 +52,10 @@ const directive: Directive = {
   unmounted: unbind,
 }
 
-export { directive }
-
 const plugin: Plugin = {
   install: (app) => {
     app.directive('closable', directive)
   },
 }
 
-export default plugin
+export { directive as vClosable, plugin as vClosableInstall }

@@ -22,7 +22,7 @@ export interface ClassOptions {
   onIntersecting?: (el: Element) => unknown
 }
 
-export interface GlobalOptions {
+export interface vLazyImgOptions {
   baseClass?: string
   loadingClass?: string
   loadedClass?: string
@@ -45,7 +45,7 @@ export interface GlobalOptions {
   onIntersecting?: (el: Element) => unknown
 }
 
-interface BindingOptions extends GlobalOptions {
+interface BindingOptions extends vLazyImgOptions {
   src?: string
 }
 

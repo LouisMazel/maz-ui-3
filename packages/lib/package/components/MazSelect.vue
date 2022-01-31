@@ -73,6 +73,10 @@
   </div>
 </template>
 
+<script lang="ts">
+  export { Color, Size, ModelValueSimple, Position } from './types'
+</script>
+
 <script lang="ts" setup>
   // TODO: listPosition
   import { ref, PropType, computed, onBeforeMount, nextTick } from 'vue'

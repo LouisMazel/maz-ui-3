@@ -444,12 +444,10 @@ const directive: Directive = {
   },
 }
 
-export { directive }
-
 const plugin: Plugin = {
   install(app: App) {
     app.directive('zoom-img', directive)
   },
 }
 
-export default plugin
+export { directive as vZoomImg, plugin as vZoomImgInstall }

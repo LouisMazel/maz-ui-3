@@ -15,6 +15,10 @@
   </div>
 </template>
 
+<script lang="ts">
+  export { Color } from './types'
+</script>
+
 <script lang="ts" setup>
   import { PropType } from 'vue'
   import { Color } from './types'

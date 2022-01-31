@@ -21,11 +21,12 @@
     "clean": "rimraf components modules css types maz-ui.d.ts",
     "build": "npm run build:js && npm run build:css",
     "build:watch": "onchange 'package/**/*' -- npm run build",
-    "build:js": "npm run build:lib && npm run build:types && npm run build:copy-comp-types",
+    "build:js": "npm run build:gen-components-entry && npm run build:lib && npm run build:types && npm run build:copy-comp-types && npm run build:components-entry",
     "build:lib": "cross-env NODE_ENV=production node --max-old-space-size=8192 node_modules/rollup/dist/bin/rollup -c build/rollup.config.js",
     "build:types": "cross-env NODE_ENV=production rollup -c build/rollup.types.config.js",
     "build:copy-comp-types": "node build/copy-components-types.js",
-    "build:entries": "cross-env NODE_ENV=production node build/build-entries.js",
+    "build:gen-components-entry": "cross-env NODE_ENV=production node build/generate-components-entry",
+    "build:components-entry": "cross-env NODE_ENV=production node build/build-components-entry.js",
     "build:css": "NODE_ENV=production tailwindcss -i ./package/tailwindcss/css/tailwind.css -o css/main.css --config ./tailwind.config.js --postcss",
     "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:esm": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format esm",
@@ -94,6 +95,7 @@
     "postcss-url": "^10.1.3",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
+    "replace-in-file": "^6.3.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.63.0",
     "rollup-plugin-css-only": "^3.1.0",
@@ -140,5 +142,8 @@
     "type": "git",
     "url": "git+https://github.com/LouisMazel/maz-ui-3.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "maz-ui": "^3.0.0-beta.17"
+  }
 }

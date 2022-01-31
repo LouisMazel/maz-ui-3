@@ -30,10 +30,13 @@
   </picture>
 </template>
 
+<script lang="ts">
+  export { Image } from './types'
+</script>
+
 <script lang="ts" setup>
   import { Prop, computed } from 'vue'
-  import { GlobalOptions } from '../directives/v-lazy-img'
-  import { vLazyImg } from './../directives/v-lazy-img/lazy-img.directive'
+  import { vLazyImgOptions, vLazyImg } from '../directives/v-lazy-img'
 
   import MazSpinner from './MazSpinner.vue'
   import { Image } from './types'
@@ -46,7 +49,7 @@
     loadOnce: { type: Boolean, default: false },
     imageHeightFull: { type: Boolean, default: false },
     observerOptions: { type: Object, default: null } as Prop<
-      GlobalOptions['observerOptions']
+      vLazyImgOptions['observerOptions']
     >,
   })
 

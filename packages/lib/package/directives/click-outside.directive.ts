@@ -64,4 +64,8 @@ const plugin: Plugin = {
   },
 }
 
-export default plugin
+export {
+  plugin as vClickOutsideInstall,
+  directive as vClickOutside,
+  mixin as vClickOutsideMixin,
+}

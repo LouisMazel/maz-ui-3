@@ -109,6 +109,7 @@
   import MazBtn from './MazBtn.vue'
   import MazIcon from './MazIcon.vue'
   import { Color, Size } from './types'
+  export { Color, Size }
 
   export default defineComponent({
     components: { MazBtn, MazIcon },

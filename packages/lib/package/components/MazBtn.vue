@@ -45,6 +45,10 @@
   </Component>
 </template>
 
+<script lang="ts">
+  export { Color, Size } from './types'
+</script>
+
 <script lang="ts" setup>
   import { computed, PropType, useAttrs, useSlots } from 'vue'
   import MazSpinner from './MazSpinner.vue'

@@ -1,6 +1,8 @@
 import type { NavbarConfig } from '@vuepress/theme-default'
 import { version } from './../../../../lib/package.json'
 import { components } from './components'
+import { directives } from './directives'
+import { filters } from './filters'
 
 export const navbar: NavbarConfig = [
   {
@@ -13,6 +15,10 @@ export const navbar: NavbarConfig = [
     ]
   },
   components,
+  {
+    text: 'Modules',
+    children: [filters, directives],
+  },
   '/made-with-maz-ui',
   {
     text: `v${version}`,

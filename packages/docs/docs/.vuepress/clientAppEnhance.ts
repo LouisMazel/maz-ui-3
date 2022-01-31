@@ -8,7 +8,7 @@ const mazIconPath = process.env.NODE_ENV === 'production'
 export default defineClientAppEnhance(async ({ app }) => {
   app.provide('mazIconPath', mazIconPath)
 
-  const { components } = await import('maz-ui')
+  const components = (await import('maz-ui/components')).default
   Object.entries(components).forEach(([componentName, component]) => {
     app.component(componentName, component)
   })

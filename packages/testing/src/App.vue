@@ -4,6 +4,10 @@
       Dark Switch
     </MazBtn>
     <MazDropzone
+      v-click-outside="clickOutside"
+      v-lazy-img="{
+
+      }"
       ref="MazDropzoneElem"
       :options="dropzoneOptions"
       @error="error"
@@ -18,9 +22,10 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { onMounted } from 'vue'
+  import MazBtn from 'maz-ui/components/MazBtn'
   import MazDropzone, { MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui/components/MazDropzone'
 
-  import MazBtn from 'maz-ui/components/MazBtn'
+  const clickOutside = (event: Event) => console.log('clickOutside', event)
 
   const MazDropzoneElem = ref<MazDropzoneInstance>()
 
