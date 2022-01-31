@@ -189,9 +189,10 @@ if (!argv.format || argv.format === 'esm') {
 
 if (!argv.format || argv.format === 'components') {
   if (!argv.format || argv.format === 'esm') {
-    const componentsEsmConfig = componentsList.forEach((component) => {
-      /** @type {import('rollup').RollupOptions} */
-      return {
+    /** @type {import('rollup').RollupOptions[]} */
+    const componentsEsmConfig = []
+    for (const component of componentsList) {
+      componentsEsmConfig.push({
         ...baseConfig,
         input: component.path,
         output: {
@@ -215,8 +216,8 @@ if (!argv.format || argv.format === 'components') {
           babel(baseConfig.plugins.babel),
           terser({ output: { ecma: 5 } }),
         ],
-      }
-    })
+      })
+    }
     buildFormats.push(...componentsEsmConfig)
   }
   // if (!argv.format || argv.format === 'cjs') {
