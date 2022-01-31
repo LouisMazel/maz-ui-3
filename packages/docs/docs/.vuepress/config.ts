@@ -113,4 +113,8 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
     ],
   ],
+
+  alias: {
+    '@assets': path.resolve(__dirname, './assets'),
+  },
 })

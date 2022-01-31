@@ -28,6 +28,8 @@ sidebar: false
 </div>
 
 <script lang="ts" setup>
+  import image from '@assets/harderbetter.png'
+
   const projects = [
     {
       title: 'loicmazuel.com',
@@ -37,7 +39,7 @@ sidebar: false
     },
     {
       title: 'harderbetter.io',
-      images: ['/harderbetter.png'],
+      images: [image],
       description: 'Football pronostics between friends',
       link: 'https://www.harderbetter.io'
     },
