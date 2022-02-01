@@ -17,6 +17,9 @@ import { default as MazLazyImg } from './MazLazyImg.vue.vue'
 import { default as MazPhoneNumberInput } from './MazPhoneNumberInput.vue.vue'
 import { default as MazSelect } from './MazSelect.vue.vue'
 import { default as MazSpinner } from './MazSpinner.vue.vue'
+import { default as MazTabsBar } from './MazTabsBar.vue.vue'
+import { default as MazTabsContent } from './MazTabsContent.vue.vue'
+import { default as MazTabsContentItem } from './MazTabsContentItem.vue.vue'
 import { default as MazTransitionExpand } from './MazTransitionExpand.vue.vue'
 
 export {
@@ -37,6 +40,9 @@ export {
   MazPhoneNumberInput,
   MazSelect,
   MazSpinner,
+  MazTabsBar,
+  MazTabsContent,
+  MazTabsContentItem,
   MazTransitionExpand,
 }
 
@@ -58,5 +64,8 @@ export default {
   MazPhoneNumberInput,
   MazSelect,
   MazSpinner,
+  MazTabsBar,
+  MazTabsContent,
+  MazTabsContentItem,
   MazTransitionExpand,
 }

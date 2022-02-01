@@ -147,41 +147,32 @@
 /**
 * Tabs Transisiton
 */
-.maz-tab-transition-enter-from {
-  transform: translate(100%, 0);
+.maz-tab-transition {
+  &-enter-from {
+    transform: translate(100%, 0);
+  }
+
+  &-leave,
+  &-leave-active {
+    position: absolute !important;
+    top: 0;
+  }
+
+  &-leave-to {
+    position: absolute !important;
+    transform: translate(-100%, 0);
+  }
 }
 
-.maz-tab-transition-leave,
-.maz-tab-transition-leave-active {
-  position: absolute !important;
-  top: 0;
-}
+.maz-tab-reverse-transition {
+  &-enter-from {
+    transform: translate(-100%, 0);
+  }
 
-.maz-tab-transition-leave-to {
-  position: absolute !important;
-  transform: translate(-100%, 0);
-}
-
-.maz-tab-reverse-transition-enter-from {
-  transform: translate(-100%, 0);
-}
-
-.maz-tab-reverse-transition-enter-from-leave,
-.maz-tab-reverse-transition-enter-from-leave-to {
-  top: 0;
-  position: absolute !important;
-  transform: translate(100%, 0);
-}
-
-.maz-bottom-sheet-enter-active .maz-bottom-sheet-animation,
-.maz-bottom-sheet-leave .maz-bottom-sheet-animation {
-  opacity: 1;
-  transition: all 300ms;
-  transform: translateY(0);
-}
-
-.maz-bottom-sheet-enter .maz-bottom-sheet-animation,
-.maz-bottom-sheet-leave-to .maz-bottom-sheet-animatio {
-  opacity: 1;
-  transform: translateY(100%);
+  &-leave,
+  &-leave-to {
+    top: 0;
+    position: absolute !important;
+    transform: translate(100%, 0);
+  }
 }

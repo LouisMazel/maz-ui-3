@@ -31,7 +31,7 @@
             src: image.slug,
             alt: image.alt,
             disabled: noZoom,
-            blur: blur,
+            blur: false,
             scale: scale,
           }"
           class="m-gallery__remaining-layer maz-flex maz-bg-overlay maz-flex-center"

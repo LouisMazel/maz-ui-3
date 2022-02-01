@@ -2,36 +2,46 @@
   <MazDialog
     v-if="currentModal"
     v-bind="$attrs"
-    :title="data.title"
     :model-value="currentModal?.isActive"
     @update:model-value="rejectModal(currentModal)"
   >
+    <template #title>
+      <slot name="title"></slot>
+    </template>
     <template #default>
-      <p>{{ data.message }}</p>
+      <slot></slot>
     </template>
     <template #footer>
       <div class="maz-space-x-2">
-        <MazBtn color="secondary" pastel @click="rejectModal(currentModal)">
-          Annuler
+        <MazBtn color="success" pastel @click="rejectModal(currentModal)">
+          <slot name="cancel-text"> Cancel </slot>
         </MazBtn>
         <MazBtn color="danger" @click="resolveModal(currentModal)">
-          Confirmer
+          <slot name="confirm-text"> Confirm </slot>
         </MazBtn>
       </div>
     </template>
   </MazDialog>
 </template>
 
+<script lang="ts">
+  export {
+    useMazPromiseDialog,
+    ModalState,
+    ModalData,
+  } from './use-maz-promise-dialog'
+</script>
+
 <script lang="ts" setup>
   import { PropType, computed } from 'vue'
   import MazDialog from '../MazDialog.vue'
   import MazBtn from '../MazBtn.vue'
-  import { useMazPromiseDialog, ModalState } from './use-maz-promise-dialog'
+  import {
+    useMazPromiseDialog,
+    ModalState,
+    ModalData,
+  } from './use-maz-promise-dialog'
 
-  export interface ModalData {
-    title: string
-    message: string
-  }
   const props = defineProps({
     data: { type: Object as PropType<ModalData>, required: true },
     identifier: { type: String, required: true },

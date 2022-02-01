@@ -24,6 +24,7 @@ export const components = {
         '/components/maz-lazy-img.md',
         '/components/maz-icon.md',
         '/components/maz-spinner.md',
+        // '/components/maz-tabs.md',
         '/components/maz-transition-expand.md',
       ]
     }

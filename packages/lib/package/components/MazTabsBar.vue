@@ -1,19 +1,20 @@
 <template>
   <div
+    ref="MazTabsBar"
     class="maz-tabs-bar"
     :class="{
       '--align-left': alignLeft,
     }"
   >
     <MazBtn
-      v-for="({ label, disabled }, i) in items"
-      :key="i"
+      v-for="({ label, disabled }, index) in items"
+      :key="index"
       color="transparent"
-      :class="{ '--active': currentTab === i, '--disabled': disabled }"
+      :class="{ '--active': currentTab === index, '--disabled': disabled }"
       class="maz-tabs-bar__item --no-styling"
       :disabled="disabled"
       :to="useAnchor ? `#${labelNormalize(label)}` : undefined"
-      @click="setValue(i)"
+      @click="setValue(index)"
     >
       {{ label }}
     </MazBtn>
@@ -23,31 +24,40 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-  import { ref, PropType, computed, onBeforeMount, onMounted } from 'vue'
-  import { useMazTabs } from './maz-tabs.composable'
-  import MazBtn from '@/components/lib/ui/MazBtn.vue'
+<script lang="ts">
+  export interface MazTabsItem {
+    label: string
+    disabled?: boolean
+  }
+</script>
 
-  // const toSnakeCase = (string: string) => {
+<script lang="ts" setup>
+  import {
+    ref,
+    PropType,
+    computed,
+    onBeforeMount,
+    onMounted,
+    getCurrentInstance,
+  } from 'vue'
+  import MazBtn from './MazBtn.vue'
+
+  // const toKebabCase = (string: string) => {
   //   return string
   //     .replace(/\W+/g, ' ')
   //     .split(/ |\B(?=[A-Z])/)
   //     .map((word) => word.toLowerCase())
-  //     .join('_')
+  //     .join('-')
   // }
+
+  const instance = getCurrentInstance()
+  console.log('instance MazTabsBar', instance)
 
   const getIndexOfCurrentAnchor = (tabs: MazTabsItem[], value: number) => {
     if (typeof window === 'undefined') return value
     const anchor = window.location.hash.replace('#', '')
     const index = tabs.findIndex(({ label }) => label === anchor)
     return index === -1 ? 0 : index
-  }
-
-  const { currentTab } = useMazTabs()
-
-  interface MazTabsItem {
-    label: string
-    disabled?: boolean
   }
 
   const props = defineProps({
@@ -59,6 +69,8 @@
 
   const emits = defineEmits(['update:model-value'])
 
+  const MazTabsBar = ref()
+  const currentTab = ref()
   const isMounted = ref(false)
 
   const tabsIndicatorState = computed(() => {
@@ -103,9 +115,9 @@
     }, 300)
   })
 
-  const setValue = (i: number) => {
-    currentTab.value = i
-    emits('update:model-value', i + 1)
+  const setValue = (index: number) => {
+    currentTab.value = index
+    emits('update:model-value', index + 1)
   }
 
   const labelNormalize = (label: string) => {
@@ -131,10 +143,14 @@
     }
 
     &__indicator {
-      @apply maz-absolute maz-bottom-0 maz-left-0 maz-h-[2px] maz-text-center maz-transition-all maz-duration-500 maz-ease-in-out;
+      @apply maz-absolute maz-bottom-0 maz-left-0 maz-text-center maz-transition-all maz-duration-500 maz-ease-in-out;
+
+      height: 2px;
 
       & .maz-sub-bar {
-        @apply maz-mx-auto maz-h-[2px] maz-w-[60%] maz-bg-primary;
+        @apply maz-mx-auto maz-w-3/5 maz-bg-primary;
+
+        height: 2px;
       }
     }
   }

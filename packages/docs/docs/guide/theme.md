@@ -1,8 +1,10 @@
 # Theme
 
-Edit
+You must override `--maz-***` CSS variables
 
-> Tip: Use color palette generator: [noeldelgado.github.io](https://noeldelgado.github.io/shadowlord/#1e90ff) (and set the percent parameter to 17,5%)
+> **Tip**: Use color palette generator: [noeldelgado.github.io](https://noeldelgado.github.io/shadowlord/#1e90ff) (and set the percent parameter to 17,5%)
+
+## List of CSS variables
 
 ```css
 :root {

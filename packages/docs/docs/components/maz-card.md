@@ -11,7 +11,7 @@ description: MazCard is a stand-alone component to display some texts, images an
 
 <br />
 
-<MazCard :images="images" zoom>
+<MazCard :images="images" :gallery-height="400" >
   <template #title>
     <h4 class="maz-m-0">
       Steven Seagal
@@ -47,7 +47,7 @@ description: MazCard is a stand-alone component to display some texts, images an
 
 <script setup>
   import { ref } from 'vue'
-  const images = ref(['https://www.stevensegallery.com/600/800'])
+  const images = ref(['https://www.stevensegallery.com/600/600'])
 </script>
 
 ```vue
@@ -87,7 +87,7 @@ description: MazCard is a stand-alone component to display some texts, images an
 <script lang="ts" setup>
   import MazCard from 'maz-ui/components/MazCard'
   import { ref } from 'vue'
-  const images = ref(['https://www.stevensegallery.com/600/800'])
+  const images = ref(['https://www.stevensegallery.com/600/600'])
 </script>
 ```
 

@@ -69,10 +69,6 @@
         </tr>
       </tbody>
     </table>
-    <span v-else>
-      <br />
-      No events for this component
-    </span>
     <table v-if="methods" class="component-prop-doc" style="display: table;">
       <thead>
         <th>
@@ -113,7 +109,7 @@ const getValidatorValues = (validator) => {
   return array ?? '-'
 }
 
-const getComponent = async () => (await import(`maz-ui`))[props.component]
+const getComponent = async () => (await import(`maz-ui/components`))[props.component]
 
 const getEvents = async () => {
   const component = await getComponent()

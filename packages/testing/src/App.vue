@@ -1,27 +1,36 @@
 <template>
-  <div class="maz-flex maz-flex-col">
+  <div class="maz-flex maz-flex-col maz-w-full maz-flex-center">
     <MazBtn @click="toggleDarkMode" style="margin-bottom: 16px;">
       Dark Switch
     </MazBtn>
-    <MazDropzone
-      ref="MazDropzoneElem"
-      :options="dropzoneOptions"
-      @error="error"
-      :width="500"
-      @success="success"
-      auto-remove
-    />
-    <!-- <MazPhoneNumberInput /> -->
+
+    <div style="position: relative; width: 500px;">
+      <MazTabsBar :items="tabs" color="secondary" />
+
+      <MazTabsContent>
+        <MazTabsContentItem :tab="1">
+          <p> evzionfez </p>
+        </MazTabsContentItem>
+        <MazTabsContentItem :tab="2">
+          <p> evzionfez </p>
+        </MazTabsContentItem>
+      </MazTabsContent>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { onMounted } from 'vue'
   import MazBtn from 'maz-ui/components/MazBtn'
-  import MazDropzone, { MazDropzoneInstance, MazDropzoneOptions } from 'maz-ui/components/MazDropzone'
+  import MazTabsBar, { MazTabsItem } from 'maz-ui/components/MazTabsBar'
+  import MazTabsContent from 'maz-ui/components/MazTabsContent'
+  import MazTabsContentItem from 'maz-ui/components/MazTabsContentItem'
 
-  const MazDropzoneElem = ref<MazDropzoneInstance>()
+  const tabs: MazTabsItem[] = [
+    { label: 'First Tab', disabled: false },
+    { label: 'Second Tab', disabled: false },
+    { label: 'Third Tab', disabled: false },
+  ]
 
   onMounted(() => {
     autoSetDarkMode()
@@ -46,37 +55,6 @@
       localStorage.theme = 'dark'
     }
   }
-
-  const dropzoneOptionsBase: MazDropzoneOptions = {
-    url: 'https://httpbin.org/post',
-    headers: { 'My-Awesome-Header': 'header value' },
-    acceptedFiles: 'image/jpeg,image/jpg,image/png',
-    maxFilesize: 10,
-    maxFiles: 5,
-    maxThumbnailFilesize: 3,
-    autoProcessQueue: true,
-    autoRemoveOnError: true,
-  }
-
-  const translations: MazDropzoneOptions = {
-    dictDefaultMessage: 'Choose or drop a file',
-    dictFilesDescriptions: `(PNG or JPG under ${dropzoneOptionsBase.maxFilesize} MB)`, // { maxFilesize: dropzoneOptionsBase.maxFilesize, maxFiles: dropzoneOptionsBase.maxFiles },
-    dictFallbackMessage: 'Your browser is not supported',
-    dictFileTooBig: `File(s) too big (max: ${dropzoneOptionsBase.maxFilesize} MB)`, // { maxFilesize: dropzoneOptionsBase.maxFilesize },
-    dictInvalidFileType: `File(s) too big (max: ${dropzoneOptionsBase.maxFilesize} MB)`, // { maxFilesize: dropzoneOptionsBase.maxFilesize }),
-    dictRemoveFile: 'Remove',
-    dictCancelUpload: 'Cancel upload',
-    dictMaxFilesExceeded: `You can not upload any more files. (max: ${dropzoneOptionsBase.maxFiles})`, // { maxFiles: dropzoneOptionsBase.maxFiles },
-    dictUploadCanceled: 'Upload canceled', // TODO translations
-  }
-
-  const dropzoneOptions: MazDropzoneOptions = {
-    ...dropzoneOptionsBase,
-    ...translations
-  }
-
-  const error = (error: any) => console.log('dropzone-error', error)
-  const success = (success: any) => console.log('dropzone-success', success)
 </script>
 
 

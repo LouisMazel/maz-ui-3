@@ -2,7 +2,7 @@
   <Transition :name="transitionName" tag="div">
     <div
       v-show="isCurrentTab"
-      ref="MazTabsContentItemRef"
+      ref="MazTabsContentItem"
       class="maz-tabs-content-item"
     >
       <slot />
@@ -12,12 +12,11 @@
 
 <script lang="ts" setup>
   import { ref, watch, computed } from 'vue'
-  import { useMazTabs } from './maz-tabs.composable'
 
-  const { currentTab } = useMazTabs()
+  const currentTab = ref()
 
   const transitionName = ref<string>('maz-tab-transition')
-  const MazTabsContentItemRef = ref()
+  const MazTabsContentItem = ref()
 
   const props = defineProps({
     tab: { type: Number, required: true },

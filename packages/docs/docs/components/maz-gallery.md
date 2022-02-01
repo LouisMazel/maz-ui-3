@@ -25,12 +25,12 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
   import MazGallery from 'maz-ui/components/MazGallery'
 
   const images = [
-    'https://www.stevensegallery.com/640/500',
-    { slug: 'https://www.stevensegallery.com/640/600', alt: 'image description' },
-    { slug: 'https://www.stevensegallery.com/640/700', alt: 'image description' },
-    'https://www.stevensegallery.com/640/800',
-    'https://www.stevensegallery.com/640/1000',
-    'https://www.stevensegallery.com/800/800'
+    'https://placekitten.com/640/500',
+    { slug: 'https://placekitten.com/640/600', alt: 'image description' },
+    { slug: 'https://placekitten.com/640/700', alt: 'image description' },
+    'https://placekitten.com/640/800',
+    'https://placekitten.com/640/1000',
+    'https://placekitten.com/800/800'
   ]
 </script>
 ```
@@ -41,11 +41,11 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
 
 <script lang="ts" setup>
   const images = [
-    'https://www.stevensegallery.com/640/500',
-    { slug: 'https://www.stevensegallery.com/640/600', alt: 'image description' },
-    { slug: 'https://www.stevensegallery.com/640/700', alt: 'image description' },
-    'https://www.stevensegallery.com/640/800',
-    'https://www.stevensegallery.com/640/1000',
-    'https://www.stevensegallery.com/800/800'
+    'https://placekitten.com/640/500',
+    { slug: 'https://placekitten.com/640/600', alt: 'image description' },
+    { slug: 'https://placekitten.com/640/700', alt: 'image description' },
+    'https://placekitten.com/640/800',
+    'https://placekitten.com/640/1000',
+    'https://placekitten.com/800/800'
   ]
 </script>
