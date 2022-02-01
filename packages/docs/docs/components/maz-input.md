@@ -183,7 +183,7 @@ input value: {{ inputValue ?? 'null' }}
 
 > Click on each input to show colors
 <br />
-> Use the attribute `color` with a value in this [list](/guide/colors.md), the component will use this color
+> Use the attribute `color` with a value in this [list](/maz-ui-3/guide/colors.html), the component will use this color
 
 <div class="flex flex-col gap-05">
   <MazInput v-for="{ name } in colorsArray" :key="name" v-model="inputValue" :label="name" :color="name" :id="name" />

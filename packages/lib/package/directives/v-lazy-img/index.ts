@@ -27,4 +27,4 @@ const plugin: Plugin = {
   },
 }
 
-export { vLazyImg, vLazyImgOptions, plugin as vLazyImgInstall }
+export { vLazyImg, plugin as vLazyImgInstall }

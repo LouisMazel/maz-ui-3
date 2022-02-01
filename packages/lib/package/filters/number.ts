@@ -1,8 +1,16 @@
+const DEFAULT_OPTIONS: Intl.NumberFormatOptions = {
+  minimumFractionDigits: 2,
+}
+
 export const number = (
   number: number | string,
   locale: string,
   options: Intl.NumberFormatOptions,
 ): string => {
+  options = {
+    ...DEFAULT_OPTIONS,
+    ...options,
+  }
   if (typeof number === 'undefined')
     throw new TypeError('[FilterNumber] The `number` attribute is required.')
   if (typeof locale === 'undefined')

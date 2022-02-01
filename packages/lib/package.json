@@ -20,7 +20,7 @@
     "lint:style": "stylelint --ignore-path .gitignore --fix \"**/*.{vue,css,scss}\"",
     "clean": "rimraf components modules css types maz-ui.d.ts",
     "build": "npm run build:js && npm run build:css",
-    "build:watch": "onchange 'package/**/*' -- npm run build",
+    "build:watch": "onchange --await-write-finish 2000 'package/**/*' -e 'package/components/index.ts' --exclude-path .gitignore -- npm run build",
     "build:js": "npm run build:gen-components-entry && npm run build:lib && npm run build:types && npm run build:copy-comp-types && npm run build:components-entry",
     "build:lib": "cross-env NODE_ENV=production node --max-old-space-size=8192 node_modules/rollup/dist/bin/rollup -c build/rollup.config.js",
     "build:types": "cross-env NODE_ENV=production rollup -c build/rollup.types.config.js",

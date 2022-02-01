@@ -32,7 +32,6 @@ export interface vLazyImgOptions {
   noUseErrorPhoto?: boolean
   observerOnce?: boolean
   loadOnce?: boolean
-  imgElement?: HTMLImageElement
   observerOptions?: {
     root?: HTMLElement | null
     threshold?: number
@@ -45,10 +44,12 @@ export interface vLazyImgOptions {
   onIntersecting?: (el: Element) => unknown
 }
 
-interface BindingOptions extends vLazyImgOptions {
+interface vLazyImgBindingOptions extends vLazyImgOptions {
   src?: string
 }
 
-export interface LazyImgBinding extends DirectiveBinding {
-  value: string | BindingOptions
+export type vLazyImgBinding = string | vLazyImgBindingOptions
+
+export interface BindingData extends DirectiveBinding {
+  value: vLazyImgBinding
 }

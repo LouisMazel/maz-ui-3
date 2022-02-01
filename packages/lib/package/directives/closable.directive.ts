@@ -29,20 +29,20 @@ const handleOutsideClick = (
   }
 }
 
+const getEventType = () => {
+  return document.ontouchstart !== null ? 'click' : 'touchstart'
+}
+
 const unbind: FunctionDirective = (element, binding, vnode) => {
-  document.removeEventListener('click', (event) =>
-    handleOutsideClick(event, element, binding, vnode),
-  )
-  document.removeEventListener('touchstart', (event) =>
+  const eventType = getEventType()
+  document.removeEventListener(eventType, (event) =>
     handleOutsideClick(event, element, binding, vnode),
   )
 }
 
 const bind: FunctionDirective = (element, binding, vnode) => {
-  document.addEventListener('click', (event) =>
-    handleOutsideClick(event, element, binding, vnode),
-  )
-  document.addEventListener('touchstart', (event) =>
+  const eventType = getEventType()
+  document.addEventListener(eventType, (event) =>
     handleOutsideClick(event, element, binding, vnode),
   )
 }

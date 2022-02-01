@@ -1,13 +1,19 @@
 import { Plugin } from 'vue'
 
-import {
-  vClickOutside,
-  vClickOutsideInstall,
-  vClickOutsideMixin,
-} from './click-outside.directive'
+import { vClickOutside, vClickOutsideInstall } from './click-outside.directive'
 import { vClosable, vClosableInstall } from './closable.directive'
-import { vZoomImg, vZoomImgInstall } from './zoom-img.directive'
-import { vLazyImg, vLazyImgInstall } from './v-lazy-img'
+import {
+  vZoomImg,
+  vZoomImgInstall,
+  vZoomImgOptions,
+  vZoomImgBinding,
+} from './zoom-img.directive'
+import {
+  vLazyImg,
+  vLazyImgInstall,
+  vLazyImgOptions,
+  vLazyImgBinding,
+} from './v-lazy-img'
 
 const directives = [
   {
@@ -39,12 +45,15 @@ const installDirectives: Plugin = {
 export {
   vClickOutside,
   vClickOutsideInstall,
-  vClickOutsideMixin,
   vClosable,
   vClosableInstall,
   vLazyImg,
+  vLazyImgOptions,
+  vLazyImgBinding,
   vLazyImgInstall,
   vZoomImg,
+  vZoomImgOptions,
+  vZoomImgBinding,
   vZoomImgInstall,
   installDirectives,
 }

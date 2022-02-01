@@ -63,7 +63,7 @@ const replaceTypesExtensions = async () => {
 
   try {
     const results = await replace(options)
-    console.log('Files extensions replaced', results.file, results.hasChanged)
+    console.log('Files extensions replaced', results)
   } catch (error) {
     console.error('Error occurred while replacing file extensions:', error)
   }

@@ -1,4 +1,4 @@
-import { App, Directive, Plugin } from 'vue'
+import { App, Directive, DirectiveBinding, Plugin } from 'vue'
 
 const style = `
 .maz-zoom-img {
@@ -125,22 +125,21 @@ const style = `
   background-color: black;
 }`
 
-type DefaultZoomImgOptions = {
-  alt: string
+export interface vZoomImgOptions {
   disabled?: boolean
   scale?: boolean
   blur?: boolean
 }
 
-type ZoomImgOptions = {
+interface vZoomImgBindingOptions extends vZoomImgOptions {
   src: string
-  alt: string
-  disabled?: boolean
-  scale?: boolean
-  blur?: boolean
+  alt?: string
 }
-interface BindingData {
-  value: string | ZoomImgOptions
+
+export type vZoomImgBinding = string | vZoomImgBindingOptions
+
+export interface BindingData extends DirectiveBinding {
+  value: vZoomImgBinding
 }
 
 const svgs = {
@@ -154,18 +153,17 @@ const svgs = {
 } as { [key: string]: string }
 
 class VueZoomImg {
-  private options: ZoomImgOptions
+  private options: vZoomImgBindingOptions
   private loader: HTMLDivElement
   private wrapper: HTMLDivElement
   private img: HTMLImageElement
   private keydownHandler: (e: KeyboardEvent) => void
   private onImgLoadedCallback: EventListener
   private buttonsAdded: boolean
-  private defaultOptions: DefaultZoomImgOptions = {
+  private defaultOptions: vZoomImgOptions = {
     scale: true,
     blur: true,
     disabled: false,
-    alt: 'vue zoom img',
   }
 
   constructor(binding: BindingData) {
@@ -195,7 +193,7 @@ class VueZoomImg {
     this.imgEventHandler(true)
   }
 
-  private buildOptions(binding: BindingData): ZoomImgOptions {
+  private buildOptions(binding: BindingData): vZoomImgBindingOptions {
     return {
       ...this.defaultOptions,
       ...(typeof binding.value === 'object'
@@ -223,7 +221,7 @@ class VueZoomImg {
      */
     setTimeout(() => el.classList.add('maz-zoom-img-instance'))
     el.setAttribute('data-src', this.options.src)
-    el.setAttribute('data-alt', this.options.alt)
+    if (this.options.alt) el.setAttribute('data-alt', this.options.alt)
     /**
      * Add event listeners
      */
@@ -251,7 +249,10 @@ class VueZoomImg {
     el.style.cursor = ''
   }
 
-  private renderPreview(el: HTMLElement, options?: ZoomImgOptions): void {
+  private renderPreview(
+    el: HTMLElement,
+    options?: vZoomImgBindingOptions,
+  ): void {
     el.classList.add('maz-is-open')
     this.addStyle(style)
 
@@ -266,7 +267,7 @@ class VueZoomImg {
 
     if (typeof options === 'object') {
       this.img.setAttribute('src', options.src)
-      this.img.setAttribute('alt', options.alt)
+      if (options.alt) this.img.setAttribute('alt', options.alt)
       this.img.id = 'MazImgElement'
     }
 
@@ -436,7 +437,7 @@ const directive: Directive = {
     instance = new VueZoomImg(binding)
     instance.create(el)
   },
-  updated(el: HTMLElement, binding: BindingData): void {
+  updated(_el: HTMLElement, binding: BindingData): void {
     instance.update(binding)
   },
   unmounted(el: HTMLElement): void {
