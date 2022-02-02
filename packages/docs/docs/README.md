@@ -13,6 +13,8 @@ actions:
 features:
   - title: Standalone
     details: All components are standalone, so if you want use only one component from this library you don't need to install the whole library
+  - title: SSR Friendly
+    details: All components works with Nuxt, no need to install components on client side
   - title: Typescript
     details: This library is writing in typescript, so all types and declarations are directly available
   - title: Dark and Light Theme
