@@ -22,7 +22,7 @@
             class="m-dialog-layout-closebtn"
             @click="close"
           >
-            <MazIcon name="x" class="maz-cursor-pointer" />
+            <MazIcon :src="XIcon" class="maz-cursor-pointer" />
           </MazBtn>
         </div>
         <div class="m-dialog-layout-content">
@@ -36,20 +36,19 @@
   </MazBackDrop>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue'
+<script lang="ts" setup>
   import MazBtn from './MazBtn.vue'
   import MazBackDrop from './MazBackDrop.vue'
   import MazIcon from './MazIcon.vue'
+  import XIcon from './../icons/x.svg'
 
-  export default defineComponent({
-    components: { MazBtn, MazBackDrop, MazIcon },
-    inheritAttrs: false,
-    props: {
-      title: { type: String, default: undefined },
-    },
-    emits: ['update:model-value'],
+  defineProps({
+    title: { type: String, default: undefined },
   })
+
+  defineEmits(['update:model-value'])
+
+  // inheritAttrs: false,
 </script>
 
 <style lang="postcss" scoped>

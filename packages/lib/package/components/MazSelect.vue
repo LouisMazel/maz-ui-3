@@ -26,7 +26,7 @@
           @click="openList"
         >
           <MazIcon
-            name="chevron-down"
+            :src="ChevronDownIcon"
             class="m-select-chevron maz-h-5 maz-w-5 maz-text-normal-text"
           />
         </button>
@@ -74,7 +74,8 @@
 </template>
 
 <script lang="ts">
-  export { Color, Size, ModelValueSimple, Position } from './types'
+  export type MazSelectOptions = Record<string, ModelValueSimple>
+  export type { Color, Size, ModelValueSimple, Position } from './types'
 </script>
 
 <script lang="ts" setup>
@@ -83,8 +84,7 @@
   import MazInput from './MazInput.vue'
   import MazIcon from './MazIcon.vue'
   import { Color, ModelValueSimple, Position, Size } from './types'
-
-  export type MazSelectOptions = Record<string, ModelValueSimple>
+  import ChevronDownIcon from './../icons/chevron-down.svg'
 
   const props = defineProps({
     modelValue: {

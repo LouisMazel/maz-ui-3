@@ -27,7 +27,7 @@
           color="transparent"
           @click="close"
         >
-          <MazIcon name="x" />
+          <MazIcon :src="XIcon" />
         </MazBtn>
       </div>
     </template>
@@ -38,6 +38,7 @@
   import MazBtn from './MazBtn.vue'
   import MazBackDrop from './MazBackDrop.vue'
   import MazIcon from './MazIcon.vue'
+  import XIcon from './../icons/x.svg'
 
   defineProps({
     persistent: { type: Boolean, default: false },

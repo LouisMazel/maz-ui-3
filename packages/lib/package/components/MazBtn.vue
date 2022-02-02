@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-  export { Color, Size } from './types'
+  export type { Color, Size } from './types'
 </script>
 
 <script lang="ts" setup>

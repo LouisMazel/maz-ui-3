@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-  export { Image } from './types'
+  export type { Image } from './types'
 </script>
 
 <script lang="ts" setup>

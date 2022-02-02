@@ -19,7 +19,7 @@
           </h4>
           <div v-if="!noCloseIcon" class="maz-flex maz-justify-end">
             <MazBtn size="sm" color="transparent" @click="close">
-              <MazIcon name="x" class="maz-h-5 maz-w-5" />
+              <MazIcon :src="XIcon" class="maz-h-5 maz-w-5" />
             </MazBtn>
           </div>
         </header>
@@ -38,6 +38,7 @@
   import { useDrawer } from '@/composables/drawer/drawer.composable'
   import MazBtn from './MazBtn.vue'
   import MazIcon from './MazIcon.vue'
+  import XIcon from './../icons/x.svg'
 
   export default defineComponent({
     components: { MazBackDrop, MazIcon, MazBtn },
@@ -71,6 +72,7 @@
       return {
         backdropRef,
         closeDrawer,
+        XIcon,
       }
     },
   })

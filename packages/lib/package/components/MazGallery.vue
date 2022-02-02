@@ -65,7 +65,7 @@
   import { vZoomImg } from './../directives/zoom-img.directive'
   import { vLazyImg } from './../directives/v-lazy-img'
   import { MazGalleryImage } from './types'
-  export { MazGalleryImage }
+  export type { MazGalleryImage } from './types'
 
   export default defineComponent({
     directives: {

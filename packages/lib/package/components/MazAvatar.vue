@@ -46,7 +46,7 @@
         @click="$emit('click', $event)"
       >
         <slot name="icon">
-          <MazIcon name="pencil" class="m-avatar__button__icon" />
+          <MazIcon :src="PencilIcon" class="m-avatar__button__icon" />
         </slot>
       </button>
     </div>
@@ -62,6 +62,7 @@
   import { PropType, computed } from 'vue'
   import MazLazyImg from './MazLazyImg.vue'
   import MazIcon from './MazIcon.vue'
+  import PencilIcon from './../icons/pencil.svg'
 
   const props = defineProps({
     // url or path of the image
@@ -82,7 +83,7 @@
     // target attribute of link (if url is provide)
     target: { type: String, default: '_self' },
     // size of avatar
-    size: { type: String, default: undefined },
+    size: { type: String, default: '1rem' },
     // add border around the avatar
     bordered: { type: Boolean, default: false },
     // add an edit layer & emit `edit` event on click
@@ -136,8 +137,8 @@
           &__icon {
             @apply maz-text-white;
 
-            height: 1.5em;
-            width: 1.5em;
+            height: 1em;
+            width: 1em;
           }
         }
 

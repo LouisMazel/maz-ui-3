@@ -43,7 +43,9 @@
 
   const iconPath = computed(() => props.path ?? mazIconPath)
   const fullSrc = computed(() =>
-    props.src ?? iconPath.value
+    props.src
+      ? props.src
+      : iconPath.value
       ? `${iconPath.value}/${props.name}.svg`
       : `/${props.name}.svg`,
   )

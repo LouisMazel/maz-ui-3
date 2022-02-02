@@ -8,7 +8,7 @@
         'maz-shadow-md': elevation,
         'maz-overflow-hidden': overflowHidden,
         'maz-rounded-xl': radius,
-        'maz-border-2 maz-border-solid maz-border-gray-100': bordered,
+        'maz-border-2 maz-border-solid maz-border-color-lighter': bordered,
       },
     ]"
   >
@@ -17,7 +17,7 @@
       v-if="$slots['header'] || collapsable"
       class="m-card__header maz-rounded-t-xl maz-border-b-2"
       :class="[
-        isOpen ? 'maz-border-gray-100' : 'maz-border-transparent',
+        isOpen ? 'maz-border-color-lighter' : 'maz-border-transparent',
         { '--is-collapsable': collapsable },
       ]"
       tabindex="-1"
@@ -27,12 +27,13 @@
 
       <MazBtn
         v-if="collapsable"
-        color="white"
-        class="maz-text-sm"
+        color="transparent"
+        class="maz-ml-2 maz-text-sm"
+        size="xs"
         @click.stop="isOpen = !isOpen"
       >
         <MazIcon
-          name="chevron-down"
+          :src="ChevronDownIcon"
           :class="{ '--is-open': isOpen }"
           class="m-card__collapse-icon maz-h-6"
         />
@@ -60,7 +61,7 @@
         />
       </div>
       <div class="maz-min-w-0 maz-flex-1">
-        <Component :is="collapsable ? 'MazTransitionExpand' : 'div'">
+        <Component :is="collapsable ? MazTransitionExpand : 'div'">
           <div
             v-show="isOpen"
             :class="[wrapperClass, { 'maz-p-4': !noPadding && !collapsable }]"
@@ -102,115 +103,95 @@
 </template>
 
 <script lang="ts">
-  import {
-    defineComponent,
-    computed,
-    useSlots,
-    PropType,
-    ref,
-    watch,
-  } from 'vue'
+  export type { MazGalleryImage } from './types'
+</script>
+
+<script lang="ts" setup>
+  import { computed, useSlots, PropType, ref, watch } from 'vue'
   import MazGallery from './MazGallery.vue'
   import MazBtn from './MazBtn.vue'
   import MazTransitionExpand from './MazTransitionExpand.vue'
   import MazIcon from './MazIcon.vue'
   import { MazGalleryImage } from './types'
-  export { MazGalleryImage }
+  import ChevronDownIcon from './../icons/chevron-down.svg'
 
-  export default defineComponent({
-    components: {
-      MazTransitionExpand,
-      MazGallery,
-      MazBtn,
-      MazIcon,
+  const props = defineProps({
+    // Images displayed
+    images: {
+      type: Array as PropType<MazGalleryImage[]>,
+      default: undefined,
     },
-    props: {
-      // Images displayed
-      images: {
-        type: Array as PropType<MazGalleryImage[]>,
-        default: undefined,
-      },
-      // Card variant: Must be `column | row | row-reverse | column-reverse`
-      orientation: {
-        type: String,
-        default: 'column',
-        validator: (value: string) => {
-          return ['column', 'row', 'row-reverse', 'column-reverse'].includes(
-            value,
-          )
-        },
-      },
-      // Make card a link (footer area excluded)
-      href: { type: String, default: undefined },
-      // Target option of link: Muse be one of `_blank | _self | _parent | _top | framename`
-      hrefTarget: { type: String, default: '_self' },
-      // Footer text alignment: `right | left`
-      footerAlign: { type: String, default: 'right' },
-      // Gallery image width
-      galleryWidth: { type: [String, Number], default: 200 },
-      // Gallery image height
-      galleryHeight: { type: [String, Number], default: 150 },
-      // Enable "zoom" image on click (can't be used when the card has a link)
-      zoom: { type: Boolean, default: false },
-      // Set elevation to card (box-shadow)
-      elevation: { type: Boolean, default: true },
-      // Set radius to card (box-shadow)
-      radius: { type: Boolean, default: true },
-      // Set border to card
-      bordered: { type: Boolean, default: false },
-      // Number of images shown in the gallery
-      imagesShowCount: { type: Number, default: 3 },
-      // Remove transparent layer with the remain count (ex: +2)
-      noRemaining: { type: Boolean, default: true },
-      // scale animation on hover (only linked cards)
-      scale: { type: Boolean, default: true },
-      wrapperClass: { type: String, default: undefined },
-      noPadding: { type: Boolean, default: false },
-      overflowHidden: { type: Boolean, default: false },
-      collapsable: { type: Boolean, default: false },
-      collapseOpen: { type: Boolean, default: false },
-    },
-    setup(props) {
-      const slots = useSlots()
-
-      const isOpen = ref(props.collapsable ? props.collapseOpen : true)
-
-      watch(
-        () => props.collapseOpen,
-        (value) => {
-          if (props.collapsable) isOpen.value = value
-        },
-      )
-
-      const isColumnVariant = computed(() =>
-        ['column', 'column-reverse'].includes(props.orientation),
-      )
-
-      const haveSomeContent = computed(() => {
-        const supportedSlots = ['default', 'title', 'subtitle', 'content']
-        const response = Object.keys(slots).some((val) =>
-          supportedSlots.includes(val),
+    // Card variant: Must be `column | row | row-reverse | column-reverse`
+    orientation: {
+      type: String,
+      default: 'column',
+      validator: (value: string) => {
+        return ['column', 'row', 'row-reverse', 'column-reverse'].includes(
+          value,
         )
-        return response
-      })
-
-      const galleryWidthComputed = computed(() =>
-        haveSomeContent.value ? props.galleryWidth : '100%',
-      )
-
-      const footerAlignClass = computed(() =>
-        props.footerAlign === 'right' ? 'maz-text-right' : 'maz-text-left',
-      )
-
-      return {
-        isOpen,
-        isColumnVariant,
-        haveSomeContent,
-        galleryWidthComputed,
-        footerAlignClass,
-      }
+      },
     },
+    // Make card a link (footer area excluded)
+    href: { type: String, default: undefined },
+    // Target option of link: Muse be one of `_blank | _self | _parent | _top | framename`
+    hrefTarget: { type: String, default: '_self' },
+    // Footer text alignment: `right | left`
+    footerAlign: { type: String, default: 'right' },
+    // Gallery image width
+    galleryWidth: { type: [String, Number], default: 200 },
+    // Gallery image height
+    galleryHeight: { type: [String, Number], default: 150 },
+    // Enable "zoom" image on click (can't be used when the card has a link)
+    zoom: { type: Boolean, default: false },
+    // Set elevation to card (box-shadow)
+    elevation: { type: Boolean, default: true },
+    // Set radius to card (box-shadow)
+    radius: { type: Boolean, default: true },
+    // Set border to card
+    bordered: { type: Boolean, default: false },
+    // Number of images shown in the gallery
+    imagesShowCount: { type: Number, default: 3 },
+    // Remove transparent layer with the remain count (ex: +2)
+    noRemaining: { type: Boolean, default: true },
+    // scale animation on hover (only linked cards)
+    scale: { type: Boolean, default: true },
+    wrapperClass: { type: String, default: undefined },
+    noPadding: { type: Boolean, default: false },
+    overflowHidden: { type: Boolean, default: false },
+    collapsable: { type: Boolean, default: false },
+    collapseOpen: { type: Boolean, default: false },
   })
+
+  const slots = useSlots()
+
+  const isOpen = ref(props.collapsable ? props.collapseOpen : true)
+
+  watch(
+    () => props.collapseOpen,
+    (value) => {
+      if (props.collapsable) isOpen.value = value
+    },
+  )
+
+  const isColumnVariant = computed(() =>
+    ['column', 'column-reverse'].includes(props.orientation),
+  )
+
+  const haveSomeContent = computed(() => {
+    const supportedSlots = ['default', 'title', 'subtitle', 'content']
+    const response = Object.keys(slots).some((val) =>
+      supportedSlots.includes(val),
+    )
+    return response
+  })
+
+  const galleryWidthComputed = computed(() =>
+    haveSomeContent.value ? props.galleryWidth : '100%',
+  )
+
+  const footerAlignClass = computed(() =>
+    props.footerAlign === 'right' ? 'maz-text-right' : 'maz-text-left',
+  )
 </script>
 
 <style lang="postcss" scoped>
@@ -221,15 +202,15 @@
       @apply maz-flex maz-items-center maz-justify-between maz-py-3 maz-px-4 maz-transition-colors maz-delay-200;
 
       &.--is-collapsable {
-        @apply hover:maz-bg-gray-100;
+        @apply hover:maz-bg-color-lighter;
       }
     }
 
     &__collapse-icon {
-      @apply maz-rotate-0 maz-transition-transform maz-delay-200;
+      @apply maz-rotate-0 maz-transition-transform maz-duration-200;
 
       &.--is-open {
-        @apply maz-rotate-180;
+        transform: rotate(180deg);
       }
     }
 

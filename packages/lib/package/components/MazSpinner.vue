@@ -19,12 +19,12 @@
 </template>
 
 <script lang="ts">
-  export { Color } from './types'
+  export type { Color } from './types'
 </script>
 
 <script lang="ts" setup>
   import { PropType } from 'vue'
-  import { Color } from './types'
+  import type { Color } from './types'
 
   defineProps({
     size: { type: String, default: '2em' },

@@ -79,10 +79,10 @@
         >
           <MazIcon
             v-if="hasPasswordVisible"
-            name="eye-off"
+            :src="EyeOffIcon"
             class="maz-text-gray-400"
           />
-          <MazIcon v-else name="eye" class="maz-text-gray-400" />
+          <MazIcon v-else :src="EyeIcon" class="maz-text-gray-400" />
         </MazBtn>
 
         <slot v-if="$slots['valid-button'] || validButton" name="valid-button">
@@ -95,7 +95,7 @@
             size="mini"
             type="submit"
           >
-            <MazIcon class="maz-text-normal-text" name="check" />
+            <MazIcon class="maz-text-normal-text" :src="CheckIcon" />
           </MazBtn>
         </slot>
       </div>
@@ -109,7 +109,10 @@
   import MazBtn from './MazBtn.vue'
   import MazIcon from './MazIcon.vue'
   import { Color, Size } from './types'
-  export { Color, Size }
+  export type { Color, Size } from './types'
+  import EyeOffIcon from './../icons/eye-off.svg'
+  import EyeIcon from './../icons/eye.svg'
+  import CheckIcon from './../icons/eye.svg'
 
   export default defineComponent({
     components: { MazBtn, MazIcon },
@@ -292,6 +295,9 @@
         emitValue,
         hasRightPart,
         hasLeftPart,
+        EyeOffIcon,
+        EyeIcon,
+        CheckIcon,
       }
     },
   })

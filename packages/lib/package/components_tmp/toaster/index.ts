@@ -1,5 +1,3 @@
-import { App, Plugin } from 'vue'
-
 import { Positions } from './positions'
 import { Toaster, ToasterOptions } from './use-toast'
 
@@ -9,8 +7,8 @@ const defaultOptions: ToasterOptions = {
   closable: true,
 }
 
-const plugin: Plugin = {
-  install(app: App, options?: ToasterOptions) {
+const plugin = {
+  install(app, options?: ToasterOptions) {
     const toaster: Toaster = new Toaster(app, { ...defaultOptions, ...options })
     app.config.globalProperties.$toaster = toaster
   },

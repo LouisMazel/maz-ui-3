@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-  export { Color, Size, Position } from './types'
+  export type { Color, Size, Position } from './types'
 </script>
 
 <script lang="ts" setup>

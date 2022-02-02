@@ -25,7 +25,7 @@
             {{ tag }}
           </template>
           <template #right-icon>
-            <MazIcon name="x" class="m-input-tags__tag__icon" />
+            <MazIcon :src="XIcon" class="m-input-tags__tag__icon" />
           </template>
         </MazBtn>
       </div>
@@ -53,6 +53,7 @@
   import MazBtn from '../ui/MazBtn.vue'
   import MazInput from './MazInput.vue'
   import MazIcon from '../ui/MazIcon.vue'
+  import XIcon from '../icons/x.svg'
 
   const props = defineProps({
     // Input value, can be a `Array` of `String` or `null`

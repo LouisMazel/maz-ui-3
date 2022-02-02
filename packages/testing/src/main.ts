@@ -6,8 +6,6 @@ import { vZoomImgInstall, vZoomImgOptions } from 'maz-ui'
 const app = createApp(App)
 
 const vLazyImgOptions: vZoomImgOptions = {
-  src: '',
-  alt: 'alt image',
   disabled: false,
   scale: true,
   blur: true,

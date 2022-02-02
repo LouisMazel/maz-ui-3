@@ -1,5 +1,3 @@
-import { Plugin } from 'vue'
-
 import { vClickOutside, vClickOutsideInstall } from './click-outside.directive'
 import { vClosable, vClosableInstall } from './closable.directive'
 import {
@@ -34,7 +32,7 @@ const directives = [
   },
 ]
 
-const installDirectives: Plugin = {
+const installDirectives = {
   install(app) {
     directives.forEach(({ name, directive }) => {
       app.directive(name, directive)

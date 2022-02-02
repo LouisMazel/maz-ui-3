@@ -1,18 +1,29 @@
 <template>
-  <div class="maz-flex maz-flex-col maz-w-full maz-flex-center">
-    <MazBtn @click="toggleDarkMode" style="margin-bottom: 16px;">
+  <div
+    class="maz-flex maz-flex-col maz-w-full maz-flex-center maz-text-normal-text"
+  >
+    <MazBtn style="margin-bottom: 16px" @click="toggleDarkMode">
       Dark Switch
     </MazBtn>
 
-    <div style="position: relative; width: 500px;">
+    <MazCard collapsable collapse-open overflow-hidden>
+      <template #header> Coucou </template>
+      <div class="maz-p-2">
+        <MazAvatar clickable caption="coucou" />
+        <MazPhoneNumberInput v-model="phoneNumber" />
+        <MazInput v-model="phoneNumber" type="password" />
+      </div>
+    </MazCard>
+
+    <div style="position: relative; width: 500px">
       <MazTabsBar :items="tabs" color="secondary" />
 
       <MazTabsContent>
         <MazTabsContentItem :tab="1">
-          <p> evzionfez </p>
+          <p>evzionfez</p>
         </MazTabsContentItem>
         <MazTabsContentItem :tab="2">
-          <p> evzionfez </p>
+          <p>evzionfez</p>
         </MazTabsContentItem>
       </MazTabsContent>
     </div>
@@ -20,11 +31,18 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted } from 'vue'
-  import MazBtn from 'maz-ui/components/MazBtn'
-  import MazTabsBar, { MazTabsItem } from 'maz-ui/components/MazTabsBar'
-  import MazTabsContent from 'maz-ui/components/MazTabsContent'
-  import MazTabsContentItem from 'maz-ui/components/MazTabsContentItem'
+  import { onMounted, ref } from 'vue'
+  import { MazTabsItem } from 'maz-ui/package/components/MazTabsBar.vue'
+  import {
+    MazAvatar,
+    MazCard,
+    MazBtn,
+    MazTabsBar,
+    MazTabsContent,
+    MazTabsContentItem,
+    MazPhoneNumberInput,
+    MazInput,
+  } from 'maz-ui/package/components'
 
   const tabs: MazTabsItem[] = [
     { label: 'First Tab', disabled: false },
@@ -32,12 +50,18 @@
     { label: 'Third Tab', disabled: false },
   ]
 
+  const phoneNumber = ref()
+
   onMounted(() => {
     autoSetDarkMode()
   })
 
   const autoSetDarkMode = () => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
       document.documentElement.classList.add('dark')
       localStorage.theme = 'dark'
     } else {
@@ -57,16 +81,15 @@
   }
 </script>
 
-
 <style>
-body {
-  margin: 0;
-}
+  body {
+    margin: 0;
+  }
 
-#app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+  #app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 </style>

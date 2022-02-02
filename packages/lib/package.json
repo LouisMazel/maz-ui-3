@@ -28,8 +28,8 @@
     "build:gen-components-entry": "cross-env NODE_ENV=production node build/generate-components-entry",
     "build:components-entry": "cross-env NODE_ENV=production node build/build-components-entry.js",
     "build:css": "NODE_ENV=production tailwindcss -i ./package/tailwindcss/css/tailwind.css -o css/main.css --config ./tailwind.config.js --postcss",
-    "build:cjs": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-    "build:esm": "npm run clean && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format esm",
+    "build:cjs": "npm run build:lib -- --format cjs",
+    "build:esm": "npm run build:lib -- --format esm",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
