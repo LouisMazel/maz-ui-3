@@ -1,8 +1,7 @@
 <template>
   <div
-    class="maz-base-component maz-collapse maz-position-relative"
+    class="maz-collapse maz-position-relative"
     :class="{
-      'maz-is-dark': dark,
       'is-open': isOpen,
     }"
   >
@@ -18,9 +17,9 @@
         <!-- `Default Header` -->
         Default Header
       </slot>
+      <!-- TODO: remove -->
       <ArrowIcon
         class="maz-collapse__header-btn__arrow maz-ml-2"
-        :white="dark"
         :color="arrowColor"
         :orientation="isOpen ? 'up' : null"
       />
@@ -57,8 +56,6 @@
     props: {
       // Value is a Boolean to open or close the collapse
       modelValue: { type: Boolean, default: false },
-      // Set `true` to enable dark mode
-      dark: { type: Boolean, default: false },
       // Is the color of the arrow, must be a hex color
       arrowColor: { type: String, default: 'black' },
     },

@@ -11,6 +11,7 @@
       tabindex="-1"
       @click="changeMonth('prev')"
     >
+      <!-- TODO: remove -->
       <ArrowIcon orientation="left" />
     </MazBtn>
     <div class="maz-flex maz-flex-1 maz-flex-center">
@@ -45,6 +46,7 @@
       class="maz-hover-bg-color maz-no-focus-bg maz-flex maz-bg-transparent maz-flex-center"
       @click="changeMonth('next')"
     >
+      <!-- TODO: remove -->
       <ArrowIcon orientation="right" />
     </MazBtn>
   </div>

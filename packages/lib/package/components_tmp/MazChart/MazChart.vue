@@ -72,7 +72,7 @@
       height: { type: String, default: undefined },
       width: { type: String, default: undefined },
       options: { type: Object, default: Object },
-      plugins: { type: Array as PropType<Plugin[]>, default: Array },
+      plugins: { type: Array as PropType<Plugin[]>, default: () => [] },
       locale: { type: String, default: 'fr-FR' },
     },
     emits: chartJsEventNames,

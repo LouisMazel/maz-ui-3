@@ -12,9 +12,21 @@
 </template>
 
 <script lang="ts" setup>
-  import { nextTick } from 'vue'
+  import { nextTick, ref } from 'vue'
+
+  enum States {
+    NONE = 'none',
+    ENTERING = 'entering',
+    AFTER_ENTERING = 'entering',
+    LEAVING = 'entering',
+  }
+  const state = ref<States>(States.NONE)
 
   const enter = (element: HTMLElement) => {
+    if (state.value !== States.NONE) {
+      return
+    }
+
     const width = getComputedStyle(element).width
 
     element.style.width = width
@@ -46,9 +58,17 @@
     })
   }
   const afterEnter = (element: HTMLElement) => {
+    if (state.value !== States.NONE) {
+      return
+    }
+
     element.style.height = 'auto'
   }
   const leave = (element: HTMLElement) => {
+    if (state.value !== States.NONE) {
+      return
+    }
+
     const height = getComputedStyle(element).height
     element.style.height = height
 

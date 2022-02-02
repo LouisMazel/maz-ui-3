@@ -43,7 +43,7 @@ define push-version
 	make install
 	make clean-build
 	make build
-	@$(call bump-version,$(1))
+	# @$(call bump-version,$(1))
 	# npm publish
 	make clean-build
 	git add .

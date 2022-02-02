@@ -1,8 +1,7 @@
 <template>
   <div
     ref="LangSwitcher"
-    class="maz-dropdown maz-base-component"
-    :class="{ 'maz-is-dark': dark }"
+    class="maz-dropdown"
     @mouseenter="hover ? openMenu() : null"
     @mouseleave="hover ? closeMenu() : null"
   >
@@ -52,8 +51,6 @@
       hover: { type: Boolean, default: false },
       // set dropdown open
       open: { type: Boolean, default: false },
-      // set dark mode
-      dark: { type: Boolean, default: false },
       // set dropdown position
       position: { type: String, default: 'right bottom' },
       // set color of button

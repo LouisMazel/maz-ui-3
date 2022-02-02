@@ -2,13 +2,8 @@
   <div
     :id="uniqueId"
     ref="MazPicker"
-    class="maz-base-component maz-picker"
-    :class="[
-      {
-        'maz-is-dark': dark,
-      },
-      `maz-picker--${color}`,
-    ]"
+    class="maz-picker"
+    :class="[`maz-picker--${color}`]"
     @blur.capture="closePicker($event, 'blur')"
   >
     <MazInput
@@ -35,7 +30,7 @@
       >
         <!-- The arrow icon -->
         <slot name="arrow">
-          <!-- Default arrow svg `<ArrowIcon />` -->
+          <!-- TODO: remove -->
           <ArrowIcon :orientation="hasPickerOpen ? 'up' : null" />
         </slot>
       </div>
@@ -84,14 +79,15 @@
   </div>
 </template>
 
-<script>
-  import PickersContainer from './PickersContainer'
+<script lang="ts">
+  import PickersContainer from './PickersContainer.vue'
   import uniqueId from './../../mixins/uniqueId'
   import ArrowIcon from './../_subs/ArrowIcon'
   import MazInput from './../MazInput'
-  import capitalize from './../../filters/capitalize'
+  import { capitalize } from './../../filters/capitalize'
 
   import moment from 'moment'
+
   import {
     getDefaultLocale,
     EventBus,
@@ -149,8 +145,6 @@
       minDate: { type: String, default: null },
       // maximum date the user can set (same format as the model)
       maxDate: { type: String, default: null },
-      // set dark mode
-      dark: { type: Boolean, default: false },
       // Date picker is always open
       persistent: { type: Boolean, default: false },
       // to remove the picker's header
@@ -168,9 +162,9 @@
       // Inline picker UI (no input, no dialog)
       inline: { type: Boolean, default: false },
       // disabled dates `Array of dates (same format as the value/format attribute)`,
-      disabledDates: { type: Array, default: Array },
+      disabledDates: { type: Array, default: () => [] },
       // Days of the week which are disabled every week, in Array format with day index, Sunday as 0 and Saturday as 6: `[0,4,6]`
-      disabledWeekly: { type: Array, default: Array },
+      disabledWeekly: { type: Array, default: () => [] },
       // show double calendar
       double: { type: Boolean, default: false },
       // Enable range mode to select periode
@@ -186,7 +180,7 @@
       // Change minute interval in time picker
       minuteInterval: { type: Number, default: 1 },
       // Must be an Array of integer: `0` to `24` (0 = 12am, 24 = 12pm) => `[0,1,2,3,4,5,6,7,19,20,21,22,23]`
-      disabledHours: { type: Array, default: Array },
+      disabledHours: { type: Array, default: () => [] },
       // Disable the overlay on mobile
       noOverlay: { type: Boolean, default: false },
       // pre selected shortcut: provide a shortcut key

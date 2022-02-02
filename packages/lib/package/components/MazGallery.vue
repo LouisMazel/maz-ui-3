@@ -14,13 +14,13 @@
       >
         <img
           v-zoom-img="{
-            src: image.slug,
+            src: image.src,
             alt: image.alt,
             disabled: noZoom || shouldHaveRemainingLayer(i),
             blur: blur,
             scale: scale,
           }"
-          v-lazy-img:bg-image="{ src: image.slug, disabled: !lazy }"
+          v-lazy-img:bg-image="{ src: image.src, disabled: !lazy }"
           class="m-gallery__item__image maz-flex-1"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           :alt="image.alt"
@@ -28,7 +28,7 @@
         <div
           v-if="shouldHaveRemainingLayer(i)"
           v-zoom-img="{
-            src: image.slug,
+            src: image.src,
             alt: image.alt,
             disabled: noZoom,
             blur: false,
@@ -43,18 +43,17 @@
       </figure>
       <div
         v-if="hasEmptyLayer && !images.length"
-        class="maz-flex maz-w-full maz-bg-gray-100 maz-flex-center"
+        class="maz-flex maz-w-full maz-bg-color-light maz-text-normal-text maz-flex-center"
         :class="{ 'maz-rounded-xl': !noRadius }"
         :style="[sizeStyle]"
       >
-        // TODO: icon
-        <i class="material-icons maz-text-muted">no_photography</i>
+        <MazIcon :src="NoPhotographyIcon" size="2rem" />
       </div>
     </section>
     <div
       v-for="(image, i) in imagesHidden"
       :key="i"
-      v-zoom-img="{ src: image.slug, disabled: noZoom }"
+      v-zoom-img="{ src: image.src, disabled: noZoom }"
       class="m-gallery__hidden"
     />
   </div>
@@ -65,16 +64,22 @@
   import { vZoomImg } from './../directives/zoom-img.directive'
   import { vLazyImg } from './../directives/v-lazy-img'
   import { MazGalleryImage } from './types'
+  import MazIcon from './MazIcon.vue'
   export type { MazGalleryImage } from './types'
+  import NoPhotographyIcon from './../icons/no-photography.svg'
 
   export default defineComponent({
+    components: { MazIcon },
     directives: {
       'zoom-img': vZoomImg,
       'lazy-img': vLazyImg,
     },
     props: {
       // Array of string or object: `['https://via.placeholder.com/500', 'https://via.placeholder.com/600']` or `[{ slug: 'https://via.placeholder.com/500', alt: 'image descripton' }, { slug: 'https://via.placeholder.com/600', alt: 'image descripton' }]`
-      images: { type: Array as PropType<MazGalleryImage[]>, default: Array },
+      images: {
+        type: Array as PropType<MazGalleryImage[]>,
+        default: () => [],
+      },
       // Images count shown (max: 5)
       imagesShownCount: { type: Number, default: 5 },
       // Remove transparent layer with the remain count (ex: +2)
@@ -107,7 +112,6 @@
             '[MazUI](m-gallery) The maximum of "images-shown-count" is 5',
           )
       })
-
       const sizeStyle = computed(() => {
         const { height, width, noWidth, noHeight } = props
         return {
@@ -127,28 +131,25 @@
             : {}),
         }
       })
-
       const imagesCount = computed(() => {
-        const { imagesShownCount } = props
-        return imagesShownCount <= 5 ? imagesShownCount : 5
+        return props.imagesShownCount <= 5 ? props.imagesShownCount : 5
       })
-
       const numberImagesRemaining = computed(() => {
-        const { images } = props
         return (
-          images.length -
-          (images.length < imagesCount.value
-            ? images.length
+          props.images.length -
+          (props.images.length < imagesCount.value
+            ? props.images.length
             : imagesCount.value)
         )
       })
       const imagesNormalized = computed(() => {
-        const { images } = props
-        return images.map((i) =>
-          typeof i === 'object' ? i : { slug: i, alt: undefined },
+        console.log('props.images', props.images)
+        return props.images.map((image) =>
+          typeof image === 'object' ? image : { src: image, alt: undefined },
         )
       })
       const imagesShown = computed(() => {
+        console.log('imagesNormalized', imagesNormalized.value)
         return imagesNormalized.value.slice(0, imagesCount.value)
       })
       const imagesHidden = computed(() => {
@@ -157,7 +158,6 @@
           props.images.length,
         )
       })
-
       const shouldHaveRemainingLayer = (i: number) => {
         return (
           numberImagesRemaining.value &&
@@ -165,7 +165,6 @@
           !props.noRemaining
         )
       }
-
       return {
         sizeStyle,
         imagesCount,
@@ -173,6 +172,7 @@
         imagesShown,
         numberImagesRemaining,
         imagesHidden,
+        NoPhotographyIcon,
       }
     },
   })

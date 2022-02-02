@@ -1,6 +1,6 @@
 <template>
   <div
-    class="maz-base-component maz-button-radio maz-flex-start maz-flex maz-flex-wrap"
+    class="maz-button-radio maz-flex-start maz-flex maz-flex-wrap"
     :class="{
       'maz-direction-column': column,
     }"

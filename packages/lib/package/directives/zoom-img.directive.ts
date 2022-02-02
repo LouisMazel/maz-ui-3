@@ -169,12 +169,12 @@ class VueZoomImg {
   constructor(binding: BindingData) {
     if (!binding.value) {
       throw new Error(
-        '[MazUI](img-preview) Image path must be defined. Ex: `v-zoom-img="<PATH_TO_IMAGE>"`',
+        '[MazUI](zoom-img) Image path must be defined. Ex: `v-zoom-img="<PATH_TO_IMAGE>"`',
       )
     }
 
     if (typeof binding.value === 'object' && !binding.value.src) {
-      throw new Error('[MazUI](img-preview) src of image must be provided')
+      throw new Error('[MazUI](zoom-img) src of image must be provided')
     }
 
     this.buttonsAdded = false

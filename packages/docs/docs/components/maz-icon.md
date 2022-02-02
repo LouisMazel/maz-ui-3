@@ -175,6 +175,7 @@ Place your SVG files in public a folder (default `/icons`, use `path` prop to ch
     'moon',
     'music-note',
     'newspaper',
+    'no-photography',
     'office-building',
     'paper-airplane',
     'paper-clip',

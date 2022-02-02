@@ -37,7 +37,7 @@
     @Prop({ type: Boolean, default: false })
     maxSlotsReached!: boolean
 
-    @Prop({ default: Array, type: Array })
+    @Prop({ default: () => [], type: Array })
     selectedSlots!: DaySlot[]
 
     get isDisabled() {

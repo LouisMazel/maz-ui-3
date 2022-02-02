@@ -12,6 +12,10 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
   :images="images"
   :height="400"
 />
+<MazGallery
+  :images="[{ src: 'ok' }]"
+  :height="400"
+/>
 
 ```vue
 <template>
@@ -26,8 +30,8 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
 
   const images = [
     'https://placekitten.com/640/500',
-    { slug: 'https://placekitten.com/640/600', alt: 'image description' },
-    { slug: 'https://placekitten.com/640/700', alt: 'image description' },
+    { src: 'https://placekitten.com/640/600', alt: 'image description' },
+    { src: 'https://placekitten.com/640/700', alt: 'image description' },
     'https://placekitten.com/640/800',
     'https://placekitten.com/640/1000',
     'https://placekitten.com/800/800'
@@ -42,8 +46,8 @@ description: MazGallery is a stand-alone component. It\'s a container to show im
 <script lang="ts" setup>
   const images = [
     'https://placekitten.com/640/500',
-    { slug: 'https://placekitten.com/640/600', alt: 'image description' },
-    { slug: 'https://placekitten.com/640/700', alt: 'image description' },
+    { src: 'https://placekitten.com/640/600', alt: 'image description' },
+    { src: 'https://placekitten.com/640/700', alt: 'image description' },
     'https://placekitten.com/640/800',
     'https://placekitten.com/640/1000',
     'https://placekitten.com/800/800'

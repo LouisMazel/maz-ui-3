@@ -66,7 +66,7 @@
       height: { type: Number, required: true },
       shortcuts: {
         type: Array,
-        default: Array,
+        default: () => [],
         validator: (val) =>
           val.every((shortcut) => {
             const isValueInteger = Number.isInteger(shortcut.value)

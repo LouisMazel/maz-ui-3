@@ -6,6 +6,8 @@
       Dark Switch
     </MazBtn>
 
+    <MazGallery style="width: 600px" />
+
     <MazCard collapsable collapse-open overflow-hidden>
       <template #header> Coucou </template>
       <div class="maz-p-2">
@@ -42,7 +44,17 @@
     MazTabsContentItem,
     MazPhoneNumberInput,
     MazInput,
+    MazGallery,
   } from 'maz-ui/package/components'
+
+  const images = [
+    'https://placekitten.com/640/500',
+    { src: 'https://placekitten.com/640/600', alt: 'image description' },
+    { src: 'https://placekitten.com/640/700', alt: 'image description' },
+    'https://placekitten.com/640/800',
+    'https://placekitten.com/640/1000',
+    'https://placekitten.com/800/800',
+  ]
 
   const tabs: MazTabsItem[] = [
     { label: 'First Tab', disabled: false },

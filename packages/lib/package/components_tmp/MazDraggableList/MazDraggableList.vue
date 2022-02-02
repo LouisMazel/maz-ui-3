@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="maz-base-component maz-draggable-list maz-mb-3"
-    :class="{
-      'maz-is-dark': dark,
-    }"
-  >
+  <div class="maz-draggable-list maz-mb-3">
     <Draggable
       v-model="items"
       v-bind="dragOptions"
@@ -36,7 +31,7 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, ref } from 'vue'
+  import { computed, defineComponent, PropType, ref } from 'vue'
   import Draggable from 'vuedraggable'
 
   /**
@@ -48,11 +43,9 @@
     components: { Draggable },
     props: {
       // Must be an `Array` (use `v-model`)
-      modelValue: { type: Array, required: true },
+      modelValue: { type: Array as PropType<any[]>, required: true },
       // is the item's key to build le list (must be different for each item)
       itemKey: { type: String, default: null },
-      // set dark theme
-      dark: { type: Boolean, default: false },
     },
     emits: ['update:model-value'],
     setup(props, { emit }) {

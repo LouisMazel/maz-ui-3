@@ -1,6 +1,6 @@
 <template>
   <div
-    class="maz-base-component maz-input-number maz-align-center"
+    class="maz-input-number maz-align-center"
     :class="[`maz-input-number--${size}`]"
   >
     <MazBtn

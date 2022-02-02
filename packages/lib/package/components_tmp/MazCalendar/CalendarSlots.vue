@@ -33,10 +33,10 @@
     @Prop({ type: Boolean, default: false })
     noXOffset!: boolean
 
-    @Prop({ type: Array, required: true })
+    @Prop({ type: () => [], required: true })
     days!: Day[]
 
-    @Prop({ default: Array, type: Array })
+    @Prop({ default: () => [], type: Array })
     selectedSlots!: DaySlot[]
 
     @Prop({ default: 'LT', type: String })

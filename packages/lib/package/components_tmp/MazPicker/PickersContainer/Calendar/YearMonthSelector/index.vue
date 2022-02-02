@@ -15,6 +15,7 @@
             tabindex="-1"
             @click="updateYears('prev')"
           >
+            <!-- TODO: remove -->
             <ArrowIcon orientation="left" color="text-grey" />
           </MazBtn>
           <MazBtn
@@ -26,6 +27,7 @@
             tabindex="-1"
             @click="updateYears('next')"
           >
+            <!-- TODO: remove -->
             <ArrowIcon orientation="right" color="text-grey" />
           </MazBtn>
         </div>
