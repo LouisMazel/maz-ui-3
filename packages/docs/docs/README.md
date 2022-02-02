@@ -16,7 +16,7 @@ features:
   - title: SSR Friendly
     details: All components works with Nuxt, no need to install components on client side
   - title: Typescript
-    details: This library is writing in typescript, so all types and declarations are directly available
+    details: This library is writing in typescript, so all types and declarations are directly availables
   - title: Dark and Light Theme
     details: All components supports the Dark and Light themes.
 footer: Made by LouisMazel with ❤️

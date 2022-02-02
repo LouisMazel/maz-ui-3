@@ -67,7 +67,7 @@ module.exports = {
     }),
   ],
   corePlugins: {
-    // preflight: false,
+    preflight: false,
     container: false,
   },
 }
