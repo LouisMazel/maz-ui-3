@@ -18,6 +18,7 @@
         '--disabled': isDisabled,
         '--icon': hasIcon,
         '--rounded': rounded,
+        '--no-padding': noPadding,
       },
     ]"
     :type="btnType"
@@ -27,7 +28,7 @@
         <MazIcon v-if="leftIcon" :name="leftIcon" />
       </slot>
     </div>
-    <span>
+    <span class="maz-flex maz-flex-center">
       <slot></slot>
     </span>
     <div v-if="hasRightIcon" class="m-btn__icon-right">
@@ -106,6 +107,7 @@
     noLeading: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
+    noPadding: { type: Boolean, default: false },
     fab: { type: Boolean, default: false },
     leftIcon: { type: String, default: undefined },
     rightIcon: { type: String, default: undefined },
@@ -515,7 +517,11 @@
 
       /* Disabled */
       &.--disabled {
-        @apply maz-cursor-not-allowed maz-bg-gray-100 maz-text-gray-400;
+        @apply maz-cursor-not-allowed maz-bg-color-lighter maz-text-muted;
+      }
+
+      &.--no-padding {
+        @apply maz-p-0;
       }
 
       /* Loader */

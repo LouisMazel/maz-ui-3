@@ -19,16 +19,17 @@ description: MazInputPrice is a stand-alone component replaces the standard html
 />
 
 `priceValue: {{ priceValue }}`
+
 <br />
+
 `formattedPrice: {{ formattedPrice }}`
+
 <script lang="ts" setup>
   import { ref } from 'vue'
 
   const priceValue = ref(2)
   const formattedPrice = ref()
 </script>
-
-> Set `:options="{ autoProcessQueue: true }"` to upload automatically the files (no button needed)
 
 ```vue
 <template>
@@ -53,6 +54,6 @@ description: MazInputPrice is a stand-alone component replaces the standard html
 </script>
 ```
 
-## Props, Events emitted & Methods
+## Props, Events emitted
 
 <ComponentPropDoc component="MazInputPrice" />
