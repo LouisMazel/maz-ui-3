@@ -1,9 +1,9 @@
 import { App, createApp } from 'vue'
 import NToast from './NToast.vue'
-import { Positions } from './positions'
+import { ToasterPositions } from './positions'
 
 export interface ToasterOptions {
-  position?: Positions
+  position?: ToasterPositions
   timeout?: number
   closable?: boolean
 }

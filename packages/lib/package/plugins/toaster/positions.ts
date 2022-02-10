@@ -1,4 +1,4 @@
-export enum Positions {
+export enum ToasterPositions {
   TOP_RIGHT = 'top-right',
   TOP = 'top',
   TOP_LEFT = 'top-left',
