@@ -4,32 +4,36 @@
       v-show="isActive"
       ref="Toaster"
       class="m-toast"
-      :class="[`-${color}`, `-${positionY}`, `-${positionX}`]"
+      :class="[`--${type}`, `--${positionY}`, `--${positionX}`]"
       role="alert"
       @mouseover="toggleTimer(true)"
       @mouseleave="toggleTimer(false)"
       @click="click"
     >
-      <div class="-icon">
-        <NIcon :name="`alert-${color}`" size="2.3em" />
+      <div class="--icon">
+        <!-- <NIcon :name="`alert-${type}`" size="2.3em" /> -->
       </div>
 
-      <button v-if="!persistent" class="-close">
-        <NIcon name="close" />
-      </button>
+      <div class="m-toast__message-wrapper">
+        <p class="m-toast__message">
+          {{ message }}
+        </p>
+      </div>
 
-      <p class="maz-font-bold">
-        {{ message }}
-      </p>
+      <button v-if="!persistent" class="--close">
+        <MazIcon :src="XIcon" class="maz-h-3 maz-w-3 maz-cursor-pointer" />
+      </button>
     </div>
   </Transition>
 </template>
 
 <script lang="ts" setup>
-  import { Color } from 'package/components/types'
   import { computed, onMounted, PropType, ref } from 'vue'
   import { ToasterPositions } from './positions'
   import { ToasterTimer } from './timer'
+  import { LocalToasterOptions } from './use-toast'
+  import MazIcon from './../../components/MazIcon.vue'
+  import XIcon from './../../icons/x.svg'
 
   const Toaster = ref<HTMLDivElement>()
 
@@ -43,24 +47,14 @@
     timeout: { type: Number, required: true },
     queue: { type: Boolean, default: false },
     noPauseOnHover: { type: Boolean, default: false },
-    color: {
-      type: String as PropType<Color>,
+    type: {
+      type: String as PropType<LocalToasterOptions['type']>,
       default: 'info',
       validator: (value: string) => {
-        return [
-          'primary',
-          'secondary',
-          'warning',
-          'danger',
-          'info',
-          'success',
-          'white',
-          'black',
-          'transparent',
-        ].includes(value)
+        return ['info', 'success', 'warning', 'danger'].includes(value)
       },
     },
-    message: { type: String, default: undefined },
+    message: { type: String, required: true },
     persistent: { type: Boolean, default: false },
   })
 
@@ -77,16 +71,16 @@
 
   const transitionName = computed(() => {
     if (positionX.value !== 'center') {
-      return positionX.value === 'right' ? 'n-slide-right' : 'n-slide-left'
+      return positionX.value === 'right' ? 'm-slide-right' : 'm-slide-left'
     }
-    return positionY.value === 'top' ? 'n-slide-top' : 'n-slide-bottom'
+    return positionY.value === 'top' ? 'm-slide-top' : 'm-slide-bottom'
   })
 
   const isActive = ref(false)
   const timer = ref<ToasterTimer>()
   const queueTimer = ref<ReturnType<typeof setTimeout>>()
 
-  const containerClassName = `n-toast-container -${positionY.value} -${positionX.value}`
+  const containerClassName = `m-toast-container --${positionY.value} --${positionX.value}`
   const selectorContainerClass = `.${containerClassName.replaceAll(' ', '.')}`
 
   const createParents = () => {
@@ -178,30 +172,30 @@
 
 <style lang="postcss">
   .m-toast-container {
-    @apply maz-fixed maz-z-50 maz-flex maz-flex-col maz-space-y-4 maz-p-4;
+    @apply maz-fixed maz-z-50 maz-flex maz-flex-col maz-space-y-2 maz-p-4;
 
-    &.-top {
-      @apply maz-top-0 maz-flex maz-pt-0;
+    &.--top {
+      @apply maz-top-0 maz-flex;
     }
 
-    &.-center {
+    &.--center {
       @apply maz-w-full maz-items-center;
     }
 
-    &.-bottom {
-      @apply maz-bottom-0 maz-flex maz-flex-col-reverse maz-pb-0;
+    &.--bottom {
+      @apply maz-bottom-0 maz-flex maz-flex-col-reverse;
 
       & > :not([hidden]) ~ :not([hidden]) {
-        margin-bottom: calc(1rem * calc(1 - var(--maz-space-y-reverse)));
-        margin-top: calc(1rem * var(--maz-space-y-reverse));
+        margin-bottom: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-top: calc(0.5rem * var(--tw-space-y-reverse));
       }
     }
 
-    &.-right {
+    &.--right {
       @apply maz-right-0 maz-w-full tab-m:maz-w-auto;
     }
 
-    &.-left {
+    &.--left {
       @apply maz-left-0 maz-w-full tab-m:maz-w-auto;
     }
   }
@@ -209,57 +203,103 @@
 
 <style lang="postcss" scoped>
   .m-toast {
-    @apply maz-relative maz-flex maz-w-full maz-cursor-pointer maz-items-center maz-self-center maz-py-3
-      maz-pl-2 maz-pr-5 maz-text-white maz-transition
-      maz-duration-300 maz-ease-in-out tab-m:maz-pr-4;
+    @apply maz-relative maz-flex maz-w-full maz-cursor-pointer maz-items-center maz-self-center maz-rounded
+      maz-pl-2 maz-pr-2 maz-text-white maz-transition
+      maz-duration-300 maz-ease-in-out;
 
-    &.-left,
-    &.-right {
+    &.--left,
+    &.--right {
       @apply tab-m:maz-w-80;
     }
 
-    &.-center {
+    &.--center {
       @apply tab-m:maz-w-10/12 tab-m:maz-justify-center;
     }
 
-    &.-bottom {
-      @apply maz-rounded-t;
-
-      & + .-bottom {
-        @apply maz-rounded;
-      }
+    & .--icon {
+      @apply maz-mr-1;
     }
 
-    &.-top {
-      @apply maz-rounded-b;
-
-      & + .-top {
-        @apply maz-rounded;
-      }
+    &__message-wrapper {
+      @apply maz-flex-1 maz-py-3;
     }
 
-    & .-icon {
-      @apply maz-pr-1;
+    &__message {
+      @apply maz-m-0;
     }
 
-    & .-close {
-      @apply maz-absolute maz-top-2 maz-right-2;
+    & .--close {
+      @apply maz-ml-1 maz-flex maz-h-7 maz-w-7 maz-rounded-full maz-bg-transparent maz-p-0
+      maz-text-white maz-flex-center
+      hover:maz-bg-gray-900 hover:maz-bg-opacity-10;
     }
 
-    &.-info {
+    &.--info {
       @apply maz-bg-info hover:maz-bg-info-600;
     }
 
-    &.-success {
+    &.--success {
       @apply maz-bg-success hover:maz-bg-success-600;
     }
 
-    &.-warning {
+    &.--warning {
       @apply maz-bg-warning hover:maz-bg-warning-600;
     }
 
-    &.-danger {
+    &.--danger {
       @apply maz-bg-danger hover:maz-bg-danger-600;
     }
+  }
+
+  .m-slide-top-enter-from,
+  .m-slide-top-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  .m-slide-top-enter-active,
+  .m-slide-top-leave-active {
+    opacity: 1;
+    transition: transform 300ms;
+    transform: translateY(0);
+  }
+
+  .m-slide-bottom-enter-active,
+  .m-slide-bottom-leave-active {
+    opacity: 1;
+    transition: transform 300ms;
+    transform: translateY(0);
+  }
+
+  .m-slide-bottom-enter-from,
+  .m-slide-bottom-leave-to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .m-slide-right-enter-active,
+  .m-slide-right-leave-active {
+    opacity: 1;
+    transition: transform 300ms;
+    transform: translateX(0);
+  }
+
+  .m-slide-right-enter-from,
+  .m-slide-right-leave-to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  .m-slide-left-enter-active,
+  .m-slide-left-leave-active {
+    opacity: 1;
+    transition: transform 300ms;
+    transform: translateX(0);
+  }
+
+  .m-slide-left-enter-from,
+  .m-slide-left-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
   }
 </style>

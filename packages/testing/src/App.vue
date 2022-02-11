@@ -6,14 +6,12 @@
       Dark Switch
     </MazBtn>
 
-    <MazGallery style="width: 600px" />
+    <MazGallery :images="images" style="width: 600px" />
 
     <MazCard collapsable collapse-open overflow-hidden>
       <template #header> Coucou </template>
       <div class="maz-p-2">
         <MazAvatar clickable caption="coucou" />
-        <MazPhoneNumberInput v-model="phoneNumber" />
-        <MazInput v-model="phoneNumber" type="password" />
       </div>
     </MazCard>
 
@@ -33,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted } from 'vue'
   import { MazTabsItem } from 'maz-ui/package/components/MazTabsBar.vue'
   import {
     MazAvatar,
@@ -42,10 +40,12 @@
     MazTabsBar,
     MazTabsContent,
     MazTabsContentItem,
-    MazPhoneNumberInput,
-    MazInput,
     MazGallery,
   } from 'maz-ui/package/components'
+  import { injectStrict } from './utils/injectStrict'
+  import { ToasterHandler } from 'maz-ui'
+
+  const toast = injectStrict<ToasterHandler>('toast')
 
   const images = [
     'https://placekitten.com/640/500',
@@ -62,10 +62,14 @@
     { label: 'Third Tab', disabled: false },
   ]
 
-  const phoneNumber = ref()
-
   onMounted(() => {
     autoSetDarkMode()
+    toast.success(
+      'COUCOU COUCOU  COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU',
+    )
+    toast.error('COUCOU')
+    toast.info('COUCOU')
+    toast.warning('COUCOU')
   })
 
   const autoSetDarkMode = () => {

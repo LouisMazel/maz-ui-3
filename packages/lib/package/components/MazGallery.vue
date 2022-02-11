@@ -143,7 +143,6 @@
         )
       })
       const imagesNormalized = computed(() => {
-        console.log('props.images', props.images)
         return props.images.map((image) =>
           typeof image === 'object' ? image : { src: image, alt: undefined },
         )

@@ -1,5 +1,5 @@
 import { ToasterPositions } from './positions'
-import { Toaster, ToasterOptions } from './use-toast'
+import { ToasterHandler, ToasterOptions } from './use-toast'
 
 const defaultOptions: ToasterOptions = {
   position: ToasterPositions.BOTTOM,
@@ -9,7 +9,12 @@ const defaultOptions: ToasterOptions = {
 
 export const plugin = {
   install(app, options?: ToasterOptions) {
-    const toaster: Toaster = new Toaster(app, { ...defaultOptions, ...options })
+    const toaster = new ToasterHandler(app, {
+      ...defaultOptions,
+      ...options,
+    })
+
+    app.provide('toast', toaster)
     app.config.globalProperties.$toaster = toaster
   },
 }

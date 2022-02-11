@@ -1,7 +1,6 @@
-import Toaster from './toaster/Toaster.vue'
+import MazToast from './toaster/MazToast.vue'
 
-export { Color } from 'package/components/types'
 export { ToasterPositions } from './toaster/positions'
-export { ToasterTimer } from './toaster/timer'
-export { Toaster }
+export { MazToast }
+export { ToasterHandler, ToasterOptions } from './toaster/use-toast'
 export { plugin as installToaster } from './toaster'

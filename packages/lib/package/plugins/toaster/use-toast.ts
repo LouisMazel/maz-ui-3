@@ -1,5 +1,6 @@
-import { App, createApp } from 'vue'
-import NToast from './NToast.vue'
+import { mount } from 'package/utils/mount-component'
+import { App } from 'vue'
+import MazToast from './MazToast.vue'
 import { ToasterPositions } from './positions'
 
 export interface ToasterOptions {
@@ -12,8 +13,7 @@ export interface LocalToasterOptions extends ToasterOptions {
   type?: 'success' | 'info' | 'warning' | 'danger'
 }
 
-export class Toaster {
-  // eslint-disable-next-line no-useless-constructor
+export class ToasterHandler {
   constructor(
     private readonly app: App,
     private readonly globalOptions: ToasterOptions,
@@ -25,21 +25,16 @@ export class Toaster {
 
     const localOptions = { message, ...options }
 
-    const propsData = Object.assign(
-      {},
-      localOptions,
-      this.globalOptions,
-      options,
-    )
+    const propsData: Record<string, unknown> = {
+      ...localOptions,
+      ...this.globalOptions,
+      ...options,
+    }
 
-    const toaster = createApp(
-      { extends: NToast },
-      {
-        propsData,
-      },
-    )
-
-    toaster.mount(mountEl)
+    mount(MazToast, {
+      props: propsData,
+      app: this.app,
+    })
   }
 
   private getLocalOptions(
