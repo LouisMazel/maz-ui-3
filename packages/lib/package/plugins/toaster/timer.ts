@@ -1,10 +1,10 @@
-export class Timer {
-  callback: Function
+export class ToasterTimer {
+  callback: () => unknown
   delay: number
-  timer: number
+  timer: ReturnType<typeof setTimeout>
   startedAt: number
 
-  constructor(callback: Function, delay: number) {
+  constructor(callback: () => unknown, delay: number) {
     this.startedAt = Date.now()
     this.callback = callback
     this.delay = delay

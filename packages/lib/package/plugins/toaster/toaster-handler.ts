@@ -1,45 +1,31 @@
-import { App, createApp } from 'vue'
-import NToast from './NToast.vue'
-import { Positions } from './positions'
-
-export interface ToasterOptions {
-  position?: Positions
-  timeout?: number
-  closable?: boolean
-}
+import { mount } from 'package/utils/mount-component'
+import { App } from 'vue'
+import MazToast from './MazToast.vue'
+import { ToasterOptions } from './types'
 
 export interface LocalToasterOptions extends ToasterOptions {
   type?: 'success' | 'info' | 'warning' | 'danger'
 }
 
-export class Toaster {
-  // eslint-disable-next-line no-useless-constructor
+export class ToasterHandler {
   constructor(
     private readonly app: App,
     private readonly globalOptions: ToasterOptions,
   ) {}
 
   private show(message: string, options: LocalToasterOptions) {
-    const mountEl = document.createElement('div')
-    document.body.appendChild(mountEl)
-
     const localOptions = { message, ...options }
 
-    const propsData = Object.assign(
-      {},
-      localOptions,
-      this.globalOptions,
-      options,
-    )
+    const propsData: Record<string, unknown> = {
+      ...localOptions,
+      ...this.globalOptions,
+      ...options,
+    }
 
-    const toaster = createApp(
-      { extends: NToast },
-      {
-        propsData,
-      },
-    )
-
-    toaster.mount(mountEl)
+    mount(MazToast, {
+      props: propsData,
+      app: this.app,
+    })
   }
 
   private getLocalOptions(
