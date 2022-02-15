@@ -11,8 +11,18 @@ import {
 import { countriesNameListByIsoCode } from './countries-name-list-by-iso-code'
 import { Country, Result } from '../types'
 
-export function getCountryName(code: CountryCode | string): string | undefined {
-  return countriesNameListByIsoCode[code]
+export function getCountryName(
+  code: CountryCode | string,
+  customCountriesNameListByIsoCode?: Record<CountryCode, string>,
+): string | undefined {
+  console.log(
+    'customCountriesNameListByIsoCode',
+    customCountriesNameListByIsoCode,
+  )
+  return {
+    ...countriesNameListByIsoCode,
+    ...customCountriesNameListByIsoCode,
+  }[code]
 }
 
 const PHONE_CHAR_REGEX = /^[-.() \d]+$/
@@ -44,12 +54,14 @@ export function sanitizePhoneNumber(input?: string) {
   return input
 }
 
-export function getCountriesList(): Country[] | undefined {
+export function getCountriesList(
+  customCountriesNameListByIsoCode?: Record<CountryCode, string>,
+): Country[] | undefined {
   const countriesList: Country[] = []
   const isoList = getCountries()
 
   for (const iso2 of isoList) {
-    const name = getCountryName(iso2)
+    const name = getCountryName(iso2, customCountriesNameListByIsoCode)
 
     if (name) {
       try {

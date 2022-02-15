@@ -1,6 +1,6 @@
 import { CountryCode } from 'libphonenumber-js'
 
-export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
+export const countriesNameListByIsoCode: Record<CountryCode, string> = {
   AC: 'Ascension Island',
   AF: 'Afghanistan',
   AL: 'Albania',
@@ -9,7 +9,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   AD: 'Andorra',
   AO: 'Angola',
   AI: 'Anguilla',
-  AQ: 'Antarctica',
   AG: 'Antigua and Barbuda',
   AR: 'Argentina',
   AM: 'Armenia',
@@ -31,7 +30,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   BQ: 'Bonaire, Sint Eustatius and Saba',
   BA: 'Bosnia and Herzegovina',
   BW: 'Botswana',
-  BV: 'Bouvet Island',
   BR: 'Brazil',
   IO: 'British Indian Ocean Territory (the)',
   BN: 'Brunei Darussalam',
@@ -80,7 +78,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   FR: 'France',
   GF: 'French Guiana',
   PF: 'French Polynesia',
-  TF: 'French Southern Territories (the)',
   GA: 'Gabon',
   GM: 'Gambia (the)',
   GE: 'Georgia',
@@ -98,7 +95,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   GW: 'Guinea-Bissau',
   GY: 'Guyana',
   HT: 'Haiti',
-  HM: 'Heard Island and McDonald Islands',
   VA: 'Holy See (the)',
   HN: 'Honduras',
   HK: 'Hong Kong',
@@ -176,7 +172,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   PY: 'Paraguay',
   PE: 'Peru',
   PH: 'Philippines (the)',
-  PN: 'Pitcairn',
   PL: 'Poland',
   PT: 'Portugal',
   PR: 'Puerto Rico',
@@ -208,7 +203,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   SB: 'Solomon Islands',
   SO: 'Somalia',
   ZA: 'South Africa',
-  GS: 'South Georgia and the South Sandwich Islands',
   SS: 'South Sudan',
   ES: 'Spain',
   LK: 'Sri Lanka',
@@ -237,7 +231,6 @@ export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   UA: 'Ukraine',
   AE: 'United Arab Emirates (the)',
   GB: 'United Kingdom of Great Britain and Northern Ireland (the)',
-  UM: 'United States Minor Outlying Islands (the)',
   US: 'United States of America (the)',
   UY: 'Uruguay',
   UZ: 'Uzbekistan',

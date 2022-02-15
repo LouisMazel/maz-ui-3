@@ -216,6 +216,10 @@
     noCountrySelector: { type: Boolean, default: false },
     showCodeOnList: { type: Boolean, default: false },
     error: { type: Boolean, default: false },
+    customCountriesList: {
+      type: Object as PropType<Record<CountryCode, string>>,
+      default: undefined,
+    },
   })
 
   const results = ref<Partial<Result>>({})
@@ -276,7 +280,7 @@
     }
   })
 
-  const countries = computed(() => getCountriesList())
+  const countries = computed(() => getCountriesList(props.customCountriesList))
 
   const t = computed(() => ({
     ...locales,

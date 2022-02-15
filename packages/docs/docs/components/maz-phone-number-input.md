@@ -93,8 +93,11 @@ yarn add libphonenumber-js
 - Auto focus phone number input after selecting country
 - You can disable the flags: `no-flags` prop
 - Set your translations
+- Provide your custom countries list (for translation)
 
 ## Translations
+
+### Labels & placeholders
 
 ```vue
 <template>
@@ -108,6 +111,24 @@ yarn add libphonenumber-js
         placeholder: 'Phone number',
         example: 'Example:',
       },
+    }"
+  />
+</template>
+```
+
+### Countries list
+
+```vue
+<template>
+  <MazPhoneNumberInput
+    :custom-countries-list="{
+      ...
+      FR: 'France',
+      BE: 'Belgique',
+      GE: 'Allemage',
+      GE: 'Allemage',
+      US: 'Etats-Unis',
+      ...
     }"
   />
 </template>
