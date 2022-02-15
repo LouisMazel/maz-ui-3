@@ -18,7 +18,7 @@ export default defineClientAppEnhance(async ({ app }) => {
   const toasterOptions: ToasterOptions = {
     persistent: false,
     position: 'bottom-right',
-    timeout: 100000,
+    timeout: 10000,
   }
 
   app.use(installToaster, toasterOptions)
