@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted } from 'vue'
+  import { inject, onMounted } from 'vue'
   import { MazTabsItem } from 'maz-ui/package/components/MazTabsBar.vue'
   import {
     MazAvatar,
@@ -67,7 +67,7 @@
     toast.success(
       'COUCOU COUCOU  COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU',
     )
-    toast.error('COUCOU')
+    toast.error('COUCOU', { position: 'top-right' })
     toast.info('COUCOU')
     toast.warning('COUCOU')
   })

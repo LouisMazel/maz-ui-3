@@ -1,10 +1,10 @@
-import { ToasterPositions } from './positions'
-import { ToasterHandler, ToasterOptions } from './use-toast'
+import { ToasterOptions, ToasterPositions } from './types'
+import { ToasterHandler } from './toaster-handler'
 
 const defaultOptions: ToasterOptions = {
-  position: ToasterPositions.BOTTOM,
+  position: 'bottom-right',
   timeout: 10_000,
-  closable: true,
+  persistent: true,
 }
 
 export const plugin = {
@@ -18,3 +18,5 @@ export const plugin = {
     app.config.globalProperties.$toaster = toaster
   },
 }
+
+export { ToasterHandler, ToasterOptions, ToasterPositions }

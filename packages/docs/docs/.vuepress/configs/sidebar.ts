@@ -2,6 +2,7 @@ import type { SidebarConfig } from '@vuepress/theme-default'
 import { components } from './components'
 import { directives } from './directives'
 import { filters } from './filters'
+import { plugins } from './plugins'
 
 export const sidebar: SidebarConfig = [
   {
@@ -14,6 +15,7 @@ export const sidebar: SidebarConfig = [
     ],
   },
   components,
+  plugins,
   directives,
   filters,
 ]

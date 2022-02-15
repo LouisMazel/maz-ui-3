@@ -1,13 +1,7 @@
 import { mount } from 'package/utils/mount-component'
 import { App } from 'vue'
 import MazToast from './MazToast.vue'
-import { ToasterPositions } from './positions'
-
-export interface ToasterOptions {
-  position?: ToasterPositions
-  timeout?: number
-  closable?: boolean
-}
+import { ToasterOptions } from './types'
 
 export interface LocalToasterOptions extends ToasterOptions {
   type?: 'success' | 'info' | 'warning' | 'danger'
@@ -20,9 +14,6 @@ export class ToasterHandler {
   ) {}
 
   private show(message: string, options: LocalToasterOptions) {
-    const mountEl = document.createElement('div')
-    document.body.appendChild(mountEl)
-
     const localOptions = { message, ...options }
 
     const propsData: Record<string, unknown> = {

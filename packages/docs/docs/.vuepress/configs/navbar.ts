@@ -3,6 +3,7 @@ import { version } from './../../../../lib/package.json'
 import { components } from './components'
 import { directives } from './directives'
 import { filters } from './filters'
+import { plugins } from './plugins'
 
 export const navbar: NavbarConfig = [
   {
@@ -17,7 +18,7 @@ export const navbar: NavbarConfig = [
   components,
   {
     text: 'Modules',
-    children: [filters, directives],
+    children: [plugins, filters, directives],
   },
   '/made-with-maz-ui',
   {

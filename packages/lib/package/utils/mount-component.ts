@@ -22,8 +22,9 @@ export function mount(
 
   if (app && app._context) vNode.appContext = app._context
   if (el) render(vNode, el)
-  else if (typeof document !== 'undefined')
+  else if (typeof document !== 'undefined') {
     render(vNode, (el = document.createElement('div')))
+  }
 
   const destroy = () => {
     if (el) render(null, el)

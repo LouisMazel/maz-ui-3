@@ -8,12 +8,8 @@
       role="alert"
       @mouseover="toggleTimer(true)"
       @mouseleave="toggleTimer(false)"
-      @click="click"
+      @click="click($event)"
     >
-      <div class="--icon">
-        <!-- <NIcon :name="`alert-${type}`" size="2.3em" /> -->
-      </div>
-
       <div class="m-toast__message-wrapper">
         <p class="m-toast__message">
           {{ message }}
@@ -29,18 +25,18 @@
 
 <script lang="ts" setup>
   import { computed, onMounted, PropType, ref } from 'vue'
-  import { ToasterPositions } from './positions'
   import { ToasterTimer } from './timer'
-  import { LocalToasterOptions } from './use-toast'
+  import { LocalToasterOptions } from './toaster-handler'
   import MazIcon from './../../components/MazIcon.vue'
   import XIcon from './../../icons/x.svg'
+  import { ToasterPositions } from './types'
 
   const Toaster = ref<HTMLDivElement>()
 
   const props = defineProps({
     position: {
       type: String as PropType<ToasterPositions>,
-      default: ToasterPositions.TOP,
+      default: 'bottom-right',
       required: true,
     },
     maxToasts: { type: [Number, Boolean], default: false },
@@ -127,9 +123,9 @@
       : undefined
   }
 
-  function click() {
+  function click(event: Event) {
     // eslint-disable-next-line unicorn/prefer-prototype-methods
-    emits('click')
+    emits('click', event)
     if (!props.persistent) {
       close()
     }
@@ -161,7 +157,7 @@
       if (container && !container?.hasChildNodes()) {
         container.remove()
       }
-    }, 250)
+    }, 300)
   }
 
   onMounted(() => {
@@ -172,6 +168,8 @@
 
 <style lang="postcss">
   .m-toast-container {
+    box-sizing: border-box;
+
     @apply maz-fixed maz-z-50 maz-flex maz-flex-col maz-space-y-2 maz-p-4;
 
     &.--top {
@@ -179,7 +177,11 @@
     }
 
     &.--center {
-      @apply maz-w-full maz-items-center;
+      @apply maz-w-full tab-m:maz-absolute tab-m:maz-left-2/4 tab-m:maz-w-auto;
+
+      @screen tab-m {
+        transform: translate(-50%, 0);
+      }
     }
 
     &.--bottom {
@@ -203,6 +205,12 @@
 
 <style lang="postcss" scoped>
   .m-toast {
+    box-sizing: border-box;
+
+    & * {
+      box-sizing: border-box;
+    }
+
     @apply maz-relative maz-flex maz-w-full maz-cursor-pointer maz-items-center maz-self-center maz-rounded
       maz-pl-2 maz-pr-2 maz-text-white maz-transition
       maz-duration-300 maz-ease-in-out;
@@ -213,11 +221,7 @@
     }
 
     &.--center {
-      @apply tab-m:maz-w-10/12 tab-m:maz-justify-center;
-    }
-
-    & .--icon {
-      @apply maz-mr-1;
+      @apply tab-m:maz-w-80 tab-m:maz-justify-center;
     }
 
     &__message-wrapper {
@@ -225,29 +229,45 @@
     }
 
     &__message {
-      @apply maz-m-0;
+      @apply maz-m-0 maz-font-medium;
     }
 
     & .--close {
       @apply maz-ml-1 maz-flex maz-h-7 maz-w-7 maz-rounded-full maz-bg-transparent maz-p-0
-      maz-text-white maz-flex-center
+      maz-flex-center
       hover:maz-bg-gray-900 hover:maz-bg-opacity-10;
     }
 
     &.--info {
-      @apply maz-bg-info hover:maz-bg-info-600;
+      @apply maz-bg-info maz-text-info-contrast hover:maz-bg-info-600;
+
+      & .--close {
+        @apply maz-text-info-contrast;
+      }
     }
 
     &.--success {
-      @apply maz-bg-success hover:maz-bg-success-600;
+      @apply maz-bg-success maz-text-success-contrast hover:maz-bg-success-600;
+
+      & .--close {
+        @apply maz-text-success-contrast;
+      }
     }
 
     &.--warning {
-      @apply maz-bg-warning hover:maz-bg-warning-600;
+      @apply maz-bg-warning maz-text-warning-contrast hover:maz-bg-warning-600;
+
+      & .--close {
+        @apply maz-text-warning-contrast;
+      }
     }
 
     &.--danger {
-      @apply maz-bg-danger hover:maz-bg-danger-600;
+      @apply maz-bg-danger maz-text-danger-contrast hover:maz-bg-danger-600;
+
+      & .--close {
+        @apply maz-text-danger-contrast;
+      }
     }
   }
 
@@ -260,14 +280,14 @@
   .m-slide-top-enter-active,
   .m-slide-top-leave-active {
     opacity: 1;
-    transition: transform 300ms;
+    transition: all 300ms;
     transform: translateY(0);
   }
 
   .m-slide-bottom-enter-active,
   .m-slide-bottom-leave-active {
     opacity: 1;
-    transition: transform 300ms;
+    transition: all 300ms;
     transform: translateY(0);
   }
 
@@ -280,7 +300,7 @@
   .m-slide-right-enter-active,
   .m-slide-right-leave-active {
     opacity: 1;
-    transition: transform 300ms;
+    transition: all 300ms;
     transform: translateX(0);
   }
 
@@ -293,7 +313,7 @@
   .m-slide-left-enter-active,
   .m-slide-left-leave-active {
     opacity: 1;
-    transition: transform 300ms;
+    transition: all 300ms;
     transform: translateX(0);
   }
 

@@ -6,7 +6,6 @@ import {
   vZoomImgOptions,
   installToaster,
   ToasterOptions,
-  ToasterPositions,
 } from 'maz-ui'
 
 const app = createApp(App)
@@ -20,8 +19,8 @@ const vLazyImgOptions: vZoomImgOptions = {
 app.use(vZoomImgInstall, vLazyImgOptions)
 
 const toasterOptions: ToasterOptions = {
-  closable: true,
-  position: ToasterPositions.TOP_LEFT,
+  persistent: false,
+  position: 'bottom-right',
   timeout: 50000,
 }
 
