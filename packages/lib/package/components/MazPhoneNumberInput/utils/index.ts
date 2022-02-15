@@ -15,10 +15,6 @@ export function getCountryName(
   code: CountryCode | string,
   customCountriesNameListByIsoCode?: Record<CountryCode, string>,
 ): string | undefined {
-  console.log(
-    'customCountriesNameListByIsoCode',
-    customCountriesNameListByIsoCode,
-  )
   return {
     ...countriesNameListByIsoCode,
     ...customCountriesNameListByIsoCode,

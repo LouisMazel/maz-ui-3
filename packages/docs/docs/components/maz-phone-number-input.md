@@ -122,12 +122,10 @@ yarn add libphonenumber-js
 <template>
   <MazPhoneNumberInput
     :custom-countries-list="{
-      ...
       FR: 'France',
       BE: 'Belgique',
       DE: 'Allemagne',
       US: 'Etats-Unis',
-      ...
     }"
   />
 </template>
