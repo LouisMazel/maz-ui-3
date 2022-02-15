@@ -1,4 +1,6 @@
-export const countriesNameListByIsoCode: { [key: string]: string } = {
+import { CountryCode } from 'libphonenumber-js'
+
+export const countriesNameListByIsoCode: { [key: CountryCode]: string } = {
   AC: 'Ascension Island',
   AF: 'Afghanistan',
   AL: 'Albania',
