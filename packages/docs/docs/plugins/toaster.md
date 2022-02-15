@@ -103,7 +103,6 @@ description: Display messages to your users in flexible toasts
   function showWarning () {
     toast.warning('Warning message', {
       position: 'top-right',
-      timeout: 100000,
     })
   }
 
