@@ -1,8 +1,8 @@
 <template>
   <div
     :style="[wrapperStyle, { fontSize: size }]"
-    class="maz-slider"
-    :class="[`maz-slider--${color}`]"
+    class="m-slider"
+    :class="[`m-slider--${color}`]"
     @mousemove.passive="handleMousemove"
     @mouseup.passive="handleMouseup"
     @mouseleave.passive="handleMouseup"
@@ -11,14 +11,14 @@
     <!-- @touchmove="handleToucheMove" -->
     <div
       ref="MazSlider"
-      class="maz-slider__bar maz-flex maz-items-center maz-justify-center"
+      class="m-slider__bar maz-flex maz-items-center maz-justify-center"
       role="slider"
     >
       <div
         v-for="(div, i) in dividers"
         :key="`divider-${i}`"
         :style="[div]"
-        class="maz-slider__divider"
+        class="m-slider__divider"
       />
 
       <!-- eslint-disable -->
@@ -27,7 +27,7 @@
         :key="`cursor-${i}`"
         type="button"
         :data-label="getLabel(i)"
-        class="maz-slider__btn maz-flex maz-items-center maz-justify-center maz-bg-gray-50"
+        class="m-slider__btn maz-flex maz-items-center maz-justify-center maz-bg-gray-50"
         :class="{
           'active-cursor': i === activeCursor && !noCursorAnim,
         }"
@@ -48,8 +48,7 @@
 </template>
 
 <script lang="ts">
-  import { debounce } from '@/utils/debounce'
-
+  import { debounce } from 'package'
   import {
     defineComponent,
     ref,
@@ -232,7 +231,7 @@
         await nextTick()
 
         const currentCursor = document.querySelectorAll(
-          '.maz-slider .maz-slider__btn',
+          '.m-slider .m-slider__btn',
         )
 
         // get width of text in cursor + padding/space
@@ -293,7 +292,7 @@
               : (barWidth / range.value) * (v - min),
           )
         } else {
-          console.log('MazSlider ref not found')
+          console.warn('MazSlider ref not found')
         }
       }
       const getCursorsValues = async () => {
@@ -387,7 +386,7 @@
 </script>
 
 <style lang="postcss" scoped>
-  .maz-slider {
+  .m-slider {
     @apply maz-py-[1em] maz-px-[1.5em];
 
     &__bar {
@@ -439,7 +438,7 @@
     }
 
     &--primary {
-      & .maz-slider {
+      & .m-slider {
         &__bar {
           @apply maz-bg-primary;
         }

@@ -17,7 +17,7 @@
       </div>
 
       <button v-if="!persistent" class="--close">
-        <MazIcon :src="XIcon" class="maz-h-3 maz-w-3 maz-cursor-pointer" />
+        <MazIcon :src="XIcon" class="maz-h-5 maz-w-5 maz-cursor-pointer" />
       </button>
     </div>
   </Transition>
@@ -177,7 +177,7 @@
     }
 
     &.--center {
-      @apply maz-w-full tab-m:maz-absolute tab-m:maz-left-2/4 tab-m:maz-w-auto;
+      @apply maz-w-full tab-m:maz-fixed tab-m:maz-left-2/4 tab-m:maz-w-auto;
 
       @screen tab-m {
         transform: translate(-50%, 0);
@@ -271,17 +271,17 @@
     }
   }
 
-  .m-slide-top-enter-from,
-  .m-slide-top-leave-to {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-
   .m-slide-top-enter-active,
   .m-slide-top-leave-active {
     opacity: 1;
     transition: all 300ms;
     transform: translateY(0);
+  }
+
+  .m-slide-top-enter-from,
+  .m-slide-top-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 
   .m-slide-bottom-enter-active,
