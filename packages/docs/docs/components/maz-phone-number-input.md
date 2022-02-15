@@ -125,8 +125,7 @@ yarn add libphonenumber-js
       ...
       FR: 'France',
       BE: 'Belgique',
-      GE: 'Allemage',
-      GE: 'Allemage',
+      DE: 'Allemagne',
       US: 'Etats-Unis',
       ...
     }"
