@@ -21,6 +21,7 @@ export const components = {
         '/components/maz-badge.md',
         '/components/maz-bottom-sheet.md',
         '/components/maz-dialog.md',
+        '/components/maz-dialog-promise.md',
         '/components/maz-drawer.md',
         '/components/maz-gallery.md',
         '/components/maz-card.md',

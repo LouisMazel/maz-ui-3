@@ -10,6 +10,7 @@ import { default as MazCard } from './MazCard.vue'
 import { default as MazChart } from './MazChart.vue'
 import { default as MazCheckbox } from './MazCheckbox.vue'
 import { default as MazDialog } from './MazDialog.vue'
+import { default as MazDialogPromise } from './MazDialogPromise.vue'
 import { default as MazDrawer } from './MazDrawer.vue'
 import { default as MazDropzone } from './MazDropzone.vue'
 import { default as MazGallery } from './MazGallery.vue'
@@ -37,6 +38,7 @@ export {
   MazChart,
   MazCheckbox,
   MazDialog,
+  MazDialogPromise,
   MazDrawer,
   MazDropzone,
   MazGallery,
@@ -65,6 +67,7 @@ export default {
   MazChart,
   MazCheckbox,
   MazDialog,
+  MazDialogPromise,
   MazDrawer,
   MazDropzone,
   MazGallery,

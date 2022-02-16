@@ -1,11 +1,13 @@
 ---
 title: MazDialog
-description: MazBottom is a stand-alone component like a simple dialog but at the bottom of screen
+description: MazDialog is a stand-alone dialog component to show important informations to the user or propose specific action. Many options available. You can hide the header or the footer, full-size layout, differents states etc.
 ---
 
 # MazDialog
 
 > Before you have to import the global css files in your project, follow instructions in [Getting Started](/maz-ui-3/guide/getting-started.html)
+
+> This component use `<Teleport to="body">`, so you can implement this component everywhere
 
 ## Basic usage
 

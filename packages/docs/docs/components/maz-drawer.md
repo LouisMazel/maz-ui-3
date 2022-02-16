@@ -8,7 +8,7 @@ description: MazDrawer is a stand-alone component to add a collapsible sidebar
 
 ## Basic usage
 
-This component used `<Teleport to="body">`, so you can implement this component everywhere
+This component use `<Teleport to="body">`, so you can implement this component everywhere
 
 <MazDrawer variant="top" v-model="isOpenedTop">
   <template #title>
