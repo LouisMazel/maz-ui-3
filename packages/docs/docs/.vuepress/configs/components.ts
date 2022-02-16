@@ -11,6 +11,7 @@ export const components = {
         '/components/maz-input-price.md',
         '/components/maz-phone-number-input.md',
         '/components/maz-select.md',
+        '/components/maz-slider.md',
       ]
     },
     {

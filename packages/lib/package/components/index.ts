@@ -17,6 +17,7 @@ import { default as MazInputPrice } from './MazInputPrice.vue'
 import { default as MazLazyImg } from './MazLazyImg.vue'
 import { default as MazPhoneNumberInput } from './MazPhoneNumberInput.vue'
 import { default as MazSelect } from './MazSelect.vue'
+import { default as MazSlider } from './MazSlider.vue'
 import { default as MazSpinner } from './MazSpinner.vue'
 import { default as MazTabsBar } from './MazTabsBar.vue'
 import { default as MazTabsContent } from './MazTabsContent.vue'
@@ -41,6 +42,7 @@ export {
   MazLazyImg,
   MazPhoneNumberInput,
   MazSelect,
+  MazSlider,
   MazSpinner,
   MazTabsBar,
   MazTabsContent,
@@ -66,6 +68,7 @@ export default {
   MazLazyImg,
   MazPhoneNumberInput,
   MazSelect,
+  MazSlider,
   MazSpinner,
   MazTabsBar,
   MazTabsContent,
