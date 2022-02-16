@@ -5,7 +5,7 @@
       {
         'm-card--linked': href,
         'm-card--no-scale': !scale,
-        'maz-shadow-md': elevation,
+        'maz-elevation': elevation,
         'maz-overflow-hidden': overflowHidden,
         'maz-rounded-xl': radius,
         'maz-border-2 maz-border-solid maz-border-color-lighter': bordered,
@@ -232,10 +232,6 @@
       &--column-reverse {
         @apply maz-flex-col-reverse;
       }
-    }
-
-    &__content {
-      @apply maz-pt-2;
     }
 
     &--linked {

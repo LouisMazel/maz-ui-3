@@ -46,7 +46,7 @@ define push-version
 	# @$(call bump-version,$(1))
 	# npm publish
 	git add .
-	git commit -m "chore(lib): bump-version to $(call GetFromPkg,version)"
+	git commit -m "chore(lib): bump-version to $(shell node -p "require('./package.json').version")"
 	# git push origin HEAD
 endef
 
@@ -57,7 +57,7 @@ define push-version-tag
 	@$(call bump-version-tag,$(1))
 	npm publish --tag $(1)
 	git add .
-	git commit -m "chore(lib): bump-version to $(call GetFromPkg,version)"
+	git commit -m "chore(lib): bump-version to $(shell node -p "require('./package.json').version")"
 	git push origin HEAD
 endef
 

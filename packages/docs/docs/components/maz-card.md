@@ -91,6 +91,77 @@ description: MazCard is a stand-alone component to display some texts, images an
 </script>
 ```
 
+## Options
+
+### collapsable
+
+<br />
+
+<MazCard collapsable style="width: 100%; margin-bottom: 16px;">
+  <template #header>
+    <h4 class="maz-m-0">
+      Steven Seagal
+    </h4>
+  </template>
+  <template #content>
+    <div style="padding: 16px;">
+      <p class="maz-m-0">
+        You're awesome! You're awesome! You're awesome! You're awesome! You're awesome!
+      </p>
+    </div>
+  </template>
+</MazCard>
+
+<MazCard collapsable collapse-open style="width: 100%;">
+  <template #header>
+    <h4 class="maz-m-0">
+      Steven Seagal
+    </h4>
+  </template>
+  <template #content>
+    <div style="padding: 16px;">
+      <p class="maz-m-0">
+        You're awesome! You're awesome! You're awesome! You're awesome! You're awesome!
+      </p>
+    </div>
+  </template>
+</MazCard>
+
+```vue
+<template>
+  <MazCard collapsable style="width: 100%; margin-bottom: 16px;">
+    <template #header>
+      <h4 class="maz-m-0">
+        Steven Seagal
+      </h4>
+    </template>
+    <template #content>
+      <div style="padding: 16px;">
+        <p class="maz-m-0">
+          You're awesome! You're awesome! You're awesome! You're awesome! You're awesome!
+        </p>
+      </div>
+    </template>
+  </MazCard>
+
+  <MazCard collapsable collapse-open style="width: 100%;">
+    <template #header>
+      <h4 class="maz-m-0">
+        Steven Seagal
+      </h4>
+    </template>
+    <template #content>
+      <div style="padding: 16px;">
+        <p class="maz-m-0">
+          You're awesome! You're awesome! You're awesome! You're awesome! You're awesome!
+        </p>
+      </div>
+    </template>
+  </MazCard>
+</template>
+```
+
+
 ## Props & Events emitted
 
 <ComponentPropDoc component="MazCard" />

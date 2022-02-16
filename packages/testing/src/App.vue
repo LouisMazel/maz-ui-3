@@ -29,22 +29,6 @@
         </MazTabsContentItem>
       </MazTabsContent>
     </div>
-    <MazDialog v-model="mazDialog" />
-    <MazBtn @click="askToUser"></MazBtn>
-    <MazDialogPromise
-      :data="{
-        message: 'Are you sure to delete this user ?',
-        title: 'Delete user',
-      }"
-      identifier="one"
-    />
-    <MazDialogPromise
-      :data="{
-        message: 'Are really really you sure to delete this user ?',
-        title: 'Really delete this user ?',
-      }"
-      identifier="two"
-    />
   </div>
 </template>
 
@@ -52,10 +36,6 @@
   import { onMounted, ref } from 'vue'
   import { MazTabsItem } from 'maz-ui/package/components/MazTabsBar.vue'
   import MazBadge from 'maz-ui/components/MazBadge'
-  import MazDialogPromise, {
-    useMazDialogPromise,
-  } from 'maz-ui/components/MazDialogPromise'
-  import MazDialog from 'maz-ui/components/MazDialog'
   import {
     MazAvatar,
     MazCard,
@@ -65,19 +45,6 @@
     MazTabsContentItem,
     MazGallery,
   } from 'maz-ui/package/components'
-  import { injectStrict } from './utils/injectStrict'
-  import { ToasterHandler } from 'maz-ui'
-
-  const toast = injectStrict<ToasterHandler>('toast')
-
-  const { showDialogAndWaitChoice } = useMazDialogPromise()
-
-  const askToUser = async () => {
-    await showDialogAndWaitChoice('one')
-    await showDialogAndWaitChoice('two')
-  }
-
-  const mazDialog = ref(false)
 
   const images = [
     'https://placekitten.com/640/500',
@@ -96,12 +63,6 @@
 
   onMounted(() => {
     autoSetDarkMode()
-    toast.success(
-      'COUCOU COUCOU  COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU COUCOU',
-    )
-    toast.error('COUCOU', { position: 'top-right' })
-    toast.info('COUCOU')
-    toast.warning('COUCOU')
   })
 
   const autoSetDarkMode = () => {
