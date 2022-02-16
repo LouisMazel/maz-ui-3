@@ -40,13 +40,17 @@
   "peerDependencies": {
     "dropzone": "^5.9.3",
     "libphonenumber-js": "^1.9.44",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "chart.js": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "dropzone": {
       "optional": true
     },
     "libphonenumber-js": {
+      "optional": true
+    },
+    "chart.js": {
       "optional": true
     }
   },
@@ -75,6 +79,7 @@
     "@vue/test-utils": "^2.0.0-0",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.2",
+    "chart.js": "^3.7.1",
     "cross-env": "^7.0.3",
     "dropzone": "^6.0.0-beta.2",
     "eslint": "^8.6.0",

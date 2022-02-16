@@ -24,6 +24,7 @@ export const components = {
         '/components/maz-drawer.md',
         '/components/maz-gallery.md',
         '/components/maz-card.md',
+        '/components/maz-chart.md',
         '/components/maz-lazy-img.md',
         '/components/maz-icon.md',
         '/components/maz-spinner.md',

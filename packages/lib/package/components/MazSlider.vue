@@ -52,7 +52,7 @@
 </script>
 
 <script lang="ts" setup>
-  import { debounce } from 'package'
+  import { debounce } from './../utils'
   import {
     ref,
     CSSProperties,
