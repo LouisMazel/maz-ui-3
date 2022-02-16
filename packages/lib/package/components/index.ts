@@ -3,6 +3,7 @@
 import { default as MazArrowIcon } from './MazArrowIcon.vue'
 import { default as MazAvatar } from './MazAvatar.vue'
 import { default as MazBackDrop } from './MazBackDrop.vue'
+import { default as MazBadge } from './MazBadge.vue'
 import { default as MazBottomSheet } from './MazBottomSheet.vue'
 import { default as MazBtn } from './MazBtn.vue'
 import { default as MazCard } from './MazCard.vue'
@@ -28,6 +29,7 @@ export {
   MazArrowIcon,
   MazAvatar,
   MazBackDrop,
+  MazBadge,
   MazBottomSheet,
   MazBtn,
   MazCard,
@@ -54,6 +56,7 @@ export default {
   MazArrowIcon,
   MazAvatar,
   MazBackDrop,
+  MazBadge,
   MazBottomSheet,
   MazBtn,
   MazCard,

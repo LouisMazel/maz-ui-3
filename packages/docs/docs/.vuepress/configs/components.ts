@@ -18,6 +18,7 @@ export const components = {
       text: 'UI',
       children: [
         '/components/maz-avatar.md',
+        '/components/maz-badge.md',
         '/components/maz-bottom-sheet.md',
         '/components/maz-dialog.md',
         '/components/maz-drawer.md',

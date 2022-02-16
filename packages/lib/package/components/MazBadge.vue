@@ -12,23 +12,33 @@
   </span>
 </template>
 
+<script lang="ts">
+  export { Color } from './types'
+</script>
+
 <script lang="ts" setup>
+  import { PropType } from 'vue'
+  import { Color } from './types'
+
   defineProps({
     color: {
-      type: String,
+      type: String as PropType<Color>,
       default: 'primary',
       validator: (value: string) => {
         return [
           'primary',
-          'warning',
           'secondary',
+          'warning',
           'danger',
-          'gray',
+          'info',
           'success',
+          'white',
+          'gray',
+          'black',
         ].includes(value)
       },
     },
-    size: { type: String, default: undefined },
+    size: { type: String, default: '0.8em' },
     nowrap: { type: Boolean, default: false },
     outline: { type: Boolean, default: false },
     pastel: { type: Boolean, default: false },
@@ -44,8 +54,10 @@
 
 <style lang="postcss" scoped>
   .m-badge {
-    @apply maz-inline-flex maz-items-center maz-justify-center maz-py-[0.25em]
-    maz-px-[0.5em] maz-text-[0.8em] maz-font-medium maz-leading-[1.4em];
+    @apply maz-inline-flex maz-items-center maz-justify-center maz-font-medium;
+
+    padding: 0.25em 0.5em;
+    line-height: 1.4em;
 
     &.--nowrap {
       @apply maz-whitespace-nowrap;
@@ -85,8 +97,20 @@
       }
     }
 
+    &.--info {
+      @apply maz-border-info maz-bg-info maz-text-info-contrast;
+
+      &.--outline {
+        @apply maz-border maz-bg-transparent maz-text-info;
+      }
+
+      &.--pastel {
+        @apply maz-border-info-100 maz-bg-info-100 maz-text-info-800;
+      }
+    }
+
     &.--gray {
-      @apply maz-border-gray-400 maz-bg-gray-400 maz-text-primary-contrast;
+      @apply maz-border-gray-400 maz-bg-gray-400 maz-text-white;
 
       &.--outline {
         @apply maz-border maz-bg-transparent maz-text-gray-400;
@@ -97,15 +121,27 @@
       }
     }
 
-    &.--danger {
-      @apply maz-border-danger maz-bg-danger maz-text-danger-contrast;
+    &.--black {
+      @apply maz-border-black maz-bg-black maz-text-white;
 
       &.--outline {
-        @apply maz-border maz-bg-transparent maz-text-danger;
+        @apply maz-border maz-bg-transparent maz-text-black;
       }
 
       &.--pastel {
-        @apply maz-border-danger-100 maz-bg-danger-100 maz-text-danger-800;
+        @apply maz-border-gray-400 maz-bg-gray-400 maz-text-black;
+      }
+    }
+
+    &.--white {
+      @apply maz-border-white maz-bg-white maz-text-gray-800;
+
+      &.--outline {
+        @apply maz-border maz-bg-transparent maz-text-gray-800;
+      }
+
+      &.--pastel {
+        @apply maz-border-gray-100 maz-bg-gray-100 maz-text-gray-800;
       }
     }
 
@@ -118,6 +154,18 @@
 
       &.--pastel {
         @apply maz-border-secondary-100 maz-bg-secondary-100 maz-text-secondary-800;
+      }
+    }
+
+    &.--danger {
+      @apply maz-border-danger maz-bg-danger maz-text-danger-contrast;
+
+      &.--outline {
+        @apply maz-border maz-bg-transparent maz-text-danger;
+      }
+
+      &.--pastel {
+        @apply maz-border-danger-100 maz-bg-danger-100 maz-text-danger-800;
       }
     }
 

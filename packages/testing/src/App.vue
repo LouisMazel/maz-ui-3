@@ -15,6 +15,8 @@
       </div>
     </MazCard>
 
+    <MazBadge> Coucou </MazBadge>
+
     <div style="position: relative; width: 500px">
       <MazTabsBar :items="tabs" color="secondary" />
 
@@ -33,6 +35,7 @@
 <script lang="ts" setup>
   import { inject, onMounted } from 'vue'
   import { MazTabsItem } from 'maz-ui/package/components/MazTabsBar.vue'
+  import MazBadge from 'maz-ui/components/MazBadge'
   import {
     MazAvatar,
     MazCard,
