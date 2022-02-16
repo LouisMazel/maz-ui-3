@@ -80,6 +80,9 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
     ['meta', { name: 'msapplication-TileColor', content: '#2d89ef' }],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
+    ['meta', { name: 'msapplication-TileImage', content: getBaseUrl('/img/maz-ui-preview.jpg') }],
+    ['meta', { property: 'og:image', content: getBaseUrl('/img/maz-ui-preview.jpg') }],
+    ['meta', { name: 'twitter:image', content: getBaseUrl('/img/maz-ui-preview.jpg') }]
   ],
 
   // theme and its config
