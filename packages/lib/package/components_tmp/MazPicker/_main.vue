@@ -1,6 +1,5 @@
 <template>
   <div
-    :id="uniqueId"
     ref="MazPicker"
     class="maz-picker"
     :class="[`maz-picker--${color}`]"
@@ -8,7 +7,7 @@
   >
     <MazInput
       v-if="!inline"
-      :id="uniqueId"
+      :id="id"
       v-model="inputValue"
       v-bind="$attrs"
       :placeholder="placeholder"
@@ -81,7 +80,6 @@
 
 <script lang="ts">
   import PickersContainer from './PickersContainer.vue'
-  import uniqueId from './../../mixins/uniqueId'
   import ArrowIcon from './../_subs/ArrowIcon'
   import MazInput from './../MazInput'
   import { capitalize } from './../../filters/capitalize'
@@ -119,7 +117,6 @@
       ArrowIcon,
       MazInput,
     },
-    mixins: [uniqueId],
     props: {
       // v-model --> input value
       // must be is the same format like
