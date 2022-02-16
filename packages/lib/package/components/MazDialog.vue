@@ -12,7 +12,7 @@
         >
           <h2
             v-if="$slots['title'] || title"
-            class="maz-text-xl maz-font-semibold"
+            class="maz-my-0 maz-text-xl maz-font-semibold"
           >
             <slot name="title">{{ title }}</slot>
           </h2>
@@ -53,7 +53,7 @@
 
 <style lang="postcss" scoped>
   .m-dialog-layout {
-    @apply maz-rounded-lg maz-bg-color;
+    @apply maz-rounded-lg maz-bg-color maz-text-normal-text;
 
     width: 500px;
     max-width: 95vw;
