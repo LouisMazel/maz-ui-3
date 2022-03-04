@@ -16,4 +16,4 @@ Please see the [documentation](https://louismazel.github.io/maz-ui-3/)
 
 ## Real repo
 
-For your issues, features, questionsn, etc --> [https://github.com/LouisMazel/maz-ui](https://github.com/LouisMazel/maz-ui-3)
+For your issues, features, questionsn, etc --> [https://github.com/LouisMazel/maz-ui](https://github.com/LouisMazel/maz-ui)
