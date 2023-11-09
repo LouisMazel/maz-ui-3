@@ -11,25 +11,25 @@ import{_ as e,C as t,c,k as s,a,t as r,H as o,Q as n,o as i}from"./chunks/framew
 <span class="line"><span style="color:#24292E;">})</span></span></code></pre></div><h2 id="recommendations" tabindex="-1">Recommendations <a class="header-anchor" href="#recommendations" aria-label="Permalink to &quot;Recommendations&quot;">​</a></h2>`,4),b={class:"tip custom-block"},f=s("p",{class:"custom-block-title"},"TIP",-1),A=n(`<p>Use <a href="https://github.com/unplugin/unplugin-vue-components" target="_blank" rel="noreferrer">unplugin-vue-components</a> and the dedicated maz-ui resolver to auto-import components</p><div class="language-ts vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#6A737D;">// vite.config.ts</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> Components </span><span style="color:#F97583;">from</span><span style="color:#E1E4E8;"> </span><span style="color:#9ECBFF;">&#39;unplugin-vue-components/vite&#39;</span></span>
-<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { MazUiUnpluginVueComponentsResolver } </span><span style="color:#F97583;">from</span><span style="color:#E1E4E8;"> </span><span style="color:#9ECBFF;">&#39;maz-ui&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { UnpluginVueComponentsResolver } </span><span style="color:#F97583;">from</span><span style="color:#E1E4E8;"> </span><span style="color:#9ECBFF;">&#39;maz-ui/resolvers&#39;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F97583;">export</span><span style="color:#E1E4E8;"> </span><span style="color:#F97583;">default</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">defineConfig</span><span style="color:#E1E4E8;">({</span></span>
 <span class="line"><span style="color:#E1E4E8;">  plugins: [</span></span>
 <span class="line"><span style="color:#E1E4E8;">    </span><span style="color:#B392F0;">Components</span><span style="color:#E1E4E8;">({</span></span>
 <span class="line"><span style="color:#E1E4E8;">      dts: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      resolvers: [</span><span style="color:#B392F0;">MazUiUnpluginVueComponentsResolver</span><span style="color:#E1E4E8;">()],</span></span>
+<span class="line"><span style="color:#E1E4E8;">      resolvers: [</span><span style="color:#B392F0;">UnpluginVueComponentsResolver</span><span style="color:#E1E4E8;">()],</span></span>
 <span class="line"><span style="color:#E1E4E8;">    }),</span></span>
 <span class="line"><span style="color:#E1E4E8;">  ]</span></span>
 <span class="line"><span style="color:#E1E4E8;">})</span></span></code></pre><pre class="shiki github-light vp-code-light"><code><span class="line"><span style="color:#6A737D;">// vite.config.ts</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;">import</span><span style="color:#24292E;"> Components </span><span style="color:#D73A49;">from</span><span style="color:#24292E;"> </span><span style="color:#032F62;">&#39;unplugin-vue-components/vite&#39;</span></span>
-<span class="line"><span style="color:#D73A49;">import</span><span style="color:#24292E;"> { MazUiUnpluginVueComponentsResolver } </span><span style="color:#D73A49;">from</span><span style="color:#24292E;"> </span><span style="color:#032F62;">&#39;maz-ui&#39;</span></span>
+<span class="line"><span style="color:#D73A49;">import</span><span style="color:#24292E;"> { UnpluginVueComponentsResolver } </span><span style="color:#D73A49;">from</span><span style="color:#24292E;"> </span><span style="color:#032F62;">&#39;maz-ui/resolvers&#39;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;">export</span><span style="color:#24292E;"> </span><span style="color:#D73A49;">default</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">defineConfig</span><span style="color:#24292E;">({</span></span>
 <span class="line"><span style="color:#24292E;">  plugins: [</span></span>
 <span class="line"><span style="color:#24292E;">    </span><span style="color:#6F42C1;">Components</span><span style="color:#24292E;">({</span></span>
 <span class="line"><span style="color:#24292E;">      dts: </span><span style="color:#005CC5;">true</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      resolvers: [</span><span style="color:#6F42C1;">MazUiUnpluginVueComponentsResolver</span><span style="color:#24292E;">()],</span></span>
+<span class="line"><span style="color:#24292E;">      resolvers: [</span><span style="color:#6F42C1;">UnpluginVueComponentsResolver</span><span style="color:#24292E;">()],</span></span>
 <span class="line"><span style="color:#24292E;">    }),</span></span>
 <span class="line"><span style="color:#24292E;">  ]</span></span>
 <span class="line"><span style="color:#24292E;">})</span></span></code></pre></div><p><strong>Typesript users</strong>: Add this in your <code>tsconfig.json</code></p><div class="language-json vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">json</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#E1E4E8;">{</span></span>
@@ -90,4 +90,4 @@ import{_ as e,C as t,c,k as s,a,t as r,H as o,Q as n,o as i}from"./chunks/framew
 <span class="line"><span style="color:#24292E;">  </span><span style="color:#005CC5;">&quot;compilerOptions&quot;</span><span style="color:#24292E;">: {</span></span>
 <span class="line"><span style="color:#24292E;">    </span><span style="color:#005CC5;">&quot;moduleResolution&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;NodeNext&quot;</span></span>
 <span class="line"><span style="color:#24292E;">  }</span></span>
-<span class="line"><span style="color:#24292E;">}</span></span></code></pre></div>`,12);function k(l,D,q,z,T,N){const p=t("NpmBadge");return i(),c("div",null,[s("h1",y,[a(r(l.$frontmatter.title)+" ",1),d]),u,o(p,{package:"maz-ui","dist-tag":"latest"}),m,s("h2",h,[a("Vue JS "),o(p,{package:"vue"}),a(),g]),F,s("h2",_,[a("Nuxt JS "),o(p,{package:"nuxt"}),a(),C]),v,s("div",b,[f,o(p,{package:"unplugin-vue-components"}),A]),B])}const P=e(E,[["render",k]]);export{S as __pageData,P as default};
+<span class="line"><span style="color:#24292E;">}</span></span></code></pre></div>`,12);function k(l,D,q,T,z,N){const p=t("NpmBadge");return i(),c("div",null,[s("h1",y,[a(r(l.$frontmatter.title)+" ",1),d]),u,o(p,{package:"maz-ui","dist-tag":"latest"}),m,s("h2",h,[a("Vue JS "),o(p,{package:"vue"}),a(),g]),F,s("h2",_,[a("Nuxt JS "),o(p,{package:"nuxt"}),a(),C]),v,s("div",b,[f,o(p,{package:"unplugin-vue-components"}),A]),B])}const P=e(E,[["render",k]]);export{S as __pageData,P as default};
